@@ -1,0 +1,5 @@
+{
+	"DELETE /data/*": "owner",
+	"POST /data/:collection": "member",
+	"POST /data/:collection/:field/:value": "owner"
+}
