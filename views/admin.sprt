@@ -1,0 +1,5 @@
+{{ include header.sprt }}
+
+<h1>Admin area</h1>
+
+{{ include footer.sprt }}
