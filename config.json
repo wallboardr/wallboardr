@@ -1,3 +1,9 @@
 {
-	"name": "wallboardr"
+	"name": "wallboardr",
+	"static": "assets",
+	"admin": {
+		"name": "colin",
+		"pass": "hardcore5982",
+		"email": "colin@colinbate.com"
+	}
 }

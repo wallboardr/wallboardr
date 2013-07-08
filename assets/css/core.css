@@ -1,0 +1,9 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: #222222;
+  background-color: #fcfcfc;
+}
+.board {
+  margin-bottom: 1em;
+}

@@ -1,0 +1,6 @@
+{
+	"name": {"type": "String", "required": true },
+	"slug": {"type": "String", "unique": true, "required": true},
+	"desc": {"type": "String"},
+	"duration": {"type": "Number", "default": 30}
+}

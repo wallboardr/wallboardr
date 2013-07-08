@@ -1,4 +1,7 @@
 {
 	"/": "index",
-	"/proxy/:page": "proxy"
+	"/proxy/:page": "proxy",
+	"/admin": "admin",
+	"/login": "login",
+	"/view/:board": "board"
 }
