@@ -4,8 +4,15 @@
 		<title>Wallboardr</title>
 		<link rel="stylesheet" href="/assets/css/core.css" type="text/css">
 	</head>
-	<body>
-
+	<body ng-controller="WallboardrController">
+		<header role="banner">
+			<h1>Wallboardr.</h1>
+			<nav>
+				<ul>
+					<li><a href="/about">About</a></li>
+				</ul>
+			</nav>
+		</header>
 	
 		<script data-main="/assets/js/main.js" src="/assets/lib/require.js"></script>
 	</body>
