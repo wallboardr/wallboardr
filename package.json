@@ -1,0 +1,21 @@
+{
+  "name": "wallboardr",
+  "version": "0.0.1",
+  "description": "Create dynamic wallboards for your projects/organizations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "mercurial",
+    "url": "https://bitbucket.org/colinbate/wallboardr"
+  },
+  "keywords": [
+    "wallboard",
+    "information",
+    "radiator",
+    "tool"
+  ],
+  "author": "Colin Bate <colin@colinbate.com>",
+  "license": "MIT"
+}
