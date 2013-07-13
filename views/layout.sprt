@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Wallboardr</title>
+		<link rel="stylesheet" href="/assets/css/core.css" type="text/css">
+	</head>
+	<body>
+
+	
+		<script data-main="/assets/js/main.js" src="/assets/lib/require.js"></script>
+	</body>
+</html>

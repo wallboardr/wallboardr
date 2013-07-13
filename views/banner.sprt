@@ -1,0 +1,8 @@
+<header role="banner">
+	<h1>Wallboardr.</h1>
+	<nav>
+		<ul>
+			<li><a href="/about">About</a></li>
+		</ul>
+	</nav>
+</header>
