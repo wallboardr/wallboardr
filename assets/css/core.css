@@ -494,6 +494,7 @@ nav ul {
   border-left: 1px solid #373737;
 }
 nav li {
+  float: left;
   height: 100%;
   border-right: 1px solid #373737;
 }
@@ -505,6 +506,10 @@ nav a {
 }
 nav a:hover {
   background-color: #e2854a;
+}
+.ng-cloak,
+[ng-cloak] {
+  display: none;
 }
 .board {
   margin-bottom: 1em;
