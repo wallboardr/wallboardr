@@ -1,0 +1,41 @@
+header {
+	background-color: @color-content-dark;
+	color: @color-base-page;
+	padding: 0 2em;
+	height: 5em;
+
+	h1 {
+		float: left;
+	}
+
+	a {
+		color: @color-base-page;
+	}
+}
+
+nav {
+	float: left;
+	padding-left: 3em;
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		height: 100%;
+		border-left: 1px solid @color-content-dark-accent;
+	}
+
+	li {
+		height: 100%;
+		border-right: 1px solid @color-content-dark-accent;
+	}
+
+	a {
+		display: inline-block;
+		height: 100%;
+		line-height: 5em;
+		padding: 0 3em;
+		&:hover {
+			background-color: #e2854a;
+		}
+	}
+}
