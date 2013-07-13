@@ -501,7 +501,6 @@ App.prototype = {
 		pwd.hash(req.body.pass.toString(), function (err, salt, hash) {
 			req.body._salt = salt.toString();
 			req.body.pass = hash.toString("base64");
-			console.log("PASS", req.body.pass)
 
 			var cb = self.response(req, res);
 			self.storage.db.collection("users").insert(req.body, function (err, resp) {
