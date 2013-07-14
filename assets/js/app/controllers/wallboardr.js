@@ -2,9 +2,14 @@ define([], function () {
     'use strict';
 
     var wallboardrController = function ($scope) {
-        $scope.menu = [
-            {url: '/admin', label: 'Admin'}
-        ];
+      $scope.user = {
+        name: null,
+        loggedIn: false,
+        isEditor: false
+      };
+      $scope.menu = [
+          {url: '/admin', label: 'Admin'}
+      ];
     };
     wallboardrController.$inject = ['$scope'];
 

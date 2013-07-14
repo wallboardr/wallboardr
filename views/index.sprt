@@ -13,5 +13,5 @@
 		</div>
 	<% /each %>
 <% else %>
-	<p>No boards</p>
+	<p>No boards {{greeting}}</p>
 <% /if %>

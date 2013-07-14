@@ -1,4 +1,4 @@
-define(['angular', 'controller/wallboardr'], function (angular, wallboardrCtrl) {
+define(['angular', 'controller/wallboardr', 'app/routes'], function (angular, wallboardrCtrl, routes) {
     'use strict';
 
     var appName = 'wallboardr',
@@ -14,6 +14,7 @@ define(['angular', 'controller/wallboardr'], function (angular, wallboardrCtrl) 
             var app;
             log('Tower, this is Ghost Rider requesting a flyby.');
             app = angular.module(appName, []);
+            app.config(routes);
             app.controller('WallboardrController', wallboardrCtrl);
             angular.bootstrap(document, [appName]);
             log('Negative Ghost Rider, the pattern is full.');
