@@ -1,17 +1,27 @@
-<% if session.user %>
-<a href="/admin" class="edit">Edit boards</a><i class="icon-pencil"></i>
-<% /if %>
+<div class="index-view">
+	<% if session.user %>
+	<a href="/admin" class="edit">Edit boards</a><i class="icon-pencil"></i>
+	<% /if %>
 
-<% get /data/boards?sort=name as boards %>
+	<% get /data/boards?sort=name as boards %>
 
-<% if boards.length %>
-	<% each boards as board %>
-		<div class="board">
-			<h2><%board.name%></h2>
-			<div class="desc"><%board.desc%></div>
-			<a href="/view/<%board.slug%>">View board</a>
-		</div>
-	<% /each %>
-<% else %>
-	<p>No boards {{greeting}}</p>
-<% /if %>
+	<% if boards.length %>
+		<% each boards as board %>
+			<div class="board">
+				<h2><%board.name%></h2>
+				<div class="desc"><%board.desc%></div>
+				<a href="/view/<%board.slug%>">View board</a>
+			</div>
+		<% /each %>
+	<% else %>
+		<p>No boards {{greeting}}</p>
+		<form>
+			<legend>Create a new board</legend>
+			<input type="text" ng-model="newBoard.name" placeholder="Name"><br>
+			<input type="text" ng-model="newBoard.slug" placeholder="Url slug"><br>
+			<textarea rows="4" ng-model="newBoard.desc" placeholder="Description"></textarea><br>
+			<input type="number" ng-model="newBoard.duration" placeholder="Screen duration">
+			<button ng-click="addBoard()">Add</button>
+		</form>
+	<% /if %>
+</div>

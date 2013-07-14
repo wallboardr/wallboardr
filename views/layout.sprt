@@ -9,14 +9,14 @@
 			<h1>Wallboardr.</h1>
 			<nav>
 				<ul>
+					<li><a href="#" class="admin-nav">Users</a></li>
+					<li><a href="/admin" class="user-nav">Admin</a></li>
 					<li><a href="/about">About</a></li>
-					<li class="user-nav"><a href="/admin">Admin</a></li>
-					<li class="admin-nav"><a href="#">Users</a></li>
 				</ul>
 			</nav>
 		</header>
 		<!-- views go in here -->
-		<div ng-view></div>
+		<div ng-view class="container"></div>
 
 		<script data-main="/assets/js/main.js" src="/assets/lib/require.js"></script>
 	</body>

@@ -5,7 +5,7 @@ header {
 	height: 5em;
 
 	h1 {
-		float: left;
+		.column-ng(6);
 	}
 
 	a {
@@ -14,31 +14,36 @@ header {
 }
 
 nav {
-	float: left;
-	padding-left: 3em;
+	.column(6);
 	ul {
 		list-style: none;
 		margin: 0;
 		padding: 0;
 		height: 5em;
-		border-left: 1px solid @color-content-dark-accent;
+		.row(6);
+		border-right: 1px solid @color-content-dark-accent;
 	}
 
 	li {
-		float: left;
+		.column-ng(2, 6);
 		height: 100%;
-		border-right: 1px solid @color-content-dark-accent;
 	}
 
 	a {
 		display: inline-block;
+		text-align: center;
 		height: 100%;
+		width: 100%;
 		line-height: 5em;
-		padding: 0 3em;
+		border-left: 1px solid @color-content-dark-accent;
 		&:hover {
 			background-color: #e2854a;
 		}
 	}
+}
+
+.container {
+	padding: 0 2em;
 }
 
 .ng-cloak,
