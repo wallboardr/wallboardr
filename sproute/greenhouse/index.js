@@ -59,13 +59,14 @@ var types = {
     "INCLUDE": "include"
 };
 
-function Greenhouse (hooks) {
+function Greenhouse (config) {
     //save compile errors
     this.compileErrors = [];
     this.isError = false;
 
     //allow hooks into the template language
-    this.hooks = hooks || {};
+    this.hooks = config.hooks || {};
+    this.templateTags = config.templateTags || { "start": "{{", "end": "}}" };
 
     this.hooks.set = function (block, next) {
         var expand = this.parseExpression(block.rawExpr);
@@ -117,7 +118,7 @@ Greenhouse.prototype.extractDots = function (line) {
 Greenhouse.prototype.render = function (template, data) {
     this.compileErrors.length = 0;
 
-    this.data = data;    
+    this.data = data;
 
     //tokenize and set error flag
     var tokens = this.tokenize(template);
@@ -193,12 +194,17 @@ Greenhouse.prototype.tokenize = function (template) {
     var tokens = [];
     var parent = tokens;
 
+    var startTag = this.templateTags.start || '{{';
+    var startTagLength = startTag.length;
+    var endTag = this.templateTags.end || '}}';
+    var endTagLength = endTag.length;
+
     //loop over every fucking character :\
     for (var idx = 0; idx < template.length; ++idx) {
-        var tag = template.substr(idx, 2);
+        var tag = template.substr(idx, startTagLength);
 
         //open tag
-        if (tag === '{{') {
+        if (tag === startTag) {
             if (template[idx - 1] === "\\") {
                 continue;
             }
@@ -211,11 +217,13 @@ Greenhouse.prototype.tokenize = function (template) {
                 continue;
             }
 
-            openTag = idx + 1;
+            openTag = idx;
         }
-
+        if (startTagLength !== endTagLength) {
+            tag = template.substr(idx, endTagLength);
+        }
         //closedTag
-        if (tag === '}}') {
+        if (tag === endTag) {
             if (template[idx - 1] === "\\") {
                 continue;
             }
@@ -227,7 +235,7 @@ Greenhouse.prototype.tokenize = function (template) {
             }
 
             //grab the expression from last open tag
-            var expression = template.substring(openTag + 1, idx).trim();
+            var expression = template.substring(openTag + startTagLength, idx).trim();
 
             var token = {};
             if (!parent) {
@@ -243,25 +251,25 @@ Greenhouse.prototype.tokenize = function (template) {
             if (this.hooks[keyword]) {
                 token.type = keyword;
                 token.rawExpr = expression.substr(keyword.length).trim();
-                token.start = openTag - 1;
-                token.end = idx + 1;
+                token.start = openTag;
+                token.end = idx + endTagLength;
             }
             //check includes
             else if (expression.substr(0, 7).toLowerCase() === "include" ||
-					 expression.substr(0, 8).toLowerCase() === "#include") {
+                expression.substr(0, 8).toLowerCase() === "#include") {
 
                 token.type = types.INCLUDE;
                 token.path = expression.split(" ").slice(1).join(" ");
-                token.start = openTag - 1;
-                token.end = idx + 1;
-				token.eval = expression[0] !== "#";
+                token.start = openTag;
+                token.end = idx + endTagLength;
+                token.eval = expression[0] !== "#";
             }
             //a conditional statement
             else if (expression.substr(0, 2).toLowerCase() === "if") {
                 token.type = types.CONDITION;
                 token.expr = expression.substr(3);
-                token.startTrue = idx + 2;
-                token.start = openTag - 1;
+                token.startTrue = idx + endTagLength;
+                token.start = openTag;
                 
                 var ifOptions = token.expr.split(spaceRx);
                 token.thing = ifOptions[0];
@@ -291,15 +299,15 @@ Greenhouse.prototype.tokenize = function (template) {
             }
             //an else statement
             else if (expression.toLowerCase() === "else") {
-                token.skipFrom = openTag - 1;
-                token.skipTo = idx + 2;
+                token.skipFrom = openTag;
+                token.skipTo = idx + endTagLength;
                 token.type = "else";
                 var lastCondition = openCondition.pop();
                 
                 //save pointers to the start and end
                 //of the else
-                lastCondition.endTrue = openTag - 1;
-                lastCondition.startFalse = idx + 2;
+                lastCondition.endTrue = openTag;
+                lastCondition.startFalse = idx + endTagLength;
                 lastCondition.else = true;
 
                 parent = lastCondition.onFalse;
@@ -308,16 +316,16 @@ Greenhouse.prototype.tokenize = function (template) {
             //loop
             else if (expression.substr(0, 4).toLowerCase() === "each") {
                 token.type = types.LOOP;
-                token.startLoop = idx + 2;
-                token.start = openTag - 1;
+                token.startLoop = idx + endTagLength;
+                token.start = openTag;
                 token.loop = [];
 
                 //parse the loop expression
                 var eachOptions = expression.substr(5).split(/[\s,]+/);
                 token.list = eachOptions[0];
                 token.iterator = eachOptions[2];
-                if (eachOptions.length === 4) { 
-                    token.index = eachOptions[3]; 
+                if (eachOptions.length === 4) {
+                    token.index = eachOptions[3];
                 }
 
                 openCondition.push(token);
@@ -327,16 +335,16 @@ Greenhouse.prototype.tokenize = function (template) {
             //close the last expression
             else if (expression[0] === '/') {
                 //skip the entire tag
-                token.skipFrom = openTag - 1;
-                token.skipTo = idx + 2;
+                token.skipFrom = openTag;
+                token.skipTo = idx + endTagLength;
 
                 //need to swap the parent
                 //to the parent of the last condition
                 var lastCondition = openCondition.pop();
 
                 //save a pointer to the end of condition
-                if (lastCondition.else) { lastCondition.endFalse = idx + 2; }
-                else { lastCondition.endTrue = idx + 2; }
+                if (lastCondition.else) { lastCondition.endFalse = idx + endTagLength; }
+                else { lastCondition.endTrue = idx + endTagLength; }
 
                 parent = lastCondition.parent;
                 delete lastCondition.parent;
@@ -345,7 +353,7 @@ Greenhouse.prototype.tokenize = function (template) {
             else {
                 token.type = types.VAR;
                 token.start = openTag;
-                token.end = idx + 1;
+                token.end = idx + endTagLength;
                 token.placeholder = expression;
             }
 
@@ -369,7 +377,7 @@ Greenhouse.prototype.process = function (template, adt, gnext) {
         if (block.skipFrom) {
             this.pieces.push(template.substring(this.start, block.skipFrom));
             this.start = block.skipTo;
-            return next(); 
+            return next();
         }
 
         switch (block.type) {
@@ -378,7 +386,7 @@ Greenhouse.prototype.process = function (template, adt, gnext) {
             */
             case types.INCLUDE:
                 this.pieces.push(template.substring(this.start, block.start - 1))
-                this.start = block.end + 1;
+                this.start = block.end;
                 
                 //trying to include file outside of
                 //directory
@@ -416,7 +424,7 @@ Greenhouse.prototype.process = function (template, adt, gnext) {
             /**
             * {<var>}
             */
-            case types.VAR: 
+            case types.VAR:
                 var placeholder = block.placeholder;
                 var escape = true;
 
@@ -432,7 +440,7 @@ Greenhouse.prototype.process = function (template, adt, gnext) {
                 this.pieces.push(template.substring(this.start, block.start - 1))
                 if (value) { this.pieces.push(value); }
 
-                this.start = block.end + 1;
+                this.start = block.end;
 
                 return next();
                 break;
@@ -553,7 +561,7 @@ Greenhouse.prototype.process = function (template, adt, gnext) {
                 if (hook) {
                     hook.call(this, block, function (html) {
                         if (html) { this.pieces.push(html); }
-                        this.start = block.end + 1;
+                        this.start = block.end;
                         
                         next.call(this);
                     }.bind(this));
