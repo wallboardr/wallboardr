@@ -1,3 +1,4 @@
+/*jshint node:true */
 var Sproute = require("./sproute/app");
 var http = require('http');
 
@@ -6,7 +7,6 @@ app.hooks.fetch = function (block, next) {
   //pause parsing and decode request
   var expr = block.expr.split(" ");
   var url = expr[0];
-  console.log("FETCH", url);
   //request the data then continue parsing
   var html = '';
   if (!url) {
