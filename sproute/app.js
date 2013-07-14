@@ -49,7 +49,8 @@ App.prototype = {
 			"static": "public",
 			"cacheViews": false,
 			"port": 8000,
-			"csrf": false
+			"csrf": false,
+			"templateTags": false // Default is in Greenhouse
 		};
 
 		try {
@@ -76,28 +77,28 @@ App.prototype = {
 		var server = express();
 		var secret = this.config.secret || (this.config.secret = (Math.random() * 10000000 | 0).toString(16));
 
-	    server.use(express.cookieParser(secret));
-	    server.use(express.session({secret: secret, cookie: {maxAge: null}}));
+		server.use(express.cookieParser(secret));
+		server.use(express.session({secret: secret, cookie: {maxAge: null}}));
 
-	    var staticDir = path.join(this.dir, this.config.static);
-	    server.use("/" + this.config.static, express.static(staticDir, { maxAge: 1 }));
-	    server.use(express.bodyParser());
-	    
-	    //use the anti-CSRF middle-ware if enabled
-	    if (this.config.csrf) {
-	    	server.use(express.csrf());
-	    }
+		var staticDir = path.join(this.dir, this.config.static);
+		server.use("/" + this.config.static, express.static(staticDir, { maxAge: 1 }));
+		server.use(express.bodyParser());
 
-	    var self = this;
-	    server.use(function (err, req, res, next) {
-	    	if (err) {
-	    		self.errorHandler(req, res).call(self, err);
-	    	} else next();
-	    });
+		//use the anti-CSRF middle-ware if enabled
+		if (this.config.csrf) {
+			server.use(express.csrf());
+		}
 
-	    this.config.port = this.config.port || 8089;
-	    server.listen(this.config.port);
-	    return server;
+		var self = this;
+		server.use(function (err, req, res, next) {
+			if (err) {
+				self.errorHandler(req, res).call(self, err);
+			} else next();
+		});
+
+		this.config.port = this.config.port || 8089;
+		server.listen(this.config.port);
+		return server;
 	},
 
 	/**
@@ -136,7 +137,7 @@ App.prototype = {
 		}
 
 		this.storage = new Storage({
-			name: this.name, 
+			name: this.name,
 			structure: structure,
 			config: this.config,
 
@@ -261,7 +262,7 @@ App.prototype = {
 	renderView: function (view, data, req, res) {
 		//build the data to pass into template
 		_.extend(data, {
-			params: req.params, 
+			params: req.params,
 			query: req.query,
 			session: req.session,
 			self: {
@@ -279,7 +280,7 @@ App.prototype = {
 			}
 		}, function (template) {
 			//render and send it back to client
-			var g = new Greenhouse(this.hooks);
+			var g = new Greenhouse({hooks: this.hooks, templateTags: this.config.templateTags});
 			g.oncompiled = function (html) {
 				res.send(html);
 			};
@@ -425,7 +426,7 @@ App.prototype = {
 	*/
 	getLogged: function (req, res) {
 		if (req.session && req.session.user) {
-			res.json(req.session.user); 
+			res.json(req.session.user);
 		} else {
 			res.json(false);
 		}
@@ -440,12 +441,12 @@ App.prototype = {
 		}, function (data) {
 			console.log("LOGIN", data, req.body.name)
 			//no user found, throw error
-			if (!data.length) { 
-				return f.fail("No username "+req.body.name+" found."); 
+			if (!data.length) {
+				return f.fail("No username "+req.body.name+" found.");
 			}
 
 			if (!req.body.pass) {
-				return f.fail("No password specified."); 
+				return f.fail("No password specified.");
 			}
 
 			var user = data[0];
@@ -458,7 +459,7 @@ App.prototype = {
 				delete req.session.user._salt;
 				res.json(req.session.user);
 			} else {
-				return f.fail("Username and password mismatch."); 
+				return f.fail("Username and password mismatch.");
 			}
 
 			if (req.query.goto) {
@@ -508,7 +509,7 @@ App.prototype = {
 
 				resp = resp[0];
 
-				if (resp) {	
+				if (resp) {
 					delete resp.pass;
 					delete resp._salt;
 				}
