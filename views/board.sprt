@@ -1,1 +1,1 @@
-<h1>Board: {{params.board}}</h1>
+<h1>Board: <%params.board%></h1>

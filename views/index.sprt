@@ -1,17 +1,17 @@
-{{ if session.user }}
-<a href="/admin" class="edit">Edit boards</a>
-{{ /if }}
+<% if session.user %>
+<a href="/admin" class="edit">Edit boards</a><i class="icon-pencil"></i>
+<% /if %>
 
-{{ get /data/boards?sort=name as boards }}
+<% get /data/boards?sort=name as boards %>
 
-{{ if boards.length }}
-	{{ each boards as board }}
+<% if boards.length %>
+	<% each boards as board %>
 		<div class="board">
-			<h2>{{board.name}}</h2>
-			<div class="desc">{{board.desc}}</div>
-			<a href="/view/{{board.slug}}">View board</a>
+			<h2><%board.name%></h2>
+			<div class="desc"><%board.desc%></div>
+			<a href="/view/<%board.slug%>">View board</a>
 		</div>
-	{{ /each }}
-{{ else }}
+	<% /each %>
+<% else %>
 	<p>No boards</p>
-{{ /if }}
+<% /if %>
