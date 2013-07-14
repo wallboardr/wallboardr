@@ -1,1 +1,1 @@
-{{ fetch :params.page }}
+<% fetch :params.page %>

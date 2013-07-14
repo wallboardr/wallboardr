@@ -10,7 +10,7 @@
 			<nav>
 				<ul>
 					<li><a href="/about">About</a></li>
-					<li ng-repeat="item in menu" class="ng-cloak"><a ng-href="&#123;&#123;item.url&#125;&#125;" ng-bind="item.label"></a></li>
+					<li ng-repeat="item in menu" class="ng-cloak"><a ng-href="{{item.url}}" ng-bind="item.label"></a></li>
 				</ul>
 			</nav>
 		</header>

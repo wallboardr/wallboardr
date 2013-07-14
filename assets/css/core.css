@@ -54,6 +54,8 @@ html {
   /* 1 */
 
   -ms-text-size-adjust: 100%;
+  /* 2 */
+
   -webkit-text-size-adjust: 100%;
   /* 2 */
 
@@ -490,7 +492,7 @@ nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: 5em;
   border-left: 1px solid #373737;
 }
 nav li {
