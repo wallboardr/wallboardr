@@ -12,7 +12,7 @@ define(['angular', 'controller/wallboardr'], function (angular, wallboardrCtrl) 
     return {
         bootstrap: function () {
             var app;
-            log('Tower, this is Ghost Rider requesting a flyby.')
+            log('Tower, this is Ghost Rider requesting a flyby.');
             app = angular.module(appName, []);
             app.controller('WallboardrController', wallboardrCtrl);
             angular.bootstrap(document, [appName]);
