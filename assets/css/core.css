@@ -513,6 +513,11 @@ nav a:hover {
 [ng-cloak] {
   display: none;
 }
+.anonymous .user-nav,
+.anonymous .admin-nav,
+.is-editor .admin-nav {
+  display: none;
+}
 .board {
   margin-bottom: 1em;
 }

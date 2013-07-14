@@ -1,5 +1,6 @@
 /* global module:false */
 module.exports = function(grunt) {
+  'use strict';
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     meta: {
@@ -14,14 +15,21 @@ module.exports = function(grunt) {
     },
     jshint: {
       options: {
-        curly: false,
+        bitwise: true,
+        curly: true,
         eqeqeq: true,
         immed: true,
         latedef: true,
         newcap: true,
         noarg: true,
+        nonew: true,
+        plusplus: true,
+        quotmark: true,
         sub: true,
+        strict: true,
         undef: true,
+        unused: true,
+        trailing: true,
         eqnull: true,
         browser: true,
         expr: true,
@@ -61,7 +69,7 @@ module.exports = function(grunt) {
         watchedExtensions: ['js', 'json'],
       },
       dev: {
-        
+
       }
     },
     concurrent: {
