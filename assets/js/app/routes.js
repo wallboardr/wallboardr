@@ -12,6 +12,12 @@ define(['controller/index', 'controller/admin'], function (indexCtrl, adminCtrl)
       templateUrl: 'admin'
     });
 
+    $routeProvider.when('/view/:board', {
+      redirectTo: function (params) {
+        window.location = '/view/' + params.board;
+      }
+    });
+
     $routeProvider.otherwise({
       redirectTo: '/'
     });
