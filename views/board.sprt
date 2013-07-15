@@ -1,1 +1,16 @@
-<h1>Board: <%params.board%></h1>
+<% get /data/boards/slug/$(params.board)?single=true as board %>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title><% board.name %>Wallboardr</title>
+		<link rel="stylesheet" href="/assets/css/board.css" type="text/css">
+	</head>
+	<body ng-controller="WallboardrController" class="anonymous" ng-class="{'anonymous': !user.loggedIn, 'is-editor': user.isEditor}">
+		<div class="board">
+			<section class="screen">
+				<h1>Board: <%board.name%></h1>
+			</section>
+		</div>
+		<!--<script data-main="/assets/js/board.js" src="/assets/lib/require.js"></script>-->
+	</body>
+</html>

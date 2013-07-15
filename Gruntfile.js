@@ -47,11 +47,13 @@ module.exports = function(grunt) {
           dumpLineNumbers: 'mediaquery'
         },
         files: {
-          '<%= cssFile %>': 'less/core.less'
+          '<%= cssFile %>': 'less/core.less',
+          '<%= boardCssFile %>': 'less/board.less'
         }
       },
       clean: {
         files: {
+          '<%= boardCssFile %>': 'less/board.less',
           '<%= cssFile %>': 'less/core.less'
         }
       }
@@ -65,7 +67,7 @@ module.exports = function(grunt) {
     nodemon: {
       options: {
         file: 'index.js',
-        ignoredFiles: ['README.md', 'package.json', 'node_modules/**', 'sproute/node_modules/**', 'assets/**'],
+        ignoredFiles: ['README.md', 'package.json', 'Gruntfile.js', 'node_modules/**', 'sproute/node_modules/**', 'assets/**'],
         watchedExtensions: ['js', 'json'],
       },
       dev: {
@@ -80,7 +82,8 @@ module.exports = function(grunt) {
         }
       }
     },
-    cssFile: 'assets/css/core.css'
+    cssFile: 'assets/css/core.css',
+    boardCssFile: 'assets/css/board.css'
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
