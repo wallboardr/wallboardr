@@ -437,7 +437,7 @@ Greenhouse.prototype.process = function (template, adt, gnext) {
                 var value = Greenhouse.extractDots(placeholder, this.data);
                 if (escape) { value = escapeHtml(value); }
             
-                this.pieces.push(template.substring(this.start, block.start - 1))
+                this.pieces.push(template.substring(this.start, block.start))
                 if (value) { this.pieces.push(value); }
 
                 this.start = block.end;
