@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title><% board.name %>Wallboardr</title>
+		<title><% board.name %> | Wallboardr</title>
 		<link rel="stylesheet" href="/assets/css/board.css" type="text/css">
 	</head>
-	<body ng-controller="WallboardrController" class="anonymous" ng-class="{'anonymous': !user.loggedIn, 'is-editor': user.isEditor}">
+	<body>
 		<div class="board">
 			<section class="screen">
 				<h1>Board: <%board.name%></h1>
