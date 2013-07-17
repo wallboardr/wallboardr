@@ -10,6 +10,18 @@ define(['angular'], function (angular) {
 
     $scope.greeting = 'Colin';
     $scope.boards = [];
+    $scope.activeBoard = null;
+    $scope.localScreen = {
+      lines: ['']
+    };
+
+    $scope.setActiveBoard = function (index) {
+      $scope.activeBoard = $scope.boards[index];
+    };
+
+    $scope.isActiveBoard = function (index) {
+      return $scope.activeBoard && $scope.boards[index] && $scope.activeBoard._id === $scope.boards[index]._id;
+    };
 
     $scope.loadBoards = function () {
       var url = '/data/boards';

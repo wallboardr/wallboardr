@@ -571,3 +571,10 @@ nav a:hover {
 .board {
   margin-bottom: 1em;
 }
+.board:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+.board.is-active {
+  border: 1px solid #444;
+}
