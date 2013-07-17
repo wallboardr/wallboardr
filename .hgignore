@@ -3,4 +3,3 @@ node_modules
 private
 syntax: glob
 .nodemonignore
-assets/js/boards.js
