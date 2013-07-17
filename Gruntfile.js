@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         ' * MIT licensed\n' +
         ' *\n' +
         ' * Copyright (C) 2013 Colin Bate, http://colinbate.com\n' +
-        ' */'
+        ' */\n'
     },
     jshint: {
       options: {
@@ -37,9 +37,10 @@ module.exports = function(grunt) {
           define: false,
           require: false,
           module: false
-        }
+        },
+        ignores: ['<%= boardJsFile %>']
       },
-      files: ['*.js', 'assets/js/**/*.js']
+      files: ['*.js', 'assets/js/main.js', 'assets/js/app/**/*.js', 'assets/js/boards/**/*.js']
     },
     less: {
       dev: {
@@ -58,10 +59,24 @@ module.exports = function(grunt) {
         }
       }
     },
+    concat: {
+      options: {
+        banner: '<%= meta.banner %>',
+        stripBanners: true
+      },
+      dev: {
+        dest: '<%= boardJsFile %>',
+        src: ['<%= boardJsSrc %>']
+      }
+    },
     watch: {
-      main: {
-        files: ['<%= jshint.files %>', 'less/*.less'],
-        tasks: 'default'
+      less: {
+        files: ['less/*.less'],
+        tasks: 'less:dev'
+      },
+      js: {
+        files: ['<%= jshint.files %>'],
+        tasks: ['jshint', 'concat']
       }
     },
     nodemon: {
@@ -83,17 +98,20 @@ module.exports = function(grunt) {
       }
     },
     cssFile: 'assets/css/core.css',
-    boardCssFile: 'assets/css/board.css'
+    boardCssFile: 'assets/css/board.css',
+    boardJsFile: 'assets/js/boards.js',
+    boardJsSrc: ['assets/lib/boards/jquery.js', 'assets/lib/boards/bigtext.js', 'assets/js/boards/base.js']
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-concurrent');
 
-  grunt.registerTask('default', ['jshint', 'less:dev']);
+  grunt.registerTask('default', ['jshint', 'less:dev', 'concat']);
   grunt.registerTask('work', ['concurrent:target']);
   grunt.registerTask('prep', ['jshint', 'less:clean']);
 

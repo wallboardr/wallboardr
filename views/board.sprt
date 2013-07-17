@@ -8,9 +8,23 @@
 	<body>
 		<div class="board">
 			<section class="screen">
-				<h1>Board: <%board.name%></h1>
+				<div class="local-message">
+					<div>Board: <%board.name%></div>
+				</div>
 			</section>
 		</div>
-		<!--<script data-main="/assets/js/board.js" src="/assets/lib/require.js"></script>-->
+		<script type="text/html" id="screen-local-message-tmpl">
+			<div class="local-message">
+				{{#lines}}
+				<div>{{.}}</div>
+				{{/lines}}
+			</div>
+		</script>
+		<script type="text/html" id="screen-html-1up-tmpl">
+			<div class="html-screen 1up">
+				<div class="target"></div>
+			</div>
+		</script>
+		<script src="/assets/js/boards.js"></script>
 	</body>
 </html>
