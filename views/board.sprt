@@ -5,7 +5,7 @@
 		<title><% board.name %> | Wallboardr</title>
 		<link rel="stylesheet" href="/assets/css/board.css" type="text/css">
 	</head>
-	<body>
+	<body data-url="/data/screens/board/<% board._id %>">
 		<div class="board">
 			<section class="screen">
 				<div class="local-message">
@@ -13,14 +13,14 @@
 				</div>
 			</section>
 		</div>
-		<script type="text/html" id="screen-local-message-tmpl">
+		<script type="text/html" id="localMessage">
 			<div class="local-message">
 				{{#lines}}
 				<div>{{.}}</div>
 				{{/lines}}
 			</div>
 		</script>
-		<script type="text/html" id="screen-html-1up-tmpl">
+		<script type="text/html" id="html1up">
 			<div class="html-screen 1up">
 				<div class="target"></div>
 			</div>

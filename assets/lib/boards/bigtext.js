@@ -198,7 +198,7 @@
       }
 
       // TODO we can cache this ratio?
-      var autoGuessSubtraction = 20, // px
+      var autoGuessSubtraction = 100, // px
         currentFontSize = parseFloat($line.css('font-size')),
         lineWidth = $line.width(),
         ratio = (lineWidth / currentFontSize).toFixed(6),

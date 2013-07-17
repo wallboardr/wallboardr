@@ -13,11 +13,14 @@
 		<input type="text" ng-model="newBoard.name" placeholder="Name" required><br>
 		<input type="text" ng-model="newBoard.slug" placeholder="Url slug" required><br>
 		<textarea rows="4" ng-model="newBoard.desc" placeholder="Description"></textarea><br>
-		<input type="number" ng-model="newBoard.duration" placeholder="Screen duration">
+		<input type="number" ng-model="newBoard.duration" placeholder="Default duration">
 		<button ng-click="addBoard(newBoard)">Add</button>
 	</form>
 	<form novalidate name="newLocalScreen" ng-show="activeBoard">
 		<legend>Create a new local screen for: {{activeBoard.name}}</legend>
-		<input type="text" placeholder="Enter some text..." ng-repeat="line in localScreen.lines" ng-model="localScreen.lines[$index]">
+		<input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
+		<textarea placeholder="Enter some text..." ng-model="newLocalScreen.message" required></textarea>
+		<input type="number" ng-model="newLocalScreen.duration" placeholder="Screen duration">
+		<button ng-click="addScreen(newLocalScreen)">Add</button>
 	</form>
 </div>
