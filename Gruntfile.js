@@ -40,7 +40,7 @@ module.exports = function(grunt) {
         },
         ignores: ['<%= boardJsFile %>']
       },
-      files: ['*.js', 'assets/js/main.js', 'assets/js/app/**/*.js', 'assets/js/boards/**/*.js']
+      files: ['*.js', 'assets/js/**/*.js']
     },
     less: {
       dev: {
@@ -59,16 +59,6 @@ module.exports = function(grunt) {
         }
       }
     },
-    concat: {
-      options: {
-        banner: '<%= meta.banner %>',
-        stripBanners: true
-      },
-      dev: {
-        dest: '<%= boardJsFile %>',
-        src: ['<%= boardJsSrc %>']
-      }
-    },
     watch: {
       less: {
         files: ['less/*.less'],
@@ -76,7 +66,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: ['<%= jshint.files %>'],
-        tasks: ['jshint', 'concat']
+        tasks: ['jshint']
       }
     },
     nodemon: {
@@ -107,7 +97,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-concurrent');
 

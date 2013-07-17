@@ -1,13 +1,4 @@
-(function (root, factory) {
-    'use strict';
-    if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define(['jquery'], factory);
-    } else {
-        // Browser globals
-        factory(root.jQuery);
-    }
-}(this, function ($) {
+define(['jquery', 'lib/bigtext'], function ($) {
     'use strict';
     
     var $screen = $('.screen'),
@@ -17,10 +8,13 @@
                 innerHeight = $inner.height(),
                 marginTop = (outerHeight - innerHeight) / 2;
             $inner.css({'margin-top': marginTop + 'px'});
+        },
+        init = function () {
+            $local.bigtext();
+            centerMessage($screen, $local);
         };
 
-    $local.bigtext();
-    centerMessage($screen, $local);
-
-    return {};
-}));
+    return {
+        bootstrap: init
+    };
+});

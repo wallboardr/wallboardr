@@ -25,6 +25,6 @@
 				<div class="target"></div>
 			</div>
 		</script>
-		<script src="/assets/js/boards.js"></script>
+		<script data-main="/assets/js/boards.js" src="/assets/lib/require.js"></script>
 	</body>
 </html>
