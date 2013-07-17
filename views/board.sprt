@@ -9,7 +9,7 @@
 		<div class="board">
 			<section class="screen">
 				<div class="local-message">
-					<div>Board: <%board.name%></div>
+					<div>Welcome to Wallboardr.</div>
 				</div>
 			</section>
 		</div>

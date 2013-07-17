@@ -1,7 +1,7 @@
 <div class="index-view">
 
 	<div class="board-list" ng-show="boards.length">
-		<div class="board ng-cloak" ng-repeat="board in boards">
+		<div class="board ng-cloak" ng-repeat="board in boards" ng-class="{'is-active': isActiveBoard($index)}" ng-click="setActiveBoard($index)">
 			<h2>{{board.name}}</h2>
 			<div class="desc">{{board.desc}}</div>
 			<a ng-href="/view/{{board.slug}}">View board</a>
@@ -15,5 +15,9 @@
 		<textarea rows="4" ng-model="newBoard.desc" placeholder="Description"></textarea><br>
 		<input type="number" ng-model="newBoard.duration" placeholder="Screen duration">
 		<button ng-click="addBoard(newBoard)">Add</button>
+	</form>
+	<form novalidate name="newLocalScreen" ng-show="activeBoard">
+		<legend>Create a new local screen for: {{activeBoard.name}}</legend>
+		<input type="text" placeholder="Enter some text..." ng-repeat="line in localScreen.lines" ng-model="localScreen.lines[$index]">
 	</form>
 </div>
