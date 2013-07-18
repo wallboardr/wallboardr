@@ -1,26 +1,36 @@
 <div class="index-view">
-
-	<div class="board-list" ng-show="boards.length">
-		<div class="board ng-cloak" ng-repeat="board in boards" ng-class="{'is-active': isActiveBoard($index)}" ng-click="setActiveBoard($index)">
-			<h2>{{board.name}}</h2>
-			<div class="desc">{{board.desc}}</div>
-			<a ng-href="/view/{{board.slug}}">View board</a>
+	<div class="board-mgmt">
+		<div class="board-list" ng-show="boards.length">
+			<div class="board ng-cloak" ng-repeat="board in boards" ng-class="{'is-active': isActiveBoard($index)}" ng-click="setActiveBoard($index)">
+				<h2>{{board.name}}</h2>
+				<div class="desc">{{board.desc}}</div>
+				<a ng-href="/view/{{board.slug}}">View board</a>
+			</div>
 		</div>
+		<p ng-show="!boards.length">No boards {{greeting}}</p>
+		<form novalidate name="newBoard">
+			<legend>Create a new board</legend>
+			<input type="text" ng-model="newBoard.name" placeholder="Name" required><br>
+			<input type="text" ng-model="newBoard.slug" placeholder="Url slug" required><br>
+			<textarea rows="4" ng-model="newBoard.desc" placeholder="Description"></textarea><br>
+			<input type="number" ng-model="newBoard.duration" placeholder="Default duration">
+			<button ng-click="addBoard(newBoard)">Add</button>
+		</form>
 	</div>
-	<p ng-show="!boards.length">No boards {{greeting}}</p>
-	<form novalidate name="newBoard">
-		<legend>Create a new board</legend>
-		<input type="text" ng-model="newBoard.name" placeholder="Name" required><br>
-		<input type="text" ng-model="newBoard.slug" placeholder="Url slug" required><br>
-		<textarea rows="4" ng-model="newBoard.desc" placeholder="Description"></textarea><br>
-		<input type="number" ng-model="newBoard.duration" placeholder="Default duration">
-		<button ng-click="addBoard(newBoard)">Add</button>
-	</form>
-	<form novalidate name="newLocalScreen" ng-show="activeBoard">
-		<legend>Create a new local screen for: {{activeBoard.name}}</legend>
-		<input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
-		<textarea placeholder="Enter some text..." ng-model="newLocalScreen.message" required></textarea>
-		<input type="number" ng-model="newLocalScreen.duration" placeholder="Screen duration">
-		<button ng-click="addScreen(newLocalScreen)">Add</button>
-	</form>
+	<div class="screen-mgmt">
+		<h2>Screens for {{activeBoard.name}}</h2>
+		<div class="screen-list" ng-show="screens.length">
+			<div class="screen ng-cloak" ng-repeat="screen in screens">
+				<h3>{{screen.name}} [{{screen.type}}]</h3>
+				<p>{{screen.message}}</p>
+			</div>
+		</div>
+		<form novalidate name="newLocalScreen" ng-show="activeBoard">
+			<legend>Create a new local screen for: {{activeBoard.name}}</legend>
+			<input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
+			<textarea placeholder="Enter some text..." ng-model="newLocalScreen.message" required></textarea><br>
+			<input type="number" ng-model="newLocalScreen.duration" placeholder="Screen duration">
+			<button ng-click="addScreen(newLocalScreen)">Add</button>
+		</form>
+	</div>
 </div>
