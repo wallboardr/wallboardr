@@ -3,7 +3,7 @@ ICanHaz.js version 0.10.2 -- by @HenrikJoreteg
 More info at: http://icanhazjs.com
 */
 
-define(['lib/mustache'], function (Mustache) {
+define(['lib/mustache', 'jquery'], function (Mustache, $) {
     function trim(stuff) {
         if (''.trim) return stuff.trim();
         else return stuff.replace(/^\s+/, '').replace(/\s+$/, '');
@@ -17,7 +17,7 @@ define(['lib/mustache'], function (Mustache) {
         templates: {},
 
         // grab jquery or zepto if it's there
-        $: (typeof window !== 'undefined') ? window.jQuery || window.Zepto || null : null,
+        $: $ || ((typeof window !== 'undefined') ? window.jQuery || window.Zepto || null : null),
 
         // public function for adding templates
         // can take a name and template string arguments

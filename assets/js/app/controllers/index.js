@@ -10,9 +10,18 @@ define(['angular'], function (angular) {
 
     $scope.boards = [];
     $scope.activeBoard = null;
+    $scope.screens = [];
 
     $scope.setActiveBoard = function (index) {
       $scope.activeBoard = $scope.boards[index];
+      $scope.loadScreens($scope.activeBoard._id);
+    };
+
+    $scope.loadScreens = function (boardId) {
+      var url = '/data/screens/board/' + boardId;
+      $http.get(url).success(function (data) {
+        $scope.screens = data;
+      });
     };
 
     $scope.isActiveBoard = function (index) {
@@ -20,12 +29,17 @@ define(['angular'], function (angular) {
     };
 
     $scope.addScreen = function (screen) {
-      var newScreen;
+      var newScreen, sIndex;
       if (screen.$valid && $scope.activeBoard) {
         newScreen = angular.copy(screen);
         newScreen.type = 'local';
         newScreen.board = $scope.activeBoard._id;
-        $http.post('/data/screens', newScreen).success(function () {
+        $http.post('/data/screens', newScreen).success(function (data) {
+          if (data && angular.isArray(data)) {
+            for (sIndex = 0; sIndex < data.length; sIndex += 1) {
+              $scope.screens.push(data[sIndex]);
+            }
+          }
           screen.name = screen.duration = screen.message = '';
         });
       }

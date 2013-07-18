@@ -3,10 +3,11 @@
 	<head>
 		<title>Wallboardr</title>
 		<link rel="stylesheet" href="/assets/css/core.css" type="text/css">
+		<link rel="shortcut icon" href="/assets/favicon.ico">
 	</head>
 	<body ng-controller="WallboardrController" class="anonymous" ng-class="{'anonymous': !user.loggedIn, 'is-editor': user.isEditor}">
 		<header role="banner">
-			<h1>Wallboardr.</h1>
+			<h1>Wallboardr. <i class="icon-screen"></i></h1>
 			<nav>
 				<ul>
 					<li><a href="#" class="admin-nav">Users</a></li>
