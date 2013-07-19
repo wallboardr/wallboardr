@@ -25,7 +25,7 @@ define(['jquery', 'lib/icanhaz', 'boards/delay'], function ($, ich, delay) {
           $board.animate({opacity: 0}, function () {
             $board.html(scr.$screen);
             $board.animate({opacity: 1});
-          })
+          });
         } else {
           scr.$screen = initText(scr.data.message, $board);
         }

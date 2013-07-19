@@ -1,36 +1,43 @@
 <div class="index-view">
 	<div class="board-mgmt">
-		<div class="board-list" ng-show="boards.length">
+		<div class="board-list">
 			<div class="board ng-cloak" ng-repeat="board in boards" ng-class="{'is-active': isActiveBoard($index)}" ng-click="setActiveBoard($index)">
 				<h2>{{board.name}}</h2>
-				<div class="desc">{{board.desc}}</div>
-				<a ng-href="/view/{{board.slug}}">View board</a>
+				<p class="desc">{{board.desc}}</p>
+				<a class="btn" ng-href="/view/{{board.slug}}">View board</a>
 			</div>
+			<p ng-show="!boards.length">No boards have been created, try adding one.</p>
 		</div>
-		<p ng-show="!boards.length">No boards {{greeting}}</p>
-		<form novalidate name="newBoard">
-			<legend>Create a new board</legend>
-			<input type="text" ng-model="newBoard.name" placeholder="Name" required><br>
-			<input type="text" ng-model="newBoard.slug" placeholder="Url slug" required><br>
-			<textarea rows="4" ng-model="newBoard.desc" placeholder="Description"></textarea><br>
-			<input type="number" ng-model="newBoard.duration" placeholder="Default duration">
-			<button ng-click="addBoard(newBoard)">Add</button>
-		</form>
+		
+		<div class="create-board">
+			<button ng-click="openNewBoardForm=true">Create a new board</button>
+			<form novalidate name="newBoard" ng-show="openNewBoardForm">
+				<input type="text" ng-model="newBoard.name" placeholder="Name" required><br>
+				<input type="text" ng-model="newBoard.slug" placeholder="Url slug" required><br>
+				<textarea rows="4" ng-model="newBoard.desc" placeholder="Description"></textarea><br>
+				<input type="number" ng-model="newBoard.duration" placeholder="Default duration">
+				<button ng-click="addBoard(newBoard)" class="success">Add</button>
+				<button ng-click="openNewBoardForm=false" class="cancel">Cancel</button>
+			</form>
+		</div>
 	</div>
-	<div class="screen-mgmt">
-		<h2>Screens for {{activeBoard.name}}</h2>
+	<div class="screen-mgmt" ng-show="activeBoard">
+		<h2 class="title">Screens for {{activeBoard.name}}</h2>
 		<div class="screen-list" ng-show="screens.length">
-			<div class="screen ng-cloak" ng-repeat="screen in screens">
-				<h3>{{screen.name}} [{{screen.type}}]</h3>
+			<div class="screen ng-cloak" ng-repeat="screen in screens" ng-class="{'is-active': isActiveScreen($index)}" ng-click="setActiveScreen($index)">
+				<h3>{{screen.name}} [{{screen.type}} / {{screen.duration || activeBoard.duration || 30}}]</h3>
 				<p>{{screen.message}}</p>
 			</div>
 		</div>
-		<form novalidate name="newLocalScreen" ng-show="activeBoard">
-			<legend>Create a new local screen for: {{activeBoard.name}}</legend>
-			<input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
-			<textarea placeholder="Enter some text..." ng-model="newLocalScreen.message" required></textarea><br>
-			<input type="number" ng-model="newLocalScreen.duration" placeholder="Screen duration">
-			<button ng-click="addScreen(newLocalScreen)">Add</button>
-		</form>
+		<div class="create-screen">
+			<button ng-click="openNewScreenForm=true">Create a new local screen</button>
+			<form novalidate name="newLocalScreen" ng-show="openNewScreenForm">
+				<input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
+				<textarea placeholder="Enter some text..." ng-model="newLocalScreen.message" required></textarea><br>
+				<input type="number" ng-model="newLocalScreen.duration" placeholder="Screen duration">
+				<button ng-click="addScreen(newLocalScreen)" class="success">Add</button>
+				<button ng-click="openNewScreenForm=false" class="cancel">Cancel</button>
+			</form>
+		</div>
 	</div>
 </div>

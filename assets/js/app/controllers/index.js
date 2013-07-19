@@ -2,6 +2,7 @@ define(['angular'], function (angular) {
   'use strict';
   var indexController = function ($scope, $http) {
     var resetNewBoard = function (board) {
+      $scope.openNewBoardForm = false;
       board.name = '';
       board.slug = '';
       board.desc = '';
@@ -10,6 +11,7 @@ define(['angular'], function (angular) {
 
     $scope.boards = [];
     $scope.activeBoard = null;
+    $scope.activeScreen = null;
     $scope.screens = [];
 
     $scope.setActiveBoard = function (index) {
@@ -26,6 +28,14 @@ define(['angular'], function (angular) {
 
     $scope.isActiveBoard = function (index) {
       return $scope.activeBoard && $scope.boards[index] && $scope.activeBoard._id === $scope.boards[index]._id;
+    };
+
+    $scope.setActiveScreen = function (index) {
+      $scope.activeScreen = $scope.screens[index];
+    };
+
+    $scope.isActiveScreen = function (index) {
+      return $scope.activeScreen && $scope.screens[index] && $scope.activeScreen._id === $scope.screens[index]._id;
     };
 
     $scope.addScreen = function (screen) {

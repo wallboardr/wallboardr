@@ -10,6 +10,68 @@ h1,h2,h3,h4,h5,h6 {
 	font-weight: bold;
 }
 
+h2,h3,h4,h5,h6 {
+	margin: 0 0 0.5em;
+}
+
 a {
 	text-decoration: none;
+}
+
+button, .btn {
+	border: 0;
+	padding: 1em 3em;
+	text-transform: uppercase;
+	font-size: @font-size-small;
+	background-color: @color-main-1;
+	text-align: center;
+	color: @color-base-page;
+	display: inline-block;
+
+	&.success {
+		background-color: @color-ok;
+	}
+
+	&.cancel {
+		background-color: @color-alert;
+	}
+}
+
+.dark-widget {
+	background-color: @color-content-dark;
+	color: @color-base-page;
+}
+
+.hovered {
+	background-color: lighten(@color-content-dark, 10%);
+}
+
+.selected {
+	background-color: @color-main-2-dark;
+}
+
+form {
+	input, textarea {
+		box-sizing: border-box;
+		width: 100%;
+		border: 0;
+		padding: 0.75em;
+		margin-bottom: 0.5em;
+	}
+	.clearfix();
+
+	button.success {
+		float: left;
+		width: 50%;
+	}
+	button.cancel {
+		width: 50%;
+	}
+}
+
+h2.title {
+	.dark-widget();
+	font-size: @font-size-base;
+	padding: 1em;
+	margin: 0;
 }
