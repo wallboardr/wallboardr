@@ -658,7 +658,7 @@ nav a:hover {
 .board-mgmt {
   display: inline;
   float: left;
-  width: 22.916666666666664%;
+  width: 31.25%;
   margin: 0 1.0416666666666665%;
   padding-top: 1em;
 }
@@ -677,9 +677,57 @@ nav a:hover {
 .create-board form {
   padding: 1em;
 }
+.controls {
+  float: right;
+  width: 48px;
+}
+.controls button,
+.controls .btn {
+  font-size: 24px;
+  padding: 0.5em;
+  float: right;
+  background-color: #3d3d3d;
+}
+.controls button:hover,
+.controls .btn:hover {
+  background-color: #e2854a;
+}
+.is-active .controls button,
+.is-active .controls .btn {
+  background-color: #695d8f;
+}
+.controls i {
+  display: inline-block;
+}
+.controls i:after {
+  line-height: 24px;
+}
+.info {
+  padding: 1em;
+}
 .board {
   margin: 0;
-  padding: 1em;
+  border-top: 1px solid #3d3d3d;
+  *zoom: 1;
+}
+.board:before,
+.board:after {
+  content: "";
+  display: table;
+}
+.board:after {
+  clear: both;
+}
+.board:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.board:first-child {
+  border-top: 0;
 }
 .board:hover {
   background-color: #3d3d3d;
@@ -691,7 +739,7 @@ nav a:hover {
 .screen-mgmt {
   display: inline;
   float: left;
-  width: 22.916666666666664%;
+  width: 31.25%;
   margin: 0 1.0416666666666665%;
   padding-top: 1em;
 }
@@ -699,6 +747,13 @@ nav a:hover {
   background-color: #232323;
   color: #fcfcfc;
   margin-bottom: 1em;
+}
+.screen-editor {
+  display: inline;
+  float: left;
+  width: 31.25%;
+  margin: 0 1.0416666666666665%;
+  padding-top: 1em;
 }
 .create-screen {
   background-color: #232323;

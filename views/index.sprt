@@ -2,9 +2,14 @@
 	<div class="board-mgmt">
 		<div class="board-list">
 			<div class="board ng-cloak" ng-repeat="board in boards" ng-class="{'is-active': isActiveBoard($index)}" ng-click="setActiveBoard($index)">
-				<h2>{{board.name}}</h2>
-				<p class="desc">{{board.desc}}</p>
-				<a class="btn" ng-href="/view/{{board.slug}}">View board</a>
+				<div class="controls">
+					<a class="btn" ng-href="/view/{{board.slug}}"><i class="icon-eye"></i></a>
+					<a class="btn" ng-href="/view/{{board.slug}}"><i class="icon-pencil"></i></a>
+				</div>
+				<div class="info">
+					<h2>{{board.name}}</h2>
+					<p class="desc">{{board.desc}}</p>
+				</div>
 			</div>
 			<p ng-show="!boards.length">No boards have been created, try adding one.</p>
 		</div>
@@ -29,6 +34,8 @@
 				<p>{{screen.message}}</p>
 			</div>
 		</div>
+	</div>
+	<div class="screen-editor">
 		<div class="create-screen">
 			<button ng-click="openNewScreenForm=true">Create a new local screen</button>
 			<form novalidate name="newLocalScreen" ng-show="openNewScreenForm">

@@ -1,5 +1,5 @@
 .board-mgmt {
-	.column(3);
+	.column(4);
 	padding-top: 1em;
 }
 
@@ -18,9 +18,46 @@
 	}
 }
 
+.controls {
+	float: right;
+	width: 48px;
+
+	button, .btn {
+		font-size: 24px;
+		padding: 0.5em;
+		float: right;
+		background-color: lighten(@color-content-dark, 10%);
+
+		&:hover {
+			background-color: @color-main-1;
+		};
+
+		.is-active & {
+			background-color: @color-main-2;
+		}
+	}
+
+	i {
+		display: inline-block;
+	}
+	i:after {
+		line-height: 24px;
+	}
+}
+
+.info {
+	padding: 1em;
+}
+
 .board {
 	margin: 0;
-	padding: 1em;
+	border-top: 1px solid lighten(@color-content-dark, 10%);
+
+	.clearfix();
+
+	&:first-child {
+		border-top: 0;
+	}
 
 	&:hover {
 		.hovered();
@@ -33,13 +70,18 @@
 }
 
 .screen-mgmt {
-	.column(3);
+	.column(4);
 	padding-top: 1em;
 }
 
 .screen-list {
 	.dark-widget();
 	margin-bottom: 1em;
+}
+
+.screen-editor {
+	.column(4);
+	padding-top: 1em;
 }
 
 .create-screen {
