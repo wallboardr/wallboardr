@@ -4,7 +4,8 @@
     require.config({
         paths: {
             'lib'        : '../lib/boards',
-            'jquery'     : '../lib/boards/jquery'
+            'jquery'     : '../lib/boards/jquery',
+            'screen'     : '../js/boards/screens'
         },
         shim: {
             'jquery'      : { exports: 'jQuery' },
