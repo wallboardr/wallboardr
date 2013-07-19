@@ -497,8 +497,85 @@ h6 {
   font-family: Georgia, serif;
   font-weight: bold;
 }
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 0.5em;
+}
 a {
   text-decoration: none;
+}
+button,
+.btn {
+  border: 0;
+  padding: 1em 3em;
+  text-transform: uppercase;
+  font-size: 15px;
+  background-color: #e2854a;
+  text-align: center;
+  color: #fcfcfc;
+  display: inline-block;
+}
+button.success,
+.btn.success {
+  background-color: #1d7f59;
+}
+button.cancel,
+.btn.cancel {
+  background-color: #e86d65;
+}
+.dark-widget {
+  background-color: #232323;
+  color: #fcfcfc;
+}
+.hovered {
+  background-color: #3d3d3d;
+}
+.selected {
+  background-color: #54486e;
+}
+form {
+  *zoom: 1;
+}
+form input,
+form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  border: 0;
+  padding: 0.75em;
+  margin-bottom: 0.5em;
+}
+form:before,
+form:after {
+  content: "";
+  display: table;
+}
+form:after {
+  clear: both;
+}
+form:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+form button.success {
+  float: left;
+  width: 50%;
+}
+form button.cancel {
+  width: 50%;
+}
+h2.title {
+  background-color: #232323;
+  color: #fcfcfc;
+  font-size: 18px;
+  padding: 1em;
+  margin: 0;
 }
 header {
   background-color: #232323;
@@ -509,7 +586,9 @@ header {
 header h1 {
   display: inline;
   float: left;
-  width: 50.00000000000001%;
+  width: 47.91666666666667%;
+  padding-right: 1.0416666666666665%;
+  padding-left: 1.0416666666666665%;
 }
 header a {
   color: #fcfcfc;
@@ -581,22 +660,64 @@ nav a:hover {
   float: left;
   width: 22.916666666666664%;
   margin: 0 1.0416666666666665%;
-  background-color: #fee;
+  padding-top: 1em;
+}
+.board-list {
+  background-color: #232323;
+  color: #fcfcfc;
+  margin-bottom: 1em;
+}
+.create-board {
+  background-color: #232323;
+  color: #fcfcfc;
+}
+.create-board button {
+  width: 100%;
+}
+.create-board form {
+  padding: 1em;
+}
+.board {
+  margin: 0;
+  padding: 1em;
+}
+.board:hover {
+  background-color: #3d3d3d;
+  cursor: pointer;
+}
+.board.is-active {
+  background-color: #54486e;
 }
 .screen-mgmt {
   display: inline;
   float: left;
-  width: 72.91666666666666%;
+  width: 22.916666666666664%;
   margin: 0 1.0416666666666665%;
-  background-color: #efe;
+  padding-top: 1em;
 }
-.board {
+.screen-list {
+  background-color: #232323;
+  color: #fcfcfc;
   margin-bottom: 1em;
 }
-.board:hover {
-  background-color: #eee;
+.create-screen {
+  background-color: #232323;
+  color: #fcfcfc;
+}
+.create-screen button {
+  width: 100%;
+}
+.create-screen form {
+  padding: 1em;
+}
+.screen {
+  margin: 0;
+  padding: 1em;
+}
+.screen:hover {
+  background-color: #3d3d3d;
   cursor: pointer;
 }
-.board.is-active {
-  border: 1px solid #444;
+.screen.is-active {
+  background-color: #54486e;
 }

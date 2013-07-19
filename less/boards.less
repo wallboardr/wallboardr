@@ -1,22 +1,67 @@
 .board-mgmt {
 	.column(3);
-	background-color: #fee;
+	padding-top: 1em;
 }
 
-.screen-mgmt {
-	.column(9);
-	background-color: #efe;
+.board-list {
+	.dark-widget();
+	margin-bottom: 1em;
+}
+
+.create-board {
+	.dark-widget();
+	button {
+		width: 100%;
+	}
+	form {
+		padding: 1em;
+	}
 }
 
 .board {
-	margin-bottom: 1em;
+	margin: 0;
+	padding: 1em;
 
 	&:hover {
-		background-color: #eee;
+		.hovered();
 		cursor: pointer;
 	}
 
 	&.is-active {
-		border: 1px solid #444;
+		.selected();
+	}
+}
+
+.screen-mgmt {
+	.column(3);
+	padding-top: 1em;
+}
+
+.screen-list {
+	.dark-widget();
+	margin-bottom: 1em;
+}
+
+.create-screen {
+	.dark-widget();
+	button {
+		width: 100%;
+	}
+	form {
+		padding: 1em;
+	}
+}
+
+.screen {
+	margin: 0;
+	padding: 1em;
+
+	&:hover {
+		.hovered();
+		cursor: pointer;
+	}
+
+	&.is-active {
+		.selected();
 	}
 }
