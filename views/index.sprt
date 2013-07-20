@@ -29,18 +29,31 @@
 	<div class="screen-mgmt" ng-show="activeBoard">
 		<h2 class="title">Screens for {{activeBoard.name}}</h2>
 		<div class="screen-list" ng-show="screens.length">
-			<div class="screen ng-cloak" ng-repeat="screen in screens" ng-class="{'is-active': isActiveScreen($index)}" ng-click="setActiveScreen($index)">
-				<h3>{{screen.name}} [{{screen.type}} / {{screen.duration || activeBoard.duration || 30}}]</h3>
-				<p>{{screen.message}}</p>
+			<div class="screen ng-cloak" ng-repeat="screen in screens" ng-class="{'is-active': isActiveScreen($index)}">
+				<span class="horizontal-controls">
+					<span class="btn"><i class="icon-menu"></i></span>
+					<a class="btn" ng-click="setActiveScreen($index)"><i class="icon-pencil"></i></a>
+					<span class="duration btn"><i class="icon-clock"></i> <span>{{screen.duration || activeBoard.duration || 30}}</span></span>
+				</span>
+				<span class="name">{{screen.name}}</span>
 			</div>
 		</div>
 	</div>
 	<div class="screen-editor">
+		<div class="edit-screen">
+			<form novalidate name="editLocalScreen" ng-show="openEditScreenForm">
+				<input type="text" ng-model="activeScreen.name" placeholder="Name" required><br>
+				<textarea rows="3" placeholder="Enter some text..." ng-model="activeScreen.message" required></textarea><br>
+				<input type="number" ng-model="activeScreen.duration" placeholder="Screen duration">
+				<button ng-click="updateActiveScreen(editLocalScreen)" class="success">Save</button>
+				<button ng-click="openEditScreenForm=false" class="cancel">Cancel</button>
+			</form>
+		</div>
 		<div class="create-screen">
 			<button ng-click="openNewScreenForm=true">Create a new local screen</button>
 			<form novalidate name="newLocalScreen" ng-show="openNewScreenForm">
 				<input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
-				<textarea placeholder="Enter some text..." ng-model="newLocalScreen.message" required></textarea><br>
+				<textarea placeholder="Enter some text..." rows="3" ng-model="newLocalScreen.message" required></textarea><br>
 				<input type="number" ng-model="newLocalScreen.duration" placeholder="Screen duration">
 				<button ng-click="addScreen(newLocalScreen)" class="success">Add</button>
 				<button ng-click="openNewScreenForm=false" class="cancel">Cancel</button>

@@ -32,6 +32,7 @@ define(['angular'], function (angular) {
 
     $scope.setActiveScreen = function (index) {
       $scope.activeScreen = $scope.screens[index];
+      $scope.openEditScreenForm = true;
     };
 
     $scope.isActiveScreen = function (index) {
@@ -52,6 +53,29 @@ define(['angular'], function (angular) {
           }
           screen.name = screen.duration = screen.message = '';
         });
+      }
+    };
+
+    var sanitize = function (data) {
+      var key, toRemove = [];
+      for (key in data) {
+        if (Object.prototype.hasOwnProperty.call(data, key) && key[0] === '_') {
+          toRemove.push(key);
+        }
+      }
+      for (key = 0; key < toRemove.length; key += 1) {
+        delete data[toRemove[key]];
+      }
+    };
+
+    $scope.updateActiveScreen = function (form) {
+      var url = '/data/screens/_id/' + $scope.activeScreen._id,
+          toSave;
+      if (form.$valid) {
+        toSave = angular.copy($scope.activeScreen);
+        sanitize(toSave);
+        $http.post(url, toSave);
+        $scope.openEditScreenForm = false;
       }
     };
 
