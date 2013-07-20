@@ -702,6 +702,34 @@ nav a:hover {
 .controls i:after {
   line-height: 24px;
 }
+.horizontal-controls {
+  float: right;
+  *zoom: 1;
+}
+.horizontal-controls:before,
+.horizontal-controls:after {
+  content: "";
+  display: table;
+}
+.horizontal-controls:after {
+  clear: both;
+}
+.horizontal-controls:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.horizontal-controls button,
+.horizontal-controls .btn {
+  font-size: 18px;
+  padding: 1em;
+  border-left: 1px solid #3d3d3d;
+  background-color: #232323;
+  float: right;
+}
 .info {
   padding: 1em;
 }
@@ -755,19 +783,47 @@ nav a:hover {
   margin: 0 1.0416666666666665%;
   padding-top: 1em;
 }
-.create-screen {
+.create-screen,
+.edit-screen {
   background-color: #232323;
   color: #fcfcfc;
 }
-.create-screen button {
+.create-screen button,
+.edit-screen button {
   width: 100%;
 }
-.create-screen form {
+.create-screen form,
+.edit-screen form {
   padding: 1em;
 }
 .screen {
   margin: 0;
+  *zoom: 1;
+  border-top: 1px solid #3d3d3d;
+}
+.screen:before,
+.screen:after {
+  content: "";
+  display: table;
+}
+.screen:after {
+  clear: both;
+}
+.screen:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.screen .name {
   padding: 1em;
+  float: left;
+}
+.screen .duration span {
+  position: relative;
+  top: -2px;
 }
 .screen:hover {
   background-color: #3d3d3d;

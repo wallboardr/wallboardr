@@ -45,6 +45,18 @@
 	}
 }
 
+.horizontal-controls {
+	float: right;
+	.clearfix();
+	button, .btn {
+		font-size: @font-size-base;
+		padding: 1em;
+		border-left: 1px solid lighten(@color-content-dark, 10%);
+		background-color: @color-content-dark;
+		float: right;
+	}
+}
+
 .info {
 	padding: 1em;
 }
@@ -84,7 +96,7 @@
 	padding-top: 1em;
 }
 
-.create-screen {
+.create-screen, .edit-screen {
 	.dark-widget();
 	button {
 		width: 100%;
@@ -96,8 +108,17 @@
 
 .screen {
 	margin: 0;
-	padding: 1em;
+	.clearfix();
+	border-top: 1px solid lighten(@color-content-dark, 10%);
 
+	.name {
+		padding: 1em;
+		float: left;
+	}
+	.duration span {
+		position: relative;
+		top: -2px;
+	}
 	&:hover {
 		.hovered();
 		cursor: pointer;
