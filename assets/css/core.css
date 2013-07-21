@@ -574,8 +574,10 @@ h2.title {
   background-color: #232323;
   color: #fcfcfc;
   font-size: 18px;
+  background-color: #468799;
   padding: 1em;
   margin: 0;
+  position: relative;
 }
 header {
   background-color: #232323;
@@ -667,6 +669,31 @@ nav a:hover {
   color: #fcfcfc;
   margin-bottom: 1em;
 }
+.widget {
+  background-color: #232323;
+  color: #fcfcfc;
+  *zoom: 1;
+  margin-bottom: 1em;
+}
+.widget:before,
+.widget:after {
+  content: "";
+  display: table;
+}
+.widget:after {
+  clear: both;
+}
+.widget:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.widget form {
+  padding: 1em;
+}
 .create-board {
   background-color: #232323;
   color: #fcfcfc;
@@ -678,29 +705,21 @@ nav a:hover {
   padding: 1em;
 }
 .controls {
-  float: right;
-  width: 48px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .controls button,
 .controls .btn {
-  font-size: 24px;
-  padding: 0.5em;
-  float: right;
-  background-color: #3d3d3d;
+  background-color: #1c4348;
+  padding: 1em 1.25em;
+  font-size: 18px;
+  text-align: center;
+  min-width: 64px;
 }
 .controls button:hover,
 .controls .btn:hover {
   background-color: #e2854a;
-}
-.is-active .controls button,
-.is-active .controls .btn {
-  background-color: #695d8f;
-}
-.controls i {
-  display: inline-block;
-}
-.controls i:after {
-  line-height: 24px;
 }
 .horizontal-controls {
   float: right;
@@ -726,27 +745,75 @@ nav a:hover {
 .horizontal-controls .btn {
   font-size: 18px;
   padding: 1em;
+  text-align: center;
+  min-width: 65px;
   border-left: 1px solid #3d3d3d;
-  background-color: #232323;
+  background-color: transparent;
   float: right;
+  box-sizing: border-box;
 }
-.info {
+.horizontal-controls button:hover,
+.horizontal-controls .btn:hover {
+  background-color: #e2854a;
+}
+.horizontal-controls button.inert:hover,
+.horizontal-controls .btn.inert:hover {
+  background-color: transparent;
+}
+.horizontal-controls .duration span,
+.horizontal-controls .url span {
+  position: relative;
+  top: -2px;
+  text-transform: none;
+}
+.full-row {
+  width: 100%;
+  float: left;
+  border-bottom: 1px solid #3d3d3d;
+}
+.full-row button,
+.full-row .btn {
+  border-left: 0;
+  border-right: 1px solid #3d3d3d;
+  float: left;
+}
+.instructions {
+  padding-top: 1em;
+  display: inline;
+  float: left;
+  width: 31.25%;
+  margin: 0 1.0416666666666665%;
+}
+.instructions .intro {
+  background-color: #232323;
+  color: #fcfcfc;
   padding: 1em;
 }
-.board {
-  margin: 0;
-  border-top: 1px solid #3d3d3d;
+.board-details,
+.screen-details,
+.edit-board {
+  background-color: #232323;
+  color: #fcfcfc;
   *zoom: 1;
+  margin-bottom: 1em;
 }
-.board:before,
-.board:after {
+.board-details:before,
+.screen-details:before,
+.edit-board:before,
+.board-details:after,
+.screen-details:after,
+.edit-board:after {
   content: "";
   display: table;
 }
-.board:after {
+.board-details:after,
+.screen-details:after,
+.edit-board:after {
   clear: both;
 }
-.board:after {
+.board-details:after,
+.screen-details:after,
+.edit-board:after {
   content: ".";
   display: block;
   clear: both;
@@ -754,15 +821,9 @@ nav a:hover {
   line-height: 0;
   height: 0;
 }
-.board:first-child {
-  border-top: 0;
-}
-.board:hover {
-  background-color: #3d3d3d;
-  cursor: pointer;
-}
-.board.is-active {
-  background-color: #54486e;
+.info {
+  padding: 1em;
+  clear: left;
 }
 .screen-mgmt {
   display: inline;
@@ -796,20 +857,20 @@ nav a:hover {
 .edit-screen form {
   padding: 1em;
 }
-.screen {
+.list-item {
   margin: 0;
   *zoom: 1;
   border-top: 1px solid #3d3d3d;
 }
-.screen:before,
-.screen:after {
+.list-item:before,
+.list-item:after {
   content: "";
   display: table;
 }
-.screen:after {
+.list-item:after {
   clear: both;
 }
-.screen:after {
+.list-item:after {
   content: ".";
   display: block;
   clear: both;
@@ -817,18 +878,17 @@ nav a:hover {
   line-height: 0;
   height: 0;
 }
-.screen .name {
-  padding: 1em;
-  float: left;
+.list-item:first-child {
+  border-top: 0;
 }
-.screen .duration span {
-  position: relative;
-  top: -2px;
-}
-.screen:hover {
+.list-item:hover {
   background-color: #3d3d3d;
   cursor: pointer;
 }
-.screen.is-active {
+.list-item.is-active {
   background-color: #54486e;
+}
+.screen .name {
+  padding: 1em;
+  float: left;
 }

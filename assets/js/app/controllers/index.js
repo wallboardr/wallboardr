@@ -32,7 +32,6 @@ define(['angular'], function (angular) {
 
     $scope.setActiveScreen = function (index) {
       $scope.activeScreen = $scope.screens[index];
-      $scope.openEditScreenForm = true;
     };
 
     $scope.isActiveScreen = function (index) {
@@ -76,6 +75,17 @@ define(['angular'], function (angular) {
         sanitize(toSave);
         $http.post(url, toSave);
         $scope.openEditScreenForm = false;
+      }
+    };
+
+    $scope.updateActiveBoard = function (form) {
+      var url = '/data/boards/_id/' + $scope.activeBoard._id,
+          toSave;
+      if (form.$valid) {
+        toSave = angular.copy($scope.activeBoard);
+        sanitize(toSave);
+        $http.post(url, toSave);
+        $scope.openEditBoardForm = false;
       }
     };
 
