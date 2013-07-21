@@ -3,12 +3,15 @@
     'use strict';
     require.config({
         paths: {
-            'lib'        : '../lib',
-            'controller' : 'app/controllers',
-            'angular'    : '../lib/angular.min'
+            'lib'             : '../lib',
+            'controller'      : 'app/controllers',
+            'service'         : 'app/services',
+            'angular'         : '../lib/angular.min',
+            'angular-cookies' : '../lib/angular-cookies'
         },
         shim: {
-            'angular' : { exports: 'angular' }
+            'angular'         : { exports: 'angular' },
+            'angular-cookies' : ['angular']
         }
     });
 

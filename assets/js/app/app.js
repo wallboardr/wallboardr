@@ -1,4 +1,14 @@
-define(['angular', 'controller/wallboardr', 'controller/users', 'app/routes', 'app/filters'], function (angular, wallboardrCtrl, userCtrl, routes, filters) {
+define(
+    [
+        'angular',
+        'controller/wallboardr',
+        'controller/users',
+        'app/routes',
+        'app/filters',
+        'service/auth',
+        'angular-cookies'
+    ],
+    function (angular, wallboardrCtrl, userCtrl, routes, filters, auth) {
     'use strict';
 
     var appName = 'wallboardr',
@@ -13,9 +23,10 @@ define(['angular', 'controller/wallboardr', 'controller/users', 'app/routes', 'a
         bootstrap: function () {
             var app;
             log('Tower, this is Ghost Rider requesting a flyby.');
-            app = angular.module(appName, []);
+            app = angular.module(appName, ['ngCookies']);
             app.config(routes);
             app.filter('nl2br', filters.nl2br);
+            app.factory('auth', auth);
             app.controller('WallboardrController', wallboardrCtrl);
             app.controller('UserController', userCtrl);
             angular.bootstrap(document, [appName]);
