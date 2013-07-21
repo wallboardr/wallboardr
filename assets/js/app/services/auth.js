@@ -2,20 +2,28 @@ define([], function () {
   'use strict';
   var authFactory = function ($rootScope, $cookies) {
     return {
-      user: function () {
+      setCookieUser: function () {
         var user = { name: '', role: null },
             vals;
-
+        if ($cookies.wbuser) {
+          vals = $cookies.wbuser.split('||');
+          user.name = vals.shift();
+          user.role = vals.shift();
+          $cookies.wbuser = null;
+        }
+        $rootScope.user = user;
+      },
+      setUser: function (user) {
+        $rootScope.user = user;
+      },
+      user: function () {
         if (!$rootScope.user) {
-          if ($cookies.wbuser) {
-            vals = $cookies.wbuser.split('||');
-            user.name = vals.shift();
-            user.role = vals.shift();
-            $cookies.wbuser = null;
-          }
-          $rootScope.user = user;
+          this.setCookieUser();
         }
         return $rootScope.user;
+      },
+      loggedIn: function () {
+        return !!this.user().role;
       },
       isAdmin: function () {
         return this.user().role === 'admin';
