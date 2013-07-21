@@ -95,7 +95,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="login-area">
+	<div class="login-area" ng-controller="UserController">
 		<div class="widget login-box">
 			<form novalidate name="login">
 				<input type="text" ng-model="loginUser.name" placeholder="Username" required>
