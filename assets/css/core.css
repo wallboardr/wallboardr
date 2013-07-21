@@ -5,7 +5,6 @@
 /**
  * Correct `block` display not defined in IE 8/9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000311}}
 article,
 aside,
 details,
@@ -23,7 +22,6 @@ summary {
 /**
  * Correct `inline-block` display not defined in IE 8/9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000330}}
 audio,
 canvas,
 video {
@@ -33,7 +31,6 @@ video {
  * Prevent modern browsers from displaying `audio` without controls.
  * Remove excess height in iOS 5 devices.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000341}}
 audio:not([controls]) {
   display: none;
   height: 0;
@@ -41,7 +38,6 @@ audio:not([controls]) {
 /**
  * Address styling not present in IE 8/9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000350}}
 [hidden] {
   display: none;
 }
@@ -53,7 +49,6 @@ audio:not([controls]) {
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000364}}
 html {
   font-family: sans-serif;
   /* 1 */
@@ -68,7 +63,6 @@ html {
 /**
  * Remove default margin.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000374}}
 body {
   margin: 0;
 }
@@ -78,14 +72,12 @@ body {
 /**
  * Address `outline` inconsistency between Chrome and other browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000386}}
 a:focus {
   outline: thin dotted;
 }
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000394}}
 a:active,
 a:hover {
   outline: 0;
@@ -97,7 +89,6 @@ a:hover {
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari 5, and Chrome.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003108}}
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
@@ -105,14 +96,12 @@ h1 {
 /**
  * Address styling not present in IE 8/9, Safari 5, and Chrome.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003117}}
 abbr[title] {
   border-bottom: 1px dotted;
 }
 /**
  * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003125}}
 b,
 strong {
   font-weight: bold;
@@ -120,14 +109,12 @@ strong {
 /**
  * Address styling not present in Safari 5 and Chrome.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003134}}
 dfn {
   font-style: italic;
 }
 /**
  * Address differences between Firefox and other browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003142}}
 hr {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -136,7 +123,6 @@ hr {
 /**
  * Address styling not present in IE 8/9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003152}}
 mark {
   background: #ff0;
   color: #000;
@@ -144,7 +130,6 @@ mark {
 /**
  * Correct font family set oddly in Safari 5 and Chrome.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003161}}
 code,
 kbd,
 pre,
@@ -155,28 +140,24 @@ samp {
 /**
  * Improve readability of pre-formatted text in all browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003173}}
 pre {
   white-space: pre-wrap;
 }
 /**
  * Set consistent quote types.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003181}}
 q {
   quotes: "\201C" "\201D" "\2018" "\2019";
 }
 /**
  * Address inconsistent and variable font size in all browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003189}}
 small {
   font-size: 80%;
 }
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003197}}
 sub,
 sup {
   font-size: 75%;
@@ -184,11 +165,9 @@ sup {
   position: relative;
   vertical-align: baseline;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003205}}
 sup {
   top: -0.5em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003209}}
 sub {
   bottom: -0.25em;
 }
@@ -198,14 +177,12 @@ sub {
 /**
  * Remove border when inside `a` element in IE 8/9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003221}}
 img {
   border: 0;
 }
 /**
  * Correct overflow displayed oddly in IE 9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003229}}
 svg:not(:root) {
   overflow: hidden;
 }
@@ -215,7 +192,6 @@ svg:not(:root) {
 /**
  * Address margin not present in IE 8/9 and Safari 5.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003241}}
 figure {
   margin: 0;
 }
@@ -225,7 +201,6 @@ figure {
 /**
  * Define consistent border, margin, and padding.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003253}}
 fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
@@ -235,7 +210,6 @@ fieldset {
  * 1. Correct `color` not being inherited in IE 8/9.
  * 2. Remove padding so people aren't caught out if they zero out fieldsets.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003264}}
 legend {
   border: 0;
   /* 1 */
@@ -249,7 +223,6 @@ legend {
  * 2. Correct font size not being inherited in all browsers.
  * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003275}}
 button,
 input,
 select,
@@ -268,7 +241,6 @@ textarea {
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003289}}
 button,
 input {
   line-height: normal;
@@ -279,7 +251,6 @@ input {
  * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
  * Correct `select` style inheritance in Firefox 4+ and Opera.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003301}}
 button,
 select {
   text-transform: none;
@@ -291,7 +262,6 @@ select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003314}}
 button,
 html input[type="button"],
 input[type="reset"],
@@ -306,7 +276,6 @@ input[type="submit"] {
 /**
  * Re-set default cursor for disabled elements.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003326}}
 button[disabled],
 html input[disabled] {
   cursor: default;
@@ -315,7 +284,6 @@ html input[disabled] {
  * 1. Address box sizing set to `content-box` in IE 8/9.
  * 2. Remove excess padding in IE 8/9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003336}}
 input[type="checkbox"],
 input[type="radio"] {
   box-sizing: border-box;
@@ -330,7 +298,6 @@ input[type="radio"] {
  * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
  *    (include `-moz` to future-proof).
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003348}}
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
@@ -345,7 +312,6 @@ input[type="search"] {
  * Remove inner padding and search cancel button in Safari 5 and Chrome
  * on OS X.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003360}}
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
@@ -353,7 +319,6 @@ input[type="search"]::-webkit-search-decoration {
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003369}}
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
@@ -363,7 +328,6 @@ input::-moz-focus-inner {
  * 1. Remove default vertical scrollbar in IE 8/9.
  * 2. Improve readability and alignment in all browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003380}}
 textarea {
   overflow: auto;
   /* 1 */
@@ -378,27 +342,22 @@ textarea {
 /**
  * Remove most spacing between table cells.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003393}}
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000339}}
 body {
   width: 100%;
   *zoom: 1;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000324}}
 body:before,
 body:after {
   content: "";
   display: table;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000329}}
 body:after {
   clear: both;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/mixins\.less}line{font-family:\000033}}
 body:after {
   content: ".";
   display: block;
@@ -407,7 +366,6 @@ body:after {
   line-height: 0;
   height: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/mixins\.less}line{font-family:\000033}}
 .clearfix:after {
   content: ".";
   display: block;
@@ -431,7 +389,6 @@ body:after {
   font-style: normal;
 }
 /* Use the following CSS code if you want to use data attributes for inserting your icons */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000313}}
 [data-icon]:before {
   font-family: 'wallboardr-font';
   content: attr(data-icon);
@@ -448,7 +405,6 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000330}}
 .icon-pencil,
 .icon-user,
 .icon-pictures,
@@ -479,98 +435,75 @@ you can use the generic selector below, but it's slower:
   line-height: 1;
   -webkit-font-smoothing: antialiased;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000340}}
 .icon-pencil:before {
   content: "\e000";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000343}}
 .icon-user:before {
   content: "\e001";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000346}}
 .icon-pictures:before {
   content: "\e003";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000349}}
 .icon-disk:before {
   content: "\e004";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000352}}
 .icon-screen:before {
   content: "\e005";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000355}}
 .icon-clock:before {
   content: "\e002";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000358}}
 .icon-cloud-upload:before {
   content: "\e006";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000361}}
 .icon-menu:before {
   content: "\e007";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000364}}
 .icon-star:before {
   content: "\e008";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000367}}
 .icon-cog:before {
   content: "\e009";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000370}}
 .icon-users:before {
   content: "\e00a";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000373}}
 .icon-stats:before {
   content: "\e00b";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000376}}
 .icon-eye:before {
   content: "\e00c";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000379}}
 .icon-eye-blocked:before {
   content: "\e00d";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000382}}
 .icon-key:before {
   content: "\e00e";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000385}}
 .icon-lock:before {
   content: "\e00f";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000388}}
 .icon-reload:before {
   content: "\e010";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000391}}
 .icon-remove:before {
   content: "\f00d";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000394}}
 .icon-ok:before {
   content: "\f00c";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\0000397}}
 .icon-link:before {
   content: "\e011";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/icons\.less}line{font-family:\00003100}}
 .icon-plus:before {
   content: "\e012";
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/brand\.less}line{font-family:\000031}}
 body {
   font-family: Arial, sans-serif;
   font-size: 18px;
   color: #232323;
   background-color: #fcfcfc;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/brand\.less}line{font-family:\000038}}
 h1,
 h2,
 h3,
@@ -580,7 +513,6 @@ h6 {
   font-family: Georgia, serif;
   font-weight: bold;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/brand\.less}line{font-family:\0000313}}
 h2,
 h3,
 h4,
@@ -588,11 +520,9 @@ h5,
 h6 {
   margin: 0 0 0.5em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/brand\.less}line{font-family:\0000317}}
 a {
   text-decoration: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/brand\.less}line{font-family:\0000321}}
 button,
 .btn {
   border: 0;
@@ -604,34 +534,27 @@ button,
   color: #fcfcfc;
   display: inline-block;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/brand\.less}line{font-family:\0000331}}
 button.success,
 .btn.success {
   background-color: #1d7f59;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/brand\.less}line{font-family:\0000335}}
 button.cancel,
 .btn.cancel {
   background-color: #e86d65;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/brand\.less}line{font-family:\0000340}}
 .dark-widget {
   background-color: #232323;
   color: #fcfcfc;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/brand\.less}line{font-family:\0000345}}
 .hovered {
   background-color: #3d3d3d;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/brand\.less}line{font-family:\0000349}}
 .selected {
   background-color: #54486e;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/brand\.less}line{font-family:\0000353}}
 form {
   *zoom: 1;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/brand\.less}line{font-family:\0000354}}
 form input,
 form textarea {
   box-sizing: border-box;
@@ -640,17 +563,14 @@ form textarea {
   padding: 0.75em;
   margin-bottom: 0.5em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000324}}
 form:before,
 form:after {
   content: "";
   display: table;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000329}}
 form:after {
   clear: both;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/mixins\.less}line{font-family:\000033}}
 form:after {
   content: ".";
   display: block;
@@ -659,16 +579,13 @@ form:after {
   line-height: 0;
   height: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/brand\.less}line{font-family:\0000363}}
 form button.success {
   float: left;
   width: 50%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/brand\.less}line{font-family:\0000367}}
 form button.cancel {
   width: 50%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/brand\.less}line{font-family:\0000372}}
 h2.title {
   background-color: #232323;
   color: #fcfcfc;
@@ -678,14 +595,12 @@ h2.title {
   margin: 0;
   position: relative;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/layout\.less}line{font-family:\000031}}
 header {
   background-color: #232323;
   color: #fcfcfc;
   padding: 0 2em;
   height: 5em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/layout\.less}line{font-family:\000037}}
 header h1 {
   display: inline;
   float: left;
@@ -693,18 +608,15 @@ header h1 {
   padding-right: 1.0416666666666665%;
   padding-left: 1.0416666666666665%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/layout\.less}line{font-family:\0000311}}
 header a {
   color: #fcfcfc;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/layout\.less}line{font-family:\0000316}}
 nav {
   display: inline;
   float: left;
   width: 47.91666666666667%;
   margin: 0 1.0416666666666665%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/layout\.less}line{font-family:\0000318}}
 nav ul {
   list-style: none;
   margin: 0;
@@ -716,17 +628,14 @@ nav ul {
   *zoom: 1;
   border-right: 1px solid #373737;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000324}}
 nav ul:before,
 nav ul:after {
   content: "";
   display: table;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000329}}
 nav ul:after {
   clear: both;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/mixins\.less}line{font-family:\000033}}
 nav ul:after {
   content: ".";
   display: block;
@@ -735,14 +644,12 @@ nav ul:after {
   line-height: 0;
   height: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/layout\.less}line{font-family:\0000327}}
 nav li {
   display: inline;
   float: left;
   width: 33.333333333333336%;
   height: 100%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/layout\.less}line{font-family:\0000332}}
 nav a {
   display: inline-block;
   text-align: center;
@@ -751,57 +658,50 @@ nav a {
   line-height: 5em;
   border-left: 1px solid #373737;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/layout\.less}line{font-family:\0000339}}
 nav a:hover {
   background-color: #e2854a;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/layout\.less}line{font-family:\0000345}}
 .container {
   padding: 0 2em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/layout\.less}line{font-family:\0000349}}
 .ng-cloak,
 [ng-cloak] {
   display: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/layout\.less}line{font-family:\0000357}}
 .anonymous .user-nav,
 .anonymous .admin-nav,
 .is-editor .admin-nav {
   display: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\000031}}
-.board-mgmt {
+.board-mgmt,
+.screen-mgmt,
+.screen-editor,
+.login-area {
   display: inline;
   float: left;
   width: 31.25%;
   margin: 0 1.0416666666666665%;
   padding-top: 1em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\000036}}
 .board-list {
   background-color: #232323;
   color: #fcfcfc;
   margin-bottom: 1em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000311}}
 .widget {
   background-color: #232323;
   color: #fcfcfc;
   *zoom: 1;
   margin-bottom: 1em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000324}}
 .widget:before,
 .widget:after {
   content: "";
   display: table;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000329}}
 .widget:after {
   clear: both;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/mixins\.less}line{font-family:\000033}}
 .widget:after {
   content: ".";
   display: block;
@@ -810,30 +710,24 @@ nav a:hover {
   line-height: 0;
   height: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000316}}
 .widget form {
   padding: 1em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000321}}
 .create-board {
   background-color: #232323;
   color: #fcfcfc;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000323}}
 .create-board button {
   width: 100%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000326}}
 .create-board form {
   padding: 1em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000331}}
 .controls {
   position: absolute;
   top: 0;
   right: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000336}}
 .controls button,
 .controls .btn {
   background-color: #1c4348;
@@ -842,27 +736,22 @@ nav a:hover {
   text-align: center;
   min-width: 64px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000342}}
 .controls button:hover,
 .controls .btn:hover {
   background-color: #e2854a;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000349}}
 .horizontal-controls {
   float: right;
   *zoom: 1;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000324}}
 .horizontal-controls:before,
 .horizontal-controls:after {
   content: "";
   display: table;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000329}}
 .horizontal-controls:after {
   clear: both;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/mixins\.less}line{font-family:\000033}}
 .horizontal-controls:after {
   content: ".";
   display: block;
@@ -871,7 +760,6 @@ nav a:hover {
   line-height: 0;
   height: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000352}}
 .horizontal-controls button,
 .horizontal-controls .btn {
   font-size: 18px;
@@ -883,37 +771,31 @@ nav a:hover {
   float: right;
   box-sizing: border-box;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000362}}
 .horizontal-controls button:hover,
 .horizontal-controls .btn:hover {
   background-color: #e2854a;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000366}}
 .horizontal-controls button.inert:hover,
 .horizontal-controls .btn.inert:hover {
   background-color: transparent;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000371}}
 .horizontal-controls .duration span,
 .horizontal-controls .url span {
   position: relative;
   top: -2px;
   text-transform: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000379}}
 .full-row {
   width: 100%;
   float: left;
   border-bottom: 1px solid #3d3d3d;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000383}}
 .full-row button,
 .full-row .btn {
   border-left: 0;
   border-right: 1px solid #3d3d3d;
   float: left;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000390}}
 .instructions {
   padding-top: 1em;
   display: inline;
@@ -921,13 +803,11 @@ nav a:hover {
   width: 31.25%;
   margin: 0 1.0416666666666665%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\0000393}}
 .instructions .intro {
   background-color: #232323;
   color: #fcfcfc;
   padding: 1em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\00003100}}
 .board-details,
 .screen-details,
 .edit-board {
@@ -936,7 +816,6 @@ nav a:hover {
   *zoom: 1;
   margin-bottom: 1em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000324}}
 .board-details:before,
 .screen-details:before,
 .edit-board:before,
@@ -946,13 +825,11 @@ nav a:hover {
   content: "";
   display: table;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000329}}
 .board-details:after,
 .screen-details:after,
 .edit-board:after {
   clear: both;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/mixins\.less}line{font-family:\000033}}
 .board-details:after,
 .screen-details:after,
 .edit-board:after {
@@ -963,66 +840,41 @@ nav a:hover {
   line-height: 0;
   height: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\00003106}}
 .info {
   padding: 1em;
   clear: left;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\00003111}}
-.screen-mgmt {
-  display: inline;
-  float: left;
-  width: 31.25%;
-  margin: 0 1.0416666666666665%;
-  padding-top: 1em;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\00003116}}
 .screen-list {
   background-color: #232323;
   color: #fcfcfc;
   margin-bottom: 1em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\00003121}}
-.screen-editor {
-  display: inline;
-  float: left;
-  width: 31.25%;
-  margin: 0 1.0416666666666665%;
-  padding-top: 1em;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\00003126}}
 .create-screen,
 .edit-screen {
   background-color: #232323;
   color: #fcfcfc;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\00003128}}
 .create-screen button,
 .edit-screen button {
   width: 100%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\00003131}}
 .create-screen form,
 .edit-screen form {
   padding: 1em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\00003136}}
 .list-item {
   margin: 0;
   *zoom: 1;
   border-top: 1px solid #3d3d3d;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000324}}
 .list-item:before,
 .list-item:after {
   content: "";
   display: table;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000329}}
 .list-item:after {
   clear: both;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/mixins\.less}line{font-family:\000033}}
 .list-item:after {
   content: ".";
   display: block;
@@ -1031,20 +883,16 @@ nav a:hover {
   line-height: 0;
   height: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\00003141}}
 .list-item:first-child {
   border-top: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\00003145}}
 .list-item:hover {
   background-color: #3d3d3d;
   cursor: pointer;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\00003150}}
 .list-item.is-active {
   background-color: #54486e;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/boards\.less}line{font-family:\00003158}}
 .screen .name {
   padding: 1em;
   float: left;

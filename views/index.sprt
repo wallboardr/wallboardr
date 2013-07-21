@@ -1,10 +1,10 @@
 <div class="index-view">
 	<div class="board-mgmt">
-		<h2 class="title">Available wallboards <div class="controls"><button ng-click="openNewBoardForm=true">+</button></div></h2>
+		<h2 class="title">Available wallboards <div class="controls"><button ng-click="openNewBoardForm=true"><i class="icon-plus"></i></button></div></h2>
 		<div class="board-list widget">
 			<div class="board list-item ng-cloak" ng-repeat="board in boards" ng-class="{'is-active': isActiveBoard($index)}" ng-click="setActiveBoard($index)">
 				<div class="horizontal-controls">
-					<a class="btn" ng-href="/view/{{board.slug}}"><i class="icon-eye"></i></a>
+					<a class="btn" ng-href="/view/{{board.slug}}"><i class="icon-link"></i></a>
 				</div>
 				<div class="info">{{board.name}}</div>
 			</div>
@@ -27,7 +27,7 @@
 		<div class="board-details widget" ng-hide="openEditBoardForm">
 			<div class="horizontal-controls full-row">
 				<span class="duration btn inert"><i class="icon-clock"></i> <span>{{activeBoard.duration || '-'}}</span></span>
-				<span class="url btn inert"><i class="icon-stats"></i> <span>/view/{{activeBoard.slug}}</span></span>
+				<span class="url btn inert"><i class="icon-link"></i> <span>/view/{{activeBoard.slug}}</span></span>
 			</div>
 			<div class="info">
 				{{activeBoard.desc}}
@@ -43,7 +43,7 @@
 				<button ng-click="openEditBoardForm=false" class="cancel">Cancel</button>
 			</form>
 		</div>
-		<h2 class="title">Screens for {{activeBoard.name}} <div class="controls"><button ng-click="openNewScreenForm=true">+</button></div></h2>
+		<h2 class="title">Screens for {{activeBoard.name}} <div class="controls"><button ng-click="openNewScreenForm=true"><i class="icon-plus"></i></button></div></h2>
 		<div class="screen-list widget" ng-show="screens.length">
 			<div class="screen list-item ng-cloak" ng-repeat="screen in screens" ng-class="{'is-active': isActiveScreen($index)}" ng-click="setActiveScreen($index)">
 				<span class="horizontal-controls">
@@ -53,21 +53,6 @@
 				<span class="name">{{screen.name}}</span>
 			</div>
 		</div>
-	</div>
-	<div class="screen-editor" ng-show="activeScreen">
-		<h2 class="title" ng-show="activeScreen">{{activeScreen.name}} <div class="controls"><button ng-click="openEditScreenForm=true"><i class="icon-pencil"></i></button></div></h2>
-		<div class="screen-details" ng-show="activeScreen">
-			<div class="info" ng-bind-html-unsafe="activeScreen.message | nl2br"></div>
-		</div>
-		<div class="edit-screen">
-			<form novalidate name="editLocalScreen" ng-show="openEditScreenForm">
-				<input type="text" ng-model="activeScreen.name" placeholder="Name" required><br>
-				<textarea rows="3" placeholder="Enter some text..." ng-model="activeScreen.message" required></textarea><br>
-				<input type="number" ng-model="activeScreen.duration" placeholder="Screen duration">
-				<button ng-click="updateActiveScreen(editLocalScreen)" class="success">Save</button>
-				<button ng-click="openEditScreenForm=false" class="cancel">Cancel</button>
-			</form>
-		</div>
 		<div class="create-screen">
 			<form novalidate name="newLocalScreen" ng-show="openNewScreenForm">
 				<input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
@@ -75,6 +60,21 @@
 				<input type="number" ng-model="newLocalScreen.duration" placeholder="Screen duration">
 				<button ng-click="addScreen(newLocalScreen)" class="success">Add</button>
 				<button ng-click="openNewScreenForm=false" class="cancel">Cancel</button>
+			</form>
+		</div>
+	</div>
+	<div class="screen-editor" ng-show="activeScreen">
+		<h2 class="title" ng-show="activeScreen">{{activeScreen.name}} <div class="controls"><button ng-click="startEditingScreen()"><i class="icon-pencil"></i></button></div></h2>
+		<div class="screen-details" ng-show="activeScreen">
+			<div class="info" ng-bind-html-unsafe="activeScreen.message | nl2br"></div>
+		</div>
+		<div class="edit-screen" ng-show="openEditScreenForm">
+			<form novalidate name="editLocalScreen">
+				<input type="text" ng-model="activeScreenEdit.name" placeholder="Name" required><br>
+				<textarea rows="3" placeholder="Enter some text..." ng-model="activeScreenEdit.message" required></textarea><br>
+				<input type="number" ng-model="activeScreenEdit.duration" placeholder="Screen duration">
+				<button ng-click="updateActiveScreen(editLocalScreen)" class="success">Save</button>
+				<button ng-click="cancelEditScreen()" class="cancel">Cancel</button>
 			</form>
 		</div>
 	</div>
@@ -93,6 +93,15 @@
 			<p>
 				You can now see more information on your board, and manage its screens in the middle.
 			</p>
+		</div>
+	</div>
+	<div class="login-area">
+		<div class="widget login-box">
+			<form novalidate name="login">
+				<input type="text" ng-model="loginUser.name" placeholder="Username" required>
+				<input type="password" ng-model="loginUser.pass" placeholder="Password" required>
+				<button ng-click="signin(login)">Sign In</button>
+			</form>
 		</div>
 	</div>
 </div>

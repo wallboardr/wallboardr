@@ -67,13 +67,34 @@ define(['angular'], function (angular) {
       }
     };
 
+    $scope.startEditingScreen = function () {
+      $scope.activeScreenEdit = angular.copy($scope.activeScreen);
+      sanitize($scope.activeScreenEdit);
+      $scope.openEditScreenForm = true;
+    };
+
+    $scope.cancelEditScreen = function () {
+      $scope.activeScreenEdit = {};
+      $scope.openEditScreenForm = false;
+    };
+
+    var revertScreen = function (err, backup) {
+      angular.copy(backup, $scope.activeScreen);
+    };
+
     $scope.updateActiveScreen = function (form) {
       var url = '/data/screens/_id/' + $scope.activeScreen._id,
-          toSave;
+          backup;
       if (form.$valid) {
-        toSave = angular.copy($scope.activeScreen);
-        sanitize(toSave);
-        $http.post(url, toSave);
+        backup = angular.copy($scope.activeScreen);
+        angular.copy($scope.activeScreenEdit, $scope.activeScreen);
+        $http.post(url, $scope.activeScreenEdit).success(function (data) {
+          if (data !== '1') {
+            revertScreen(data, backup);
+          }
+        }).error(function (err) {
+          revertScreen(err, backup);
+        });
         $scope.openEditScreenForm = false;
       }
     };
