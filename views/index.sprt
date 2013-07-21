@@ -1,22 +1,18 @@
 <div class="index-view">
 	<div class="board-mgmt">
-		<div class="board-list">
-			<div class="board ng-cloak" ng-repeat="board in boards" ng-class="{'is-active': isActiveBoard($index)}" ng-click="setActiveBoard($index)">
-				<div class="controls">
+		<h2 class="title">Available wallboards <div class="controls"><button ng-click="openNewBoardForm=true">+</button></div></h2>
+		<div class="board-list widget">
+			<div class="board list-item ng-cloak" ng-repeat="board in boards" ng-class="{'is-active': isActiveBoard($index)}" ng-click="setActiveBoard($index)">
+				<div class="horizontal-controls">
 					<a class="btn" ng-href="/view/{{board.slug}}"><i class="icon-eye"></i></a>
-					<a class="btn" ng-href="/view/{{board.slug}}"><i class="icon-pencil"></i></a>
 				</div>
-				<div class="info">
-					<h2>{{board.name}}</h2>
-					<p class="desc">{{board.desc}}</p>
-				</div>
+				<div class="info">{{board.name}}</div>
 			</div>
 			<p ng-show="!boards.length">No boards have been created, try adding one.</p>
 		</div>
 		
-		<div class="create-board">
-			<button ng-click="openNewBoardForm=true">Create a new board</button>
-			<form novalidate name="newBoard" ng-show="openNewBoardForm">
+		<div class="create-board widget" ng-show="openNewBoardForm">
+			<form novalidate name="newBoard">
 				<input type="text" ng-model="newBoard.name" placeholder="Name" required><br>
 				<input type="text" ng-model="newBoard.slug" placeholder="Url slug" required><br>
 				<textarea rows="4" ng-model="newBoard.desc" placeholder="Description"></textarea><br>
@@ -27,19 +23,42 @@
 		</div>
 	</div>
 	<div class="screen-mgmt" ng-show="activeBoard">
-		<h2 class="title">Screens for {{activeBoard.name}}</h2>
-		<div class="screen-list" ng-show="screens.length">
-			<div class="screen ng-cloak" ng-repeat="screen in screens" ng-class="{'is-active': isActiveScreen($index)}">
+		<h2 class="title">{{activeBoard.name}} <div class="controls"><button ng-click="openEditBoardForm=true"><i class="icon-pencil"></i></button></div></h2>
+		<div class="board-details widget" ng-hide="openEditBoardForm">
+			<div class="horizontal-controls full-row">
+				<span class="duration btn inert"><i class="icon-clock"></i> <span>{{activeBoard.duration || '-'}}</span></span>
+				<span class="url btn inert"><i class="icon-stats"></i> <span>/view/{{activeBoard.slug}}</span></span>
+			</div>
+			<div class="info">
+				{{activeBoard.desc}}
+			</div>
+		</div>
+		<div class="edit-board widget" ng-show="openEditBoardForm">
+			<form novalidate name="editBoard">
+				<input type="text" ng-model="activeBoard.name" placeholder="Name" required><br>
+				<input type="text" ng-model="activeBoard.slug" placeholder="Url slug" required><br>
+				<textarea rows="4" ng-model="activeBoard.desc" placeholder="Description"></textarea><br>
+				<input type="number" ng-model="activeBoard.duration" placeholder="Default duration">
+				<button ng-click="updateActiveBoard(editBoard)" class="success">Save</button>
+				<button ng-click="openEditBoardForm=false" class="cancel">Cancel</button>
+			</form>
+		</div>
+		<h2 class="title">Screens for {{activeBoard.name}} <div class="controls"><button ng-click="openNewScreenForm=true">+</button></div></h2>
+		<div class="screen-list widget" ng-show="screens.length">
+			<div class="screen list-item ng-cloak" ng-repeat="screen in screens" ng-class="{'is-active': isActiveScreen($index)}" ng-click="setActiveScreen($index)">
 				<span class="horizontal-controls">
 					<span class="btn"><i class="icon-menu"></i></span>
-					<a class="btn" ng-click="setActiveScreen($index)"><i class="icon-pencil"></i></a>
-					<span class="duration btn"><i class="icon-clock"></i> <span>{{screen.duration || activeBoard.duration || 30}}</span></span>
+					<span class="duration btn inert"><i class="icon-clock"></i> <span>{{screen.duration || activeBoard.duration || 30}}</span></span>
 				</span>
 				<span class="name">{{screen.name}}</span>
 			</div>
 		</div>
 	</div>
-	<div class="screen-editor">
+	<div class="screen-editor" ng-show="activeScreen">
+		<h2 class="title" ng-show="activeScreen">{{activeScreen.name}} <div class="controls"><button ng-click="openEditScreenForm=true"><i class="icon-pencil"></i></button></div></h2>
+		<div class="screen-details" ng-show="activeScreen">
+			<div class="info" ng-bind-html-unsafe="activeScreen.message | nl2br"></div>
+		</div>
 		<div class="edit-screen">
 			<form novalidate name="editLocalScreen" ng-show="openEditScreenForm">
 				<input type="text" ng-model="activeScreen.name" placeholder="Name" required><br>
@@ -50,7 +69,6 @@
 			</form>
 		</div>
 		<div class="create-screen">
-			<button ng-click="openNewScreenForm=true">Create a new local screen</button>
 			<form novalidate name="newLocalScreen" ng-show="openNewScreenForm">
 				<input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
 				<textarea placeholder="Enter some text..." rows="3" ng-model="newLocalScreen.message" required></textarea><br>
@@ -58,6 +76,23 @@
 				<button ng-click="addScreen(newLocalScreen)" class="success">Add</button>
 				<button ng-click="openNewScreenForm=false" class="cancel">Cancel</button>
 			</form>
+		</div>
+	</div>
+	<div class="instructions">
+		<div class="intro" ng-hide="activeBoard">
+			<h2>Welcome to Wallboardr.</h2>
+			<p>
+				We hope you enjoy maintaining your wallboards. On your left is the wallboard list, you can create as many wallboards as you like, and each is available at a different URL.
+			</p>
+			<p>
+				Each wallboard can contain many different screens, which will show up in this space once you select a board on the left. You can add, edit and arrange your screens which will appear on your wallboard.
+			</p>
+		</div>
+		<div class="intro" ng-show="activeBoard &amp;&amp; !activeScreen">
+			<h2>Working with screens</h2>
+			<p>
+				You can now see more information on your board, and manage its screens in the middle.
+			</p>
 		</div>
 	</div>
 </div>
