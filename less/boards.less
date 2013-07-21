@@ -8,6 +8,16 @@
 	margin-bottom: 1em;
 }
 
+.widget {
+	.dark-widget();
+	.clearfix();
+	margin-bottom: 1em;
+
+	form {
+		padding: 1em;
+	}
+}
+
 .create-board {
 	.dark-widget();
 	button {
@@ -19,30 +29,21 @@
 }
 
 .controls {
-	float: right;
-	width: 48px;
+	position: absolute;
+	top: 0;
+	right: 0;
 
 	button, .btn {
-		font-size: 24px;
-		padding: 0.5em;
-		float: right;
-		background-color: lighten(@color-content-dark, 10%);
-
+		background-color: @color-title-dark;
+		padding: 1em 1.25em;
+		font-size: @font-size-base;
+		text-align: center;
+		min-width: 64px;
 		&:hover {
 			background-color: @color-main-1;
 		};
-
-		.is-active & {
-			background-color: @color-main-2;
-		}
 	}
 
-	i {
-		display: inline-block;
-	}
-	i:after {
-		line-height: 24px;
-	}
 }
 
 .horizontal-controls {
@@ -51,34 +52,60 @@
 	button, .btn {
 		font-size: @font-size-base;
 		padding: 1em;
+		text-align: center;
+		min-width: 65px;
 		border-left: 1px solid lighten(@color-content-dark, 10%);
-		background-color: @color-content-dark;
+		background-color: transparent;
 		float: right;
+		box-sizing: border-box;
+
+		&:hover {
+			background-color: @color-main-1;
+		}
+
+		&.inert:hover {
+			background-color: transparent;
+		}
 	}
+
+	.duration span, .url span {
+		position: relative;
+		top: -2px;
+		text-transform: none;
+	}
+
+}
+
+.full-row {
+	width: 100%;
+	float: left;
+	border-bottom: 1px solid lighten(@color-content-dark, 10%);
+	button, .btn {
+		border-left: 0;
+		border-right: 1px solid lighten(@color-content-dark, 10%);
+		float: left;
+	}
+}
+
+.instructions {
+	padding-top: 1em;
+	.column(4);
+	.intro {
+		.dark-widget();
+		padding: 1em;
+	}
+	
+}
+
+.board-details, .screen-details, .edit-board {
+	.dark-widget();
+	.clearfix();
+	margin-bottom: 1em;
 }
 
 .info {
 	padding: 1em;
-}
-
-.board {
-	margin: 0;
-	border-top: 1px solid lighten(@color-content-dark, 10%);
-
-	.clearfix();
-
-	&:first-child {
-		border-top: 0;
-	}
-
-	&:hover {
-		.hovered();
-		cursor: pointer;
-	}
-
-	&.is-active {
-		.selected();
-	}
+	clear: left;
 }
 
 .screen-mgmt {
@@ -106,19 +133,15 @@
 	}
 }
 
-.screen {
+.list-item {
 	margin: 0;
 	.clearfix();
 	border-top: 1px solid lighten(@color-content-dark, 10%);
 
-	.name {
-		padding: 1em;
-		float: left;
+	&:first-child {
+		border-top: 0;
 	}
-	.duration span {
-		position: relative;
-		top: -2px;
-	}
+
 	&:hover {
 		.hovered();
 		cursor: pointer;
@@ -127,4 +150,15 @@
 	&.is-active {
 		.selected();
 	}
+}
+
+.screen {
+	
+
+	.name {
+		padding: 1em;
+		float: left;
+	}
+
+
 }
