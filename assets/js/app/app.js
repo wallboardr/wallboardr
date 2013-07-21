@@ -1,4 +1,4 @@
-define(['angular', 'controller/wallboardr', 'app/routes', 'app/filters'], function (angular, wallboardrCtrl, routes, filters) {
+define(['angular', 'controller/wallboardr', 'controller/users', 'app/routes', 'app/filters'], function (angular, wallboardrCtrl, userCtrl, routes, filters) {
     'use strict';
 
     var appName = 'wallboardr',
@@ -17,6 +17,7 @@ define(['angular', 'controller/wallboardr', 'app/routes', 'app/filters'], functi
             app.config(routes);
             app.filter('nl2br', filters.nl2br);
             app.controller('WallboardrController', wallboardrCtrl);
+            app.controller('UserController', userCtrl);
             angular.bootstrap(document, [appName]);
             log('Negative Ghost Rider, the pattern is full.');
         }

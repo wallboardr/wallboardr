@@ -5,7 +5,6 @@
 /**
  * Correct `block` display not defined in IE 8/9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000311}}
 article,
 aside,
 details,
@@ -23,7 +22,6 @@ summary {
 /**
  * Correct `inline-block` display not defined in IE 8/9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000330}}
 audio,
 canvas,
 video {
@@ -33,7 +31,6 @@ video {
  * Prevent modern browsers from displaying `audio` without controls.
  * Remove excess height in iOS 5 devices.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000341}}
 audio:not([controls]) {
   display: none;
   height: 0;
@@ -41,7 +38,6 @@ audio:not([controls]) {
 /**
  * Address styling not present in IE 8/9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000350}}
 [hidden] {
   display: none;
 }
@@ -53,7 +49,6 @@ audio:not([controls]) {
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000364}}
 html {
   font-family: sans-serif;
   /* 1 */
@@ -68,7 +63,6 @@ html {
 /**
  * Remove default margin.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000374}}
 body {
   margin: 0;
 }
@@ -78,14 +72,12 @@ body {
 /**
  * Address `outline` inconsistency between Chrome and other browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000386}}
 a:focus {
   outline: thin dotted;
 }
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\0000394}}
 a:active,
 a:hover {
   outline: 0;
@@ -97,7 +89,6 @@ a:hover {
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari 5, and Chrome.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003108}}
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
@@ -105,14 +96,12 @@ h1 {
 /**
  * Address styling not present in IE 8/9, Safari 5, and Chrome.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003117}}
 abbr[title] {
   border-bottom: 1px dotted;
 }
 /**
  * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003125}}
 b,
 strong {
   font-weight: bold;
@@ -120,14 +109,12 @@ strong {
 /**
  * Address styling not present in Safari 5 and Chrome.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003134}}
 dfn {
   font-style: italic;
 }
 /**
  * Address differences between Firefox and other browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003142}}
 hr {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -136,7 +123,6 @@ hr {
 /**
  * Address styling not present in IE 8/9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003152}}
 mark {
   background: #ff0;
   color: #000;
@@ -144,7 +130,6 @@ mark {
 /**
  * Correct font family set oddly in Safari 5 and Chrome.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003161}}
 code,
 kbd,
 pre,
@@ -155,28 +140,24 @@ samp {
 /**
  * Improve readability of pre-formatted text in all browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003173}}
 pre {
   white-space: pre-wrap;
 }
 /**
  * Set consistent quote types.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003181}}
 q {
   quotes: "\201C" "\201D" "\2018" "\2019";
 }
 /**
  * Address inconsistent and variable font size in all browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003189}}
 small {
   font-size: 80%;
 }
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003197}}
 sub,
 sup {
   font-size: 75%;
@@ -184,11 +165,9 @@ sup {
   position: relative;
   vertical-align: baseline;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003205}}
 sup {
   top: -0.5em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003209}}
 sub {
   bottom: -0.25em;
 }
@@ -198,14 +177,12 @@ sub {
 /**
  * Remove border when inside `a` element in IE 8/9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003221}}
 img {
   border: 0;
 }
 /**
  * Correct overflow displayed oddly in IE 9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003229}}
 svg:not(:root) {
   overflow: hidden;
 }
@@ -215,7 +192,6 @@ svg:not(:root) {
 /**
  * Address margin not present in IE 8/9 and Safari 5.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003241}}
 figure {
   margin: 0;
 }
@@ -225,7 +201,6 @@ figure {
 /**
  * Define consistent border, margin, and padding.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003253}}
 fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
@@ -235,7 +210,6 @@ fieldset {
  * 1. Correct `color` not being inherited in IE 8/9.
  * 2. Remove padding so people aren't caught out if they zero out fieldsets.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003264}}
 legend {
   border: 0;
   /* 1 */
@@ -249,7 +223,6 @@ legend {
  * 2. Correct font size not being inherited in all browsers.
  * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003275}}
 button,
 input,
 select,
@@ -268,7 +241,6 @@ textarea {
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003289}}
 button,
 input {
   line-height: normal;
@@ -279,7 +251,6 @@ input {
  * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
  * Correct `select` style inheritance in Firefox 4+ and Opera.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003301}}
 button,
 select {
   text-transform: none;
@@ -291,7 +262,6 @@ select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003314}}
 button,
 html input[type="button"],
 input[type="reset"],
@@ -306,7 +276,6 @@ input[type="submit"] {
 /**
  * Re-set default cursor for disabled elements.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003326}}
 button[disabled],
 html input[disabled] {
   cursor: default;
@@ -315,7 +284,6 @@ html input[disabled] {
  * 1. Address box sizing set to `content-box` in IE 8/9.
  * 2. Remove excess padding in IE 8/9.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003336}}
 input[type="checkbox"],
 input[type="radio"] {
   box-sizing: border-box;
@@ -330,7 +298,6 @@ input[type="radio"] {
  * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
  *    (include `-moz` to future-proof).
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003348}}
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
@@ -345,7 +312,6 @@ input[type="search"] {
  * Remove inner padding and search cancel button in Safari 5 and Chrome
  * on OS X.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003360}}
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
@@ -353,7 +319,6 @@ input[type="search"]::-webkit-search-decoration {
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003369}}
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
@@ -363,7 +328,6 @@ input::-moz-focus-inner {
  * 1. Remove default vertical scrollbar in IE 8/9.
  * 2. Improve readability and alignment in all browsers.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003380}}
 textarea {
   overflow: auto;
   /* 1 */
@@ -378,27 +342,22 @@ textarea {
 /**
  * Remove most spacing between table cells.
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/normalize\.less}line{font-family:\00003393}}
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000339}}
 body {
   width: 100%;
   *zoom: 1;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000324}}
 body:before,
 body:after {
   content: "";
   display: table;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/grid\.less}line{font-family:\0000329}}
 body:after {
   clear: both;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/mixins\.less}line{font-family:\000033}}
 body:after {
   content: ".";
   display: block;
@@ -407,7 +366,6 @@ body:after {
   line-height: 0;
   height: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/mixins\.less}line{font-family:\000033}}
 .clearfix:after {
   content: ".";
   display: block;
@@ -423,13 +381,11 @@ body:after {
   font-weight: normal;
   font-style: normal;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/screens\.less}line{font-family:\000031}}
 html {
   background-color: #232323;
   color: #fcfcfc;
   overflow: hidden;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/screens\.less}line{font-family:\000037}}
 html,
 body,
 .board,
@@ -439,17 +395,14 @@ body,
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/screens\.less}line{font-family:\0000314}}
 .board {
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/screens\.less}line{font-family:\0000318}}
 .screen {
   width: 100%;
   height: 100%;
   padding: 2em;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/rhuvok\/dev\/Projects\/wallboardr\/less\/screens\.less}line{font-family:\0000326}}
 .local-message {
   font-family: "League Gothic", Arial, sans-serif;
 }
