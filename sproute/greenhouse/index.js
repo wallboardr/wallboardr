@@ -67,6 +67,7 @@ function Greenhouse (config) {
     //allow hooks into the template language
     this.hooks = config.hooks || {};
     this.templateTags = config.templateTags || { "start": "{{", "end": "}}" };
+    this.cookie = config.cookie || function () {};
 
     this.hooks.set = function (block, next) {
         var expand = this.parseExpression(block.rawExpr);

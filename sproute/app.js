@@ -280,7 +280,11 @@ App.prototype = {
 			}
 		}, function (template) {
 			//render and send it back to client
-			var g = new Greenhouse({hooks: this.hooks, templateTags: this.config.templateTags});
+			var g = new Greenhouse({
+				hooks: this.hooks,
+				templateTags: this.config.templateTags,
+				cookie: res.cookie.bind(res)
+			});
 			g.oncompiled = function (html) {
 				res.send(html);
 			};
