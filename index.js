@@ -4,6 +4,8 @@ var Sproute = require('./sproute/app');
 var http = require('http');
 
 var app = new Sproute('.');
+
+// Hook to fetch a URL and render it in place (used for proxying)
 app.hooks.fetch = function (block, next) {
   //pause parsing and decode request
   var expr = block.expr.split(' ');
@@ -26,3 +28,14 @@ app.hooks.fetch = function (block, next) {
   });
 };
 
+// Hook to set a cookie
+app.hooks.cookie = function (block, next) {
+  var expr = block.expr.split(' ');
+  var name = expr.shift();
+  var value = '';
+  if (expr.length) {
+    value = expr.join(' ');
+  }
+  this.cookie(name, value);
+  next();
+};
