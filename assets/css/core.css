@@ -605,8 +605,8 @@ header h1 {
   display: inline;
   float: left;
   width: 47.91666666666667%;
-  padding-right: 1.0416666666666665%;
-  padding-left: 1.0416666666666665%;
+  margin: 0 1.0416666666666665%;
+  margin-top: 0.67em;
 }
 header a {
   color: #fcfcfc;
@@ -622,11 +622,9 @@ nav ul {
   margin: 0;
   padding: 0;
   height: 5em;
-  display: block;
-  width: 104.16666666666667%;
-  margin: 0 -2.083333333333333%;
-  *zoom: 1;
+  text-align: right;
   border-right: 1px solid #373737;
+  *zoom: 1;
 }
 nav ul:before,
 nav ul:after {
@@ -645,24 +643,61 @@ nav ul:after {
   height: 0;
 }
 nav li {
-  display: inline;
-  float: left;
-  width: 33.333333333333336%;
+  display: inline-block;
   height: 100%;
+  float: right;
+  position: relative;
 }
 nav a {
   display: inline-block;
   text-align: center;
   height: 100%;
-  width: 100%;
+  padding: 0 2em;
   line-height: 5em;
   border-left: 1px solid #373737;
 }
 nav a:hover {
   background-color: #e2854a;
 }
+nav .submenu {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  background-color: #232323;
+  color: #fcfcfc;
+  width: 100%;
+  border-right: 0;
+  height: 3em;
+}
+nav .submenu li {
+  width: 100%;
+}
+nav .submenu a {
+  border-left: 0;
+  border-top: 1px solid #373737;
+  padding: 0;
+  width: 100%;
+  line-height: 3em;
+}
 .container {
   padding: 0 2em;
+  *zoom: 1;
+}
+.container:before,
+.container:after {
+  content: "";
+  display: table;
+}
+.container:after {
+  clear: both;
+}
+.container:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
 }
 .ng-cloak,
 [ng-cloak] {
@@ -712,6 +747,9 @@ nav a:hover {
 }
 .widget form {
   padding: 1em;
+}
+.widget > p {
+  padding: 0 1em;
 }
 .create-board {
   background-color: #232323;
@@ -886,7 +924,7 @@ nav a:hover {
 .list-item:first-child {
   border-top: 0;
 }
-.list-item:hover {
+.logged-in .list-item:hover {
   background-color: #3d3d3d;
   cursor: pointer;
 }

@@ -5,6 +5,7 @@ define([], function () {
 
     var goodLogin = function (user) {
       auth.setUser(user);
+      $scope.loginUser = {};
     };
 
     $scope.signin = function (form) {

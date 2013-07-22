@@ -2,20 +2,27 @@
 <html lang="en">
 <% if session.user %>
 <% cookie wbuser :session.user.name||:session.user.role %>
+<% else %>
+<% cookie wbuser %>
 <% / %>
 	<head>
 		<title>Wallboardr</title>
 		<link rel="stylesheet" href="/assets/css/core.css" type="text/css">
 		<link rel="shortcut icon" href="/assets/favicon.ico">
 	</head>
-	<body ng-controller="WallboardrController" class="anonymous" ng-class="{'anonymous': !user.loggedIn, 'is-editor': user.isEditor}">
+	<body ng-controller="WallboardrController" class="" ng-class="{'anonymous': !$root.user.loggedIn, 'logged-in': $root.user.loggedIn, 'is-editor': $root.user.isEditor}">
 		<header role="banner">
 			<h1>Wallboardr. <i class="icon-screen"></i></h1>
-			<nav>
+			<nav class="ng-cloak" ng-show="$root.user.loggedIn">
 				<ul>
-					<li><a href="#" class="admin-nav">Users</a></li>
-					<li><a href="/admin" class="user-nav">Admin</a></li>
-					<li><a href="/about">About</a></li>
+					<li><a href="#" ng-click="showUserMenu=!showUserMenu"><i class="icon-user"></i> {{user.name}}</a>
+						<ul class="submenu" ng-show="showUserMenu">
+							<li><a href="#" ng-click="signOut()">Logout</a></li>
+						</ul>
+					</li>
+					<li><a href="#" class="admin-nav"><i class="icon-cog"></i></a>
+
+					</li>
 				</ul>
 			</nav>
 		</header>

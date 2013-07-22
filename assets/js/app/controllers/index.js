@@ -14,9 +14,17 @@ define(['angular'], function (angular) {
     $scope.activeScreen = null;
     $scope.screens = [];
 
+    $scope.$on('logout', function () {
+      $scope.activeScreen = null;
+      $scope.activeBoard = null;
+      $scope.screens = [];
+    });
+
     $scope.setActiveBoard = function (index) {
-      $scope.activeBoard = $scope.boards[index];
-      $scope.loadScreens($scope.activeBoard._id);
+      if ($scope.user.loggedIn) {
+        $scope.activeBoard = $scope.boards[index];
+        $scope.loadScreens($scope.activeBoard._id);
+      }
     };
 
     $scope.loadScreens = function (boardId) {
@@ -51,6 +59,7 @@ define(['angular'], function (angular) {
             }
           }
           screen.name = screen.duration = screen.message = '';
+          $scope.openNewScreenForm = false;
         });
       }
     };
