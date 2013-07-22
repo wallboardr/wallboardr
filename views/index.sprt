@@ -1,14 +1,15 @@
 <div class="index-view">
 	<div class="board-mgmt">
-		<h2 class="title">Available wallboards <div class="controls"><button ng-click="openNewBoardForm=true"><i class="icon-plus"></i></button></div></h2>
-		<div class="board-list widget">
+		<h2 class="title">Available wallboards <div class="controls" ng-show="$root.user.isAdmin"><button ng-click="openNewBoardForm=true"><i class="icon-plus"></i></button></div></h2>
+		<div class="board-list widget ng-cloak">
 			<div class="board list-item ng-cloak" ng-repeat="board in boards" ng-class="{'is-active': isActiveBoard($index)}" ng-click="setActiveBoard($index)">
 				<div class="horizontal-controls">
 					<a class="btn" ng-href="/view/{{board.slug}}"><i class="icon-link"></i></a>
 				</div>
 				<div class="info">{{board.name}}</div>
 			</div>
-			<p ng-show="!boards.length">No boards have been created, try adding one.</p>
+			<p ng-show="!boards.length &amp;&amp; $root.user.isAdmin">No boards have been created, try adding one with the plus sign above.</p>
+			<p ng-show="!boards.length &amp;&amp; !$root.user.isAdmin">No boards have been created, either login on the far right, or ask an administrator to create one!</p>
 		</div>
 		
 		<div class="create-board widget" ng-show="openNewBoardForm">
@@ -22,7 +23,7 @@
 			</form>
 		</div>
 	</div>
-	<div class="screen-mgmt" ng-show="activeBoard">
+	<div class="screen-mgmt" ng-show="activeBoard &amp;&amp; user.loggedIn">
 		<h2 class="title">{{activeBoard.name}} <div class="controls"><button ng-click="openEditBoardForm=true"><i class="icon-pencil"></i></button></div></h2>
 		<div class="board-details widget" ng-hide="openEditBoardForm">
 			<div class="horizontal-controls full-row">
@@ -63,7 +64,7 @@
 			</form>
 		</div>
 	</div>
-	<div class="screen-editor" ng-show="activeScreen">
+	<div class="screen-editor" ng-show="activeScreen &amp;&amp; user.loggedIn">
 		<h2 class="title" ng-show="activeScreen">{{activeScreen.name}} <div class="controls"><button ng-click="startEditingScreen()"><i class="icon-pencil"></i></button></div></h2>
 		<div class="screen-details" ng-show="activeScreen">
 			<div class="info" ng-bind-html-unsafe="activeScreen.message | nl2br"></div>
@@ -79,8 +80,17 @@
 		</div>
 	</div>
 	<div class="instructions">
-		<div class="intro" ng-hide="activeBoard">
+		<div class="intro" ng-hide="activeBoard || user.loggedIn">
 			<h2>Welcome to Wallboardr.</h2>
+			<p>
+				This is a system to help you manage wallboards, typically used within an organization or team to radiate information. The system supports multiple wallboards, which are listed on the left.
+			</p>
+			<ul>
+				<li>Only supports a single screen type at the moment: local message. More to come.</li>
+			</ul>
+		</div>
+		<div class="intro" ng-hide="activeBoard || !user.loggedIn">
+			<h2>Welcome {{user.name}}</h2>
 			<p>
 				We hope you enjoy maintaining your wallboards. On your left is the wallboard list, you can create as many wallboards as you like, and each is available at a different URL.
 			</p>
@@ -95,7 +105,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="login-area" ng-controller="UserController">
+	<div class="login-area" ng-controller="UserController" ng-show="!$root.user.loggedIn">
 		<div class="widget login-box">
 			<form novalidate name="login">
 				<input type="text" ng-model="loginUser.name" placeholder="Username" required>

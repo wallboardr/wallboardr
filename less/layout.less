@@ -5,7 +5,8 @@ header {
 	height: 5em;
 
 	h1 {
-		.columnp(6);
+		.column(6);
+		margin-top: 0.67em;
 	}
 
 	a {
@@ -20,30 +21,54 @@ nav {
 		margin: 0;
 		padding: 0;
 		height: 5em;
-		.row(6);
+		text-align: right;
 		border-right: 1px solid @color-content-dark-accent;
+		.clearfix();
 	}
 
 	li {
-		.column-ng(2, 6);
+		display: inline-block;
 		height: 100%;
+		float: right;
+		position: relative;
 	}
 
 	a {
 		display: inline-block;
 		text-align: center;
 		height: 100%;
-		width: 100%;
+		padding: 0 2em;
 		line-height: 5em;
 		border-left: 1px solid @color-content-dark-accent;
 		&:hover {
 			background-color: @color-link-background;
 		}
 	}
+
+	.submenu {
+		display: block;
+		position: absolute;
+		z-index: 100;
+		.dark-widget();
+		width: 100%;
+		border-right: 0;
+		height: 3em;
+		li {
+			width: 100%;
+		}
+		a {
+			border-left: 0;
+			border-top: 1px solid @color-content-dark-accent;;
+			padding: 0;
+			width: 100%;
+			line-height: 3em;
+		}
+	}
 }
 
 .container {
 	padding: 0 2em;
+	.clearfix();
 }
 
 .ng-cloak,

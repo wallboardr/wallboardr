@@ -17,8 +17,11 @@ define(
             if (window.console) {
                 window.console.log(msg);
             }
+        },
+        init = function (auth) {
+            auth.setCookieUser();
         };
-
+    init.$inject = ['auth'];
     return {
         bootstrap: function () {
             var app;
@@ -29,6 +32,7 @@ define(
             app.factory('auth', auth);
             app.controller('WallboardrController', wallboardrCtrl);
             app.controller('UserController', userCtrl);
+            app.run(init);
             angular.bootstrap(document, [appName]);
             log('Negative Ghost Rider, the pattern is full.');
         }

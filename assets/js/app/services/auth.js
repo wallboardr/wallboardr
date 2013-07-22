@@ -1,35 +1,43 @@
-define([], function () {
+define(['angular'], function (angular) {
   'use strict';
   var authFactory = function ($rootScope, $cookies) {
+    var emptyUser = { name: '', role: null };
+    var transformUser = function (basic) {
+      var enhanced = {
+            name: basic.name,
+            email: basic.email,
+            loggedIn: !!basic.role,
+            isAdmin: basic.role === 'admin',
+            isEditor: basic.role === 'editor',
+          };
+      return enhanced;
+    };
+
     return {
       setCookieUser: function () {
-        var user = { name: '', role: null },
+        var user = angular.copy(emptyUser),
             vals;
-        if ($cookies.wbuser) {
-          vals = $cookies.wbuser.split('||');
-          user.name = vals.shift();
-          user.role = vals.shift();
-          $cookies.wbuser = null;
+        if (!$rootScope.user) {
+          if ($cookies.wbuser) {
+            vals = $cookies.wbuser.split('||');
+            user.name = vals.shift();
+            user.role = vals.shift();
+            $cookies.wbuser = null;
+          }
+          $rootScope.user = transformUser(user);
         }
-        $rootScope.user = user;
       },
       setUser: function (user) {
-        $rootScope.user = user;
-      },
-      user: function () {
-        if (!$rootScope.user) {
-          this.setCookieUser();
-        }
+        $rootScope.user = transformUser(user);
         return $rootScope.user;
       },
-      loggedIn: function () {
-        return !!this.user().role;
+      user: function () {
+        this.setCookieUser();
+        return $rootScope.user;
       },
-      isAdmin: function () {
-        return this.user().role === 'admin';
-      },
-      isEditor: function () {
-        return this.user().role === 'editor';
+      resetUser: function () {
+        angular.copy(transformUser(emptyUser), $rootScope.user);
+        $rootScope.$broadcast('logout');
       }
     };
   };
