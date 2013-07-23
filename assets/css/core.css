@@ -535,6 +535,7 @@ button,
   text-align: center;
   color: #fcfcfc;
   display: inline-block;
+  cursor: pointer;
 }
 button.success,
 .btn.success {
@@ -553,6 +554,9 @@ button.cancel,
 }
 .selected {
   background-color: #54486e;
+}
+.hovered-and-selected {
+  background-color: #695d8f;
 }
 .error {
   color: #e86d65;
@@ -839,6 +843,15 @@ nav .submenu a {
   border-right: 1px solid #3d3d3d;
   float: left;
 }
+.tabs {
+  margin-bottom: 1em;
+  background-color: #3d3d3d;
+  border-bottom: 0;
+}
+.tabs .is-active,
+.tabs .btn.is-active:hover {
+  background-color: #232323;
+}
 .instructions {
   padding-top: 1em;
   display: inline;
@@ -851,59 +864,9 @@ nav .submenu a {
   color: #fcfcfc;
   padding: 1em;
 }
-.board-details,
-.screen-details,
-.edit-board {
-  background-color: #232323;
-  color: #fcfcfc;
-  *zoom: 1;
-  margin-bottom: 1em;
-}
-.board-details:before,
-.screen-details:before,
-.edit-board:before,
-.board-details:after,
-.screen-details:after,
-.edit-board:after {
-  content: "";
-  display: table;
-}
-.board-details:after,
-.screen-details:after,
-.edit-board:after {
-  clear: both;
-}
-.board-details:after,
-.screen-details:after,
-.edit-board:after {
-  content: ".";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
-}
 .info {
   padding: 1em;
   clear: left;
-}
-.screen-list {
-  background-color: #232323;
-  color: #fcfcfc;
-  margin-bottom: 1em;
-}
-.create-screen,
-.edit-screen {
-  background-color: #232323;
-  color: #fcfcfc;
-}
-.create-screen button,
-.edit-screen button {
-  width: 100%;
-}
-.create-screen form,
-.edit-screen form {
-  padding: 1em;
 }
 .list-item {
   margin: 0;
@@ -932,6 +895,9 @@ nav .submenu a {
 .logged-in .list-item:hover {
   background-color: #3d3d3d;
   cursor: pointer;
+}
+.logged-in .list-item.is-active:hover {
+  background-color: #695d8f;
 }
 .list-item.is-active {
   background-color: #54486e;
