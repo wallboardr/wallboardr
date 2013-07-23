@@ -110,7 +110,9 @@
 			<form novalidate name="login">
 				<input type="text" ng-model="loginUser.name" placeholder="Username" required>
 				<input type="password" ng-model="loginUser.pass" placeholder="Password" required>
-				<button ng-click="signin(login)">Sign In</button>
+				<button ng-click="signin(login)">Sign In</button>&nbsp;&nbsp;
+				<span class="error" ng-show="login.serverError"><i class="icon-remove"></i> Invalid credentials</span>
+				<span class="error" ng-show="login.clientError"><i class="icon-remove"></i> Both fields are required</span>
 			</form>
 		</div>
 	</div>
