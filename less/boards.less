@@ -91,6 +91,15 @@
 	}
 }
 
+.tabs {
+	margin-bottom: 1em;
+	background-color: lighten(@color-content-dark, 10%);
+	border-bottom: 0;
+	.is-active, .btn.is-active:hover {
+		background-color: @color-content-dark
+	}
+}
+
 .instructions {
 	padding-top: 1em;
 	.column(4);
@@ -101,31 +110,11 @@
 	
 }
 
-.board-details, .screen-details, .edit-board {
-	.dark-widget();
-	.clearfix();
-	margin-bottom: 1em;
-}
-
 .info {
 	padding: 1em;
 	clear: left;
 }
 
-.screen-list {
-	.dark-widget();
-	margin-bottom: 1em;
-}
-
-.create-screen, .edit-screen {
-	.dark-widget();
-	button {
-		width: 100%;
-	}
-	form {
-		padding: 1em;
-	}
-}
 
 .list-item {
 	margin: 0;
@@ -139,6 +128,10 @@
 	.logged-in &:hover {
 		.hovered();
 		cursor: pointer;
+	}
+
+	.logged-in &.is-active:hover {
+		.hovered-and-selected();
 	}
 
 	&.is-active {

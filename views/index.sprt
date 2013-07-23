@@ -54,22 +54,38 @@
 				<span class="name">{{screen.name}}</span>
 			</div>
 		</div>
-		<div class="create-screen">
-			<form novalidate name="newLocalScreen" ng-show="openNewScreenForm">
+		<div class="create-screen widget" ng-show="openNewScreenForm">
+			<div class="horizontal-controls full-row tabs">
+				<span class="btn" ng-click="createScreenTab='local'" ng-class="{'is-active': createScreenTab=='local'}"><span>Message</span></span>
+				<span class="btn" ng-click="createScreenTab='html'" ng-class="{'is-active': createScreenTab=='html'}"><span>Fetch HTML</span></span>
+			</div>
+			<form novalidate name="newLocalScreen" ng-show="createScreenTab=='local'">
 				<input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
 				<textarea placeholder="Enter some text..." rows="3" ng-model="newLocalScreen.message" required></textarea><br>
 				<input type="number" ng-model="newLocalScreen.duration" placeholder="Screen duration">
 				<button ng-click="addScreen(newLocalScreen)" class="success">Add</button>
 				<button ng-click="openNewScreenForm=false" class="cancel">Cancel</button>
 			</form>
+			<form novalidate name="newHtmlScreen" ng-show="createScreenTab=='html'">
+				<input type="text" ng-model="newHtmlScreen.name" placeholder="Name" required><br>
+				<input type="url" ng-model="newHtmlScreen.url" placeholder="URL" required><br>
+				<input type="text" ng-model="newHtmlScreen.selector" placeholder="Selector" required><br>
+				<input type="number" ng-model="newHtmlScreen.duration" placeholder="Screen duration">
+				<button ng-click="addScreen(newHtmlScreen)" class="success">Add</button>
+				<button ng-click="openHtmlScreenForm=false" class="cancel">Cancel</button>
+			</form>
 		</div>
 	</div>
 	<div class="screen-editor" ng-show="activeScreen &amp;&amp; user.loggedIn">
 		<h2 class="title" ng-show="activeScreen">{{activeScreen.name}} <div class="controls"><button ng-click="startEditingScreen()"><i class="icon-pencil"></i></button></div></h2>
-		<div class="screen-details" ng-show="activeScreen">
-			<div class="info" ng-bind-html-unsafe="activeScreen.message | nl2br"></div>
+		<div class="screen-details widget" ng-show="activeScreen">
+			<div class="info" ng-bind-html-unsafe="activeScreen.message | nl2br" ng-show="activeScreen.message"></div>
+			<div class="info" ng-show="activeScreen.url">
+				{{activeScreen.url}}<br>
+				{{activeScreen.selector}}
+			</div>
 		</div>
-		<div class="edit-screen" ng-show="openEditScreenForm">
+		<div class="edit-screen widget" ng-show="openEditScreenForm">
 			<form novalidate name="editLocalScreen">
 				<input type="text" ng-model="activeScreenEdit.name" placeholder="Name" required><br>
 				<textarea rows="3" placeholder="Enter some text..." ng-model="activeScreenEdit.message" required></textarea><br>

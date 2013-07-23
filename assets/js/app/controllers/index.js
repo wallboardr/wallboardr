@@ -13,11 +13,13 @@ define(['angular'], function (angular) {
     $scope.activeBoard = null;
     $scope.activeScreen = null;
     $scope.screens = [];
+    $scope.createScreenTab = 'local';
 
     $scope.$on('logout', function () {
       $scope.activeScreen = null;
       $scope.activeBoard = null;
       $scope.screens = [];
+      $scope.createScreenTab = 'local';
     });
 
     $scope.setActiveBoard = function (index) {
@@ -50,7 +52,7 @@ define(['angular'], function (angular) {
       var newScreen, sIndex;
       if (screen.$valid && $scope.activeBoard) {
         newScreen = angular.copy(screen);
-        newScreen.type = 'local';
+        newScreen.type = $scope.createScreenTab;
         newScreen.board = $scope.activeBoard._id;
         $http.post('/data/screens', newScreen).success(function (data) {
           if (data && angular.isArray(data)) {
@@ -58,7 +60,7 @@ define(['angular'], function (angular) {
               $scope.screens.push(data[sIndex]);
             }
           }
-          screen.name = screen.duration = screen.message = '';
+          screen.name = screen.duration = screen.message = screen.url = screen.selector = '';
           $scope.openNewScreenForm = false;
         });
       }
