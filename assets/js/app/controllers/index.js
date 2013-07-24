@@ -78,6 +78,17 @@ define(['angular'], function (angular) {
       }
     };
 
+    $scope.startEditingBoard = function () {
+      $scope.activeBoardEdit = angular.copy($scope.activeBoard);
+      sanitize($scope.activeBoardEdit);
+      $scope.openEditBoardForm = true;
+    };
+
+    $scope.cancelEditBoard = function () {
+      $scope.activeBoardEdit = {};
+      $scope.openEditBoardForm = false;
+    };
+
     $scope.startEditingScreen = function () {
       $scope.activeScreenEdit = angular.copy($scope.activeScreen);
       sanitize($scope.activeScreenEdit);
@@ -87,6 +98,10 @@ define(['angular'], function (angular) {
     $scope.cancelEditScreen = function () {
       $scope.activeScreenEdit = {};
       $scope.openEditScreenForm = false;
+    };
+
+    var revertBoard = function (err, backup) {
+      angular.copy(backup, $scope.activeBoard);
     };
 
     var revertScreen = function (err, backup) {
@@ -112,11 +127,17 @@ define(['angular'], function (angular) {
 
     $scope.updateActiveBoard = function (form) {
       var url = '/data/boards/_id/' + $scope.activeBoard._id,
-          toSave;
+          backup;
       if (form.$valid) {
-        toSave = angular.copy($scope.activeBoard);
-        sanitize(toSave);
-        $http.post(url, toSave);
+        backup = angular.copy($scope.activeBoard);
+        angular.copy($scope.activeBoardEdit, $scope.activeBoard);
+        $http.post(url, $scope.activeBoardEdit).success(function (data) {
+          if (data !== '1') {
+            revertBoard(data, backup);
+          }
+        }).error(function (err) {
+          revertScreen(err, backup);
+        });
         $scope.openEditBoardForm = false;
       }
     };
