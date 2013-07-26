@@ -115,6 +115,61 @@
 	clear: left;
 }
 
+.up-triangle(@size, @color) {
+	border-width: 0 @size @size @size;
+	border-color: transparent transparent @color transparent;
+}
+
+.down-triangle(@size, @color) {
+	border-width: @size @size 0 @size;
+	border-color: @color transparent transparent transparent;
+}
+
+.btn.rocker {
+	position: relative;
+	width: 64px;
+	text-align: center;
+	height: 100%;
+	padding: 0;
+	&:hover {
+		background-color: transparent;
+	}
+	.up, .down {
+		float: left;
+		width: 50px;
+		height: 25px;
+		display: block;
+		position: relative;
+
+		&:after {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 0px;
+			height: 0px;
+			border-style: solid;
+			content: "";
+		}
+	}
+
+	.up:after {
+		.up-triangle(25px, #007bff);
+		
+	}
+
+	.up:hover:after {
+		.up-triangle(25px, @color-main-1);
+	}
+
+	.down:after {
+		.down-triangle(25px, #007bff);
+		
+	}
+	.down:hover:after {
+		.down-triangle(25px, @color-main-1);
+	}
+}
+
 
 .list-item {
 	margin: 0;
