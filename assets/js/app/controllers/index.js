@@ -143,7 +143,7 @@ define(['angular'], function (angular) {
     };
 
     $scope.loadBoards = function () {
-      var url = '/data/boards';
+      var url = '/data/boards?sort=_created';
       $http.get(url).success(function (data) {
         $scope.boards = data;
       });

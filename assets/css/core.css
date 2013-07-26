@@ -868,6 +868,50 @@ nav .submenu a {
   padding: 1em;
   clear: left;
 }
+.btn.rocker {
+  position: relative;
+  width: 64px;
+  text-align: center;
+  height: 100%;
+  padding: 0;
+}
+.btn.rocker:hover {
+  background-color: transparent;
+}
+.btn.rocker .up,
+.btn.rocker .down {
+  float: left;
+  width: 50px;
+  height: 25px;
+  display: block;
+  position: relative;
+}
+.btn.rocker .up:after,
+.btn.rocker .down:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  content: "";
+}
+.btn.rocker .up:after {
+  border-width: 0 25px 25px 25px;
+  border-color: transparent transparent #007bff transparent;
+}
+.btn.rocker .up:hover:after {
+  border-width: 0 25px 25px 25px;
+  border-color: transparent transparent #e2854a transparent;
+}
+.btn.rocker .down:after {
+  border-width: 25px 25px 0 25px;
+  border-color: #007bff transparent transparent transparent;
+}
+.btn.rocker .down:hover:after {
+  border-width: 25px 25px 0 25px;
+  border-color: #e2854a transparent transparent transparent;
+}
 .list-item {
   margin: 0;
   *zoom: 1;
