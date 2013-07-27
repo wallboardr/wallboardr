@@ -1,4 +1,4 @@
-define(['dataLoader'], function (loader) {
+define(['data-loader'], function (loader) {
     'use strict';
     var apiUrl = '/httpAuth/app/rest',
         TeamCity = function (url) {
