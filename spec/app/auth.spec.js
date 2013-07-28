@@ -3,7 +3,15 @@ var loader = require('../unit-loader');
 describe('The auth service', function () {
   var angularMock, authFactory, service, rootScope, cookies;
   beforeEach(function () {
-    angularMock = {copy:function(input){return input;}}
+    angularMock = {
+      copy: function (input, b) {
+        if (b) {
+          b.name = input.name;
+          b.loggedIn = input.loggedIn;
+        }
+        return input;
+      }
+    };
     authFactory = loader.loadSubject('app/services/auth', [angularMock]);
     rootScope = {};
     cookies = {};
@@ -67,11 +75,44 @@ describe('The auth service', function () {
   });
 
   describe('user', function () {
+    it('sets up the cookie user and returns it', function () {
+      rootScope.user = { name: 'Noah Bate' };
+      service = authFactory(rootScope, cookies);
+      spyOn(service, 'setCookieUser');
 
+      var result = service.user();
+
+      expect(service.setCookieUser).toHaveBeenCalled();
+      expect(result).toBeDefined();
+      expect(result.name).toBe('Noah Bate');
+    });
   });
 
   describe('resetUser', function () {
+    beforeEach(function () {
+      rootScope.$broadcast = function () {};
+    });
 
+    it('sets the root scope user to not logged in', function () {
+      spyOn(angularMock, 'copy').andCallThrough();
+      rootScope.user = { name: 'NoahB', loggedIn: true };
+      service = authFactory(rootScope, cookies);
+
+      service.resetUser();
+
+      expect(angularMock.copy).toHaveBeenCalled();
+      expect(rootScope.user.loggedIn).toBe(false);
+      expect(rootScope.user.name).toBe('');
+    });
+
+    it('sends logout event to children scopes', function () {
+      spyOn(rootScope, '$broadcast');
+      service = authFactory(rootScope, cookies);
+
+      service.resetUser();
+
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('logout');
+    });
   });
 
 });

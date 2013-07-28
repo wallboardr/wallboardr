@@ -72,7 +72,7 @@ module.exports = function(grunt) {
     nodemon: {
       options: {
         file: 'index.js',
-        ignoredFiles: ['README.md', 'package.json', 'Gruntfile.js', 'node_modules/**', 'sproute/node_modules/**', 'assets/**'],
+        ignoredFiles: ['README.md', 'package.json', 'Gruntfile.js', 'node_modules/**', 'sproute/node_modules/**', 'assets/**', 'spec/**'],
         watchedExtensions: ['js', 'json'],
       },
       dev: {
