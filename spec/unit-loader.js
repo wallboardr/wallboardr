@@ -1,5 +1,6 @@
 var fs = require('fs'),
     path = require('path'),
+    vm = require('vm'),
     sutRoot = path.resolve(process.env.SUT_ROOT || __dirname + '/../assets/js') + '/';
 
 //console.log(sutRoot);
@@ -12,6 +13,6 @@ module.exports = {
     var define = function (arr, fn) {
       return fn.apply(null, deps || []);
     }
-    return eval(fs.readFileSync(sutRoot + file, 'utf8'));
+    return vm.runInNewContext(fs.readFileSync(sutRoot + file, 'utf8'), {define: define}, sutRoot + file);
   }
 };
