@@ -26,6 +26,7 @@
     "grunt-contrib-watch": "~0.4.4",
     "grunt-contrib-requirejs": "~0.4.1",
     "grunt-nodemon": "0.0.8",
-    "grunt-concurrent": "~0.3.0"
+    "grunt-concurrent": "~0.3.0",
+    "readdirp": "~0.3.1"
   }
 }

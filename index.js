@@ -2,21 +2,41 @@
 'use strict';
 var Sproute = require('./sproute/app');
 var http = require('http');
-
+var urlParser = require('url').parse;
 var app = new Sproute('.');
 
-// Hook to fetch a URL and render it in place (used for proxying)
-app.hooks.fetch = function (block, next) {
+var urlHandler = function (block, next) {
+  var auth, user, pass, parsedUrl, opts = {};
   //pause parsing and decode request
   var expr = block.expr.split(' ');
   var url = expr[0];
+  if (expr.length >= 3) {
+    user = expr[1];
+    pass = expr[2];
+    auth = !!user && !!pass;
+  }
   //request the data then continue parsing
   var html = '';
   if (!url) {
     next();
     return;
   }
-  http.get(url, function (res) {
+  parsedUrl = urlParser(url);
+  opts.hostname = parsedUrl.hostname;
+  opts.port = parsedUrl.port;
+  opts.path = parsedUrl.path;
+  if (parsedUrl.auth) {
+    opts.auth = parsedUrl.auth;
+  }
+  if (auth) {
+    opts.auth = user + ':' + pass;
+  }
+  if (block.type === 'fetchjson') {
+    opts.headers = {
+      'Accepts': 'application/json'
+    };
+  }
+  http.get(opts, function (res) {
     res.on('data', function (chunk) {
       html += chunk;
     });
@@ -27,6 +47,37 @@ app.hooks.fetch = function (block, next) {
     console.log('problem with request: ' + e.message);
   });
 };
+
+// Hook to fetch a URL and render it in place (used for proxying)
+app.hooks.fetch = urlHandler;
+
+app.server.get('/json/:page', function (req, res) {
+  var url = req.params.page,
+      parsedUrl = urlParser(url),
+      opts = {
+        headers: { 'Accept': 'application/json' },
+        hostname: parsedUrl.hostname,
+        port: parsedUrl.port,
+        path: parsedUrl.path,
+        auth: parsedUrl.auth
+      },
+      payload = '';
+  if (opts.auth) {
+    console.log('Auth found: ' + opts.auth);
+  }
+  res.set('Content-Type', 'application/json');
+  http.get(opts, function (ret) {
+    ret.on('data', function (chunk) {
+      payload += chunk;
+    });
+    ret.on('end', function () {
+      res.send(payload);
+    });
+  }).on('error', function(e) {
+    console.log('problem with request: ' + e.message);
+    res.send(500, e.message);
+  });
+});
 
 // Hook to set a cookie
 app.hooks.cookie = function (block, next) {

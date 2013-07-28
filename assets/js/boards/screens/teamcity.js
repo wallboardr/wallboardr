@@ -1,4 +1,9 @@
-define(['jquery', 'screen/common'], function ($, common) {
+define([
+    'jquery',
+    'screen/common',
+    'boards/data-loader',
+    'teamcity-api'
+  ], function ($, common, loader, tc) {
   'use strict';
 
   var proxyPrefix = '/proxy/',
@@ -35,7 +40,7 @@ define(['jquery', 'screen/common'], function ($, common) {
     transition(this, $board);
     return common.delay(this.duration);
   };
-  
+
   return function (data, boardProps) {
     return new TeamcityScreen(data, boardProps);
   };
