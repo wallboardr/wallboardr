@@ -1,31 +1,57 @@
-define(['data-loader'], function (loader) {
+define([], function () {
     'use strict';
     var apiUrl = '/httpAuth/app/rest',
-        TeamCity = function (url) {
+        TeamCity = function (url, loader) {
           this.baseUrl = url;
-        };
+          this.loader = loader;
+        },
+        load = function (url, filter) {
+          return this.loader({
+            url: url,
+            filter: filter,
+            proxy: true
+          });
+        },
+        getBuildsHref = function (buildConfigOrId) {
+          if (buildConfigOrId && buildConfigOrId.href) {
+            return buildConfigOrId.href;
+          }
+          return apiUrl + '/buildTypes/id:' + buildConfigOrId;
+        },
+        filterBuildConfigurations,
+        filterBuilds,
+        filterLatestBuild;
 
     TeamCity.prototype.getProjects = function () {
       var endpoint = this.baseUrl + apiUrl + '/projects';
-      return loader(endpoint);
+      return load.call(this, endpoint);
     };
 
+    filterBuildConfigurations = function (data) {
+      return data && data.buildTypes && data.buildTypes.buildType;
+    };
     TeamCity.prototype.getBuildConfigurations = function (proj) {
       var endpoint = this.baseUrl + proj.href;
-      return loader(endpoint);
+      return load.call(this, endpoint, filterBuildConfigurations);
     };
 
-    TeamCity.prototype.getBuilds = function (buildConfig, count) {
-      var endpoint = this.baseUrl + buildConfig.href + '/builds?count=' + (count || 10);
-      return loader(endpoint);
+    filterBuilds = function (data) {
+      return data && data.build;
+    };
+    TeamCity.prototype.getBuilds = function (buildConfigOrId, count) {
+      var endpoint = this.baseUrl + getBuildsHref(buildConfigOrId) + '/builds?count=' + (count || 10);
+      return load.call(this, endpoint, filterBuilds);
     };
 
-    TeamCity.prototype.getLatestBuild = function (buildConfig) {
-      var endpoint = this.baseUrl + buildConfig.href + '/builds?count=1';
-      return loader(endpoint);
+    filterLatestBuild = function (data) {
+      return data && data.build && data.build[0];
+    };
+    TeamCity.prototype.getLatestBuild = function (buildConfigOrId) {
+      var endpoint = this.baseUrl + getBuildsHref(buildConfigOrId) + '/builds?count=1';
+      return load.call(this, endpoint, filterLatestBuild);
     };
 
-    return function (url) {
-      return new TeamCity(url);
+    return function (url, loader) {
+      return new TeamCity(url, loader);
     };
 });
