@@ -28,7 +28,9 @@ define(['jquery', 'boards/delay', 'screen/factory'], function ($, delay, factory
           current.play(self.$parent).then(function () {
             incrementScreen.apply(self);
           }).then(function () {
-            playScreen.apply(self);
+            if (self.screens.length > 1) {
+              playScreen.apply(self);
+            }
           });
         };
 
