@@ -102,6 +102,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['jshint', 'less:dev', 'concat']);
   grunt.registerTask('work', ['concurrent:target']);
-  grunt.registerTask('prep', ['jshint', 'less:clean']);
+  grunt.registerTask('prep', ['less:clean', 'jshint']);
 
 };
