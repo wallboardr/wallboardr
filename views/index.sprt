@@ -48,7 +48,7 @@
 		<div class="screen-list widget" ng-show="screens.length">
 			<div class="screen list-item ng-cloak" ng-repeat="screen in screens" ng-class="{'is-active': isActiveScreen($index)}" ng-click="setActiveScreen($index)">
 				<span class="horizontal-controls">
-					<span class="btn"><i class="icon-menu"></i></span>
+					<span class="btn rocker"><span class="up"></span><span class="down"></span></span>
 					<span class="duration btn inert"><i class="icon-clock"></i> <span>{{screen.duration || activeBoard.duration || 30}}</span></span>
 				</span>
 				<span class="name">{{screen.name}}</span>
