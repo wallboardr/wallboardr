@@ -8,16 +8,28 @@ define([
 
   var proxyPrefix = '/proxy/',
       initScreen = function (data, $board) {
-          var $scr = common.templates.html1up();
-          $scr.find('.target').load(proxyPrefix + 'nothing', function () {
-            $board.animate({opacity: 0}, function () {
-              $board.html($scr);
-              common.center($board, $scr);
-              $board.animate({opacity: 1});
-            });
+        var mydata = {
+          projectId: 'PP',
+          projectTitle: 'Public Pages',
+          status: 'failure',
+          configs: [
+            {status: 'success', id: '123'},
+            {status: 'success', id: '124'},
+            {status: 'success', id: '125'},
+            {status: 'success', id: '126'},
+            {status: 'failure', id: '127'},
+          ]
+        };
+        var $scr = common.templates.teamcityPipeline(mydata);
+        //$scr.find('.target').load(proxyPrefix + 'nothing', function () {
+          $board.animate({opacity: 0}, function () {
+            $board.html($scr);
+            common.center($board, $scr);
+            $board.animate({opacity: 1});
           });
+        //});
 
-          return $scr;
+        return $scr;
       },
       transition = function (scr, $board) {
         if (scr.$screen) {
