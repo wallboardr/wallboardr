@@ -6,9 +6,10 @@ define(
         'app/routes',
         'app/filters',
         'service/auth',
+        'service/data-loader',
         'angular-cookies'
     ],
-    function (angular, wallboardrCtrl, userCtrl, routes, filters, auth) {
+    function (angular, wallboardrCtrl, userCtrl, routes, filters, auth, loader) {
     'use strict';
 
     var appName = 'wallboardr',
@@ -30,6 +31,7 @@ define(
             app.config(routes);
             app.filter('nl2br', filters.nl2br);
             app.factory('auth', auth);
+            app.factory('dataLoader', loader);
             app.controller('WallboardrController', wallboardrCtrl);
             app.controller('UserController', userCtrl);
             app.run(init);
