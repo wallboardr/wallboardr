@@ -7,9 +7,10 @@ define(
         'app/filters',
         'service/auth',
         'service/data-loader',
+        'service/primus',
         'angular-cookies'
     ],
-    function (angular, wallboardrCtrl, userCtrl, routes, filters, auth, loader) {
+    function (angular, wallboardrCtrl, userCtrl, routes, filters, auth, loader, primus) {
     'use strict';
 
     var appName = 'wallboardr',
@@ -28,6 +29,7 @@ define(
             var app;
             log('Tower, this is Ghost Rider requesting a flyby.');
             app = angular.module(appName, ['ngCookies']);
+            app.provider('primus', primus);
             app.config(routes);
             app.filter('nl2br', filters.nl2br);
             app.factory('auth', auth);

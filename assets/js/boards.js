@@ -5,7 +5,8 @@
         paths: {
             'lib'        : '../lib/boards',
             'jquery'     : '../lib/boards/jquery',
-            'screen'     : '../js/boards/screens'
+            'screen'     : '../js/boards/screens',
+            'primus'     : '../../primus/primus'
         },
         shim: {
             'jquery'      : { exports: 'jQuery' },

@@ -11,7 +11,7 @@
 			<p ng-show="!boards.length &amp;&amp; $root.user.isAdmin">No boards have been created, try adding one with the plus sign above.</p>
 			<p ng-show="!boards.length &amp;&amp; !$root.user.isAdmin">No boards have been created, either login on the far right, or ask an administrator to create one!</p>
 		</div>
-		
+
 		<div class="create-board widget" ng-show="openNewBoardForm">
 			<form novalidate name="newBoard">
 				<input type="text" ng-model="newBoard.name" placeholder="Name" required><br>
@@ -33,6 +33,9 @@
 			<div class="info">
 				{{activeBoard.desc}}
 			</div>
+      <div class="info">
+        <button ng-click="notifyBoardChange()">Refresh open boards</button>
+      </div>
 		</div>
 		<div class="edit-board widget" ng-show="openEditBoardForm">
 			<form novalidate name="editBoard">

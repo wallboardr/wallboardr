@@ -4,6 +4,8 @@ var Sproute = require('./sproute/app');
 var http = require('http');
 var urlParser = require('url').parse;
 var app = new Sproute('.');
+var notifier = require('./lib/notify');
+notifier.listen(app.rawServer);
 
 var urlHandler = function (block, next) {
   var auth, user, pass, parsedUrl, opts = {};
@@ -30,11 +32,6 @@ var urlHandler = function (block, next) {
   }
   if (auth) {
     opts.auth = user + ':' + pass;
-  }
-  if (block.type === 'fetchjson') {
-    opts.headers = {
-      'Accepts': 'application/json'
-    };
   }
   http.get(opts, function (res) {
     res.on('data', function (chunk) {
