@@ -97,7 +97,8 @@ App.prototype = {
 		});
 
 		this.config.port = this.config.port || 8089;
-		server.listen(this.config.port);
+    this.rawServer = require('http').createServer(server);
+		this.rawServer.listen.apply(this.rawServer, [this.config.port]);
 		return server;
 	},
 
@@ -153,7 +154,7 @@ App.prototype = {
 
 				admin.role = "admin";
 
-				//send a mock register request 
+				//send a mock register request
 				this.register({
 					session: {
 						user: {role: "admin"},
@@ -231,7 +232,7 @@ App.prototype = {
 					return res.json({error: "You do not have permission to complete this action."})
 				} else next();
 			});
-			
+
 		}.bind(this));
 	},
 
@@ -308,7 +309,7 @@ App.prototype = {
 	*/
 	initRoute: function (route, view) {
 		this.loadView(view);
-		
+
 		//handle the route
 		var self = this;
 		this.server.get(route, function (req, res) {
@@ -349,7 +350,7 @@ App.prototype = {
 				var expr = block.expr.split(" ");
 				var key = expr[2];
 				var url = expr[0];
-				
+
 				//see if this url has a permission associated
 				var permission = app.testRoute("get", url);
 
