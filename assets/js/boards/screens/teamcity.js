@@ -3,11 +3,10 @@ define([
     'screen/common',
     'boards/data-loader',
     'teamcity-api'
-  ], function ($, common, loader, tc) {
+  ], function ($, common) {
   'use strict';
 
-  var proxyPrefix = '/proxy/',
-      initScreen = function (data, $board) {
+  var initScreen = function (data, $board) {
         var mydata = {
           projectId: 'PP',
           projectTitle: 'Public Pages',

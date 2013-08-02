@@ -18,7 +18,9 @@
   ],
   "author": "Colin Bate <colin@colinbate.com>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "primus": "~1.1.2"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-less": "~0.6.4",

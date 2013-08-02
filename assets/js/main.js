@@ -7,7 +7,8 @@
             'controller'      : 'app/controllers',
             'service'         : 'app/services',
             'angular'         : '../lib/angular.min',
-            'angular-cookies' : '../lib/angular-cookies'
+            'angular-cookies' : '../lib/angular-cookies',
+            'primus'          : '../../primus/primus'
         },
         shim: {
             'angular'         : { exports: 'angular' },

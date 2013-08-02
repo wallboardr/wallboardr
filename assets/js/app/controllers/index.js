@@ -1,6 +1,6 @@
 define(['angular'], function (angular) {
   'use strict';
-  var indexController = function ($scope, $http) {
+  var indexController = function ($scope, $http, primus) {
     var resetNewBoard = function (board) {
       $scope.openNewBoardForm = false;
       board.name = '';
@@ -21,6 +21,11 @@ define(['angular'], function (angular) {
       $scope.screens = [];
       $scope.createScreenTab = 'local';
     });
+
+    $scope.notifyBoardChange = function () {
+      var boardId = $scope.activeBoard._id;
+      primus.write({updated: boardId});
+    };
 
     $scope.setActiveBoard = function (index) {
       if ($scope.user.loggedIn) {
@@ -136,7 +141,7 @@ define(['angular'], function (angular) {
             revertBoard(data, backup);
           }
         }).error(function (err) {
-          revertScreen(err, backup);
+          revertBoard(err, backup);
         });
         $scope.openEditBoardForm = false;
       }
@@ -165,7 +170,7 @@ define(['angular'], function (angular) {
       }
     };
   };
-  indexController.$inject = ['$scope', '$http'];
+  indexController.$inject = ['$scope', '$http', 'primus'];
 
   return indexController;
 });

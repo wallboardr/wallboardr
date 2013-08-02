@@ -1,9 +1,9 @@
 define(['jquery', 'boards/delay', 'screen/factory'], function ($, delay, factory) {
   'use strict';
-    
+
     var Player = function (screens, defaultDuration) {
-          var boardProps = { duration : defaultDuration };
-          this.screens = $.map(screens, factory(boardProps));
+          this.boardProps = { duration : defaultDuration };
+          this.screens = $.map(screens, factory(this.boardProps));
           this.currentIndex = 0;
           this.defaultDuration = defaultDuration;
           this.$parent = null;
@@ -39,6 +39,15 @@ define(['jquery', 'boards/delay', 'screen/factory'], function ($, delay, factory
       self.$parent = $screen;
       if (this.screens.length) {
         playScreen.apply(self);
+      }
+    };
+
+    Player.prototype.update = function (screens) {
+      var self = this;
+      // TODO: properly update each screen or not.
+      self.screens = $.map(screens, factory(self.boardProps));
+      if (self.currentIndex > self.screens.length - 1) {
+        self.currentIndex = self.screens.length - 1;
       }
     };
 
