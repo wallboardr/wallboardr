@@ -107,7 +107,7 @@
 		.dark-widget();
 		padding: 1em;
 	}
-	
+
 }
 
 .info {
@@ -123,6 +123,10 @@
 .down-triangle(@size, @color) {
 	border-width: @size @size 0 @size;
 	border-color: @color transparent transparent transparent;
+}
+
+button.full, .btn.full {
+  width: 100%;
 }
 
 .btn.rocker {
@@ -154,7 +158,7 @@
 
 	.up:after {
 		.up-triangle(25px, #007bff);
-		
+
 	}
 
 	.up:hover:after {
@@ -163,7 +167,7 @@
 
 	.down:after {
 		.down-triangle(25px, #007bff);
-		
+
 	}
 	.down:hover:after {
 		.down-triangle(25px, @color-main-1);
@@ -195,7 +199,7 @@
 }
 
 .screen {
-	
+
 
 	.name {
 		padding: 1em;

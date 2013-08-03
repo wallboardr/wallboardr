@@ -868,6 +868,10 @@ nav .submenu a {
   padding: 1em;
   clear: left;
 }
+button.full,
+.btn.full {
+  width: 100%;
+}
 .btn.rocker {
   position: relative;
   width: 64px;

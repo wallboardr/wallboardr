@@ -33,9 +33,7 @@
 			<div class="info">
 				{{activeBoard.desc}}
 			</div>
-      <div class="info">
-        <button ng-click="notifyBoardChange()">Refresh open boards</button>
-      </div>
+      <button ng-click="notifyBoardChange()" class="full">Refresh open boards</button>
 		</div>
 		<div class="edit-board widget" ng-show="openEditBoardForm">
 			<form novalidate name="editBoard">
@@ -61,6 +59,7 @@
 			<div class="horizontal-controls full-row tabs">
 				<span class="btn" ng-click="createScreenTab='local'" ng-class="{'is-active': createScreenTab=='local'}"><span>Message</span></span>
 				<span class="btn" ng-click="createScreenTab='html'" ng-class="{'is-active': createScreenTab=='html'}"><span>Fetch HTML</span></span>
+        <span class="btn" ng-click="createScreenTab='teamcity'" ng-class="{'is-active': createScreenTab=='teamcity'}"><span>TeamCity</span></span>
 			</div>
 			<form novalidate name="newLocalScreen" ng-show="createScreenTab=='local'">
 				<input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
@@ -75,8 +74,15 @@
 				<input type="text" ng-model="newHtmlScreen.selector" placeholder="Selector" required><br>
 				<input type="number" ng-model="newHtmlScreen.duration" placeholder="Screen duration">
 				<button ng-click="addScreen(newHtmlScreen)" class="success">Add</button>
-				<button ng-click="openHtmlScreenForm=false" class="cancel">Cancel</button>
+				<button ng-click="openNewScreenForm=false" class="cancel">Cancel</button>
 			</form>
+      <form novalidate name="newTeamcityScreen" ng-show="createScreenTab=='teamcity'">
+        <input type="text" ng-model="newTeamcityScreen.name" placeholder="Name" required><br>
+        <input type="url" ng-model="newTeamcityScreen.url" placeholder="URL" required><br>
+        <input type="number" ng-model="newTeamcityScreen.duration" placeholder="Screen duration">
+        <button ng-click="addScreen(newTeamcityScreen)" class="success">Add</button>
+        <button ng-click="openNewScreenForm=false" class="cancel">Cancel</button>
+      </form>
 		</div>
 	</div>
 	<div class="screen-editor" ng-show="activeScreen &amp;&amp; user.loggedIn">
