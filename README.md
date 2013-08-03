@@ -8,7 +8,7 @@ A simple way to collect and format display content from all over into one place.
     [ ] Screen and board data manipulation into services (resources?)
     [ ] Separate screens and board UI manipulation into their own controllers
 [ ] Screen support
-    [ ] Remove padding on screen container
+    [x] Remove padding on screen container
     [ ] Multiple "widgets" per screen
     [ ] Sort screens
     [ ] Disable screens

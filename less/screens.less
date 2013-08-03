@@ -18,7 +18,6 @@ html, body, .board, .screen {
 .screen {
 	width: 100%;
 	height: 100%;
-	padding: 2em;
 }
 
 
@@ -26,15 +25,24 @@ html, body, .board, .screen {
 .local-message, .html-screen {
 	font-family: "League Gothic", Arial, sans-serif;
 	font-size: 24px;
+  padding: 2em;
 }
 
 .teamcity-screen {
+  height: 100%;
+  .tc-project {
+    height: 100%;
+  }
 	.tc-project.success {
 		background-color: #346444;
 	}
 	.tc-project.failure {
 		background-color: #B1524C;
 	}
+  h2 {
+    margin-top: 0;
+    padding-top: 2em;
+  }
 
 	ul {
 		list-style: none;
