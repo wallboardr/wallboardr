@@ -113,6 +113,19 @@ define(['angular'], function (angular) {
       angular.copy(backup, $scope.activeScreen);
     };
 
+    $scope.toggleVisibleScreen = function () {
+      var url = '/data/screens/_id/' + $scope.activeScreen._id,
+          orig = $scope.activeScreen.disabled;
+      $scope.activeScreen.disabled = !orig;
+      $http.post(url, {disabled: !orig}).success(function (data) {
+        if (data !== '1') {
+          $scope.activeScreen.disabled = orig;
+        }
+      }).error(function () {
+        $scope.activeScreen.disabled = orig;
+      });
+    };
+
     $scope.updateActiveScreen = function (form) {
       var url = '/data/screens/_id/' + $scope.activeScreen._id,
           backup;

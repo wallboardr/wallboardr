@@ -46,6 +46,11 @@
 		&:hover {
 			background-color: @color-main-1;
 		};
+		border-left: 1px solid lighten(@color-title-dark, 10%);
+	}
+
+	button:first-child, .btn:first-child {
+		border-left: 0;
 	}
 
 }
@@ -195,6 +200,11 @@ button.full, .btn.full {
 
 	&.is-active {
 		.selected();
+	}
+
+	&.is-disabled .name {
+		font-style: italic;
+		color: darken(@color-base-page, 15%);
 	}
 }
 
