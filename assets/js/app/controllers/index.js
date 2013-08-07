@@ -35,7 +35,7 @@ define(['angular'], function (angular) {
     };
 
     $scope.loadScreens = function (boardId) {
-      var url = '/data/screens/board/' + boardId;
+      var url = '/data/screens/board/' + boardId + '?sort=sortkey';
       $http.get(url).success(function (data) {
         $scope.screens = data;
       });
@@ -59,6 +59,7 @@ define(['angular'], function (angular) {
         newScreen = angular.copy(screen);
         newScreen.type = $scope.createScreenTab;
         newScreen.board = $scope.activeBoard._id;
+        newScreen.sortkey = $scope.screens.length;
         $http.post('/data/screens', newScreen).success(function (data) {
           if (data && angular.isArray(data)) {
             for (sIndex = 0; sIndex < data.length; sIndex += 1) {
@@ -111,6 +112,37 @@ define(['angular'], function (angular) {
 
     var revertScreen = function (err, backup) {
       angular.copy(backup, $scope.activeScreen);
+    };
+
+    var saveScreenOrder = function (index) {
+      var changedScreen = $scope.screens[index],
+          url = '/data/screens/_id/' + changedScreen._id;
+      window.console.log('Setting screen ' + changedScreen.name + ' to index ' + index);
+      $http.post(url, {sortkey: index});
+    };
+
+    $scope.moveUp = function (screenIndex) {
+      var hold;
+      if (screenIndex <= 0) {
+        return;
+      }
+      hold = $scope.screens[screenIndex];
+      $scope.screens[screenIndex] = $scope.screens[screenIndex - 1];
+      $scope.screens[screenIndex - 1] = hold;
+      saveScreenOrder(screenIndex);
+      saveScreenOrder(screenIndex - 1);
+    };
+
+    $scope.moveDown = function (screenIndex) {
+      var hold;
+      if (screenIndex >= $scope.screens.length - 1) {
+        return;
+      }
+      hold = $scope.screens[screenIndex];
+      $scope.screens[screenIndex] = $scope.screens[screenIndex + 1];
+      $scope.screens[screenIndex + 1] = hold;
+      saveScreenOrder(screenIndex);
+      saveScreenOrder(screenIndex + 1);
     };
 
     $scope.toggleVisibleScreen = function () {
