@@ -47,7 +47,7 @@
 		</div>
 		<h2 class="title">Screens for {{activeBoard.name}} <div class="controls"><button ng-click="openNewScreenForm=true"><i class="icon-plus"></i></button></div></h2>
 		<div class="screen-list widget" ng-show="screens.length">
-			<div class="screen list-item ng-cloak" ng-repeat="screen in screens" ng-class="{'is-active': isActiveScreen($index)}" ng-click="setActiveScreen($index)">
+			<div class="screen list-item ng-cloak" ng-repeat="screen in screens" ng-class="{'is-active': isActiveScreen($index), 'is-disabled': screen.disabled}" ng-click="setActiveScreen($index)">
 				<span class="horizontal-controls">
 					<span class="btn rocker"><span class="up"></span><span class="down"></span></span>
 					<span class="duration btn inert"><i class="icon-clock"></i> <span>{{screen.duration || activeBoard.duration || 30}}</span></span>
@@ -86,7 +86,11 @@
 		</div>
 	</div>
 	<div class="screen-editor" ng-show="activeScreen &amp;&amp; user.loggedIn">
-		<h2 class="title" ng-show="activeScreen">{{activeScreen.name}} <div class="controls"><button ng-click="startEditingScreen()"><i class="icon-pencil"></i></button></div></h2>
+		<h2 class="title" ng-show="activeScreen">{{activeScreen.name}}
+			<div class="controls">
+				<button ng-click="toggleVisibleScreen()"><i ng-class="{'icon-eye': !activeScreen.disabled, 'icon-eye-blocked': activeScreen.disabled}"></i></button><button ng-click="startEditingScreen()"><i class="icon-pencil"></i></button>
+			</div>
+		</h2>
 		<div class="screen-details widget" ng-show="activeScreen">
 			<div class="info" ng-bind-html-unsafe="activeScreen.message | nl2br" ng-show="activeScreen.message"></div>
 			<div class="info" ng-show="activeScreen.url">
