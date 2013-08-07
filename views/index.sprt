@@ -49,7 +49,7 @@
 		<div class="screen-list widget" ng-show="screens.length">
 			<div class="screen list-item ng-cloak" ng-repeat="screen in screens" ng-class="{'is-active': isActiveScreen($index), 'is-disabled': screen.disabled}" ng-click="setActiveScreen($index)">
 				<span class="horizontal-controls">
-					<span class="btn rocker"><span class="up"></span><span class="down"></span></span>
+					<span class="btn rocker" ng-class="{topmost: $first}"><span class="up" ng-click="moveUp($index);$event.stopPropagation();"></span><span class="down" ng-hide="$last" ng-click="moveDown($index);$event.stopPropagation();"></span></span>
 					<span class="duration btn inert"><i class="icon-clock"></i> <span>{{screen.duration || activeBoard.duration || 30}}</span></span>
 				</span>
 				<span class="name">{{screen.name}}</span>
@@ -112,7 +112,7 @@
 		<div class="intro" ng-hide="activeBoard || user.loggedIn">
 			<h2>Welcome to Wallboardr.</h2>
 			<p>
-				This is a system to help you manage wallboards, typically used within an organization or team to radiate information. The system supports multiple wallboards, which are listed on the left.
+				This is a system to help you manage wallboards, typically used within an organization or team to radiate information. The system supports multiple wallboards, which are listed on the left. Click on the link icon for each board to view it.
 			</p>
 			<ul>
 				<li>Only supports a single screen type at the moment: local message. More to come.</li>
@@ -121,7 +121,7 @@
 		<div class="intro" ng-hide="activeBoard || !user.loggedIn">
 			<h2>Welcome {{user.name}}</h2>
 			<p>
-				We hope you enjoy maintaining your wallboards. On your left is the wallboard list, you can create as many wallboards as you like, and each is available at a different URL.
+				We hope you enjoy maintaining your wallboards. On your left is the wallboard list, you can create as many wallboards as you like, and each is available at a different URL, which you can get to via the link icon with each board.
 			</p>
 			<p>
 				Each wallboard can contain many different screens, which will show up in this space once you select a board on the left. You can add, edit and arrange your screens which will appear on your wallboard.
@@ -131,6 +131,24 @@
 			<h2>Working with screens</h2>
 			<p>
 				You can now see more information on your board, and manage its screens in the middle.
+			</p>
+			<p>
+				If you click the pencil icon (<i class="icon-pencil"></i>) at the top of the board, you can edit the properties of your board. The save and cancel buttons can be used to commit your changes or cancel them. There is also a large orange button which says "Refresh Open Boards", which can be used to update any browsers currently viewing that board once you've made changes to its screens.
+			</p>
+			<p>
+				Screens are listed below the board info. You can add new screens using the plus button (<i class="icon-plus"></i>). It will open a form below the screens list. Fill out the form with the name and message and optional duration in seconds. Click ADD to add the screen to the current board.
+			</p>
+			<p>
+				You can change the order of the boards by clicking on the blue up and down triangles next to the screen name. If you have created some screens, you can edit them by clicking on them in the list.
+			</p>
+		</div>
+		<div class="intro" ng-show="activeBoard &amp;&amp; activeScreen">
+			<h2>Editing a screen</h2>
+			<p>
+				Once you've clicked on a screen, you'll be able to see its details above. At this point, you can click on the pencil (<i class="icon-pencil"></i>) to edit the properties of the screen, it will open a form above with the usual Save and Cancel buttons.
+			</p>
+			<p>
+				You can also click on the eye icon (<i class="icon-eye"></i>) to disable the screen. If a screen is disabled, it will appear slightly greyed and italicized in the list of screens, and the eye icon will change to (<i class="icon-eye-blocked"></i>)
 			</p>
 		</div>
 	</div>

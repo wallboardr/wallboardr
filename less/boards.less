@@ -138,17 +138,18 @@ button.full, .btn.full {
 	position: relative;
 	width: 64px;
 	text-align: center;
-	height: 100%;
+	height: 58px;
 	padding: 0;
 	&:hover {
 		background-color: transparent;
 	}
 	.up, .down {
-		float: left;
-		width: 50px;
+		margin: 0 auto;
+		width: 44px;
 		height: 25px;
 		display: block;
 		position: relative;
+		top: 6px;
 
 		&:after {
 			position: absolute;
@@ -162,20 +163,24 @@ button.full, .btn.full {
 	}
 
 	.up:after {
-		.up-triangle(25px, #007bff);
+		.up-triangle(22px, #007bff);
 
 	}
 
 	.up:hover:after {
-		.up-triangle(25px, @color-main-1);
+		.up-triangle(22px, @color-main-1);
 	}
 
 	.down:after {
-		.down-triangle(25px, #007bff);
+		.down-triangle(22px, #007bff);
 
 	}
 	.down:hover:after {
-		.down-triangle(25px, @color-main-1);
+		.down-triangle(22px, @color-main-1);
+	}
+
+	&.topmost .up {
+		visibility: hidden;
 	}
 }
 
@@ -204,7 +209,7 @@ button.full, .btn.full {
 
 	&.is-disabled .name {
 		font-style: italic;
-		color: darken(@color-base-page, 15%);
+		color: darken(@color-base-page, 25%);
 	}
 }
 
