@@ -8,7 +8,7 @@ define(['jquery', 'lib/icanhaz', 'boards/delay'], function ($, ich, delay) {
           $inner.css({'margin-top': marginTop + 'px'});
       },
       initText = function (text, $board) {
-          var lines = text.split('\n'),
+          var lines = text.replace(/\n/g, '<br>').split('%'),
               $scr = ich.localMessage({lines: lines});
 
           $board.animate({opacity: 0}, function () {
