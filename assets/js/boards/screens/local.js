@@ -1,24 +1,18 @@
-define(['jquery', 'lib/icanhaz', 'boards/delay'], function ($, ich, delay) {
+define(['jquery', 'screen/common', 'screen/parsers'], function ($, common, parsers) {
   'use strict';
 
-  var centerMessage = function ($outer, $inner) {
-          var outerHeight = $outer.height(),
-              innerHeight = $inner.height(),
-              marginTop = (outerHeight - innerHeight) / 2;
-          $inner.css({'margin-top': marginTop + 'px'});
-      },
-      initText = function (text, $board) {
-          var lines = text.replace(/\n/g, '<br>').split('%'),
-              $scr = ich.localMessage({lines: lines});
+  var initText = function (text, $board) {
+        var lines = parsers.parse(text),
+            $scr = common.templates.localMessage({lines: lines});
 
-          $board.animate({opacity: 0}, function () {
-              $board.html($scr);
-              $scr.bigtext();
-              centerMessage($board, $scr);
-              $board.animate({opacity: 1});
-          });
+        $board.animate({opacity: 0}, function () {
+          $board.html($scr);
+          $scr.bigtext();
+          common.center($board, $scr);
+          $board.animate({opacity: 1});
+        });
 
-          return $scr;
+        return $scr;
       },
       transition = function (scr, $board) {
         if (scr.$screen) {
@@ -39,9 +33,9 @@ define(['jquery', 'lib/icanhaz', 'boards/delay'], function ($, ich, delay) {
 
   LocalScreen.prototype.play = function ($board) {
     transition(this, $board);
-    return delay(this.duration);
+    return common.delay(this.duration);
   };
-  
+
   return function (data, boardProps) {
     return new LocalScreen(data, boardProps);
   };
