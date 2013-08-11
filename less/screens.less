@@ -24,7 +24,32 @@ html, body, .board, .screen {
 // Different screen types
 .local-message, .html-screen {
 	font-family: "League Gothic", Arial, sans-serif;
-	font-size: 24px;
+	font-size: 36px;
+}
+
+
+.local-message {
+  table {
+    font-size: 64px;
+    margin: 0 auto;
+
+    td {
+      text-align: left;
+
+      &:first-child {
+        padding-right: 1em;
+      }
+    }
+  }
+
+  ul, ol {
+    width: 80%;
+    font-size: 64px;
+    margin: 0 auto;
+    li {
+      text-align: left;
+    }
+  }
 }
 
 .teamcity-screen {

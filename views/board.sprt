@@ -16,6 +16,7 @@
 		</div>
 		<script type="text/html" id="localMessage">
 			<div class="local-message">
+        {{#title}}<h1>{{title}}</h1>{{/title}}
 				{{#lines}}
 				<div>{{{.}}}</div>
 				{{/lines}}

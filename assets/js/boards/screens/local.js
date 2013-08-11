@@ -1,13 +1,15 @@
 define(['jquery', 'screen/common', 'screen/parsers'], function ($, common, parsers) {
   'use strict';
 
-  var initText = function (text, $board) {
-        var lines = parsers.parse(text),
-            $scr = common.templates.localMessage({lines: lines});
+  var initText = function (data, $board) {
+        var lines = parsers.parse(data.message),
+            $scr = common.templates.localMessage({lines: lines, title: lines.title ? data.name : ''});
 
         $board.animate({opacity: 0}, function () {
           $board.html($scr);
-          $scr.bigtext();
+          if (lines.bigtext) {
+            $scr.bigtext();
+          }
           common.center($board, $scr);
           $board.animate({opacity: 1});
         });
@@ -21,7 +23,7 @@ define(['jquery', 'screen/common', 'screen/parsers'], function ($, common, parse
             $board.animate({opacity: 1});
           });
         } else {
-          scr.$screen = initText(scr.data.message, $board);
+          scr.$screen = initText(scr.data, $board);
         }
       };
 
