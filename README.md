@@ -10,8 +10,8 @@ A simple way to collect and format display content from all over into one place.
 [ ] Screen support
     [x] Remove padding on screen container
     [ ] Multiple "widgets" per screen
-    [ ] Sort screens
-    [ ] Disable screens
+    [x] Sort screens
+    [x] Disable screens
     [ ] Teamcity screen
         [ ] Create form to enter credentials and URL
         [ ] Load in projects to choose from
@@ -20,12 +20,15 @@ A simple way to collect and format display content from all over into one place.
         [ ] Be able to take screen and get statuses at render time
         [ ] Improve rendering of a pipeline
     [ ] Local screen
-        [ ] Basic message support
+        [x] Basic message support
         [ ] Preview message (POST data to a board URL)
         [ ] Upload images
+        [x] Support tables
+        [x] Support lists
 [ ] Reload screens on running boards
     [x] Find lightweight web socket implementation (Primus + WebSockets (ws))
     [x] Add support for single command to "HUP" the list of screens
+    [ ] Increase reliability of communication
     [ ] Only update screens that have been changed?
     [ ] Notification when board opened in non-Web Socket browser
 [ ] User management

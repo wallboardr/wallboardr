@@ -405,7 +405,27 @@ body,
 .local-message,
 .html-screen {
   font-family: "League Gothic", Arial, sans-serif;
-  font-size: 24px;
+  font-size: 36px;
+}
+.local-message table {
+  font-size: 64px;
+  margin: 0 auto;
+}
+.local-message table td {
+  text-align: left;
+}
+.local-message table td:first-child {
+  padding-right: 1em;
+}
+.local-message ul,
+.local-message ol {
+  width: 80%;
+  font-size: 64px;
+  margin: 0 auto;
+}
+.local-message ul li,
+.local-message ol li {
+  text-align: left;
 }
 .teamcity-screen {
   height: 100%;

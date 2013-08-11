@@ -163,7 +163,7 @@ define(['angular'], function (angular) {
           backup;
       if (form.$valid) {
         backup = angular.copy($scope.activeScreen);
-        angular.copy($scope.activeScreenEdit, $scope.activeScreen);
+        angular.extend($scope.activeScreen, $scope.activeScreenEdit);
         $http.post(url, $scope.activeScreenEdit).success(function (data) {
           if (data !== '1') {
             revertScreen(data, backup);
@@ -180,7 +180,7 @@ define(['angular'], function (angular) {
           backup;
       if (form.$valid) {
         backup = angular.copy($scope.activeBoard);
-        angular.copy($scope.activeBoardEdit, $scope.activeBoard);
+        angular.extend($scope.activeBoard, $scope.activeBoardEdit);
         $http.post(url, $scope.activeBoardEdit).success(function (data) {
           if (data !== '1') {
             revertBoard(data, backup);
