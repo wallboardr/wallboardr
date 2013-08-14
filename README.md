@@ -32,4 +32,14 @@ A simple way to collect and format display content from all over into one place.
     [ ] Only update screens that have been changed?
     [ ] Notification when board opened in non-Web Socket browser
 [ ] User management
+    [ ] Ability for admin to add another admin
+    [ ] Ability to create users with editor role
+    [ ] List of existing users
+    [ ] Reset password
+    [ ] Change own password
+    [ ] Disable users
+    [ ] Delete users?
 [ ] More unit tests
+
+
+
