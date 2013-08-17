@@ -7,7 +7,7 @@ define([], function () {
 
     var goodRegister = function (user) {
       if (user.name) {
-        // Update list of users?
+        $scope.users.push(user);
         $scope.createUser = {};
       } else {
         $scope.register.serverError = true;
@@ -34,7 +34,9 @@ define([], function () {
       $scope.register.serverError = false;
       $scope.register.clientError = false;
       if (form.$valid) {
+        $scope.createUser.role = 'admin';
         $http.post('/api/register', $scope.createUser).success(goodRegister);
+        $scope.userFormOpen = false;
       } else {
         $scope.register.clientError = true;
       }
@@ -49,6 +51,31 @@ define([], function () {
         $scope.login.clientError = true;
       }
     };
+
+    $scope.openUserForm = function (user) {
+      $scope.createUser = user;
+      $scope.userFormOpen = true;
+    };
+
+    $scope.saveUser = function (form) {
+      if ($scope.createUser && !$scope.createUser._id) {
+        $scope.register(form);
+      }
+    };
+
+    $scope.closeUserForm = function () {
+      $scope.userFormOpen = false;
+    };
+
+    $scope.closeMgmt = function () {
+      $scope.userMgmtVisible = false;
+      $scope.$root.$broadcast('hideUserMgmt');
+    };
+
+    $scope.$on('showUserMgmt', function () {
+      $scope.findAll();
+      $scope.userMgmtVisible = true;
+    });
   };
 
   usersController.$inject = ['$scope', '$http', 'auth'];
