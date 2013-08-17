@@ -604,6 +604,29 @@ h2.title {
   margin: 0;
   position: relative;
 }
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #fcfcfc;
+  opacity: 0.9;
+  display: none;
+  z-index: 1000;
+}
+.occlude {
+  overflow: hidden;
+}
+.occlude .overlay {
+  display: block;
+}
 header {
   background-color: #232323;
   color: #fcfcfc;
@@ -687,6 +710,24 @@ nav .submenu a {
   padding: 0;
   width: 100%;
   line-height: 3em;
+}
+nav .submenu.wide {
+  width: 200px;
+}
+.slide-top {
+  position: fixed;
+  height: 0;
+  top: 0;
+  left: 50%;
+  margin-left: -200px;
+  width: 400px;
+  transition: 0.5s;
+  overflow: hidden;
+  z-index: 1100;
+}
+.slide-top.loaded {
+  height: 316px;
+  transition: 0.5s;
 }
 .container {
   padding: 0 2em;

@@ -22,6 +22,13 @@ define(['angular'], function (angular) {
       $scope.createScreenTab = 'local';
     });
 
+    $scope.$on('showUserMgmt', function () {
+      angular.element(document.body).addClass('occlude');
+    });
+    $scope.$on('hideUserMgmt', function () {
+      angular.element(document.body).removeClass('occlude');
+    });
+
     $scope.notifyBoardChange = function () {
       var boardId = $scope.activeBoard._id;
       primus.write({updated: boardId});
