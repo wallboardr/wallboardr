@@ -130,7 +130,7 @@
 				Each wallboard can contain many different screens, which will show up in this space once you select a board on the left. You can add, edit and arrange your screens which will appear on your wallboard.
 			</p>
 		</div>
-		<div class="intro" ng-show="activeBoard &amp;&amp; !activeScreen">
+		<div class="intro" ng-show="activeBoard &amp;&amp; !activeScreen &amp;&amp; !newScreen.type">
 			<h2>Working with screens</h2>
 			<p>
 				You can now see more information on your board, and manage its screens in the middle.
@@ -145,7 +145,34 @@
 				You can change the order of the boards by clicking on the blue up and down triangles next to the screen name. If you have created some screens, you can edit them by clicking on them in the list.
 			</p>
 		</div>
-		<div class="intro" ng-show="activeBoard &amp;&amp; activeScreen">
+    <div class="intro" ng-show="activeBoard &amp;&amp; newScreen.type=='local'">
+      <h2>Adding a message screen</h2>
+      <p>
+        Message screens are the most basic, yet most versatile of the screens available. As the name suggests, it allows you to add a message which you can then update manually as required.
+      </p>
+      <p>
+        By default messages will be displayed as big as possible on the screen given the amount of text to display.
+      </p>
+      <p>
+        There are a couple of special messages you can create. First, you can create a list by using the * or # characters at the beginning of the line followed by a space. The * is for bullet lists, the # is for numbered lists.
+      </p>
+      <p>
+        The other special message is a table. You can create a simple two column table by adding a | (pipe) character within each line of text. At the moment, the lists and tables don't resize automatically to fill the screen. The other thing they do is display the name of screen as a title above the message. Normal messages do not display their names.
+      </p>
+    </div>
+    <div class="intro" ng-show="activeBoard &amp;&amp; newScreen.type=='html'">
+      <h2>Adding an HTML screen</h2>
+      <p>
+        HTML screens are not fully implemented from a display perspective. They are intended to be used to grab snippets of HTML from other sites/servers to display on the wallboard. However determining how best to display that information is the challenge. Best to avoid for now.
+      </p>
+    </div>
+    <div class="intro" ng-show="activeBoard &amp;&amp; newScreen.type=='teamcity'">
+      <h2>Adding a TeamCity screen</h2>
+      <p>
+        TeamCity screens are not fully implemented yet, it would be best to avoid them for now. Eventually they will allow you to choose a set of teamcity configurations to monitor for pass/fail status.
+      </p>
+    </div>
+		<div class="intro" ng-show="activeBoard &amp;&amp; activeScreen &amp;&amp; !newScreen.type &amp;&amp; !openEditScreenForm">
 			<h2>Editing a screen</h2>
 			<p>
 				Once you've clicked on a screen, you'll be able to see its details above. At this point, you can click on the pencil (<i class="icon-pencil"></i>) to edit the properties of the screen, it will open a form above with the usual Save and Cancel buttons.
