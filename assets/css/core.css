@@ -811,6 +811,9 @@ nav .submenu.wide {
 .create-board form {
   padding: 1em;
 }
+.create-screen-area {
+  margin-top: 1em;
+}
 .controls {
   position: absolute;
   top: 0;
