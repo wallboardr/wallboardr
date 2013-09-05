@@ -83,7 +83,7 @@ define(['angular'], function (angular) {
       var newScreen, sIndex;
       if (screen.$valid && $scope.activeBoard) {
         newScreen = angular.copy(screen);
-        newScreen.type = $scope.createScreenTab;
+        newScreen.type = $scope.newScreen.type;
         newScreen.board = $scope.activeBoard._id;
         newScreen.sortkey = $scope.screens.length;
         $http.post('/data/screens', newScreen).success(function (data) {
@@ -94,6 +94,7 @@ define(['angular'], function (angular) {
           }
           screen.name = screen.duration = screen.message = screen.url = screen.selector = '';
           $scope.openNewScreenForm = false;
+          resetNewScreen();
         });
       }
     };
