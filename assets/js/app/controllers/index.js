@@ -7,19 +7,28 @@ define(['angular'], function (angular) {
       board.slug = '';
       board.desc = '';
       board.duration = '';
+    },
+    resetNewScreen = function () {
+      var ns = $scope.newScreen;
+      if (!ns) {
+        return;
+      }
+      ns.type = '';
+      ns.title = 'Choose a screen type';
     };
 
     $scope.boards = [];
     $scope.activeBoard = null;
     $scope.activeScreen = null;
     $scope.screens = [];
-    $scope.createScreenTab = 'local';
+    $scope.newScreen = {};
+    resetNewScreen();
 
     $scope.$on('logout', function () {
       $scope.activeScreen = null;
       $scope.activeBoard = null;
       $scope.screens = [];
-      $scope.createScreenTab = 'local';
+      resetNewScreen();
     });
 
     $scope.$on('showUserMgmt', function () {
@@ -58,6 +67,16 @@ define(['angular'], function (angular) {
 
     $scope.isActiveScreen = function (index) {
       return $scope.activeScreen && $scope.screens[index] && $scope.activeScreen._id === $scope.screens[index]._id;
+    };
+
+    $scope.chooseScreenType = function (type) {
+      $scope.newScreen.type = type;
+      $scope.newScreen.title = 'Enter ' + type + ' screen info';
+    };
+
+    $scope.cancelAddScreen = function () {
+      $scope.openNewScreenForm = false;
+      resetNewScreen();
     };
 
     $scope.addScreen = function (screen) {
