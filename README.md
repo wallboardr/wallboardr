@@ -39,6 +39,10 @@ A simple way to collect and format display content from all over into one place.
     [ ] Change own password
     [ ] Disable users
     [ ] Delete users?
+[ ] Visual customization
+    [ ] Per installation CSS overrides
+    [ ] Per board visual configuration
+    [ ] Highlighting? Text colours?
 [ ] More unit tests
 
 

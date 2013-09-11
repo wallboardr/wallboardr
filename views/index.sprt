@@ -17,7 +17,7 @@
 				<input type="text" ng-model="newBoard.name" placeholder="Name" required><br>
 				<input type="text" ng-model="newBoard.slug" placeholder="Url slug" required><br>
 				<textarea rows="4" ng-model="newBoard.desc" placeholder="Description"></textarea><br>
-				<input type="number" ng-model="newBoard.duration" placeholder="Default duration">
+				<input type="number" ng-model="newBoard.duration" placeholder="Default duration" min="0">
 				<button ng-click="addBoard(newBoard)" class="success">Add</button>
 				<button ng-click="openNewBoardForm=false" class="cancel">Cancel</button>
 			</form>
@@ -40,7 +40,7 @@
 				<input type="text" ng-model="activeBoardEdit.name" placeholder="Name" required><br>
 				<input type="text" ng-model="activeBoardEdit.slug" placeholder="Url slug" required><br>
 				<textarea rows="4" ng-model="activeBoardEdit.desc" placeholder="Description"></textarea><br>
-				<input type="number" ng-model="activeBoardEdit.duration" placeholder="Default duration">
+				<input type="number" ng-model="activeBoardEdit.duration" placeholder="Default duration" min="0">
 				<button ng-click="updateActiveBoard(editBoard)" class="success">Save</button>
 				<button ng-click="cancelEditBoard()" class="cancel">Cancel</button>
 			</form>
@@ -66,7 +66,7 @@
   			<form novalidate name="newLocalScreen" ng-show="newScreen.type=='local'">
   				<input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
   				<textarea placeholder="Enter some text..." rows="3" ng-model="newLocalScreen.message" required></textarea><br>
-  				<input type="number" ng-model="newLocalScreen.duration" placeholder="Screen duration">
+  				<input type="number" ng-model="newLocalScreen.duration" placeholder="Screen duration" min="0">
   				<button ng-click="addScreen(newLocalScreen)" class="success">Add</button>
   				<button ng-click="cancelAddScreen()" class="cancel">Cancel</button>
   			</form>
@@ -74,14 +74,14 @@
   				<input type="text" ng-model="newHtmlScreen.name" placeholder="Name" required><br>
   				<input type="url" ng-model="newHtmlScreen.url" placeholder="URL" required><br>
   				<input type="text" ng-model="newHtmlScreen.selector" placeholder="Selector" required><br>
-  				<input type="number" ng-model="newHtmlScreen.duration" placeholder="Screen duration">
+  				<input type="number" ng-model="newHtmlScreen.duration" placeholder="Screen duration" min="0">
   				<button ng-click="addScreen(newHtmlScreen)" class="success">Add</button>
   				<button ng-click="cancelAddScreen()" class="cancel">Cancel</button>
   			</form>
         <form novalidate name="newTeamcityScreen" ng-show="newScreen.type=='teamcity'">
           <input type="text" ng-model="newTeamcityScreen.name" placeholder="Name" required><br>
           <input type="url" ng-model="newTeamcityScreen.url" placeholder="URL" required><br>
-          <input type="number" ng-model="newTeamcityScreen.duration" placeholder="Screen duration">
+          <input type="number" ng-model="newTeamcityScreen.duration" placeholder="Screen duration" min="0">
           <button ng-click="addScreen(newTeamcityScreen)" class="success">Add</button>
           <button ng-click="cancelAddScreen()" class="cancel">Cancel</button>
         </form>
@@ -105,7 +105,7 @@
 			<form novalidate name="editLocalScreen">
 				<input type="text" ng-model="activeScreenEdit.name" placeholder="Name" required><br>
 				<textarea rows="3" placeholder="Enter some text..." ng-model="activeScreenEdit.message" required></textarea><br>
-				<input type="number" ng-model="activeScreenEdit.duration" placeholder="Screen duration">
+				<input type="number" ng-model="activeScreenEdit.duration" placeholder="Screen duration" min="0">
 				<button ng-click="updateActiveScreen(editLocalScreen)" class="success">Save</button>
 				<button ng-click="cancelEditScreen()" class="cancel">Cancel</button>
 			</form>
