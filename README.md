@@ -7,6 +7,8 @@ A simple way to collect and format display content from all over into one place.
 [ ] Refactoring
     [ ] Screen and board data manipulation into services (resources?)
     [ ] Separate screens and board UI manipulation into their own controllers
+    [ ] Separate logic for creating/edit particular screens
+    [ ] Separate logic for manipulating screen list (ordering)
 [ ] Screen support
     [x] Remove padding on screen container
     [ ] Multiple "widgets" per screen
@@ -25,6 +27,10 @@ A simple way to collect and format display content from all over into one place.
         [ ] Upload images
         [x] Support tables
         [x] Support lists
+    [ ] Shared screens
+        [ ] "Shared" as a checkbox on when when creating other screens
+        [ ] "Common" as an option when choosing screen types
+        [ ] Common screen list
 [ ] Reload screens on running boards
     [x] Find lightweight web socket implementation (Primus + WebSockets (ws))
     [x] Add support for single command to "HUP" the list of screens
