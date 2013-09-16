@@ -3,7 +3,7 @@
 var Sproute = require('./sproute/app');
 var http = require('http');
 var urlParser = require('url').parse;
-var app = new Sproute('.');
+var app = new Sproute(__dirname);
 var notifier = require('./lib/notify');
 notifier.listen(app.rawServer);
 
