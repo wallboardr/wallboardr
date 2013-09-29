@@ -4,6 +4,7 @@ var Sproute = require('./sproute/app');
 var http = require('http');
 var urlParser = require('url').parse;
 var app = new Sproute(__dirname);
+var packageInfo = require('./package.json');
 var notifier = require('./lib/notify');
 notifier.listen(app.rawServer);
 
@@ -86,4 +87,14 @@ app.hooks.cookie = function (block, next) {
   }
   this.cookie(name, value);
   next();
+};
+
+// Hook to print package package
+console.log('Registering packageInfo');
+app.hooks.packageinfo = function (block, next) {
+    if (packageInfo[block.expr]) {
+        next(packageInfo[block.expr]);
+    } else {
+        next();
+    }
 };
