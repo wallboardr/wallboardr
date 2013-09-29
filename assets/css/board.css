@@ -405,14 +405,15 @@ body,
 .local-message,
 .html-screen {
   font-family: "League Gothic", Arial, sans-serif;
-  font-size: 50px;
+  margin: 0 2%;
 }
 .local-message h1 {
+  font-size: 1.5em;
   font-weight: normal;
   text-transform: uppercase;
+  margin-top: 0;
 }
 .local-message table {
-  font-size: 64px;
   margin: 0 auto;
 }
 .local-message table td {
@@ -423,8 +424,7 @@ body,
 }
 .local-message ul,
 .local-message ol {
-  width: 80%;
-  font-size: 64px;
+  display: table;
   margin: 0 auto;
 }
 .local-message ul li,

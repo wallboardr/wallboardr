@@ -1,7 +1,32 @@
 define(['jquery', 'screen/common', 'screen/parsers'], function ($, common, parsers) {
   'use strict';
 
-  var initText = function (data, $board) {
+  var setTextSize = function ($elem, $container) {
+        var maxWidth = $container.width(),
+            maxHeight = $container.height(),
+            isTooBig = function ($el) {
+              return $el.width() > maxWidth || $el.height() > maxHeight;
+            },
+            currentSize = 50,
+            delta = 10,
+            rollback = true;
+
+        $container.css({'font-size': currentSize + 'px'});
+        if (isTooBig($elem)) {
+          delta = -delta;
+          rollback = false;
+        }
+
+        do {
+          currentSize += delta;
+          $container.css({'font-size': currentSize + 'px'});
+        } while ((rollback !== isTooBig($elem)) && currentSize > 0 && currentSize < 300);
+        if (rollback || currentSize === 0) {
+          currentSize -= delta;
+          $container.css({'font-size': currentSize + 'px'});
+        }
+      },
+      initText = function (data, $board) {
         var lines = parsers.parse(data.message),
             $scr = common.templates.localMessage({lines: lines, title: lines.title ? data.name : ''});
 
@@ -9,6 +34,8 @@ define(['jquery', 'screen/common', 'screen/parsers'], function ($, common, parse
           $board.html($scr);
           if (lines.bigtext) {
             $scr.bigtext();
+          } else {
+            setTextSize($scr, $board);
           }
           common.center($board, $scr);
           $board.animate({opacity: 1});
