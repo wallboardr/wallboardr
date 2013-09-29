@@ -79,6 +79,15 @@ define(['angular'], function (angular) {
       resetNewScreen();
     };
 
+    var cleanForm = function (form) {
+      var key;
+      for (key in form) {
+        if (Object.prototype.hasOwnProperty.call(form, key) && key[0] !== '$') {
+          form[key] = '';
+        }
+      }
+    };
+
     $scope.addScreen = function (screen) {
       var newScreen, sIndex;
       if (screen.$valid && $scope.activeBoard) {
@@ -86,13 +95,14 @@ define(['angular'], function (angular) {
         newScreen.type = $scope.newScreen.type;
         newScreen.board = $scope.activeBoard._id;
         newScreen.sortkey = $scope.screens.length;
+        newScreen.duration = newScreen.duration || 0;
         $http.post('/data/screens', newScreen).success(function (data) {
           if (data && angular.isArray(data)) {
             for (sIndex = 0; sIndex < data.length; sIndex += 1) {
               $scope.screens.push(data[sIndex]);
             }
           }
-          screen.name = screen.duration = screen.message = screen.url = screen.selector = '';
+          cleanForm(screen);
           $scope.openNewScreenForm = false;
           resetNewScreen();
         });

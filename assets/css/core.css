@@ -606,11 +606,11 @@ h2.title {
 }
 .version {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  color: #232323;
-  text-shadow: #fcfcfc 0px 0px 3px;
-  padding-left: 4px;
+  top: 0;
+  right: 0;
+  color: #fcfcfc;
+  text-shadow: #232323 0px 0px 3px;
+  padding-right: 4px;
   font-size: 12px;
 }
 html,
