@@ -24,17 +24,18 @@ html, body, .board, .screen {
 // Different screen types
 .local-message, .html-screen {
 	font-family: "League Gothic", Arial, sans-serif;
-	font-size: 50px;
+  margin: 0 2%;
 }
 
 
 .local-message {
   h1 {
+    font-size: 1.5em;
     font-weight: normal;
     text-transform: uppercase;
+    margin-top: 0;
   }
   table {
-    font-size: 64px;
     margin: 0 auto;
 
     td {
@@ -47,8 +48,7 @@ html, body, .board, .screen {
   }
 
   ul, ol {
-    width: 80%;
-    font-size: 64px;
+    display: table;
     margin: 0 auto;
     li {
       text-align: left;
