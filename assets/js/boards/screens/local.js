@@ -11,7 +11,7 @@ define(['jquery', 'screen/common', 'screen/parsers'], function ($, common, parse
             delta = 10,
             rollback = true;
 
-        $container.css({'font-size': currentSize + 'px'});
+        $elem.css({'font-size': currentSize + 'px'});
         if (isTooBig($elem)) {
           delta = -delta;
           rollback = false;
@@ -19,11 +19,11 @@ define(['jquery', 'screen/common', 'screen/parsers'], function ($, common, parse
 
         do {
           currentSize += delta;
-          $container.css({'font-size': currentSize + 'px'});
+          $elem.css({'font-size': currentSize + 'px'});
         } while ((rollback !== isTooBig($elem)) && currentSize > 0 && currentSize < 300);
         if (rollback || currentSize === 0) {
           currentSize -= delta;
-          $container.css({'font-size': currentSize + 'px'});
+          $elem.css({'font-size': currentSize + 'px'});
         }
       },
       initText = function (data, $board) {
