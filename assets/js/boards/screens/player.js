@@ -43,11 +43,16 @@ define(['jquery', 'boards/delay', 'screen/factory'], function ($, delay, factory
     };
 
     Player.prototype.update = function (screens) {
-      var self = this;
+      var self = this,
+          prevLength = self.screens.length;
       // TODO: properly update each screen or not.
       self.screens = $.map(screens, factory(self.boardProps));
       if (self.currentIndex > self.screens.length - 1) {
         self.currentIndex = self.screens.length - 1;
+      }
+      if (prevLength === 1 && self.screens.length) {
+        self.currentIndex = 0;
+        playScreen.apply(self);
       }
     };
 
