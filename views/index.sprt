@@ -60,8 +60,8 @@
   		<div class="create-screen widget">
   			<div class="choices" ng-hide="newScreen.type">
   				<div class="list-item" ng-click="chooseScreenType('local')"><div class="info">Message</div></div>
-  				<div class="list-item" ng-click="chooseScreenType('html')"><div class="info">Fetch HTML</div></div>
-          <div class="list-item" ng-click="chooseScreenType('teamcity')"><div class="info">TeamCity</div></div>
+  				<!--<div class="list-item" ng-click="chooseScreenType('html')"><div class="info">Fetch HTML</div></div>
+          <div class="list-item" ng-click="chooseScreenType('teamcity')"><div class="info">TeamCity</div></div>-->
   			</div>
   			<form novalidate name="newLocalScreen" ng-show="newScreen.type=='local'">
   				<input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
