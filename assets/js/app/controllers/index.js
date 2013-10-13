@@ -21,6 +21,7 @@ define(['angular'], function (angular) {
     $scope.activeBoard = null;
     $scope.activeScreen = null;
     $scope.screens = [];
+    $scope.sharedScreens = [];
     $scope.newScreen = {};
     resetNewScreen();
 
@@ -28,6 +29,7 @@ define(['angular'], function (angular) {
       $scope.activeScreen = null;
       $scope.activeBoard = null;
       $scope.screens = [];
+      $scope.sharedScreens = [];
       resetNewScreen();
     });
 
@@ -119,6 +121,18 @@ define(['angular'], function (angular) {
       for (key = 0; key < toRemove.length; key += 1) {
         delete data[toRemove[key]];
       }
+    };
+
+    $scope.loadSharedScreens = function () {
+      var url = '/data/screens/shareable/yes';
+      $http.get(url).success(function (data) {
+        $scope.sharedScreens = data;
+      });
+    };
+
+    $scope.addNewScreen = function () {
+
+      $scope.openNewScreenForm = true;
     };
 
     $scope.startEditingBoard = function () {
