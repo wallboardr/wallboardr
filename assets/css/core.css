@@ -572,6 +572,40 @@ form textarea {
   padding: 0.75em;
   margin-bottom: 0.5em;
 }
+form input[type="checkbox"],
+form input[type="radio"] {
+  width: auto;
+}
+form .form-container {
+  margin-bottom: 0.5em;
+}
+form input[type="checkbox"].css-checkbox {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+form input[type="checkbox"].css-checkbox + label.css-label {
+  padding-left: 20px;
+  height: 15px;
+  display: inline-block;
+  line-height: 15px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  font-size: 15px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+form input[type="checkbox"].css-checkbox:checked + label.css-label {
+  background-position: 0 -15px;
+}
+form .css-label {
+  background-image: url(../img/checkbox.png);
+}
 form:before,
 form:after {
   content: "";
@@ -1015,6 +1049,9 @@ button.full,
 .list-item.is-disabled .name {
   font-style: italic;
   color: #bcbcbc;
+}
+.list-item.is-shared .name {
+  text-decoration: underline;
 }
 .screen .name {
   padding: 1em;

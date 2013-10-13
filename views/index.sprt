@@ -45,9 +45,9 @@
 				<button ng-click="cancelEditBoard()" class="cancel">Cancel</button>
 			</form>
 		</div>
-		<h2 class="title">Screens for {{activeBoard.name}} <div class="controls"><button ng-click="openNewScreenForm=true"><i class="icon-plus"></i></button></div></h2>
+		<h2 class="title">Screens for {{activeBoard.name}} <div class="controls"><button ng-click="addNewScreen()"><i class="icon-plus"></i></button></div></h2>
 		<div class="screen-list widget" ng-show="screens.length">
-			<div class="screen list-item ng-cloak" ng-repeat="screen in screens" ng-class="{'is-active': isActiveScreen($index), 'is-disabled': screen.disabled}" ng-click="setActiveScreen($index)">
+			<div class="screen list-item ng-cloak" ng-repeat="screen in screens" ng-class="{'is-active': isActiveScreen($index), 'is-disabled': screen.disabled, 'is-shared': screen.shareable}" ng-click="setActiveScreen($index)">
 				<span class="horizontal-controls">
 					<span class="btn rocker" ng-class="{topmost: $first}"><span class="up" ng-click="moveUp($index);$event.stopPropagation();"></span><span class="down" ng-hide="$last" ng-click="moveDown($index);$event.stopPropagation();"></span></span>
 					<span class="duration btn inert"><i class="icon-clock"></i> <span>{{screen.duration || activeBoard.duration || 30}}</span></span>
@@ -59,17 +59,26 @@
       <h2 class="title">{{newScreen.title}}</h2>
   		<div class="create-screen widget">
   			<div class="choices" ng-hide="newScreen.type">
-  				<div class="list-item" ng-click="chooseScreenType('local')"><div class="info">Message</div></div>
+          <div class="list-item" ng-click="chooseScreenType('local')"><div class="info">Message</div></div>
+  				<div class="list-item" ng-click="chooseScreenType('shared')"><div class="info">Shared</div></div>
   				<!--<div class="list-item" ng-click="chooseScreenType('html')"><div class="info">Fetch HTML</div></div>
           <div class="list-item" ng-click="chooseScreenType('teamcity')"><div class="info">TeamCity</div></div>-->
   			</div>
   			<form novalidate name="newLocalScreen" ng-show="newScreen.type=='local'">
   				<input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
   				<textarea placeholder="Enter some text..." rows="3" ng-model="newLocalScreen.message" required></textarea><br>
-  				<input type="number" ng-model="newLocalScreen.duration" placeholder="Screen duration" min="0">
+  				<input type="number" ng-model="newLocalScreen.duration" placeholder="Screen duration" min="0"><br>
+          <div class="form-container">
+            <input id="newLocalScreenShareable" type="checkbox" ng-model="newLocalScreen.shareable" class="css-checkbox">
+            <label for="newLocalScreenShareable" class="css-label">Share this screen</label>
+          </div>
   				<button ng-click="addScreen(newLocalScreen)" class="success">Add</button>
   				<button ng-click="cancelAddScreen()" class="cancel">Cancel</button>
   			</form>
+        <div class="choices" ng-show="newScreen.type=='shared'">
+          <div class="list-item" ng-repeat="ss in sharedScreens" ng-click="addSharedScreen($index)"><div class="info">{{ss.name}}</div></div>
+          <div class="list-item" ng-click="cancelAddScreen()"><div class="info cancel">Cancel</div></div>
+        </div>
   			<form novalidate name="newHtmlScreen" ng-show="newScreen.type=='html'">
   				<input type="text" ng-model="newHtmlScreen.name" placeholder="Name" required><br>
   				<input type="url" ng-model="newHtmlScreen.url" placeholder="URL" required><br>
@@ -106,6 +115,10 @@
 				<input type="text" ng-model="activeScreenEdit.name" placeholder="Name" required><br>
 				<textarea rows="3" placeholder="Enter some text..." ng-model="activeScreenEdit.message" required></textarea><br>
 				<input type="number" ng-model="activeScreenEdit.duration" placeholder="Screen duration" min="0">
+        <div class="form-container">
+            <input id="editScreenShareable" type="checkbox" ng-model="activeScreenEdit.shareable" class="css-checkbox">
+            <label for="editScreenShareable" class="css-label">Share this screen</label>
+          </div>
 				<button ng-click="updateActiveScreen(editLocalScreen)" class="success">Save</button>
 				<button ng-click="cancelEditScreen()" class="cancel">Cancel</button>
 			</form>
