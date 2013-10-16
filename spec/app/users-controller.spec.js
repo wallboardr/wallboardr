@@ -3,7 +3,7 @@ var loader = require('../unit-loader');
 describe('The UsersController', function () {
   var scope, http, auth, ctlr;
   beforeEach(function () {
-    scope = { login: {} };
+    scope = { login: {}, '$on': function () {} };
     http = { post: function () {} };
     auth = { setUser: function () {} };
     ctlr = loader.loadSubject('app/controllers/users');

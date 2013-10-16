@@ -49,11 +49,12 @@ define(['angular'], function (angular) {
       if ($scope.user.loggedIn) {
         $scope.activeBoard = $scope.boards[index];
         $scope.loadScreens($scope.activeBoard._id);
+        $scope.loadSharedScreens($scope.activeBoard._id);
       }
     };
 
     $scope.loadScreens = function (boardId) {
-      var url = '/data/screens/board/' + boardId + '?sort=sortkey';
+      var url = '/data/screens/board/' + boardId + '?sort=sortkey.' + boardId;
       $http.get(url).success(function (data) {
         $scope.screens = data;
       });
@@ -95,8 +96,9 @@ define(['angular'], function (angular) {
       if (screen.$valid && $scope.activeBoard) {
         newScreen = angular.copy(screen);
         newScreen.type = $scope.newScreen.type;
-        newScreen.board = $scope.activeBoard._id;
-        newScreen.sortkey = $scope.screens.length;
+        newScreen.board = [$scope.activeBoard._id];
+        newScreen.sortkey = {};
+        newScreen.sortkey[$scope.activeBoard._id] = $scope.screens.length;
         newScreen.duration = newScreen.duration || 0;
         $http.post('/data/screens', newScreen).success(function (data) {
           if (data && angular.isArray(data)) {
@@ -105,10 +107,40 @@ define(['angular'], function (angular) {
             }
           }
           cleanForm(screen);
-          $scope.openNewScreenForm = false;
-          resetNewScreen();
+          $scope.cancelAddScreen();
         });
       }
+    };
+
+    $scope.addSharedScreen = function (index) {
+      var ss = $scope.sharedScreens[index],
+          screenId = ss._id,
+          url = '/data/screens/_id/' + screenId,
+          currentBoard = $scope.activeBoard,
+          prevBoard = ss.board,
+          prevSort = ss.sortkey,
+          oldsort,
+          boardsAndSort = {};
+      // Handle legacy data
+      if (!angular.isObject(prevSort)) {
+        // Shouldn't have a screen with old sort and multiple boards.
+        oldsort = prevSort;
+        prevSort = {};
+        prevSort[prevBoard] = oldsort;
+      }
+      if (!angular.isArray(prevBoard)) {
+        prevBoard = [prevBoard];
+      }
+      prevBoard.push(currentBoard._id);
+      prevSort[currentBoard._id] = $scope.screens.length;
+      boardsAndSort.board = prevBoard;
+      boardsAndSort.sortkey = prevSort;
+      $http.post(url, boardsAndSort).success(function (data) {
+        if (data === '1') {
+          $scope.screens.push(ss);
+        }
+        $scope.cancelAddScreen();
+      });
     };
 
     var sanitize = function (data) {
@@ -123,15 +155,14 @@ define(['angular'], function (angular) {
       }
     };
 
-    $scope.loadSharedScreens = function () {
-      var url = '/data/screens/shareable/yes';
+    $scope.loadSharedScreens = function (boardId) {
+      var url = '/api/shared/' + boardId;
       $http.get(url).success(function (data) {
         $scope.sharedScreens = data;
       });
     };
 
     $scope.addNewScreen = function () {
-
       $scope.openNewScreenForm = true;
     };
 
@@ -167,9 +198,12 @@ define(['angular'], function (angular) {
 
     var saveScreenOrder = function (index) {
       var changedScreen = $scope.screens[index],
+          currentBoard = $scope.activeBoard._id,
+          key = changedScreen.sortkey,
           url = '/data/screens/_id/' + changedScreen._id;
       window.console.log('Setting screen ' + changedScreen.name + ' to index ' + index);
-      $http.post(url, {sortkey: index});
+      key[currentBoard] = index;
+      $http.post(url, {sortkey: key});
     };
 
     $scope.moveUp = function (screenIndex) {

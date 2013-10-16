@@ -60,7 +60,7 @@
   		<div class="create-screen widget">
   			<div class="choices" ng-hide="newScreen.type">
           <div class="list-item" ng-click="chooseScreenType('local')"><div class="info">Message</div></div>
-  				<div class="list-item" ng-click="chooseScreenType('shared')"><div class="info">Shared</div></div>
+  				<div class="list-item" ng-click="chooseScreenType('shared')" ng-show="sharedScreens.length"><div class="info">Shared</div></div>
   				<!--<div class="list-item" ng-click="chooseScreenType('html')"><div class="info">Fetch HTML</div></div>
           <div class="list-item" ng-click="chooseScreenType('teamcity')"><div class="info">TeamCity</div></div>-->
   			</div>
@@ -76,7 +76,7 @@
   				<button ng-click="cancelAddScreen()" class="cancel">Cancel</button>
   			</form>
         <div class="choices" ng-show="newScreen.type=='shared'">
-          <div class="list-item" ng-repeat="ss in sharedScreens" ng-click="addSharedScreen($index)"><div class="info">{{ss.name}}</div></div>
+          <div class="list-item" ng-repeat="ss in sharedScreens" ng-click="addSharedScreen($index)"><div class="info">{{ss.name}} ({{ss.type | humanType}})</div></div>
           <div class="list-item" ng-click="cancelAddScreen()"><div class="info cancel">Cancel</div></div>
         </div>
   			<form novalidate name="newHtmlScreen" ng-show="newScreen.type=='html'">
@@ -171,6 +171,18 @@
       </p>
       <p>
         The other special message is a table. You can create a simple two column table by adding a | (pipe) character within each line of text. At the moment, the lists and tables don't resize automatically to fill the screen. The other thing they do is display the name of screen as a title above the message. Normal messages do not display their names.
+      </p>
+      <p>
+        If you want to be able to share this screen with other boards, check the "Share this screen" option.
+      </p>
+    </div>
+    <div class="intro" ng-show="activeBoard &amp;&amp; newScreen.type=='shared'">
+      <h2>Adding a shared screen</h2>
+      <p>
+        A shared screen is simply one that belongs to another board, but which has been marked as shareable. If you update the screen, the change will be reflected on all boards it shows up on.
+      </p>
+      <p>
+        If there are no shareable screens available which aren't already part of the current board, this option won't show up.
       </p>
     </div>
     <div class="intro" ng-show="activeBoard &amp;&amp; newScreen.type=='html'">

@@ -203,6 +203,15 @@ button.full, .btn.full {
 		cursor: pointer;
 	}
 
+  .cancel {
+    background-color: @color-alert;
+    color: @color-base-page;
+
+    &:hover {
+      background-color: lighten(@color-alert, 10%);
+    }
+  }
+
 	.logged-in &.is-active:hover {
 		.hovered-and-selected();
 	}

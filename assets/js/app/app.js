@@ -32,6 +32,7 @@ define(
             app.provider('primus', primus);
             app.config(routes);
             app.filter('nl2br', filters.nl2br);
+            app.filter('humanType', filters.humanType);
             app.factory('auth', auth);
             app.factory('dataLoader', loader);
             app.controller('WallboardrController', wallboardrCtrl);
