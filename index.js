@@ -77,6 +77,12 @@ app.server.get('/json/:page', function (req, res) {
   });
 });
 
+app.server.get('/api/shared/:boardid', function (req, res) {
+  var boardId = req.params.boardid,
+      where = {'shareable': true, 'board': {'$ne': boardId}};
+  app.storage.db.collection('screens').find(where, {}, {}, app.response(req, res));
+});
+
 // Hook to set a cookie
 app.hooks.cookie = function (block, next) {
   var expr = block.expr.split(' ');

@@ -543,7 +543,7 @@ button.success,
 }
 button.cancel,
 .btn.cancel {
-  background-color: #e86d65;
+  background-color: #e14339;
 }
 .dark-widget {
   background-color: #232323;
@@ -559,7 +559,7 @@ button.cancel,
   background-color: #695d8f;
 }
 .error {
-  color: #e86d65;
+  color: #e14339;
 }
 form {
   *zoom: 1;
@@ -1039,6 +1039,13 @@ button.full,
 .logged-in .list-item:hover {
   background-color: #3d3d3d;
   cursor: pointer;
+}
+.list-item .cancel {
+  background-color: #e14339;
+  color: #fcfcfc;
+}
+.list-item .cancel:hover {
+  background-color: #e86d65;
 }
 .logged-in .list-item.is-active:hover {
   background-color: #695d8f;
