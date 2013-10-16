@@ -49,10 +49,10 @@
 		<div class="screen-list widget" ng-show="screens.length">
 			<div class="screen list-item ng-cloak" ng-repeat="screen in screens" ng-class="{'is-active': isActiveScreen($index), 'is-disabled': screen.disabled, 'is-shared': screen.shareable}" ng-click="setActiveScreen($index)">
 				<span class="horizontal-controls">
-					<span class="btn rocker" ng-class="{topmost: $first}"><span class="up" ng-click="moveUp($index);$event.stopPropagation();"></span><span class="down" ng-hide="$last" ng-click="moveDown($index);$event.stopPropagation();"></span></span>
+					<span class="btn rocker" ng-class="{topmost: $first}"><span class="up icon-arrow-up" ng-click="moveUp($index);$event.stopPropagation();"></span><span class="down icon-arrow-down" ng-hide="$last" ng-click="moveDown($index);$event.stopPropagation();"></span></span>
 					<span class="duration btn inert"><i class="icon-clock"></i> <span>{{screen.duration || activeBoard.duration || 30}}</span></span>
 				</span>
-				<span class="name">{{screen.name}}</span>
+				<span class="name"><span ng-class="{'icon-share': screen.shareable}"></span>{{screen.name}}</span>
 			</div>
 		</div>
     <div class="create-screen-area" ng-show="openNewScreenForm">
@@ -152,10 +152,10 @@
 				If you click the pencil icon (<i class="icon-pencil"></i>) at the top of the board, you can edit the properties of your board. The save and cancel buttons can be used to commit your changes or cancel them. There is also a large orange button which says "Refresh Open Boards", which can be used to update any browsers currently viewing that board once you've made changes to its screens.
 			</p>
 			<p>
-				Screens are listed below the board info. You can add new screens using the plus button (<i class="icon-plus"></i>). It will open a form below the screens list. Fill out the form with the name and message and optional duration in seconds. Click ADD to add the screen to the current board.
+				Screens are listed below the board info. You can add new screens using the plus button (<i class="icon-plus"></i>). It will open a form below the screens list. Screens can be shared between boards, any screen which is marked as shareable will have the share icon (<i class="icon-share"></i>) before its name in the list.
 			</p>
 			<p>
-				You can change the order of the boards by clicking on the blue up and down triangles next to the screen name. If you have created some screens, you can edit them by clicking on them in the list.
+				You can change the order of the boards by clicking on the blue up (<i class="icon-arrow-up"></i>) and down (<i class="icon-arrow-down"></i>) arrows next to the screen name. If you have created some screens, you can edit them by clicking on them in the list.
 			</p>
 		</div>
     <div class="intro" ng-show="activeBoard &amp;&amp; newScreen.type=='local'">

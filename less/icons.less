@@ -27,7 +27,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-pencil, .icon-user, .icon-pictures, .icon-disk, .icon-screen, .icon-clock, .icon-cloud-upload, .icon-menu, .icon-star, .icon-cog, .icon-users, .icon-stats, .icon-eye, .icon-eye-blocked, .icon-key, .icon-lock, .icon-reload, .icon-remove, .icon-ok, .icon-link, .icon-plus {
+.icon-pencil, .icon-user, .icon-pictures, .icon-disk, .icon-screen, .icon-clock, .icon-cloud-upload, .icon-menu, .icon-star, .icon-cog, .icon-users, .icon-stats, .icon-eye, .icon-eye-blocked, .icon-key, .icon-lock, .icon-reload, .icon-remove, .icon-ok, .icon-link, .icon-plus, .icon-arrow-up, .icon-arrow-down, .icon-share {
 	font-family: 'wallboardr-font';
 	speak: none;
 	font-style: normal;
@@ -36,6 +36,7 @@ you can use the generic selector below, but it's slower:
 	text-transform: none;
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
+  font-size: 16px;
 }
 .icon-pencil:before {
 	content: "\e000";
@@ -91,14 +92,25 @@ you can use the generic selector below, but it's slower:
 .icon-remove:before {
 	content: "\f00d";
 	position: relative;
-	top: 1px;
+	top: -1px;
+  font-size: 14px;
 }
 .icon-ok:before {
 	content: "\f00c";
+  font-size: 14px;
 }
 .icon-link:before {
 	content: "\e011";
 }
 .icon-plus:before {
 	content: "\e012";
+}
+.icon-arrow-up:before {
+  content: "\e013";
+}
+.icon-arrow-down:before {
+  content: "\e014";
+}
+.icon-share:before {
+  content: "\e015";
 }
