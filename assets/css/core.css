@@ -698,6 +698,9 @@ header h1 {
   margin: 0 1.0416666666666665%;
   margin-top: 0.67em;
 }
+header .icon-screen {
+  font-size: 32px;
+}
 header a {
   color: #fcfcfc;
 }
