@@ -46,8 +46,11 @@ define(['angular'], function (angular) {
     };
 
     $scope.setActiveBoard = function (index) {
-      if ($scope.user.loggedIn) {
+      if ($scope.user.loggedIn && ($scope.activeBoard == null || $scope.activeBoard._id !== $scope.boards[index]._id)) {
         $scope.activeBoard = $scope.boards[index];
+        $scope.cancelAddScreen();
+        $scope.cancelEditScreen();
+        $scope.activeScreen = null;
         $scope.loadScreens($scope.activeBoard._id);
         $scope.loadSharedScreens($scope.activeBoard._id);
       }
@@ -65,6 +68,7 @@ define(['angular'], function (angular) {
     };
 
     $scope.setActiveScreen = function (index) {
+      $scope.cancelEditScreen();
       $scope.activeScreen = $scope.screens[index];
     };
 
@@ -157,6 +161,8 @@ define(['angular'], function (angular) {
       boardsAndSort.sortkey = prevSort;
       $http.post(url, boardsAndSort).success(function (data) {
         if (data === '1') {
+          ss.board = prevBoard;
+          ss.sortkey = prevSort;
           $scope.screens.push(ss);
         }
         $scope.cancelAddScreen();
@@ -198,6 +204,7 @@ define(['angular'], function (angular) {
     };
 
     $scope.startEditingScreen = function () {
+      $scope.cancelAddScreen();
       $scope.activeScreenEdit = angular.copy($scope.activeScreen);
       sanitize($scope.activeScreenEdit);
       $scope.openEditScreenForm = true;
