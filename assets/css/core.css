@@ -425,7 +425,10 @@ you can use the generic selector below, but it's slower:
 .icon-remove,
 .icon-ok,
 .icon-link,
-.icon-plus {
+.icon-plus,
+.icon-arrow-up,
+.icon-arrow-down,
+.icon-share {
   font-family: 'wallboardr-font';
   speak: none;
   font-style: normal;
@@ -434,6 +437,7 @@ you can use the generic selector below, but it's slower:
   text-transform: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
+  font-size: 16px;
 }
 .icon-pencil:before {
   content: "\e000";
@@ -489,16 +493,27 @@ you can use the generic selector below, but it's slower:
 .icon-remove:before {
   content: "\f00d";
   position: relative;
-  top: 1px;
+  top: -1px;
+  font-size: 14px;
 }
 .icon-ok:before {
   content: "\f00c";
+  font-size: 14px;
 }
 .icon-link:before {
   content: "\e011";
 }
 .icon-plus:before {
   content: "\e012";
+}
+.icon-arrow-up:before {
+  content: "\e013";
+}
+.icon-arrow-down:before {
+  content: "\e014";
+}
+.icon-share:before {
+  content: "\e015";
 }
 body {
   font-family: Arial, sans-serif;
@@ -924,6 +939,10 @@ nav .submenu.wide {
   top: -2px;
   text-transform: none;
 }
+.duration .icon-clock {
+  position: relative;
+  top: -1px;
+}
 .full-row {
   width: 100%;
   float: left;
@@ -981,33 +1000,12 @@ button.full,
   height: 25px;
   display: block;
   position: relative;
-  top: 6px;
+  top: 8px;
+  color: #007bff;
 }
-.btn.rocker .up:after,
-.btn.rocker .down:after {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0px;
-  height: 0px;
-  border-style: solid;
-  content: "";
-}
-.btn.rocker .up:after {
-  border-width: 0 22px 22px 22px;
-  border-color: transparent transparent #007bff transparent;
-}
-.btn.rocker .up:hover:after {
-  border-width: 0 22px 22px 22px;
-  border-color: transparent transparent #e2854a transparent;
-}
-.btn.rocker .down:after {
-  border-width: 22px 22px 0 22px;
-  border-color: #007bff transparent transparent transparent;
-}
-.btn.rocker .down:hover:after {
-  border-width: 22px 22px 0 22px;
-  border-color: #e2854a transparent transparent transparent;
+.btn.rocker .up:hover,
+.btn.rocker .down:hover {
+  color: #e2854a;
 }
 .btn.rocker.topmost .up {
   visibility: hidden;
@@ -1057,8 +1055,8 @@ button.full,
   font-style: italic;
   color: #bcbcbc;
 }
-.list-item.is-shared .name {
-  text-decoration: underline;
+.list-item.is-shared .icon-share {
+  padding-right: 0.5em;
 }
 .screen .name {
   padding: 1em;
