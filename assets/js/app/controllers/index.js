@@ -222,6 +222,9 @@ define(['angular'], function (angular) {
           key = changedScreen.sortkey,
           url = '/data/screens/_id/' + changedScreen._id;
       window.console.log('Setting screen ' + changedScreen.name + ' to index ' + index);
+      if (!angular.isObject(key)) {
+        key = {};
+      }
       key[currentBoard] = index;
       $http.post(url, {sortkey: key});
     };
