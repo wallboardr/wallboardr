@@ -77,6 +77,26 @@ define(['angular'], function (angular) {
       $scope.newScreen.title = 'Enter ' + type + ' screen info';
     };
 
+    $scope.screenStateClass = function (scr) {
+      var classes = [];
+      //'is-active': isActiveScreen($index), 'is-disabled': screen.disabled, 'is-shared': screen.shareable
+      if (scr) {
+        if ($scope.activeScreen && scr._id === $scope.activeScreen._id) {
+          classes.push('is-active');
+        }
+        if (scr.disabled) {
+          classes.push('is-disabled');
+        }
+        if (scr.shareable) {
+          classes.push('is-shareable');
+        }
+        if (angular.isArray(scr.board) && scr.board.length > 1) {
+          classes.push('is-shared');
+        }
+      }
+      return classes;
+    };
+
     $scope.cancelAddScreen = function () {
       $scope.openNewScreenForm = false;
       resetNewScreen();
