@@ -1055,8 +1055,16 @@ button.full,
   font-style: italic;
   color: #bcbcbc;
 }
-.list-item.is-shared .icon-share {
+.list-item .icon-share {
+  display: none;
   padding-right: 0.5em;
+}
+.list-item.is-shareable .icon-share {
+  display: inline;
+  color: #32d093;
+}
+.list-item.is-shared .icon-share {
+  display: inline;
 }
 .screen .name {
   padding: 1em;

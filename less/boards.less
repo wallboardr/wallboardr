@@ -208,8 +208,18 @@ button.full, .btn.full {
 		color: darken(@color-base-page, 25%);
 	}
 
-  &.is-shared .icon-share {
+  .icon-share {
+    display: none;
     padding-right: 0.5em;
+  }
+
+  &.is-shareable .icon-share {
+    display: inline;
+    color: lighten(@color-ok, 20%);
+  }
+
+  &.is-shared .icon-share {
+    display: inline;
   }
 
 }
