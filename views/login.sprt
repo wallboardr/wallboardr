@@ -1,5 +1,30 @@
-<form action="/api/login?goto=/" method="post">
-Username: <input type="text" name="name"><br>
-Password: <input type="password" name="pass"><br>
-<button type="submit">Login</button>
-</form>
+  <div class="login-area" ng-controller="UserController">
+    <div class="widget login-box" ng-show="!$root.user.loggedIn">
+      <form novalidate name="login">
+        <input type="text" ng-model="loginUser.name" placeholder="Username" required>
+        <input type="password" ng-model="loginUser.pass" placeholder="Password" required>
+        <button ng-click="signin(login)">Sign In</button>&nbsp;&nbsp;
+        <span class="error" ng-show="login.serverError"><i class="icon-remove"></i> Invalid credentials</span>
+        <span class="error" ng-show="login.clientError"><i class="icon-remove"></i> Both fields are required</span>
+      </form>
+    </div>
+    <div class="user-mgmt slide-top" ng-class="{loaded: userMgmtVisible}">
+      <h2 class="title">Users
+        <div class="controls"><button ng-click="openUserForm({})"><i class="icon-plus"></i></button><button ng-click="closeMgmt()"><i class="icon-remove"></i></button>
+      </div></h2>
+      <div class="user-list widget" ng-hide="userFormOpen">
+        <div class="list-item user" ng-repeat="user in users">
+          <div class="info">{{user.name}}</div>
+        </div>
+      </div>
+      <div class="new-user widget" ng-show="userFormOpen">
+        <form novalidate name="userForm">
+          <input type="text" ng-model="createUser.name" placeholder="Name" required><br>
+          <input type="email" ng-model="createUser.email" placeholder="Email">
+          <input type="password" ng-model="createUser.pass" placeholder="Password">
+          <button ng-click="saveUser(userForm)" class="success">Save</button>
+          <button ng-click="closeUserForm()" class="cancel">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>

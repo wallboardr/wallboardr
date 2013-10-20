@@ -21,11 +21,12 @@ define([], function () {
     };
 
     $scope.showUserMgmt = function () {
-      $scope.$broadcast('showUserMgmt');
+      $scope.$broadcast('user:management:show');
       $scope.showAdminMenu = false;
     };
   };
   wallboardrController.$inject = ['$scope', '$http', 'auth'];
+  wallboardrController.ctrlName = 'WallboardrController';
 
   return wallboardrController;
 });

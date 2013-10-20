@@ -1,15 +1,10 @@
-define(['controller/index', 'controller/admin'], function (indexCtrl, adminCtrl) {
+define(['controller/index'], function (indexCtrl) {
   'use strict';
 
   var routes = function ($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
       controller: indexCtrl,
       templateUrl: 'index'
-    });
-
-    $routeProvider.when('/admin', {
-      controller: adminCtrl,
-      templateUrl: 'admin'
     });
 
     $routeProvider.when('/view/:board', {

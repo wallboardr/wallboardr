@@ -1,8 +1,7 @@
 define(
     [
         'angular',
-        'controller/wallboardr',
-        'controller/users',
+        'controller/loader',
         'app/routes',
         'app/filters',
         'service/auth',
@@ -10,7 +9,7 @@ define(
         'service/primus',
         'angular-cookies'
     ],
-    function (angular, wallboardrCtrl, userCtrl, routes, filters, auth, loader, primus) {
+    function (angular, ctrlLoader, routes, filters, auth, loader, primus) {
     'use strict';
 
     var appName = 'wallboardr',
@@ -35,8 +34,7 @@ define(
             app.filter('humanType', filters.humanType);
             app.factory('auth', auth);
             app.factory('dataLoader', loader);
-            app.controller('WallboardrController', wallboardrCtrl);
-            app.controller('UserController', userCtrl);
+            ctrlLoader(app);
             app.run(init);
             angular.bootstrap(document, [appName]);
             log('Negative Ghost Rider, the pattern is full.');

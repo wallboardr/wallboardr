@@ -17,27 +17,37 @@ define(['angular'], function (angular) {
       ns.title = 'Choose a screen type';
     };
 
-    $scope.boards = [];
     $scope.activeBoard = null;
     $scope.activeScreen = null;
-    $scope.screens = [];
-    $scope.sharedScreens = [];
     $scope.newScreen = {};
     resetNewScreen();
 
-    $scope.$on('logout', function () {
-      $scope.activeScreen = null;
+    $scope.$on('user:logout', function () {
       $scope.activeBoard = null;
-      $scope.screens = [];
-      $scope.sharedScreens = [];
+      $scope.activeScreen = null;
       resetNewScreen();
     });
 
-    $scope.$on('showUserMgmt', function () {
+    $scope.$on('user:management:show', function () {
       angular.element(document.body).addClass('occlude');
     });
-    $scope.$on('hideUserMgmt', function () {
+    $scope.$on('user:management:hide', function () {
       angular.element(document.body).removeClass('occlude');
+    });
+
+    $scope.$on('board:selected', function (e, board) {
+      $scope.activeBoard = board;
+      $scope.cancelAddScreen();
+      $scope.cancelEditScreen();
+      $scope.activeScreen = null;
+    });
+
+    $scope.$on('screen:selected', function (e, scr) {
+      $scope.activeScreen = scr;
+    });
+
+    $scope.$on('screen:shared:list:loaded', function (e, count) {
+      $scope.haveSharedScreens = count > 0;
     });
 
     $scope.notifyBoardChange = function () {
@@ -45,128 +55,18 @@ define(['angular'], function (angular) {
       primus.write({updated: boardId});
     };
 
-    $scope.setActiveBoard = function (index) {
-      if ($scope.user.loggedIn && ($scope.activeBoard == null || $scope.activeBoard._id !== $scope.boards[index]._id)) {
-        $scope.activeBoard = $scope.boards[index];
-        $scope.cancelAddScreen();
-        $scope.cancelEditScreen();
-        $scope.activeScreen = null;
-        $scope.loadScreens($scope.activeBoard._id);
-        $scope.loadSharedScreens($scope.activeBoard._id);
-      }
-    };
-
-    $scope.loadScreens = function (boardId) {
-      var url = '/data/screens/board/' + boardId + '?sort=sortkey.' + boardId;
-      $http.get(url).success(function (data) {
-        $scope.screens = data;
-      });
-    };
-
-    $scope.isActiveBoard = function (index) {
-      return $scope.activeBoard && $scope.boards[index] && $scope.activeBoard._id === $scope.boards[index]._id;
-    };
-
-    $scope.setActiveScreen = function (index) {
-      $scope.cancelEditScreen();
-      $scope.activeScreen = $scope.screens[index];
-    };
-
-    $scope.isActiveScreen = function (index) {
-      return $scope.activeScreen && $scope.screens[index] && $scope.activeScreen._id === $scope.screens[index]._id;
-    };
-
     $scope.chooseScreenType = function (type) {
       $scope.newScreen.type = type;
       $scope.newScreen.title = 'Enter ' + type + ' screen info';
     };
 
-    $scope.screenStateClass = function (scr) {
-      var classes = [];
-      //'is-active': isActiveScreen($index), 'is-disabled': screen.disabled, 'is-shared': screen.shareable
-      if (scr) {
-        if ($scope.activeScreen && scr._id === $scope.activeScreen._id) {
-          classes.push('is-active');
-        }
-        if (scr.disabled) {
-          classes.push('is-disabled');
-        }
-        if (scr.shareable) {
-          classes.push('is-shareable');
-        }
-        if (angular.isArray(scr.board) && scr.board.length > 1) {
-          classes.push('is-shared');
-        }
-      }
-      return classes;
+    $scope.addNewScreen = function () {
+      $scope.openNewScreenForm = true;
     };
 
     $scope.cancelAddScreen = function () {
       $scope.openNewScreenForm = false;
       resetNewScreen();
-    };
-
-    var cleanForm = function (form) {
-      var key;
-      for (key in form) {
-        if (Object.prototype.hasOwnProperty.call(form, key) && key[0] !== '$') {
-          form[key] = '';
-        }
-      }
-    };
-
-    $scope.addScreen = function (screen) {
-      var newScreen, sIndex;
-      if (screen.$valid && $scope.activeBoard) {
-        newScreen = angular.copy(screen);
-        newScreen.type = $scope.newScreen.type;
-        newScreen.board = [$scope.activeBoard._id];
-        newScreen.sortkey = {};
-        newScreen.sortkey[$scope.activeBoard._id] = $scope.screens.length;
-        newScreen.duration = newScreen.duration || 0;
-        $http.post('/data/screens', newScreen).success(function (data) {
-          if (data && angular.isArray(data)) {
-            for (sIndex = 0; sIndex < data.length; sIndex += 1) {
-              $scope.screens.push(data[sIndex]);
-            }
-          }
-          cleanForm(screen);
-          $scope.cancelAddScreen();
-        });
-      }
-    };
-
-    $scope.addSharedScreen = function (index) {
-      var ss = $scope.sharedScreens[index],
-          screenId = ss._id,
-          url = '/data/screens/_id/' + screenId,
-          currentBoard = $scope.activeBoard,
-          prevBoard = ss.board,
-          prevSort = ss.sortkey,
-          oldsort,
-          boardsAndSort = {};
-      // Handle legacy data
-      if (!angular.isObject(prevSort)) {
-        // Shouldn't have a screen with old sort and multiple boards.
-        oldsort = prevSort;
-        prevSort = {};
-        prevSort[prevBoard] = oldsort;
-      }
-      if (!angular.isArray(prevBoard)) {
-        prevBoard = [prevBoard];
-      }
-      prevBoard.push(currentBoard._id);
-      prevSort[currentBoard._id] = $scope.screens.length;
-      boardsAndSort.board = prevBoard;
-      boardsAndSort.sortkey = prevSort;
-      $http.post(url, boardsAndSort).success(function (data) {
-        if (data === '1') {
-          ss.board = prevBoard;
-          ss.sortkey = prevSort;
-          $scope.screens.push(ss);
-        }
-        $scope.cancelAddScreen();
-      });
     };
 
     var sanitize = function (data) {
@@ -179,17 +79,6 @@ define(['angular'], function (angular) {
       for (key = 0; key < toRemove.length; key += 1) {
         delete data[toRemove[key]];
       }
-    };
-
-    $scope.loadSharedScreens = function (boardId) {
-      var url = '/api/shared/' + boardId;
-      $http.get(url).success(function (data) {
-        $scope.sharedScreens = data;
-      });
-    };
-
-    $scope.addNewScreen = function () {
-      $scope.openNewScreenForm = true;
     };
 
     $scope.startEditingBoard = function () {
@@ -306,14 +195,6 @@ define(['angular'], function (angular) {
         $scope.openEditBoardForm = false;
       }
     };
-
-    $scope.loadBoards = function () {
-      var url = '/data/boards?sort=_created';
-      $http.get(url).success(function (data) {
-        $scope.boards = data;
-      });
-    };
-    $scope.loadBoards();
 
     $scope.addBoard = function (board) {
       var newBoard, bIndex;
