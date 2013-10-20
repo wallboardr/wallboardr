@@ -37,7 +37,7 @@ define(['angular'], function (angular) {
       },
       resetUser: function () {
         angular.copy(transformUser(emptyUser), $rootScope.user);
-        $rootScope.$broadcast('logout');
+        $rootScope.$broadcast('user:logout');
       }
     };
   };

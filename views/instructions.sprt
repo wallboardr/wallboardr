@@ -1,0 +1,83 @@
+  <div class="instructions">
+    <div class="intro" ng-hide="activeBoard || user.loggedIn">
+      <h2>Welcome to Wallboardr.</h2>
+      <p>
+        This is a system to help you manage wallboards, typically used within an organization or team to radiate information. The system supports multiple wallboards, which are listed on the left. Click on the link icon for each board to view it.
+      </p>
+      <ul>
+        <li>Only supports a single screen type at the moment: local message. More to come.</li>
+      </ul>
+    </div>
+    <div class="intro" ng-hide="activeBoard || !user.loggedIn">
+      <h2>Welcome {{user.name}}</h2>
+      <p>
+        We hope you enjoy maintaining your wallboards. On your left is the wallboard list, you can create as many wallboards as you like, and each is available at a different URL, which you can get to via the link icon with each board.
+      </p>
+      <p>
+        Each wallboard can contain many different screens, which will show up in this space once you select a board on the left. You can add, edit and arrange your screens which will appear on your wallboard.
+      </p>
+    </div>
+    <div class="intro" ng-show="activeBoard &amp;&amp; !activeScreen &amp;&amp; !newScreen.type">
+      <h2>Working with screens</h2>
+      <p>
+        You can now see more information on your board, and manage its screens in the middle.
+      </p>
+      <p>
+        If you click the pencil icon (<i class="icon-pencil"></i>) at the top of the board, you can edit the properties of your board. The save and cancel buttons can be used to commit your changes or cancel them. There is also a large orange button which says "Refresh Open Boards", which can be used to update any browsers currently viewing that board once you've made changes to its screens.
+      </p>
+      <p>
+        Screens are listed below the board info. You can add new screens using the plus button (<i class="icon-plus"></i>). It will open a form below the screens list. Screens can be shared between boards, any screen which is currently marked as shareable will have a green share icon (<i class="icon-share"></i>) before its name in the list. If a screen is no longer shareable, but is shared between boards, it will have a while share icon.
+      </p>
+      <p>
+        You can change the order of the boards by clicking on the blue up (<i class="icon-arrow-up"></i>) and down (<i class="icon-arrow-down"></i>) arrows next to the screen name. If you have created some screens, you can edit them by clicking on them in the list.
+      </p>
+    </div>
+    <div class="intro" ng-show="activeBoard &amp;&amp; newScreen.type=='local'">
+      <h2>Adding a message screen</h2>
+      <p>
+        Message screens are the most basic, yet most versatile of the screens available. As the name suggests, it allows you to add a message which you can then update manually as required.
+      </p>
+      <p>
+        By default messages will be displayed as big as possible on the screen given the amount of text to display.
+      </p>
+      <p>
+        There are a couple of special messages you can create. First, you can create a list by using the * or # characters at the beginning of the line followed by a space. The * is for bullet lists, the # is for numbered lists.
+      </p>
+      <p>
+        The other special message is a table. You can create a simple two column table by adding a | (pipe) character within each line of text. At the moment, the lists and tables don't resize automatically to fill the screen. The other thing they do is display the name of screen as a title above the message. Normal messages do not display their names.
+      </p>
+      <p>
+        If you want to be able to share this screen with other boards, check the "Share this screen" option.
+      </p>
+    </div>
+    <div class="intro" ng-show="activeBoard &amp;&amp; newScreen.type=='shared'">
+      <h2>Adding a shared screen</h2>
+      <p>
+        A shared screen is simply one that belongs to another board, but which has been marked as shareable. If you update the screen, the change will be reflected on all boards it shows up on.
+      </p>
+      <p>
+        If there are no shareable screens available which aren't already part of the current board, this option won't show up.
+      </p>
+    </div>
+    <div class="intro" ng-show="activeBoard &amp;&amp; newScreen.type=='html'">
+      <h2>Adding an HTML screen</h2>
+      <p>
+        HTML screens are not fully implemented from a display perspective. They are intended to be used to grab snippets of HTML from other sites/servers to display on the wallboard. However determining how best to display that information is the challenge. Best to avoid for now.
+      </p>
+    </div>
+    <div class="intro" ng-show="activeBoard &amp;&amp; newScreen.type=='teamcity'">
+      <h2>Adding a TeamCity screen</h2>
+      <p>
+        TeamCity screens are not fully implemented yet, it would be best to avoid them for now. Eventually they will allow you to choose a set of teamcity configurations to monitor for pass/fail status.
+      </p>
+    </div>
+    <div class="intro" ng-show="activeBoard &amp;&amp; activeScreen &amp;&amp; !newScreen.type &amp;&amp; !openEditScreenForm">
+      <h2>Editing a screen</h2>
+      <p>
+        Once you've clicked on a screen, you'll be able to see its details above. At this point, you can click on the pencil (<i class="icon-pencil"></i>) to edit the properties of the screen, it will open a form above with the usual Save and Cancel buttons.
+      </p>
+      <p>
+        You can also click on the eye icon (<i class="icon-eye"></i>) to disable the screen. If a screen is disabled, it will appear slightly greyed and italicized in the list of screens, and the eye icon will change to (<i class="icon-eye-blocked"></i>)
+      </p>
+    </div>
+  </div>

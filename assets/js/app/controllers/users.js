@@ -69,16 +69,17 @@ define([], function () {
 
     $scope.closeMgmt = function () {
       $scope.userMgmtVisible = false;
-      $scope.$root.$broadcast('hideUserMgmt');
+      $scope.$root.$broadcast('user:management:hide');
     };
 
-    $scope.$on('showUserMgmt', function () {
+    $scope.$on('user:management:show', function () {
       $scope.findAll();
       $scope.userMgmtVisible = true;
     });
   };
 
   usersController.$inject = ['$scope', '$http', 'auth'];
+  usersController.ctrlName = 'UserController';
 
   return usersController;
 });
