@@ -1,4 +1,4 @@
-define([], function () {
+define(['angular', 'app/util'], function (angular, util) {
   'use strict';
 
   var boardListController = function ($scope, $http) {
@@ -20,11 +20,21 @@ define([], function () {
       if ($scope.user.loggedIn && ($scope.activeBoardId == null || $scope.activeBoardId !== $scope.boards[index]._id)) {
         $scope.activeBoardId = $scope.boards[index]._id;
         $scope.$root.$broadcast('board:selected', $scope.boards[index]);
-        //$scope.cancelAddScreen();
-        //$scope.cancelEditScreen();
-        //$scope.activeScreen = null;
-        //$scope.loadScreens($scope.activeBoard._id);
-        //$scope.loadSharedScreens($scope.activeBoard._id);
+      }
+    };
+
+    $scope.addBoard = function (board) {
+      var newBoard, bIndex;
+      if (board.$valid) {
+        newBoard = angular.copy(board);
+        $http.post('/data/boards', newBoard).success(function (data) {
+          if (data && angular.isArray(data)) {
+            for (bIndex = 0; bIndex < data.length; bIndex += 1) {
+              $scope.boards.push(data[bIndex]);
+            }
+          }
+        });
+        util.cleanForm(board);
       }
     };
 

@@ -1,4 +1,4 @@
-define(['angular'], function (angular) {
+define(['angular', 'app/util'], function (angular, util) {
   'use strict';
 
   var screenListController = function ($scope, $http) {
@@ -44,13 +44,40 @@ define(['angular'], function (angular) {
       return classes;
     };
 
-    var cleanForm = function (form) {
-      var key;
-      for (key in form) {
-        if (Object.prototype.hasOwnProperty.call(form, key) && key[0] !== '$') {
-          form[key] = '';
-        }
+    var saveScreenOrder = function (index) {
+      var changedScreen = $scope.screens[index],
+          currentBoard = $scope.activeBoardId,
+          key = changedScreen.sortkey,
+          url = '/data/screens/_id/' + changedScreen._id;
+      if (!angular.isObject(key)) {
+        key = {};
       }
+      key[currentBoard] = index;
+      $http.post(url, {sortkey: key});
+    };
+
+    $scope.moveUp = function (screenIndex) {
+      var hold;
+      if (screenIndex <= 0) {
+        return;
+      }
+      hold = $scope.screens[screenIndex];
+      $scope.screens[screenIndex] = $scope.screens[screenIndex - 1];
+      $scope.screens[screenIndex - 1] = hold;
+      saveScreenOrder(screenIndex);
+      saveScreenOrder(screenIndex - 1);
+    };
+
+    $scope.moveDown = function (screenIndex) {
+      var hold;
+      if (screenIndex >= $scope.screens.length - 1) {
+        return;
+      }
+      hold = $scope.screens[screenIndex];
+      $scope.screens[screenIndex] = $scope.screens[screenIndex + 1];
+      $scope.screens[screenIndex + 1] = hold;
+      saveScreenOrder(screenIndex);
+      saveScreenOrder(screenIndex + 1);
     };
 
     $scope.addScreen = function (screen) {
@@ -68,7 +95,7 @@ define(['angular'], function (angular) {
               $scope.screens.push(data[sIndex]);
             }
           }
-          cleanForm(screen);
+          util.cleanForm(screen);
           $scope.cancelAddScreen();
         });
       }
@@ -83,6 +110,7 @@ define(['angular'], function (angular) {
     });
 
     $scope.$on('user:logout', function () {
+      $scope.activeScreenId = null;
       $scope.screens = [];
     });
   };
