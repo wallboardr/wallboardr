@@ -20,7 +20,7 @@
 				<textarea rows="4" ng-model="newBoard.desc" placeholder="Description"></textarea><br>
 				<input type="number" ng-model="newBoard.duration" placeholder="Default duration" min="0">
 				<button ng-click="addBoard(newBoard)" class="success">Add</button>
-				<button ng-click="openNewBoardForm=false" class="cancel">Cancel</button>
+				<button ng-click="cancelAddBoard()" class="cancel">Cancel</button>
 			</form>
 		</div>
 	</div>
