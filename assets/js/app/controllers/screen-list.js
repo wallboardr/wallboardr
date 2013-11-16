@@ -1,4 +1,4 @@
-define(['angular', 'app/util'], function (angular, util) {
+define(['angular'], function (angular) {
   'use strict';
 
   var screenListController = function ($scope, $http) {
@@ -9,7 +9,7 @@ define(['angular', 'app/util'], function (angular, util) {
       var url = '/data/screens/board/' + boardId + '?sort=sortkey.' + boardId;
       $http.get(url).success(function (data) {
         $scope.screens = data;
-        $scope.$root.$broadcast('screen:list:loaded', $scope.screens.length);
+        $scope.$root.$broadcast('screen:list:changed', $scope.screens.length);
       });
     };
 
@@ -80,29 +80,23 @@ define(['angular', 'app/util'], function (angular, util) {
       saveScreenOrder(screenIndex + 1);
     };
 
-    $scope.addScreen = function (screen) {
-      var newScreen, sIndex;
-      if (screen.$valid && $scope.activeBoard) {
-        newScreen = angular.copy(screen);
-        newScreen.type = $scope.newScreen.type;
-        newScreen.board = [$scope.activeBoard._id];
-        newScreen.sortkey = {};
-        newScreen.sortkey[$scope.activeBoard._id] = $scope.screens.length;
-        newScreen.duration = newScreen.duration || 0;
-        $http.post('/data/screens', newScreen).success(function (data) {
-          if (data && angular.isArray(data)) {
-            for (sIndex = 0; sIndex < data.length; sIndex += 1) {
-              $scope.screens.push(data[sIndex]);
-            }
-          }
-          util.cleanForm(screen);
-          $scope.cancelAddScreen();
-        });
-      }
+    $scope.addNewScreen = function () {
+      $scope.$root.$broadcast('screen:new:open');
     };
 
     $scope.$on('screen:list:add', function (e, scr) {
-      $scope.screens.push(scr);
+      var sIndex;
+      if (!scr) {
+        return;
+      }
+      if (angular.isArray(scr)) {
+        for (sIndex = 0; sIndex < scr.length; sIndex += 1) {
+          $scope.screens.push(scr[sIndex]);
+        }
+      } else {
+        $scope.screens.push(scr);
+      }
+      $scope.$root.$broadcast('screen:list:changed', $scope.screens.length);
     });
 
     $scope.$on('board:selected', function (e, board) {

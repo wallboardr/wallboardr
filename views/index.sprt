@@ -66,7 +66,7 @@
     </div>
 
     <!-- NEW SCREEN WIZARD -->
-    <div class="create-screen-area" ng-show="openNewScreenForm">
+    <div class="create-screen-area" ng-show="openNewScreenForm" ng-controller="CreateScreenController">
       <h2 class="title">{{newScreen.title}}</h2>
   		<div class="create-screen widget">
   			<div class="choices" ng-hide="newScreen.type">

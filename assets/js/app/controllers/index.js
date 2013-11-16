@@ -1,26 +1,15 @@
 define(['angular', 'app/util'], function (angular, util) {
   'use strict';
   var indexController = function ($scope, $http, primus) {
-    var resetNewScreen = function () {
-      var ns = $scope.newScreen;
-      if (!ns) {
-        return;
-      }
-      ns.type = '';
-      ns.title = 'Choose a screen type';
-    };
 
     $scope.activeBoard = null;
     $scope.activeScreen = null;
-    $scope.newScreen = {};
-    resetNewScreen();
 
     // ------ Handle user related stuff ------------------------------------
 
     $scope.$on('user:logout', function () {
       $scope.activeBoard = null;
       $scope.activeScreen = null;
-      resetNewScreen();
     });
 
     $scope.$on('user:management:show', function () {
@@ -81,24 +70,6 @@ define(['angular', 'app/util'], function (angular, util) {
     $scope.$on('screen:selected', function (e, scr) {
       $scope.activeScreen = scr;
     });
-
-    $scope.$on('screen:shared:list:loaded', function (e, count) {
-      $scope.haveSharedScreens = count > 0;
-    });
-
-    $scope.chooseScreenType = function (type) {
-      $scope.newScreen.type = type;
-      $scope.newScreen.title = 'Enter ' + type + ' screen info';
-    };
-
-    $scope.addNewScreen = function () {
-      $scope.openNewScreenForm = true;
-    };
-
-    $scope.cancelAddScreen = function () {
-      $scope.openNewScreenForm = false;
-      resetNewScreen();
-    };
 
     $scope.startEditingScreen = function () {
       $scope.cancelAddScreen();
