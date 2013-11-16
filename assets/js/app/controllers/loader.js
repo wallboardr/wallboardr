@@ -3,6 +3,7 @@ define([
     'controller/users',
     'controller/board-list',
     'controller/screen-list',
+    'controller/screen-add',
     'controller/screen-shared'
   ],
   function () {

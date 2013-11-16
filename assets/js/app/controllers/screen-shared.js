@@ -9,7 +9,7 @@ define(['angular'], function (angular) {
       var url = '/api/shared/' + boardId;
       $http.get(url).success(function (data) {
         $scope.sharedScreens = data;
-        $scope.$root.$broadcast('screen:shared:list:loaded', $scope.sharedScreens.length);
+        $scope.$root.$broadcast('screen:shared:list:changed', $scope.sharedScreens.length);
       });
     };
 
@@ -41,6 +41,7 @@ define(['angular'], function (angular) {
       $http.post(url, boardsAndSort).success(function (data) {
         if (data === '1') {
           $scope.$root.$broadcast('screen:list:add', ss);
+          $scope.$root.$broadcast('screen:shared:list:changed', $scope.sharedScreens.length);
         }
         $scope.cancelAddScreen();
       });
@@ -50,7 +51,7 @@ define(['angular'], function (angular) {
       $scope.loadSharedScreens(board._id);
     });
 
-    $scope.$on('screen:list:loaded', function (e, total) {
+    $scope.$on('screen:list:changed', function (e, total) {
       nextSortkey = total;
     });
 
