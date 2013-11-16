@@ -35,6 +35,7 @@ define(['angular', 'app/util'], function (angular, util) {
           }
         });
         util.cleanForm(board);
+        $scope.openNewBoardForm = false;
       }
     };
 
@@ -44,6 +45,10 @@ define(['angular', 'app/util'], function (angular, util) {
 
     $scope.canAddBoard = function () {
       return $scope.$root.user.isAdmin;
+    };
+
+    $scope.cancelAddBoard = function () {
+      $scope.openNewBoardForm = false;
     };
 
     $scope.noBoardsAdmin = function () {

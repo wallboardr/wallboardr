@@ -23,7 +23,6 @@ define(['angular', 'app/util'], function (angular, util) {
 
     $scope.$on('board:selected', function (e, board) {
       $scope.activeBoard = board;
-      $scope.cancelAddScreen();
       $scope.cancelEditScreen();
       $scope.activeScreen = null;
     });
@@ -31,10 +30,6 @@ define(['angular', 'app/util'], function (angular, util) {
     $scope.notifyBoardChange = function () {
       var boardId = $scope.activeBoard._id;
       primus.write({updated: boardId});
-    };
-
-    $scope.cancelAddBoard = function () {
-      $scope.openNewBoardForm = false;
     };
 
     $scope.startEditingBoard = function () {
@@ -72,10 +67,10 @@ define(['angular', 'app/util'], function (angular, util) {
     });
 
     $scope.startEditingScreen = function () {
-      $scope.cancelAddScreen();
       $scope.activeScreenEdit = angular.copy($scope.activeScreen);
       util.sanitize($scope.activeScreenEdit);
       $scope.openEditScreenForm = true;
+      $scope.$root.$broadcast('screen:edit:opened');
     };
 
     $scope.cancelEditScreen = function () {

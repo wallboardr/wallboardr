@@ -52,6 +52,14 @@ define(['angular', 'app/util'], function (angular, util) {
       resetNewScreen();
     });
 
+    $scope.$on('board:selected', function () {
+      $scope.cancelAddScreen();
+    });
+
+    $scope.$on('screen:edit:opened', function () {
+      $scope.cancelAddScreen();
+    });
+
     $scope.$on('screen:list:changed', function (e, total) {
       nextSortkey = total;
     });
