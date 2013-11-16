@@ -27,7 +27,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"] {
 */
-.icon-pencil, .icon-user, .icon-pictures, .icon-disk, .icon-screen, .icon-clock, .icon-cloud-upload, .icon-menu, .icon-star, .icon-cog, .icon-users, .icon-stats, .icon-eye, .icon-eye-blocked, .icon-key, .icon-lock, .icon-reload, .icon-remove, .icon-ok, .icon-link, .icon-plus, .icon-arrow-up, .icon-arrow-down, .icon-share {
+.icon-pencil, .icon-user, .icon-pictures, .icon-disk, .icon-screen, .icon-clock, .icon-cloud-upload, .icon-menu, .icon-star, .icon-cog, .icon-users, .icon-stats, .icon-eye, .icon-eye-blocked, .icon-key, .icon-lock, .icon-reload, .icon-remove, .icon-ok, .icon-link, .icon-plus, .icon-arrow-up, .icon-arrow-down, .icon-share, .icon-unlink {
 	font-family: 'wallboardr-font';
 	speak: none;
 	font-style: normal;
@@ -113,4 +113,8 @@ you can use the generic selector below, but it's slower:
 }
 .icon-share:before {
   content: "\e015";
+}
+.icon-unlink:before {
+  content: "\f127";
+  font-size: 14px;
 }
