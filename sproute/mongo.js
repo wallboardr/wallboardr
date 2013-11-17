@@ -35,16 +35,27 @@ Backend.prototype = {
 
 		//setup the mongo db object
 		this.db = new mongo.Db(
-			opts.name, 
-			new mongo.Server(dbOpts.host || HOST, dbOpts.port || PORT), 
+			opts.name,
+			new mongo.Server(dbOpts.host || HOST, dbOpts.port || PORT),
 			OPTS.open
 		);
-		
+
 		var self = this;
 		var f = ff(this, function () {
 			this.db.open(f.slot());
 			this.db.on("error", this.error);
 		}, function (db) {
+      f.pass(db);
+      if (dbOpts.username && dbOpts.password) {
+        db.authenticate(dbOpts.username, dbOpts.password, f.slot());
+      } else {
+        f.pass(true);
+      }
+    }, function (db, authResult) {
+      if (!authResult) {
+        this.error('Could not authenticate');
+        return;
+      }
 			//loop over structure and create
 			//a collection
 			Object.keys(opts.structure).forEach(function (table) {
@@ -78,7 +89,7 @@ Backend.prototype = {
 		next = next || function () {};
 
 		var f = ff(this, function () {
-			this.db.collection(this.currentTable, OPTS.collection, f.slot());	
+			this.db.collection(this.currentTable, OPTS.collection, f.slot());
 		}, function (collection) {
 			collection.insert(data, OPTS.insert, f.slot());
 		}).cb(next);
@@ -88,7 +99,7 @@ Backend.prototype = {
 		next = next || function () {};
 
 		var f = ff(this, function () {
-			this.db.collection(this.currentTable, OPTS.collection, f.slot());	
+			this.db.collection(this.currentTable, OPTS.collection, f.slot());
 		}, function (collection) {
 			collection.update(where, data, OPTS.update, f.slot());
 		}).cb(next);
@@ -98,7 +109,7 @@ Backend.prototype = {
 		next = next || function () {};
 
 		var f = ff(this, function () {
-			this.db.collection(this.currentTable, OPTS.collection, f.slot());	
+			this.db.collection(this.currentTable, OPTS.collection, f.slot());
 		}, function (collection) {
 			collection.remove(data, OPTS.remove, f.slot());
 		}).cb(next);
@@ -112,7 +123,7 @@ Backend.prototype = {
 		}
 
 		var f = ff(this, function () {
-			this.db.collection(this.currentTable, OPTS.collection, f.slot());	
+			this.db.collection(this.currentTable, OPTS.collection, f.slot());
 		}, function (collection) {
 			collection.find(where, omit, opts).toArray(next)
 		}).error(next);
@@ -122,7 +133,7 @@ Backend.prototype = {
 		next = next || function () {};
 
 		var f = ff(this, function () {
-			this.db.collection(this.currentTable, OPTS.collection, f.slot());	
+			this.db.collection(this.currentTable, OPTS.collection, f.slot());
 		}, function (collection) {
 			collection.ensureIndex(fields, opts, f.slot());
 		}).cb(next);
