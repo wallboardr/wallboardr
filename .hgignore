@@ -5,3 +5,4 @@ coverage
 syntax: glob
 .nodemonignore
 *.sublime-workspace
+config.json
