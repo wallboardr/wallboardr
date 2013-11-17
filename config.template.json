@@ -6,8 +6,8 @@
 		"end": "%>"
 	},
 	"admin": {
-		"name": "colin",
-		"pass": "hardcore5982",
-		"email": "colin@colinbate.com"
+		"name": "admin",
+		"pass": "admin",
+		"email": "admin@example.com"
 	}
 }
