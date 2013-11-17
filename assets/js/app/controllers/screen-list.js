@@ -1,15 +1,20 @@
-define(['angular'], function (angular) {
+define(['angular', 'app/util'], function (angular, util) {
   'use strict';
 
   var screenListController = function ($scope, $http) {
+    var announceListChange = function () {
+      $scope.$root.$broadcast('screen:list:changed', $scope.screens.length);
+    };
+
     $scope.screens = [];
     $scope.activeScreenId = null;
+    $scope.activeScreenIndex = null;
 
     $scope.loadScreens = function (boardId) {
       var url = '/data/screens/board/' + boardId + '?sort=sortkey.' + boardId;
       $http.get(url).success(function (data) {
         $scope.screens = data;
-        $scope.$root.$broadcast('screen:list:changed', $scope.screens.length);
+        announceListChange();
       });
     };
 
@@ -20,8 +25,20 @@ define(['angular'], function (angular) {
       if ($scope.activeScreenId == null || $scope.activeScreenId !== $scope.screens[index]._id) {
         $scope.cancelEditScreen();
         $scope.activeScreenId = $scope.screens[index]._id;
+        $scope.activeScreenIndex = index;
         $scope.$root.$broadcast('screen:selected', $scope.screens[index]);
       }
+    };
+
+    $scope.removeActiveScreenFromList = function () {
+      if ($scope.activeScreenIndex === null ||
+        !$scope.screens ||
+        $scope.screens.length <= $scope.activeScreenIndex) {
+        throw new Error('There is no active screen to remove');
+      }
+      $scope.screens.splice($scope.activeScreenIndex, 1);
+      announceListChange();
+      $scope.$root.$broadcast('screen:deselected');
     };
 
     $scope.screenStateClass = function (scr) {
@@ -37,7 +54,7 @@ define(['angular'], function (angular) {
         if (scr.shareable) {
           classes.push('is-shareable');
         }
-        if (angular.isArray(scr.board) && scr.board.length > 1) {
+        if (util.multiLinked(scr)) {
           classes.push('is-shared');
         }
       }
@@ -96,15 +113,25 @@ define(['angular'], function (angular) {
       } else {
         $scope.screens.push(scr);
       }
-      $scope.$root.$broadcast('screen:list:changed', $scope.screens.length);
+      announceListChange();
+    });
+
+    $scope.$on('screen:list:remove', function (e, localonly) {
+      if (localonly) {
+        $scope.removeActiveScreenFromList();
+      }
+      // This doesn't know how to remove arbitrary screens yet.
     });
 
     $scope.$on('board:selected', function (e, board) {
+      $scope.activeScreenIndex = null;
+      $scope.activeScreenId = null;
       $scope.loadScreens(board._id);
     });
 
     $scope.$on('user:logout', function () {
       $scope.activeScreenId = null;
+      $scope.activeScreenIndex = null;
       $scope.screens = [];
     });
   };

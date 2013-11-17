@@ -1,4 +1,4 @@
-define([], function () {
+define(['angular'], function (angular) {
   'use strict';
 
   var hop = Object.prototype.hasOwnProperty,
@@ -20,10 +20,14 @@ define([], function () {
         for (key = 0; key < toRemove.length; key += 1) {
           delete data[toRemove[key]];
         }
+      },
+      multiLinked = function (scr) {
+        return (angular.isArray(scr.board) && scr.board.length > 1);
       };
 
   return {
-    cleanForm: cleanForm,
-    sanitize:  sanitize
+    cleanForm:   cleanForm,
+    sanitize:    sanitize,
+    multiLinked: multiLinked
   };
 });

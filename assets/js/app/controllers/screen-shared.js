@@ -40,6 +40,7 @@ define(['angular'], function (angular) {
       boardsAndSort.sortkey = ss.sortkey;
       $http.post(url, boardsAndSort).success(function (data) {
         if (data === '1') {
+          $scope.sharedScreens.splice(index, 1);
           $scope.$root.$broadcast('screen:list:add', ss);
           $scope.$root.$broadcast('screen:shared:list:changed', $scope.sharedScreens.length);
         }
@@ -47,8 +48,36 @@ define(['angular'], function (angular) {
       });
     };
 
+    $scope.unlinkScreen = function (scr, boardId) {
+      var bIndex = scr.board.indexOf(boardId),
+          url = '/data/screens/_id/' + scr._id,
+          boardsAndSort = {};
+
+      if (bIndex < 0) {
+        throw new Error('Board does not contain this screen!');
+      }
+      scr.board.splice(bIndex, 1);
+      delete scr.sortkey[boardId];
+      boardsAndSort.board = scr.board;
+      boardsAndSort.sortkey = scr.sortkey;
+      $http.post(url, boardsAndSort).success(function (data) {
+        if (data === '1') {
+          if (scr.shareable) {
+            $scope.sharedScreens.push(scr);
+          }
+          $scope.$root.$broadcast('screen:list:remove', true);
+          $scope.$root.$broadcast('screen:shared:list:changed', $scope.sharedScreens.length);
+        }
+      });
+
+    };
+
     $scope.$on('board:selected', function (e, board) {
       $scope.loadSharedScreens(board._id);
+    });
+
+    $scope.$on('screen:shared:unlink', function (e, scr, boardId) {
+      $scope.unlinkScreen(scr, boardId || $scope.activeBoard._id);
     });
 
     $scope.$on('screen:list:changed', function (e, total) {
