@@ -66,6 +66,11 @@ define(['angular', 'app/util'], function (angular, util) {
       $scope.activeScreen = scr;
     });
 
+    $scope.$on('screen:deselected', function () {
+      $scope.cancelEditScreen();
+      $scope.activeScreen = null;
+    });
+
     $scope.startEditingScreen = function () {
       $scope.activeScreenEdit = angular.copy($scope.activeScreen);
       util.sanitize($scope.activeScreenEdit);
@@ -84,6 +89,15 @@ define(['angular', 'app/util'], function (angular, util) {
 
     var revertScreen = function (err, backup) {
       angular.copy(backup, $scope.activeScreen);
+    };
+
+    $scope.isMultiLinkedScreen = function () {
+      // Removing an unlinked screen requires a recent browser with array.indexOf
+      return $scope.activeScreen && util.multiLinked($scope.activeScreen) && Array.prototype.indexOf;
+    };
+
+    $scope.unlinkScreen = function () {
+      $scope.$root.$broadcast('screen:shared:unlink', $scope.activeScreen, $scope.activeBoard._id);
     };
 
     $scope.toggleVisibleScreen = function () {

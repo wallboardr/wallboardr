@@ -428,7 +428,8 @@ you can use the generic selector below, but it's slower:
 .icon-plus,
 .icon-arrow-up,
 .icon-arrow-down,
-.icon-share {
+.icon-share,
+.icon-unlink {
   font-family: 'wallboardr-font';
   speak: none;
   font-style: normal;
@@ -514,6 +515,10 @@ you can use the generic selector below, but it's slower:
 }
 .icon-share:before {
   content: "\e015";
+}
+.icon-unlink:before {
+  content: "\f127";
+  font-size: 14px;
 }
 body {
   font-family: Arial, sans-serif;
@@ -896,6 +901,27 @@ nav .submenu.wide {
 .controls button:first-child,
 .controls .btn:first-child {
   border-left: 0;
+}
+.vertical-tools {
+  padding-top: 0;
+  margin-top: 1em;
+  background-color: #1c4348;
+}
+.vertical-tools .controls {
+  position: relative;
+  z-index: 1;
+  float: right;
+  margin-right: 0;
+}
+.vertical-tools .controls button,
+.vertical-tools .controls .btn {
+  border-left: 0;
+  border-bottom: 1px solid #2a656d;
+}
+.vertical-tools > h2,
+.vertical-tools > div {
+  margin-right: 64px;
+  margin-bottom: 0;
 }
 .horizontal-controls {
   float: right;

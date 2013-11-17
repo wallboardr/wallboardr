@@ -110,12 +110,13 @@
 	</div>
 
   <!-- RIGHT COLUMN -->
-	<div class="screen-editor" ng-show="activeScreen &amp;&amp; user.loggedIn">
-		<h2 class="title" ng-show="activeScreen">{{activeScreen.name}}
-			<div class="controls">
-				<button ng-click="toggleVisibleScreen()"><i ng-class="{'icon-eye': !activeScreen.disabled, 'icon-eye-blocked': activeScreen.disabled}"></i></button><button ng-click="startEditingScreen()"><i class="icon-pencil"></i></button>
-			</div>
-		</h2>
+	<div class="screen-editor vertical-tools" ng-show="activeScreen &amp;&amp; user.loggedIn">
+    <div class="controls">
+      <button ng-click="startEditingScreen()"><i class="icon-pencil"></i></button><br>
+      <button ng-click="toggleVisibleScreen()"><i ng-class="{'icon-eye': !activeScreen.disabled, 'icon-eye-blocked': activeScreen.disabled}"></i></button><br>
+      <button ng-click="unlinkScreen()" ng-show="isMultiLinkedScreen()"><i class="icon-unlink"></i></button>
+    </div>
+		<h2 class="title" ng-show="activeScreen">{{activeScreen.name}}</h2>
 		<div class="screen-details widget" ng-show="activeScreen">
 			<div class="info" ng-bind-html-unsafe="activeScreen.message | nl2br" ng-show="activeScreen.message"></div>
 			<div class="info" ng-show="activeScreen.url">
