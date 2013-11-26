@@ -3,5 +3,5 @@
 	"/index": "index",
 	"/proxy/:page": "proxy",
 	"/admin": "admin",
-	"/view/:board": "board"
+	"/view": "board"
 }

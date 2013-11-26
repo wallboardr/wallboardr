@@ -20,12 +20,21 @@ function ($, ich, player, Primus) {
               }
           });
         },
+        getBoardData = function () {
+          var hash = window.location.href.substr(window.location.href.indexOf('#')+1),
+              url = '/data/boards/slug/' + hash + '?single=true';
+          $.ajaxSetup({ dataType: 'json' });
+          $.ajax(url).done(function (data) {
+            if (data) {
+              dataUrl = '/data/screens/board/' + data._id + '?sort=sortkey.' + data._id;
+              defaultDuration = data.duration || 30;
+              notifyUrl = '/?board=' + data._id;
+              initData();
+            }
+          });
+        },
         initData = function () {
-            $.ajaxSetup({ dataType: 'json' });
             ich.grabTemplates();
-            dataUrl = $('body').data('url');
-            notifyUrl = $('body').data('notify');
-            defaultDuration = $('body').data('duration') || 30;
             $.ajax(dataUrl).done(function (data) {
                 if (data.length) {
                     screenPlayer = player(data, defaultDuration);
@@ -41,6 +50,6 @@ function ($, ich, player, Primus) {
         };
 
     return {
-        bootstrap: initData
+        bootstrap: getBoardData
     };
 });
