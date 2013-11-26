@@ -1,11 +1,11 @@
 <div class="index-view">
   <!-- LEFT COLUMN -->
 	<div class="board-mgmt" ng-controller="BoardListController">
-		<h2 class="title">Available wallboards <div class="controls" ng-show="canAddBoard()"><button ng-click="openNewBoardForm=true"><i class="icon-plus"></i></button></div></h2>
+		<h2 class="title">Available wallboards <div class="controls" ng-show="canAddBoard()"><button ng-click="openNewBoardForm=true" title="Add new board"><i class="icon-plus"></i></button></div></h2>
 		<div class="board-list widget ng-cloak">
 			<div class="board list-item ng-cloak" ng-repeat="board in boards" ng-class="{'is-active': isActiveBoard($index)}" ng-click="setActiveBoard($index)">
 				<div class="horizontal-controls">
-					<a class="btn" ng-href="/view/{{board.slug}}"><i class="icon-link"></i></a>
+					<a class="btn" ng-href="/view/{{board.slug}}" title="View board"><i class="icon-link"></i></a>
 				</div>
 				<div class="info">{{board.name}}</div>
 			</div>
@@ -29,10 +29,10 @@
 	<div class="screen-mgmt" ng-show="activeBoard &amp;&amp; user.loggedIn">
 
     <div><!-- FUTURE BoardController -->
-  		<h2 class="title">{{activeBoard.name}} <div class="controls"><button ng-click="startEditingBoard()"><i class="icon-pencil"></i></button></div></h2>
+  		<h2 class="title">{{activeBoard.name}} <div class="controls"><button ng-click="startEditingBoard()" title="Edit board"><i class="icon-pencil"></i></button></div></h2>
   		<div class="board-details widget" ng-hide="openEditBoardForm">
   			<div class="horizontal-controls full-row">
-  				<span class="duration btn inert"><i class="icon-clock"></i> <span>{{activeBoard.duration || '-'}}</span></span>
+  				<span class="duration btn inert" title="Duration"><i class="icon-clock"></i> <span>{{activeBoard.duration || '-'}}</span></span>
   				<span class="url btn inert"><i class="icon-link"></i> <span>/view/{{activeBoard.slug}}</span></span>
   			</div>
   			<div class="info">
@@ -53,11 +53,11 @@
     </div>
 
     <div ng-controller="ScreenListController">
-  		<h2 class="title">Screens for {{activeBoard.name}} <div class="controls"><button ng-click="addNewScreen()"><i class="icon-plus"></i></button></div></h2>
+  		<h2 class="title">Screens for {{activeBoard.name}} <div class="controls"><button ng-click="addNewScreen()" title="Add new screen"><i class="icon-plus"></i></button></div></h2>
   		<div class="screen-list widget" ng-show="screens.length">
   			<div class="screen list-item ng-cloak" ng-repeat="screen in screens" ng-class="screenStateClass(screen)" ng-click="setActiveScreen($index)">
   				<span class="horizontal-controls">
-  					<span class="btn rocker" ng-class="{topmost: $first}"><span class="up icon-arrow-up" ng-click="moveUp($index);$event.stopPropagation();"></span><span class="down icon-arrow-down" ng-hide="$last" ng-click="moveDown($index);$event.stopPropagation();"></span></span>
+  					<span class="btn rocker" ng-class="{topmost: $first}"><span class="up icon-arrow-up" title="Move screen up" ng-click="moveUp($index);$event.stopPropagation();"></span><span class="down icon-arrow-down" ng-hide="$last" title="Move screen down" ng-click="moveDown($index);$event.stopPropagation();"></span></span>
   					<span class="duration btn inert"><i class="icon-clock"></i> <span>{{screen.duration || activeBoard.duration || 30}}</span></span>
   				</span>
   				<span class="name"><span class="icon-share"></span>{{screen.name}}</span>
@@ -112,9 +112,9 @@
   <!-- RIGHT COLUMN -->
 	<div class="screen-editor vertical-tools" ng-show="activeScreen &amp;&amp; user.loggedIn">
     <div class="controls">
-      <button ng-click="startEditingScreen()"><i class="icon-pencil"></i></button><br>
-      <button ng-click="toggleVisibleScreen()"><i ng-class="{'icon-eye': !activeScreen.disabled, 'icon-eye-blocked': activeScreen.disabled}"></i></button><br>
-      <button ng-click="unlinkScreen()" ng-show="isMultiLinkedScreen()"><i class="icon-unlink"></i></button>
+      <button ng-click="startEditingScreen()" title="Edit screen"><i class="icon-pencil"></i></button><br>
+      <button ng-click="toggleVisibleScreen()" title="Toggle screen visibility"><i ng-class="{'icon-eye': !activeScreen.disabled, 'icon-eye-blocked': activeScreen.disabled}"></i></button><br>
+      <button ng-click="unlinkScreen()" title="Unlink screen from current board" ng-show="isMultiLinkedScreen()"><i class="icon-unlink"></i></button>
     </div>
 		<h2 class="title" ng-show="activeScreen">{{activeScreen.name}}</h2>
 		<div class="screen-details widget" ng-show="activeScreen">
