@@ -1,6 +1,6 @@
 define(['angular'], function (angular) {
   'use strict';
-  var authFactory = function ($rootScope, $cookies) {
+  var authFactory = function ($rootScope, $cookies, $http) {
     var emptyUser = { name: '', role: null };
     var transformUser = function (basic) {
       var enhanced = {
@@ -27,6 +27,35 @@ define(['angular'], function (angular) {
           $rootScope.user = transformUser(user);
         }
       },
+      whoAmI: function () {
+        if (!$rootScope.user || !$rootScope.user.name) {
+          $http.get('/users/me').then(function (res) {
+            $rootScope.user = transformUser(res.data || {});
+          });
+        }
+      },
+      login: function (username, password) {
+        var self = this;
+        if (typeof username === 'string') {
+          username = { username: username, password: password };
+        }
+        return $http.post('/api/login', username).then(function (res) {
+          if (res && res.data) {
+            return self.setUser(res.data);
+          }
+          return self.setUser({});
+        });
+      },
+      logout: function () {
+        var self = this;
+        return $http.get('/api/logout').then(function () {
+          self.resetUser();
+        });
+      },
+      registerAdmin: function (fields) {
+        fields.role = 'admin';
+        return $http.post('/api/register', fields);
+      },
       setUser: function (user) {
         $rootScope.user = transformUser(user);
         return $rootScope.user;
@@ -41,7 +70,7 @@ define(['angular'], function (angular) {
       }
     };
   };
-  authFactory.$inject = ['$rootScope', '$cookies'];
+  authFactory.$inject = ['$rootScope', '$cookies', '$http'];
 
   return authFactory;
 });

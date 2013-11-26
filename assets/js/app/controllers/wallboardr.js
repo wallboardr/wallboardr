@@ -1,11 +1,10 @@
 define([], function () {
   'use strict';
 
-  var wallboardrController = function ($scope, $http, auth) {
+  var wallboardrController = function ($scope, auth) {
     $scope.showUserMenu = false;
     $scope.signOut = function () {
-      $http.get('/api/logout').success(function () {
-        auth.resetUser();
+      auth.logout().then(function () {
         $scope.showUserMenu = false;
       });
     };
@@ -25,7 +24,7 @@ define([], function () {
       $scope.showAdminMenu = false;
     };
   };
-  wallboardrController.$inject = ['$scope', '$http', 'auth'];
+  wallboardrController.$inject = ['$scope', 'auth'];
   wallboardrController.ctrlName = 'WallboardrController';
 
   return wallboardrController;
