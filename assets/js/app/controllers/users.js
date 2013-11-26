@@ -16,7 +16,6 @@ define([], function () {
 
     var goodLogin = function (user) {
       if (user.name) {
-        auth.setUser(user);
         $scope.loginUser = {};
       } else {
         $scope.login.serverError = true;
@@ -34,8 +33,7 @@ define([], function () {
       $scope.register.serverError = false;
       $scope.register.clientError = false;
       if (form.$valid) {
-        $scope.createUser.role = 'admin';
-        $http.post('/api/register', $scope.createUser).success(goodRegister);
+        auth.registerAdmin($scope.createUser).success(goodRegister);
         $scope.userFormOpen = false;
       } else {
         $scope.register.clientError = true;
@@ -46,7 +44,7 @@ define([], function () {
       $scope.login.serverError = false;
       $scope.login.clientError = false;
       if (form.$valid) {
-        $http.post('/api/login', $scope.loginUser).success(goodLogin);
+        auth.login($scope.loginUser).then(goodLogin);
       } else {
         $scope.login.clientError = true;
       }
