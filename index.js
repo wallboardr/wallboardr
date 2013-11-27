@@ -1,3 +1,5 @@
+/*jshint node:true */
+'use strict';
 var deployd = require('deployd');
 var notifier = require('./lib/notify');
 
@@ -17,7 +19,7 @@ notifier.listen(server);
 server.listen();
 
 server.on('listening', function() {
-  console.log("Server is listening");
+  console.log('Server is listening');
 });
 
 server.on('error', function(err) {
