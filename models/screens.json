@@ -1,7 +1,0 @@
-{
-	"board": {"required": true },
-	"name": {"type": "String", "required": true },
-	"type": {"values": ["local", "data", "html", "teamcity"]},
-	"duration": {"type": "Number"},
-	"sortOrder": {"type": "Number"}
-}

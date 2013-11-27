@@ -11,7 +11,7 @@ define(['angular', 'app/util'], function (angular, util) {
     $scope.activeScreenIndex = null;
 
     $scope.loadScreens = function (boardId) {
-      var url = '/data/screens/board/' + boardId + '?sort=sortkey.' + boardId;
+      var url = '/screens?{"board":"' + boardId + '","$sort:{"sortkey.' + boardId + '":1}}';
       $http.get(url).success(function (data) {
         $scope.screens = data;
         announceListChange();

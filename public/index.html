@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<% if session.user %>
-<% cookie wbuser :session.user.name||:session.user.role %>
-<% else %>
-<% cookie wbuser %>
-<% / %>
 	<head>
 		<title>Wallboardr</title>
 		<link rel="stylesheet" href="/assets/css/core.css" type="text/css">
@@ -30,7 +25,7 @@
 		</header>
 		<!-- views go in here -->
 		<div ng-view class="container"></div>
-    <div class="version">v<% packageinfo version %></div>
+    <div class="version"></div>
     <div class="overlay"></div>
 		<script data-main="/assets/js/main.js" src="/assets/lib/require.js"></script>
 	</body>

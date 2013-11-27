@@ -1,10 +1,9 @@
 define(['angular'], function (angular) {
   'use strict';
   var authFactory = function ($rootScope, $cookies, $http) {
-    var emptyUser = { name: '', role: null };
     var transformUser = function (basic) {
       var enhanced = {
-            name: basic.name,
+            name: basic.username,
             email: basic.email,
             loggedIn: !!basic.role,
             isAdmin: basic.role === 'admin',
@@ -14,19 +13,6 @@ define(['angular'], function (angular) {
     };
 
     return {
-      setCookieUser: function () {
-        var user = angular.copy(emptyUser),
-            vals;
-        if (!$rootScope.user) {
-          if ($cookies.wbuser) {
-            vals = $cookies.wbuser.split('||');
-            user.name = vals.shift();
-            user.role = vals.shift();
-            $cookies.wbuser = null;
-          }
-          $rootScope.user = transformUser(user);
-        }
-      },
       whoAmI: function () {
         if (!$rootScope.user || !$rootScope.user.name) {
           $http.get('/users/me').then(function (res) {
@@ -39,16 +25,17 @@ define(['angular'], function (angular) {
         if (typeof username === 'string') {
           username = { username: username, password: password };
         }
-        return $http.post('/api/login', username).then(function (res) {
+        return $http.post('/users/login', username).then(function (res) {
           if (res && res.data) {
-            return self.setUser(res.data);
+            self.whoAmI();
+            return true;
           }
-          return self.setUser({});
+          return false;
         });
       },
       logout: function () {
         var self = this;
-        return $http.get('/api/logout').then(function () {
+        return $http.get('/users/logout').then(function () {
           self.resetUser();
         });
       },
@@ -65,7 +52,7 @@ define(['angular'], function (angular) {
         return $rootScope.user;
       },
       resetUser: function () {
-        angular.copy(transformUser(emptyUser), $rootScope.user);
+        angular.copy(transformUser({}), $rootScope.user);
         $rootScope.$broadcast('user:logout');
       }
     };

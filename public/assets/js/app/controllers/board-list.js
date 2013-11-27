@@ -6,7 +6,7 @@ define(['angular', 'app/util'], function (angular, util) {
     $scope.activeBoardId = null;
 
     $scope.loadBoards = function () {
-      var url = '/data/boards?sort=_created';
+      var url = '/boards?{"$sort":{"_created":1}}';
       $http.get(url).success(function (data) {
         $scope.boards = data;
       });

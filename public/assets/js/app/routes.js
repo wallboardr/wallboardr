@@ -4,12 +4,12 @@ define(['controller/index'], function (indexCtrl) {
   var routes = function ($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
       controller: indexCtrl,
-      templateUrl: 'index'
+      templateUrl: 'main.html'
     });
 
-    $routeProvider.when('/view/:board', {
+    $routeProvider.when('/view#:board', {
       redirectTo: function (params) {
-        window.location = '/view/' + params.board;
+        window.location = '/view.html#' + params.board;
       }
     });
 
