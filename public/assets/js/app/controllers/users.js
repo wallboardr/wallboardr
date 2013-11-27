@@ -6,7 +6,7 @@ define([], function () {
     $scope.users = [];
 
     var goodRegister = function (user) {
-      if (user.name) {
+      if (user.username) {
         $scope.users.push(user);
         $scope.createUser = {};
       } else {

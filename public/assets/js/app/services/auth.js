@@ -41,7 +41,7 @@ define(['angular'], function (angular) {
       },
       registerAdmin: function (fields) {
         fields.role = 'admin';
-        return $http.post('/api/register', fields);
+        return $http.post('/users', fields);
       },
       setUser: function (user) {
         $rootScope.user = transformUser(user);
