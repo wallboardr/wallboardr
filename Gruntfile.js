@@ -40,7 +40,7 @@ module.exports = function(grunt) {
         },
         ignores: ['<%= boardJsFile %>']
       },
-      files: ['*.js', 'assets/js/**/*.js']
+      files: ['*.js', 'public/assets/js/**/*.js']
     },
     less: {
       dev: {
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
     nodemon: {
       options: {
         file: 'index.js',
-        ignoredFiles: ['README.md', 'package.json', 'Gruntfile.js', 'node_modules/**', 'sproute/node_modules/**', 'assets/**', 'spec/**'],
+        ignoredFiles: ['README.md', 'package.json', 'Gruntfile.js', 'node_modules/**', 'public/**', 'spec/**'],
         watchedExtensions: ['js', 'json'],
       },
       dev: {
@@ -87,10 +87,10 @@ module.exports = function(grunt) {
         }
       }
     },
-    cssFile: 'assets/css/core.css',
-    boardCssFile: 'assets/css/board.css',
-    boardJsFile: 'assets/js/boards.js',
-    boardJsSrc: ['assets/lib/boards/jquery.js', 'assets/lib/boards/bigtext.js', 'assets/js/boards/base.js']
+    cssFile: 'public/assets/css/core.css',
+    boardCssFile: 'public/assets/css/board.css',
+    boardJsFile: 'public/assets/js/boards.js',
+    boardJsSrc: ['public/assets/lib/boards/jquery.js', 'public/assets/lib/boards/bigtext.js', 'public/assets/js/boards/base.js']
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
