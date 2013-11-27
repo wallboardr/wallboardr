@@ -15,7 +15,7 @@ define([], function () {
     };
 
     var goodLogin = function (user) {
-      if (user.name) {
+      if (user) {
         $scope.loginUser = {};
       } else {
         $scope.login.serverError = true;

@@ -1,6 +1,6 @@
 {
   "name": "wallboardr",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Create dynamic wallboards for your projects/organizations.",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,8 @@
   "author": "Colin Bate <colin@colinbate.com>",
   "license": "MIT",
   "dependencies": {
-    "primus": "~1.1.2"
+    "primus": "~1.1.2",
+    "deployd": "~0.6.10"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

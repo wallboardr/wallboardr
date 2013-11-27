@@ -1,5 +1,0 @@
-<% if session.user.name %>
-	<h1>You are signed in as: <% session.user.name %>
-<% else %>
-	<h1>You are not signed in.</h1>
-<% / %>

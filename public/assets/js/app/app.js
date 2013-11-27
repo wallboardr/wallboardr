@@ -20,7 +20,7 @@ define(
             }
         },
         init = function (auth) {
-            auth.setCookieUser();
+            auth.whoAmI();
         };
     init.$inject = ['auth'];
     return {

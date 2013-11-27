@@ -3,7 +3,7 @@
 	[
     {
       "path": ".",
-      "folder_exclude_patterns": ["node_modules", "assets/css", "assets/fonts", "assets/img"]
+      "folder_exclude_patterns": ["public/assets/css", "public/assets/fonts", "public/assets/img"]
     }
 	],
 	"settings":

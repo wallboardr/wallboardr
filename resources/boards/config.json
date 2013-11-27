@@ -1,0 +1,50 @@
+{
+  "type": "Collection",
+  "typeLabel": "Collection",
+  "order": 3,
+  "properties": {
+    "name": {
+      "type": "string",
+      "typeLabel": "string",
+      "id": "name",
+      "name": "name"
+    },
+    "slug": {
+      "type": "string",
+      "typeLabel": "string",
+      "id": "slug",
+      "name": "slug"
+    },
+    "desc": {
+      "type": "string",
+      "typeLabel": "string",
+      "id": "desc",
+      "name": "desc"
+    },
+    "duration": {
+      "type": "number",
+      "typeLabel": "number",
+      "id": "duration",
+      "name": "duration"
+    },
+    "_creator": {
+      "type": "string",
+      "typeLabel": "string",
+      "id": "_creator",
+      "name": "_creator"
+    },
+    "_creatorName": {
+      "type": "string",
+      "typeLabel": "string",
+      "id": "_creatorName",
+      "name": "_creatorName"
+    },
+    "_created": {
+      "type": "number",
+      "typeLabel": "number",
+      "id": "_created",
+      "name": "_created"
+    }
+  },
+  "path": "/boards"
+}

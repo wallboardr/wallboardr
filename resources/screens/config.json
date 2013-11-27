@@ -1,0 +1,86 @@
+{
+  "type": "Collection",
+  "typeLabel": "Collection",
+  "order": 4,
+  "properties": {
+    "_created": {
+      "type": "number",
+      "typeLabel": "number",
+      "id": "_created",
+      "name": "_created"
+    },
+    "_creator": {
+      "type": "string",
+      "typeLabel": "string",
+      "id": "_creator",
+      "name": "_creator"
+    },
+    "_creatorName": {
+      "type": "string",
+      "typeLabel": "string",
+      "id": "_creatorName",
+      "name": "_creatorName"
+    },
+    "_lastUpdated": {
+      "type": "number",
+      "typeLabel": "number",
+      "id": "_lastUpdated",
+      "name": "_lastUpdated"
+    },
+    "_lastUpdator": {
+      "type": "string",
+      "typeLabel": "string",
+      "id": "_lastUpdator",
+      "name": "_lastUpdator"
+    },
+    "_lastUpdatorName": {
+      "type": "string",
+      "typeLabel": "string",
+      "id": "_lastUpdatorName",
+      "name": "_lastUpdatorName"
+    },
+    "board": {
+      "type": "string",
+      "typeLabel": "string",
+      "id": "board",
+      "name": "board"
+    },
+    "duration": {
+      "type": "number",
+      "typeLabel": "number",
+      "id": "duration",
+      "name": "duration"
+    },
+    "message": {
+      "type": "string",
+      "typeLabel": "string",
+      "id": "message",
+      "name": "message"
+    },
+    "name": {
+      "type": "string",
+      "typeLabel": "string",
+      "id": "name",
+      "name": "name"
+    },
+    "shareable": {
+      "type": "boolean",
+      "typeLabel": "boolean",
+      "id": "shareable",
+      "name": "shareable"
+    },
+    "sortkey": {
+      "type": "object",
+      "typeLabel": "object",
+      "id": "sortkey",
+      "name": "sortkey"
+    },
+    "type": {
+      "type": "string",
+      "typeLabel": "string",
+      "id": "type",
+      "name": "type"
+    }
+  },
+  "path": "/screens"
+}
