@@ -11,7 +11,7 @@ define(['angular', 'app/util'], function (angular, util) {
     $scope.activeScreenIndex = null;
 
     $scope.loadScreens = function (boardId) {
-      var url = '/screens?{"board":"' + boardId + '","$sort:{"sortkey.' + boardId + '":1}}';
+      var url = '/screens?{"$sort":{"sortkey.' + boardId + '":1},"board":"' + boardId + '"}';
       $http.get(url).success(function (data) {
         $scope.screens = data;
         announceListChange();
@@ -63,7 +63,7 @@ define(['angular', 'app/util'], function (angular, util) {
 
     var saveScreenOrder = function (index) {
       var changedScreen = $scope.screens[index],
-          currentBoard = $scope.activeBoardId,
+          currentBoard = $scope.activeBoard.id,
           key = changedScreen.sortkey,
           url = '/screens/' + changedScreen.id;
       if (!angular.isObject(key)) {

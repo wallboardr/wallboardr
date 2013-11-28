@@ -48,7 +48,7 @@ define(['angular'], function (angular) {
         return $rootScope.user;
       },
       user: function () {
-        this.setCookieUser();
+        this.whoAmI();
         return $rootScope.user;
       },
       resetUser: function () {

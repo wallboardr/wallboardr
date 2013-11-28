@@ -26,7 +26,7 @@ function ($, ich, player, Primus) {
           $.ajaxSetup({ dataType: 'json' });
           $.ajax(url).done(function (data) {
             if (data && data.length) {
-              dataUrl = '/screens?{"board":"' + data[0].id + '","$sort:{"sortkey.' + data[0].id + '":1}}';
+              dataUrl = '/screens?{"board":"' + data[0].id + '","$sort":{"sortkey.' + data[0].id + '":1}}';
               defaultDuration = data[0].duration || 30;
               notifyUrl = '/?board=' + data[0].id;
               initData();
