@@ -22,9 +22,9 @@ define(['angular', 'app/util'], function (angular, util) {
       if (!$scope.screens || !$scope.screens[index]) {
         throw new Error('index - such a screen does not exist');
       }
-      if ($scope.activeScreenId == null || $scope.activeScreenId !== $scope.screens[index]._id) {
+      if ($scope.activeScreenId == null || $scope.activeScreenId !== $scope.screens[index].id) {
         $scope.cancelEditScreen();
-        $scope.activeScreenId = $scope.screens[index]._id;
+        $scope.activeScreenId = $scope.screens[index].id;
         $scope.activeScreenIndex = index;
         $scope.$root.$broadcast('screen:selected', $scope.screens[index]);
       }
@@ -45,7 +45,7 @@ define(['angular', 'app/util'], function (angular, util) {
       var classes = [];
       //'is-active': isActiveScreen($index), 'is-disabled': screen.disabled, 'is-shared': screen.shareable
       if (scr) {
-        if ($scope.activeScreenId && scr._id === $scope.activeScreenId) {
+        if ($scope.activeScreenId && scr.id === $scope.activeScreenId) {
           classes.push('is-active');
         }
         if (scr.disabled) {
@@ -65,7 +65,7 @@ define(['angular', 'app/util'], function (angular, util) {
       var changedScreen = $scope.screens[index],
           currentBoard = $scope.activeBoardId,
           key = changedScreen.sortkey,
-          url = '/data/screens/_id/' + changedScreen._id;
+          url = '/screens/' + changedScreen.id;
       if (!angular.isObject(key)) {
         key = {};
       }
@@ -126,7 +126,7 @@ define(['angular', 'app/util'], function (angular, util) {
     $scope.$on('board:selected', function (e, board) {
       $scope.activeScreenIndex = null;
       $scope.activeScreenId = null;
-      $scope.loadScreens(board._id);
+      $scope.loadScreens(board.id);
     });
 
     $scope.$on('user:logout', function () {

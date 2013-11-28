@@ -28,18 +28,18 @@ define(['angular'], function (angular) {
 
     $scope.addSharedScreen = function (index) {
       var ss = $scope.sharedScreens[index],
-          screenId = ss._id,
-          url = '/data/screens/_id/' + screenId,
+          screenId = ss.id,
+          url = '/screens/' + screenId,
           currentBoard = $scope.activeBoard,
           boardsAndSort = {};
       // Handle legacy data
       upgradeBoardAndSortkey(ss);
-      ss.board.push(currentBoard._id);
-      ss.sortkey[currentBoard._id] = nextSortkey;
+      ss.board.push(currentBoard.id);
+      ss.sortkey[currentBoard.id] = nextSortkey;
       boardsAndSort.board = ss.board;
       boardsAndSort.sortkey = ss.sortkey;
       $http.post(url, boardsAndSort).success(function (data) {
-        if (data === '1') {
+        if (data) {
           $scope.sharedScreens.splice(index, 1);
           $scope.$root.$broadcast('screen:list:add', ss);
           $scope.$root.$broadcast('screen:shared:list:changed', $scope.sharedScreens.length);
@@ -50,7 +50,7 @@ define(['angular'], function (angular) {
 
     $scope.unlinkScreen = function (scr, boardId) {
       var bIndex = scr.board.indexOf(boardId),
-          url = '/data/screens/_id/' + scr._id,
+          url = '/screens/' + scr.id,
           boardsAndSort = {};
 
       if (bIndex < 0) {
@@ -61,7 +61,7 @@ define(['angular'], function (angular) {
       boardsAndSort.board = scr.board;
       boardsAndSort.sortkey = scr.sortkey;
       $http.post(url, boardsAndSort).success(function (data) {
-        if (data === '1') {
+        if (data) {
           if (scr.shareable) {
             $scope.sharedScreens.push(scr);
           }
@@ -73,11 +73,11 @@ define(['angular'], function (angular) {
     };
 
     $scope.$on('board:selected', function (e, board) {
-      $scope.loadSharedScreens(board._id);
+      $scope.loadSharedScreens(board.id);
     });
 
     $scope.$on('screen:shared:unlink', function (e, scr, boardId) {
-      $scope.unlinkScreen(scr, boardId || $scope.activeBoard._id);
+      $scope.unlinkScreen(scr, boardId || $scope.activeBoard.id);
     });
 
     $scope.$on('screen:list:changed', function (e, total) {

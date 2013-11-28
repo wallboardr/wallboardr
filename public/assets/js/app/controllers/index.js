@@ -28,7 +28,7 @@ define(['angular', 'app/util'], function (angular, util) {
     });
 
     $scope.notifyBoardChange = function () {
-      var boardId = $scope.activeBoard._id;
+      var boardId = $scope.activeBoard.id;
       primus.write({updated: boardId});
     };
 
@@ -44,16 +44,12 @@ define(['angular', 'app/util'], function (angular, util) {
     };
 
     $scope.updateActiveBoard = function (form) {
-      var url = '/data/boards/_id/' + $scope.activeBoard._id,
+      var url = '/boards/' + $scope.activeBoard.id,
           backup;
       if (form.$valid) {
         backup = angular.copy($scope.activeBoard);
         angular.extend($scope.activeBoard, $scope.activeBoardEdit);
-        $http.post(url, $scope.activeBoardEdit).success(function (data) {
-          if (data !== '1') {
-            revertBoard(data, backup);
-          }
-        }).error(function (err) {
+        $http.post(url, $scope.activeBoardEdit).error(function (err) {
           revertBoard(err, backup);
         });
         $scope.openEditBoardForm = false;
@@ -97,11 +93,11 @@ define(['angular', 'app/util'], function (angular, util) {
     };
 
     $scope.unlinkScreen = function () {
-      $scope.$root.$broadcast('screen:shared:unlink', $scope.activeScreen, $scope.activeBoard._id);
+      $scope.$root.$broadcast('screen:shared:unlink', $scope.activeScreen, $scope.activeBoard.id);
     };
 
     $scope.toggleVisibleScreen = function () {
-      var url = '/data/screens/_id/' + $scope.activeScreen._id,
+      var url = '/screens/' + $scope.activeScreen.id,
           orig = $scope.activeScreen.disabled;
       $scope.activeScreen.disabled = !orig;
       $http.post(url, {disabled: !orig}).success(function (data) {
@@ -114,16 +110,12 @@ define(['angular', 'app/util'], function (angular, util) {
     };
 
     $scope.updateActiveScreen = function (form) {
-      var url = '/data/screens/_id/' + $scope.activeScreen._id,
+      var url = '/screens/' + $scope.activeScreen.id,
           backup;
       if (form.$valid) {
         backup = angular.copy($scope.activeScreen);
         angular.extend($scope.activeScreen, $scope.activeScreenEdit);
-        $http.post(url, $scope.activeScreenEdit).success(function (data) {
-          if (data !== '1') {
-            revertScreen(data, backup);
-          }
-        }).error(function (err) {
+        $http.post(url, $scope.activeScreenEdit).error(function (err) {
           revertScreen(err, backup);
         });
         $scope.openEditScreenForm = false;

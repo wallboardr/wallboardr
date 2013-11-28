@@ -22,13 +22,13 @@ function ($, ich, player, Primus) {
         },
         getBoardData = function () {
           var hash = window.location.href.substr(window.location.href.indexOf('#')+1),
-              url = '/data/boards/slug/' + hash + '?single=true';
+              url = '/boards?slug=' + hash;
           $.ajaxSetup({ dataType: 'json' });
           $.ajax(url).done(function (data) {
-            if (data) {
-              dataUrl = '/data/screens/board/' + data._id + '?sort=sortkey.' + data._id;
-              defaultDuration = data.duration || 30;
-              notifyUrl = '/?board=' + data._id;
+            if (data && data.length) {
+              dataUrl = '/screens?{"board":"' + data[0].id + '","$sort:{"sortkey.' + data[0].id + '":1}}';
+              defaultDuration = data[0].duration || 30;
+              notifyUrl = '/?board=' + data[0].id;
               initData();
             }
           });

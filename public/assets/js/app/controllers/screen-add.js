@@ -34,12 +34,12 @@ define(['angular', 'app/util'], function (angular, util) {
       if (screen.$valid && $scope.activeBoard) {
         newScreen = angular.copy(screen);
         newScreen.type = $scope.newScreen.type;
-        newScreen.board = [$scope.activeBoard._id];
+        newScreen.board = [$scope.activeBoard.id];
         newScreen.sortkey = {};
-        newScreen.sortkey[$scope.activeBoard._id] = nextSortkey;
+        newScreen.sortkey[$scope.activeBoard.id] = nextSortkey;
         newScreen.duration = newScreen.duration || 0;
-        $http.post('/data/screens', newScreen).success(function (data) {
-          if (data && angular.isArray(data)) {
+        $http.post('/screens', newScreen).success(function (data) {
+          if (data) {
             $scope.$root.$broadcast('screen:list:add', data);
           }
           util.cleanForm(screen);
