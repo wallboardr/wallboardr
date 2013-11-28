@@ -17,21 +17,19 @@ define(['angular', 'app/util'], function (angular, util) {
       if (!$scope.boards || !$scope.boards[index]) {
         throw new Error('index - such a board does not exist');
       }
-      if ($scope.user.loggedIn && ($scope.activeBoardId == null || $scope.activeBoardId !== $scope.boards[index]._id)) {
-        $scope.activeBoardId = $scope.boards[index]._id;
+      if ($scope.user.loggedIn && ($scope.activeBoardId == null || $scope.activeBoardId !== $scope.boards[index].id)) {
+        $scope.activeBoardId = $scope.boards[index].id;
         $scope.$root.$broadcast('board:selected', $scope.boards[index]);
       }
     };
 
     $scope.addBoard = function (board) {
-      var newBoard, bIndex;
+      var newBoard;
       if (board.$valid) {
         newBoard = angular.copy(board);
-        $http.post('/data/boards', newBoard).success(function (data) {
-          if (data && angular.isArray(data)) {
-            for (bIndex = 0; bIndex < data.length; bIndex += 1) {
-              $scope.boards.push(data[bIndex]);
-            }
+        $http.post('/boards', newBoard).success(function (data) {
+          if (data) {
+            $scope.boards.push(data);
           }
         });
         util.cleanForm(board);
@@ -40,7 +38,7 @@ define(['angular', 'app/util'], function (angular, util) {
     };
 
     $scope.isActiveBoard = function (index) {
-      return $scope.activeBoardId && $scope.boards[index] && $scope.activeBoardId === $scope.boards[index]._id;
+      return $scope.activeBoardId && $scope.boards[index] && $scope.activeBoardId === $scope.boards[index].id;
     };
 
     $scope.canAddBoard = function () {

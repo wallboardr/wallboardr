@@ -23,7 +23,7 @@ define([], function () {
     };
 
     $scope.findAll = function () {
-      var url = '/data/users?sort=name';
+      var url = '/users?{"$sort":{"name":1}}';
       $http.get(url).success(function (data) {
         $scope.users = data;
       });
@@ -56,7 +56,7 @@ define([], function () {
     };
 
     $scope.saveUser = function (form) {
-      if ($scope.createUser && !$scope.createUser._id) {
+      if ($scope.createUser && !$scope.createUser.id) {
         $scope.register(form);
       }
     };
