@@ -101,7 +101,9 @@ define(['angular', 'app/util'], function (angular, util) {
           orig = $scope.activeScreen.disabled;
       $scope.activeScreen.disabled = !orig;
       $http.post(url, {disabled: !orig}).success(function (data) {
-        if (data !== '1') {
+        if (data) {
+          $scope.activeScreen.disabled = data.disabled;
+        } else {
           $scope.activeScreen.disabled = orig;
         }
       }).error(function () {

@@ -20,7 +20,8 @@
   "license": "MIT",
   "dependencies": {
     "primus": "~1.1.2",
-    "deployd": "~0.6.10"
+    "deployd": "~0.6.10",
+    "dpd-event": "~0.0.2"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

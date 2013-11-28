@@ -6,7 +6,7 @@ define(['angular'], function (angular) {
     $scope.sharedScreens = [];
 
     $scope.loadSharedScreens = function (boardId) {
-      var url = '/api/shared/' + boardId;
+      var url = '/shared-screens/' + boardId;
       $http.get(url).success(function (data) {
         $scope.sharedScreens = data;
         $scope.$root.$broadcast('screen:shared:list:changed', $scope.sharedScreens.length);

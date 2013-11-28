@@ -1,86 +1,120 @@
 {
-  "type": "Collection",
-  "typeLabel": "Collection",
-  "order": 4,
-  "properties": {
-    "_created": {
-      "type": "number",
-      "typeLabel": "number",
-      "id": "_created",
-      "name": "_created"
-    },
-    "_creator": {
-      "type": "string",
-      "typeLabel": "string",
-      "id": "_creator",
-      "name": "_creator"
-    },
-    "_creatorName": {
-      "type": "string",
-      "typeLabel": "string",
-      "id": "_creatorName",
-      "name": "_creatorName"
-    },
-    "_lastUpdated": {
-      "type": "number",
-      "typeLabel": "number",
-      "id": "_lastUpdated",
-      "name": "_lastUpdated"
-    },
-    "_lastUpdator": {
-      "type": "string",
-      "typeLabel": "string",
-      "id": "_lastUpdator",
-      "name": "_lastUpdator"
-    },
-    "_lastUpdatorName": {
-      "type": "string",
-      "typeLabel": "string",
-      "id": "_lastUpdatorName",
-      "name": "_lastUpdatorName"
-    },
-    "board": {
-      "type": "string",
-      "typeLabel": "string",
-      "id": "board",
-      "name": "board"
-    },
-    "duration": {
-      "type": "number",
-      "typeLabel": "number",
-      "id": "duration",
-      "name": "duration"
-    },
-    "message": {
-      "type": "string",
-      "typeLabel": "string",
-      "id": "message",
-      "name": "message"
-    },
-    "name": {
-      "type": "string",
-      "typeLabel": "string",
-      "id": "name",
-      "name": "name"
-    },
-    "shareable": {
-      "type": "boolean",
-      "typeLabel": "boolean",
-      "id": "shareable",
-      "name": "shareable"
-    },
-    "sortkey": {
-      "type": "object",
-      "typeLabel": "object",
-      "id": "sortkey",
-      "name": "sortkey"
-    },
-    "type": {
-      "type": "string",
-      "typeLabel": "string",
-      "id": "type",
-      "name": "type"
-    }
-  },
-  "path": "/screens"
+	"type": "Collection",
+	"typeLabel": "Collection",
+	"order": 4,
+	"properties": {
+		"_created": {
+			"type": "number",
+			"typeLabel": "number",
+			"id": "_created",
+			"name": "_created",
+			"required": false,
+			"order": 0
+		},
+		"type": {
+			"type": "string",
+			"typeLabel": "string",
+			"id": "type",
+			"name": "type",
+			"required": false,
+			"order": 1
+		},
+		"_creatorName": {
+			"type": "string",
+			"typeLabel": "string",
+			"id": "_creatorName",
+			"name": "_creatorName",
+			"required": false,
+			"order": 2
+		},
+		"_lastUpdated": {
+			"type": "number",
+			"typeLabel": "number",
+			"id": "_lastUpdated",
+			"name": "_lastUpdated",
+			"required": false,
+			"order": 3
+		},
+		"_lastUpdator": {
+			"type": "string",
+			"typeLabel": "string",
+			"id": "_lastUpdator",
+			"name": "_lastUpdator",
+			"required": false,
+			"order": 4
+		},
+		"_lastUpdatorName": {
+			"type": "string",
+			"typeLabel": "string",
+			"id": "_lastUpdatorName",
+			"name": "_lastUpdatorName",
+			"required": false,
+			"order": 5
+		},
+		"_creator": {
+			"type": "string",
+			"typeLabel": "string",
+			"id": "_creator",
+			"name": "_creator",
+			"required": false,
+			"order": 6
+		},
+		"duration": {
+			"type": "number",
+			"typeLabel": "number",
+			"id": "duration",
+			"name": "duration",
+			"required": false,
+			"order": 7
+		},
+		"message": {
+			"type": "string",
+			"typeLabel": "string",
+			"id": "message",
+			"name": "message",
+			"required": false,
+			"order": 8
+		},
+		"name": {
+			"type": "string",
+			"typeLabel": "string",
+			"id": "name",
+			"name": "name",
+			"required": false,
+			"order": 9
+		},
+		"shareable": {
+			"type": "boolean",
+			"typeLabel": "boolean",
+			"id": "shareable",
+			"name": "shareable",
+			"required": false,
+			"order": 10
+		},
+		"sortkey": {
+			"type": "object",
+			"typeLabel": "object",
+			"id": "sortkey",
+			"name": "sortkey",
+			"required": false,
+			"order": 11
+		},
+		"board": {
+			"type": "array",
+			"typeLabel": "array",
+			"id": "board",
+			"name": "board",
+			"required": false,
+			"order": 12
+		},
+		"disabled": {
+			"name": "disabled",
+			"type": "boolean",
+			"typeLabel": "boolean",
+			"required": false,
+			"id": "disabled",
+			"order": 13
+		}
+	},
+	"path": "/screens"
 }
