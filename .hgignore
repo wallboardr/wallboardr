@@ -7,3 +7,4 @@ syntax: glob
 *.sublime-workspace
 .dpd
 data
+public/assets/plugins
