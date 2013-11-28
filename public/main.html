@@ -98,13 +98,6 @@
   				<button ng-click="addScreen(newHtmlScreen)" class="success">Add</button>
   				<button ng-click="cancelAddScreen()" class="cancel">Cancel</button>
   			</form>
-        <form novalidate name="newTeamcityScreen" ng-show="newScreen.type=='teamcity'">
-          <input type="text" ng-model="newTeamcityScreen.name" placeholder="Name" required><br>
-          <input type="url" ng-model="newTeamcityScreen.url" placeholder="URL" required><br>
-          <input type="number" ng-model="newTeamcityScreen.duration" placeholder="Screen duration" min="0">
-          <button ng-click="addScreen(newTeamcityScreen)" class="success">Add</button>
-          <button ng-click="cancelAddScreen()" class="cancel">Cancel</button>
-        </form>
   		</div>
     </div>
 	</div>
