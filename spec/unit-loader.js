@@ -1,7 +1,7 @@
 var path = require('path'),
     readdirp = require('readdirp'),
     subFnCache = {},
-    sutRoot = path.resolve(process.env.SUT_ROOT || __dirname + '/../assets/js') + '/';
+    sutRoot = path.resolve(process.env.SUT_ROOT || __dirname + '/../public/assets/js') + '/';
 
 //console.log(sutRoot);
 global.define = function (arr, fn) {

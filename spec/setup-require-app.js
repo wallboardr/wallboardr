@@ -1,7 +1,7 @@
 var requirejs = require('requirejs');
 
 requirejs.config({
-  baseUrl: 'assets/js',
+  baseUrl: 'public/assets/js',
   paths: {
     'lib'             : '../lib',
     'controller'      : 'app/controllers',

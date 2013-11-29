@@ -5,7 +5,7 @@ describe('The UsersController', function () {
   beforeEach(function () {
     scope = { login: {}, '$on': function () {} };
     http = { post: function () {} };
-    auth = { setUser: function () {} };
+    auth = { setUser: function () {}, login: function () {} };
     ctlr = loader.loadSubject('app/controllers/users');
   });
 
@@ -19,17 +19,16 @@ describe('The UsersController', function () {
     });
 
     it('makes post call to login if form valid', function () {
-      spyOn(http, 'post').andReturn({ success: function () {} });
+      spyOn(auth, 'login').andReturn({ then: function () {} });
       ctlr(scope, http, auth);
 
       scope.signin({ $valid: true });
 
-      expect(http.post).toHaveBeenCalled();
-      expect(http.post.mostRecentCall.args[0]).toEqual('/api/login');
+      expect(auth.login).toHaveBeenCalled();
     });
 
     it('clears server and client errors', function () {
-      spyOn(http, 'post').andReturn({ success: function () {} });
+      spyOn(auth, 'login').andReturn({ then: function () {} });
       scope.login.clientError = true;
       scope.login.serverError = true;
       ctlr(scope, http, auth);
@@ -41,7 +40,7 @@ describe('The UsersController', function () {
     });
 
     it('sets server error if post returns without user', function () {
-      spyOn(http, 'post').andReturn({ success: function (fn) { fn.call(null, {}); } });
+      spyOn(auth, 'login').andReturn({ then: function (fn) { fn.call(null, false); } });
       ctlr(scope, http, auth);
 
       scope.signin({ $valid: true });
@@ -49,16 +48,16 @@ describe('The UsersController', function () {
       expect(scope.login.serverError).toBe(true);
     });
 
-    it('sets logged in user if post returns successfully', function () {
+    it('clears login form if post returns successfully', function () {
       var goodUser = { name: 'noahbate', role: 'admin' };
       scope.loginUser = { pass: '123' };
-      spyOn(http, 'post').andReturn({ success: function (fn) { fn.call(null, goodUser); } });
+      spyOn(auth, 'login').andReturn({ then: function (fn) { fn.call(null, goodUser); } });
       spyOn(auth, 'setUser');
       ctlr(scope, http, auth);
 
       scope.signin({ $valid: true });
 
-      expect(auth.setUser).toHaveBeenCalledWith(goodUser);
+      expect(auth.login).toHaveBeenCalledWith(scope.loginUser);
       expect(scope.loginUser).toEqual({});
     });
   });

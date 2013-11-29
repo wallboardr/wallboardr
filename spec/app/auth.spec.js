@@ -1,57 +1,69 @@
 var loader = require('../unit-loader');
 
 describe('The auth service', function () {
-  var angularMock, authFactory, service, rootScope, cookies;
+  var authFactory, service, rootScope, http;
+  var getPayload, postPayload;
   beforeEach(function () {
-    angularMock = {
-      copy: function (input, b) {
-        if (b) {
-          b.name = input.name;
-          b.loggedIn = input.loggedIn;
-        }
-        return input;
+    authFactory = loader.loadSubject('app/services/auth');
+    rootScope = {};
+    http = {
+      get: function (url) {
+        return {
+          then: function (fn) {
+            fn(getPayload);
+          }
+        };
+      },
+      post: function (url) {
+        return {
+          then: function (fn) {
+            fn(postPayload);
+          }
+        };
       }
     };
-    authFactory = loader.loadSubject('app/services/auth', [angularMock]);
-    rootScope = {};
-    cookies = {};
   });
 
-  describe('setCookieUser', function () {
-    beforeEach(function () {
-      spyOn(angularMock, 'copy').andCallThrough();
+  describe('whoAmI', function () {
+
+    it('calls the correct deployd URL', function () {
+      spyOn(http, 'get').andCallThrough();
+      service = authFactory(rootScope, http);
+
+      service.whoAmI();
+
+      expect(http.get).toHaveBeenCalledWith('/users/me');
     });
 
-    it('sets a user with no role if no cookie exists', function () {
-      service = authFactory(rootScope, cookies);
+    it('sets a user with no role if http returns no data', function () {
+      getPayload = {};
+      service = authFactory(rootScope, http);
 
-      service.setCookieUser();
+      service.whoAmI();
 
-      expect(angularMock.copy).toHaveBeenCalled();
       expect(rootScope.user).toBeDefined();
       expect(rootScope.user.loggedIn).toBe(false);
-      expect(rootScope.user.name).toBe('');
+      expect(rootScope.user.name).toBeFalsy();
     });
 
     it('does not set user if one already exists', function () {
       rootScope.user = {name:'Noah'};
-      service = authFactory(rootScope, cookies);
+      getPayload = {data:{username:'Colin', role:'admin'}};
+      service = authFactory(rootScope, http);
 
-      service.setCookieUser();
+      service.whoAmI();
 
-      expect(angularMock.copy).toHaveBeenCalled();
       expect(rootScope.user).toBeDefined();
       expect(rootScope.user.loggedIn).toBeFalsy();
       expect(rootScope.user.name).toBe('Noah');
     });
 
-    it('uses the wbuser cookie when it exists', function () {
-      cookies.wbuser = 'noah||admin';
-      service = authFactory(rootScope, cookies);
+    it('uses the result of the get as the user', function () {
+      getPayload = {data:{username:'noah', role:'admin'}};
+      service = authFactory(rootScope, http);
 
-      service.setCookieUser();
+      service.whoAmI();
 
-      expect(angularMock.copy).toHaveBeenCalled();
       expect(rootScope.user).toBeDefined();
       expect(rootScope.user.loggedIn).toBe(true);
       expect(rootScope.user.isEditor).toBe(false);
@@ -62,9 +74,9 @@ describe('The auth service', function () {
 
   describe('setUser', function () {
     it('sets user to root scope', function () {
-      service = authFactory(rootScope, cookies);
+      service = authFactory(rootScope, http);
 
-      var result = service.setUser({name: 'noahbate', role: 'editor'});
+      var result = service.setUser({username: 'noahbate', role: 'editor'});
 
       expect(rootScope.user).toBeDefined();
       expect(result).toBe(rootScope.user);
@@ -77,12 +89,12 @@ describe('The auth service', function () {
   describe('user', function () {
     it('sets up the cookie user and returns it', function () {
       rootScope.user = { name: 'Noah Bate' };
-      service = authFactory(rootScope, cookies);
-      spyOn(service, 'setCookieUser');
+      service = authFactory(rootScope, http);
+      spyOn(service, 'whoAmI');
 
       var result = service.user();
 
-      expect(service.setCookieUser).toHaveBeenCalled();
+      expect(service.whoAmI).toHaveBeenCalled();
       expect(result).toBeDefined();
       expect(result.name).toBe('Noah Bate');
     });
@@ -94,24 +106,22 @@ describe('The auth service', function () {
     });
 
     it('sets the root scope user to not logged in', function () {
-      spyOn(angularMock, 'copy').andCallThrough();
-      rootScope.user = { name: 'NoahB', loggedIn: true };
-      service = authFactory(rootScope, cookies);
+      rootScope.user = { username: 'NoahB', loggedIn: true };
+      service = authFactory(rootScope, http);
 
       service.resetUser();
 
-      expect(angularMock.copy).toHaveBeenCalled();
       expect(rootScope.user.loggedIn).toBe(false);
-      expect(rootScope.user.name).toBe('');
+      expect(rootScope.user.name).toBeFalsy();
     });
 
     it('sends logout event to children scopes', function () {
       spyOn(rootScope, '$broadcast');
-      service = authFactory(rootScope, cookies);
+      service = authFactory(rootScope, http);
 
       service.resetUser();
 
-      expect(rootScope.$broadcast).toHaveBeenCalledWith('logout');
+      expect(rootScope.$broadcast).toHaveBeenCalledWith('user:logout');
     });
   });
 
