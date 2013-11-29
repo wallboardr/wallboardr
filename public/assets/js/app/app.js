@@ -6,8 +6,7 @@ define(
         'app/filters',
         'service/auth',
         'service/data-loader',
-        'service/primus',
-        'angular-cookies'
+        'service/primus'
     ],
     function (angular, ctrlLoader, routes, filters, auth, loader, primus) {
     'use strict';
@@ -27,7 +26,7 @@ define(
         bootstrap: function () {
             var app;
             log('Tower, this is Ghost Rider requesting a flyby.');
-            app = angular.module(appName, ['ngCookies']);
+            app = angular.module(appName, []);
             app.provider('primus', primus);
             app.config(routes);
             app.filter('nl2br', filters.nl2br);

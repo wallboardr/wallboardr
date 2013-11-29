@@ -1,6 +1,6 @@
-define(['angular'], function (angular) {
+define([], function () {
   'use strict';
-  var authFactory = function ($rootScope, $cookies, $http) {
+  var authFactory = function ($rootScope, $http) {
     var transformUser = function (basic) {
       var enhanced = {
             name: basic.username,
@@ -16,7 +16,7 @@ define(['angular'], function (angular) {
       whoAmI: function () {
         if (!$rootScope.user || !$rootScope.user.name) {
           $http.get('/users/me').then(function (res) {
-            $rootScope.user = transformUser(res.data || {});
+            $rootScope.user = transformUser((res && res.data) || {});
           });
         }
       },
@@ -35,7 +35,7 @@ define(['angular'], function (angular) {
       },
       logout: function () {
         var self = this;
-        return $http.get('/users/logout').then(function () {
+        return $http.post('/users/logout').then(function () {
           self.resetUser();
         });
       },
@@ -52,12 +52,12 @@ define(['angular'], function (angular) {
         return $rootScope.user;
       },
       resetUser: function () {
-        angular.copy(transformUser({}), $rootScope.user);
+        $rootScope.user = transformUser({});
         $rootScope.$broadcast('user:logout');
       }
     };
   };
-  authFactory.$inject = ['$rootScope', '$cookies', '$http'];
+  authFactory.$inject = ['$rootScope', '$http'];
 
   return authFactory;
 });
