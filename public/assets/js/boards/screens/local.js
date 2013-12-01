@@ -1,4 +1,4 @@
-define(['jquery', 'screen/common', 'screen/parsers'], function ($, common, parsers) {
+define(['screen/parsers'], function (parsers) {
   'use strict';
 
   var setTextSize = function ($elem, $container) {
@@ -26,46 +26,30 @@ define(['jquery', 'screen/common', 'screen/parsers'], function ($, common, parse
           $elem.css({'font-size': currentSize + 'px'});
         }
       },
-      initText = function (data, $board) {
-        var lines = parsers.parse(data.message),
-            $scr = common.templates.localMessage({lines: lines, title: lines.title ? data.name : ''});
-
-        $board.animate({opacity: 0}, function () {
-          $board.html($scr);
-          if (lines.bigtext) {
-            $scr.bigtext();
-          } else {
-            setTextSize($scr, $board);
+      localScreen = function () {
+        var self = this,
+            viewData;
+        return {
+          getViewData: function () {
+            var lines = parsers.parse(self.data.message);
+            viewData = {lines: lines, title: lines.title ? self.data.name : ''};
+            return viewData;
+          },
+          preShow: function () {
+            if (viewData.lines.bigtext) {
+              self.$screen.bigtext();
+            } else {
+              setTextSize(self.$screen, self.$container);
+            }
           }
-          common.center($board, $scr);
-          $board.animate({opacity: 1});
-        });
-
-        return $scr;
-      },
-      transition = function (scr, $board) {
-        if (scr.$screen) {
-          $board.animate({opacity: 0}, function () {
-            $board.html(scr.$screen);
-            $board.animate({opacity: 1});
-          });
-        } else {
-          scr.$screen = initText(scr.data, $board);
-        }
+        };
       };
 
-  var LocalScreen = function (data, boardProps) {
-    this.data = data;
-    this.duration = data.duration || boardProps.duration;
-    this.$screen = null;
+  localScreen.config = {
+    typeName: 'local',
+    humanName: 'Local',
+    templateName: 'localMessage',
+    centered: true
   };
-
-  LocalScreen.prototype.play = function ($board) {
-    transition(this, $board);
-    return common.delay(this.duration);
-  };
-
-  return function (data, boardProps) {
-    return new LocalScreen(data, boardProps);
-  };
+  return localScreen;
 });
