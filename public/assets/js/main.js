@@ -7,12 +7,11 @@
             'controller'      : 'app/controllers',
             'service'         : 'app/services',
             'angular'         : '../lib/angular.min',
-            'angular-cookies' : '../lib/angular-cookies',
-            'primus'          : '../../primus/primus'
+            'primus'          : '../../primus/primus',
+            'plugin'         : '../plugins'
         },
         shim: {
-            'angular'         : { exports: 'angular' },
-            'angular-cookies' : ['angular']
+            'angular'         : { exports: 'angular' }
         }
     });
 
