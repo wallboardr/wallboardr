@@ -1,10 +1,23 @@
-define(['screen/local', 'screen/html', 'screen/teamcity'], function (local, html, teamcity) {
+define([
+  'screen/screen',
+  'screen/local'
+], function () {
   'use strict';
-  var screenTypes = { local: local, html: html, teamcity: teamcity },
-      factory = function (boardProps) {
+  var screenPlugins = Array.prototype.slice.call(arguments),
+      createScreen = screenPlugins.shift(),
+      screenTypes = (function () {
+        var plg = 0, types = {};
+        for (; plg < screenPlugins.length; plg += 1) {
+          if (screenPlugins[plg] && screenPlugins[plg].config.typeName) {
+            types[screenPlugins[plg].config.typeName] = screenPlugins[plg];
+          }
+        }
+        return types;
+      }()),
+      factory = function (boardProps, $container) {
         return function (screen) {
           return !screen.disabled && screenTypes[screen.type] ?
-                    screenTypes[screen.type](screen, boardProps)
+                    createScreen(screen, boardProps, $container, screenTypes[screen.type])
                     : undefined;
         };
       };

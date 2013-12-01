@@ -37,8 +37,8 @@ function ($, ich, player, Primus) {
             ich.grabTemplates();
             $.ajax(dataUrl).done(function (data) {
                 if (data.length) {
-                    screenPlayer = player(data, defaultDuration);
-                    screenPlayer.start($screen);
+                    screenPlayer = player(data, defaultDuration, $screen);
+                    screenPlayer.start();
                 }
             });
             primus = new Primus(notifyUrl);

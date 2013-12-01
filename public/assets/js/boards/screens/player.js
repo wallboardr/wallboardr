@@ -1,15 +1,14 @@
 define(['jquery', 'boards/delay', 'screen/factory'], function ($, delay, factory) {
   'use strict';
 
-    var Player = function (screens, defaultDuration) {
-          this.boardProps = { duration : defaultDuration };
-          this.screens = $.map(screens, factory(this.boardProps));
+    var Player = function (screens, defaultDuration, $screen) {
+          var boardProps = { duration : defaultDuration };
+          this.screenFactory = factory(boardProps, $screen);
+          this.screens = $.map(screens, this.screenFactory);
           this.currentIndex = 0;
-          this.defaultDuration = defaultDuration;
-          this.$parent = null;
         },
-        initialize = function (screens, defaultDuration) {
-          return new Player(screens, defaultDuration);
+        initialize = function (screens, defaultDuration, $screen) {
+          return new Player(screens, defaultDuration, $screen);
         },
         incrementScreen = function () {
           var self = this;
@@ -23,20 +22,18 @@ define(['jquery', 'boards/delay', 'screen/factory'], function ($, delay, factory
         },
         playScreen = function () {
           var self = this,
-              current = self.screens[self.currentIndex];
+              current = self.screens[self.currentIndex],
+              increment = $.proxy(incrementScreen, self);
 
-          current.play(self.$parent).then(function () {
-            incrementScreen.apply(self);
-          }).then(function () {
+          current.play().then(increment).then(function () {
             if (self.screens.length > 1) {
               playScreen.apply(self);
             }
           });
         };
 
-    Player.prototype.start = function ($screen) {
+    Player.prototype.start = function () {
       var self = this;
-      self.$parent = $screen;
       if (this.screens.length) {
         playScreen.apply(self);
       }
@@ -46,7 +43,7 @@ define(['jquery', 'boards/delay', 'screen/factory'], function ($, delay, factory
       var self = this,
           prevLength = self.screens.length;
       // TODO: properly update each screen or not.
-      self.screens = $.map(screens, factory(self.boardProps));
+      self.screens = $.map(screens, self.screenFactory);
       if (self.currentIndex > self.screens.length - 1) {
         self.currentIndex = self.screens.length - 1;
       }
