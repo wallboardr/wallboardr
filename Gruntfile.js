@@ -38,7 +38,7 @@ module.exports = function(grunt) {
           require: false,
           module: false
         },
-        ignores: ['<%= boardJsFile %>']
+        ignores: ['<%= boardJsFile %>', 'migration.js']
       },
       files: ['*.js', 'public/assets/js/**/*.js']
     },
