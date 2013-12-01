@@ -27,6 +27,11 @@ define(['angular', 'app/util'], function (angular, util) {
     $scope.chooseScreenType = function (type) {
       $scope.newScreen.type = type;
       $scope.newScreen.title = 'Enter ' + type + ' screen info';
+      if (type === 'local' || type === 'html') {
+        $scope.newScreen.url = '';
+      } else {
+        $scope.newScreen.url = 'assets/plugins/' + type + '/admin/index.html';
+      }
     };
 
     $scope.addScreen = function (screen) {

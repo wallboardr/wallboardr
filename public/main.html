@@ -72,8 +72,8 @@
   			<div class="choices" ng-hide="newScreen.type">
           <div class="list-item" ng-click="chooseScreenType('local')"><div class="info">Message</div></div>
   				<div class="list-item" ng-click="chooseScreenType('shared')" ng-show="haveSharedScreens"><div class="info">Shared</div></div>
-  				<!--<div class="list-item" ng-click="chooseScreenType('html')"><div class="info">Fetch HTML</div></div>
-          <div class="list-item" ng-click="chooseScreenType('teamcity')"><div class="info">TeamCity</div></div>-->
+  				<!--<div class="list-item" ng-click="chooseScreenType('html')"><div class="info">Fetch HTML</div></div>-->
+          <div class="list-item" ng-click="chooseScreenType('teamcity')"><div class="info">TeamCity</div></div>
   			</div>
   			<form novalidate name="newLocalScreen" ng-show="newScreen.type=='local'">
   				<input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
@@ -98,6 +98,9 @@
   				<button ng-click="addScreen(newHtmlScreen)" class="success">Add</button>
   				<button ng-click="cancelAddScreen()" class="cancel">Cancel</button>
   			</form>
+        <div class="newScreenContainer" ng-show="newScreen.type!='local' &amp;&amp; newScreen.type!='html'">
+          <div class="newScreenInclude" ng-include="newScreen.url"></div>
+        </div>
   		</div>
     </div>
 	</div>
