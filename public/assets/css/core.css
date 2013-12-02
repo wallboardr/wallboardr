@@ -878,7 +878,36 @@ nav .submenu.wide {
   padding: 1em;
 }
 .create-screen-area {
-  margin-top: 1em;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  margin-left: -400px;
+  width: 800px;
+  z-index: 1200;
+  border: 5px solid #fcfcfc;
+}
+.create-screen-area .widget {
+  margin-bottom: 0;
+}
+form .core-info {
+  float: left;
+  width: 30%;
+}
+form .plugin-form-area {
+  float: right;
+  width: 66%;
+}
+form .plugin-form-area button.cancel {
+  margin-left: 10px;
+}
+form .plugin-form-area button.success {
+  float: none;
+}
+form .plugin-form-area .buttons {
+  text-align: right;
+}
+form .plugin-form-area .buttons button {
+  width: auto;
 }
 .controls {
   position: absolute;

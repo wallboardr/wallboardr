@@ -6,7 +6,8 @@
             'lib'        : '../lib/boards',
             'jquery'     : '../lib/boards/jquery',
             'screen'     : '../js/boards/screens',
-            'primus'     : '../../primus/primus'
+            'primus'     : '../../primus/primus',
+            'plugin'     : '../plugins'
         },
         shim: {
             'jquery'      : { exports: 'jQuery' },

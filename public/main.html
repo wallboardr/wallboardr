@@ -70,36 +70,24 @@
       <h2 class="title">{{newScreen.title}}</h2>
   		<div class="create-screen widget">
   			<div class="choices" ng-hide="newScreen.type">
-          <div class="list-item" ng-click="chooseScreenType('local')"><div class="info">Message</div></div>
-  				<div class="list-item" ng-click="chooseScreenType('shared')" ng-show="haveSharedScreens"><div class="info">Shared</div></div>
-  				<!--<div class="list-item" ng-click="chooseScreenType('html')"><div class="info">Fetch HTML</div></div>-->
-          <div class="list-item" ng-click="chooseScreenType('teamcity')"><div class="info">TeamCity</div></div>
+          <div class="list-item" ng-click="chooseScreenType('shared')" ng-show="haveSharedScreens"><div class="info">Shared</div></div>
+          <div class="list-item" ng-repeat="plugin in plugins" ng-click="chooseScreenType(plugin)"><div class="info">{{plugin.humanName}}</div></div>
   			</div>
-  			<form novalidate name="newLocalScreen" ng-show="newScreen.type=='local'">
-  				<input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
-  				<textarea placeholder="Enter some text..." rows="3" ng-model="newLocalScreen.message" required></textarea><br>
-  				<input type="number" ng-model="newLocalScreen.duration" placeholder="Screen duration" min="0"><br>
-          <div class="form-container">
-            <input id="newLocalScreenShareable" type="checkbox" ng-model="newLocalScreen.shareable" class="css-checkbox">
-            <label for="newLocalScreenShareable" class="css-label">Share this screen</label>
-          </div>
-  				<button ng-click="addScreen(newLocalScreen)" class="success">Add</button>
-  				<button ng-click="cancelAddScreen()" class="cancel">Cancel</button>
-  			</form>
+
         <div class="choices" ng-controller="SharedScreenController" ng-show="newScreen.type=='shared'">
           <div class="list-item" ng-repeat="ss in sharedScreens" ng-click="addSharedScreen($index)"><div class="info">{{ss.name}} ({{ss.type | humanType}})</div></div>
           <div class="list-item" ng-click="cancelAddScreen()"><div class="info cancel">Cancel</div></div>
         </div>
-  			<form novalidate name="newHtmlScreen" ng-show="newScreen.type=='html'">
+  			<!--<form novalidate name="newHtmlScreen" ng-show="newScreen.type=='html'">
   				<input type="text" ng-model="newHtmlScreen.name" placeholder="Name" required><br>
   				<input type="url" ng-model="newHtmlScreen.url" placeholder="URL" required><br>
   				<input type="text" ng-model="newHtmlScreen.selector" placeholder="Selector" required><br>
   				<input type="number" ng-model="newHtmlScreen.duration" placeholder="Screen duration" min="0">
   				<button ng-click="addScreen(newHtmlScreen)" class="success">Add</button>
   				<button ng-click="cancelAddScreen()" class="cancel">Cancel</button>
-  			</form>
-        <div class="newScreenContainer" ng-show="newScreen.type!='local' &amp;&amp; newScreen.type!='html'">
-          <div class="newScreenInclude" ng-include="newScreen.url"></div>
+  			</form>-->
+        <div class="newScreenContainer" ng-show="newScreen.type &amp;&amp; newScreen.type!='shared'">
+          <div class="newScreenInclude" ng-include="newScreen.addUrl"></div>
         </div>
   		</div>
     </div>

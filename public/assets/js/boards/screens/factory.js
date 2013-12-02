@@ -8,8 +8,8 @@ define([
       screenTypes = (function () {
         var plg = 0, types = {};
         for (; plg < screenPlugins.length; plg += 1) {
-          if (screenPlugins[plg] && screenPlugins[plg].config.typeName) {
-            types[screenPlugins[plg].config.typeName] = screenPlugins[plg];
+          if (screenPlugins[plg] && screenPlugins[plg].config.name) {
+            types[screenPlugins[plg].config.name] = screenPlugins[plg];
           }
         }
         return types;

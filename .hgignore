@@ -1,8 +1,8 @@
+syntax: glob
 .DS_Store
 node_modules
 private
 coverage
-syntax: glob
 .nodemonignore
 *.sublime-workspace
 .dpd

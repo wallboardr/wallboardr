@@ -22,16 +22,13 @@ define(['angular', 'app/util'], function (angular, util) {
     $scope.cancelAddScreen = function () {
       $scope.openNewScreenForm = false;
       resetNewScreen();
+      $scope.$root.$broadcast('screen:new:close');
     };
 
-    $scope.chooseScreenType = function (type) {
-      $scope.newScreen.type = type;
-      $scope.newScreen.title = 'Enter ' + type + ' screen info';
-      if (type === 'local' || type === 'html') {
-        $scope.newScreen.url = '';
-      } else {
-        $scope.newScreen.url = 'assets/plugins/' + type + '/admin/index.html';
-      }
+    $scope.chooseScreenType = function (plugin) {
+      $scope.newScreen.type = plugin.name;
+      $scope.newScreen.title = 'Enter ' + plugin.humanName + ' screen info';
+      $scope.newScreen.addUrl = 'assets/plugins/' + plugin.name + '/' + (plugin.addTemplate || 'add.html');
     };
 
     $scope.addScreen = function (screen) {
