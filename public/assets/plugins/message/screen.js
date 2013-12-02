@@ -1,7 +1,8 @@
-define(['screen/parsers'], function (parsers) {
+define(['require', './parsers', './admin', 'lib/bigtext'], function (require) {
   'use strict';
-
-  var setTextSize = function ($elem, $container) {
+  var parsers = require('./parsers'),
+      plugin = require('./admin'),
+      setTextSize = function ($elem, $container) {
         var maxWidth = $container.width(),
             maxHeight = $container.height(),
             isTooBig = function ($el) {
@@ -45,11 +46,6 @@ define(['screen/parsers'], function (parsers) {
         };
       };
 
-  localScreen.config = {
-    typeName: 'local',
-    humanName: 'Local',
-    templateName: 'localMessage',
-    centered: true
-  };
+  localScreen.config = plugin.config;
   return localScreen;
 });

@@ -1,5 +1,6 @@
 define([
-  'plugin/teamcity/admin/teamcity'
+  'plugin/message/admin',
+  'plugin/teamcity/admin'
 ], function () {
   'use strict';
 
@@ -16,7 +17,7 @@ define([
         if (plugins[pIndex].config.controller) {
           app.controller(plugins[pIndex].config.controller, plugins[pIndex]);
         }
-        pluginlist.push(plugins[pIndex].config.name);
+        pluginlist.push(plugins[pIndex].config);
       }
     }
   };

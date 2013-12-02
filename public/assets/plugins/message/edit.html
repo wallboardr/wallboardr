@@ -1,0 +1,11 @@
+<form novalidate name="editLocalScreen">
+  <input type="text" ng-model="activeScreenEdit.name" placeholder="Name" required><br>
+  <textarea rows="3" placeholder="Enter some text..." ng-model="activeScreenEdit.message" required></textarea><br>
+  <input type="number" ng-model="activeScreenEdit.duration" placeholder="Screen duration" min="0">
+  <div class="form-container">
+      <input id="editScreenShareable" type="checkbox" ng-model="activeScreenEdit.shareable" class="css-checkbox">
+      <label for="editScreenShareable" class="css-label">Share this screen</label>
+    </div>
+  <button ng-click="updateActiveScreen(editLocalScreen)" class="success">Save</button>
+  <button ng-click="cancelEditScreen()" class="cancel">Cancel</button>
+</form>

@@ -3,7 +3,7 @@ define(['jquery', 'screen/common'], function ($, common) {
 
   var initialize = function (scr) {
         var viewData = scr.plugin('getViewData'),
-            templateName = scr.plugin.config.templateName || scr.plugin.config.typeName,
+            templateName = scr.plugin.config.templateName || scr.plugin.config.name,
             $scr = common.templates[templateName](viewData);
 
         return $scr;

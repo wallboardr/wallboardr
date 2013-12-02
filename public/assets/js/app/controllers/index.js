@@ -2,6 +2,13 @@ define(['angular', 'app/util'], function (angular, util) {
   'use strict';
   var indexController = function ($scope, $http, primus) {
 
+    var showOverlay = function () {
+          angular.element(document.body).addClass('occlude');
+        },
+        hideOverlay = function () {
+          angular.element(document.body).removeClass('occlude');
+        };
+
     $scope.activeBoard = null;
     $scope.activeScreen = null;
 
@@ -12,12 +19,8 @@ define(['angular', 'app/util'], function (angular, util) {
       $scope.activeScreen = null;
     });
 
-    $scope.$on('user:management:show', function () {
-      angular.element(document.body).addClass('occlude');
-    });
-    $scope.$on('user:management:hide', function () {
-      angular.element(document.body).removeClass('occlude');
-    });
+    $scope.$on('user:management:show', showOverlay);
+    $scope.$on('user:management:hide', hideOverlay);
 
     // ------ Handle board related stuff ------------------------------------
 
@@ -66,6 +69,9 @@ define(['angular', 'app/util'], function (angular, util) {
       $scope.cancelEditScreen();
       $scope.activeScreen = null;
     });
+
+    $scope.$on('screen:new:open', showOverlay);
+    $scope.$on('screen:new:close', hideOverlay);
 
     $scope.startEditingScreen = function () {
       $scope.activeScreenEdit = angular.copy($scope.activeScreen);
