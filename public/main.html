@@ -78,16 +78,21 @@
           <div class="list-item" ng-repeat="ss in sharedScreens" ng-click="addSharedScreen($index)"><div class="info">{{ss.name}} ({{ss.type | humanType}})</div></div>
           <div class="list-item" ng-click="cancelAddScreen()"><div class="info cancel">Cancel</div></div>
         </div>
-  			<!--<form novalidate name="newHtmlScreen" ng-show="newScreen.type=='html'">
-  				<input type="text" ng-model="newHtmlScreen.name" placeholder="Name" required><br>
-  				<input type="url" ng-model="newHtmlScreen.url" placeholder="URL" required><br>
-  				<input type="text" ng-model="newHtmlScreen.selector" placeholder="Selector" required><br>
-  				<input type="number" ng-model="newHtmlScreen.duration" placeholder="Screen duration" min="0">
-  				<button ng-click="addScreen(newHtmlScreen)" class="success">Add</button>
-  				<button ng-click="cancelAddScreen()" class="cancel">Cancel</button>
-  			</form>-->
+
         <div class="newScreenContainer" ng-show="newScreen.type &amp;&amp; newScreen.type!='shared'">
-          <div class="newScreenInclude" ng-include="newScreen.addUrl"></div>
+          <form novalidate name="newScreenForm">
+            <div class="core-info">
+              <input type="text" ng-model="newScreenForm.name" placeholder="Name" required><br>
+              <input type="number" ng-model="newScreenForm.duration" placeholder="Screen duration" min="0"><br>
+              <div class="form-container">
+                <input id="newScreenShareable" type="checkbox" ng-model="newScreenForm.shareable" class="css-checkbox">
+                <label for="newScreenShareable" class="css-label">Share this screen</label>
+              </div>
+            </div>
+            <div class="plugin-form-area">
+              <div class="newScreenInclude" ng-include="newScreen.addUrl"></div>
+            </div>
+          </form>
         </div>
   		</div>
     </div>
