@@ -1,20 +1,7 @@
-<form novalidate name="newLocalScreen">
-  <div class="core-info">
-    <input type="text" ng-model="newLocalScreen.name" placeholder="Name" required><br>
-    <input type="number" ng-model="newLocalScreen.duration" placeholder="Screen duration" min="0"><br>
-    <div class="form-container">
-      <input id="newLocalScreenShareable" type="checkbox" ng-model="newLocalScreen.shareable" class="css-checkbox">
-      <label for="newLocalScreenShareable" class="css-label">Share this screen</label>
-    </div>
+<div class="form-panel">
+  <textarea placeholder="Enter some text..." rows="4" ng-model="newScreenForm.message" required></textarea>
+  <div class="buttons">
+    <button ng-click="addScreen(newScreenForm)" class="success">Add</button>
+    <button ng-click="cancelAddScreen()" class="cancel">Cancel</button>
   </div>
-  <div class="plugin-form-area">
-    <div class="form-panel">
-      <textarea placeholder="Enter some text..." rows="4" ng-model="newLocalScreen.message" required></textarea>
-      <div class="buttons">
-        <button ng-click="addScreen(newLocalScreen)" class="success">Add</button>
-        <button ng-click="cancelAddScreen()" class="cancel">Cancel</button>
-      </div>
-    </div>
-  </div>
-
-</form>
+</div>
