@@ -78,9 +78,14 @@ define(['angular', 'app/util'], function (angular, util) {
 
     $scope.startEditingScreen = function () {
       var plugin = $scope.plugins.map[$scope.activeScreen.type];
-      $scope.activeScreenEdit = angular.copy($scope.activeScreen);
-      util.sanitize($scope.activeScreenEdit);
-      $scope.activeScreenEditUrl = 'assets/plugins/' + plugin.name + '/' + (plugin.editTemplate || 'edit.html');
+      if (!plugin) {
+        // Unknown type... don't freak out.
+        $scope.activeScreenEditUrl = false;
+      } else {
+        $scope.activeScreenEdit = angular.copy($scope.activeScreen);
+        util.sanitize($scope.activeScreenEdit);
+        $scope.activeScreenEditUrl = 'assets/plugins/' + plugin.name + '/' + (plugin.editTemplate || 'edit.html');
+      }
       $scope.openEditScreenForm = true;
       $scope.$root.$broadcast('screen:edit:opened');
     };

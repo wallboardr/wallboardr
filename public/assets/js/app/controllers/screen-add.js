@@ -26,6 +26,11 @@ define(['angular', 'app/util'], function (angular, util) {
     };
 
     $scope.chooseScreenType = function (plugin) {
+      if (plugin === 'shared') {
+        $scope.newScreen.type = plugin;
+        $scope.newScreen.title = 'Choose a shared screen screen';
+        return;
+      }
       $scope.newScreen.type = plugin.name;
       $scope.newScreen.title = 'Enter ' + plugin.humanName + ' screen info';
       $scope.newScreen.addUrl = 'assets/plugins/' + plugin.name + '/' + (plugin.addTemplate || 'add.html');
