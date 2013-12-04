@@ -59,6 +59,16 @@ module.exports = function(grunt) {
         }
       }
     },
+    replace: {
+      version: {
+        src: ['public/index.html'],
+        dest: 'public/index.html',             // destination directory or file
+        replacements: [{
+          from: /v\d+\.\d+\.\d+/,                   // string replacement
+          to: 'v<%= pkg.version %>'
+        }]
+      }
+    },
     watch: {
       less: {
         files: ['less/**/*.less'],
@@ -99,9 +109,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-text-replace');
 
   grunt.registerTask('default', ['jshint', 'less:dev', 'concat']);
   grunt.registerTask('work', ['concurrent:target']);
-  grunt.registerTask('prep', ['less:clean', 'jshint']);
+  grunt.registerTask('prep', ['less:clean', 'jshint', 'replace']);
 
 };
