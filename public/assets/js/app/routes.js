@@ -7,12 +7,6 @@ define(['controller/index'], function (indexCtrl) {
       templateUrl: 'main.html'
     });
 
-    $routeProvider.when('/view#:board', {
-      redirectTo: function (params) {
-        window.location = '/view.html#' + params.board;
-      }
-    });
-
     $routeProvider.otherwise({
       redirectTo: '/'
     });

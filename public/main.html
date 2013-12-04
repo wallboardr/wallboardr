@@ -5,7 +5,7 @@
 		<div class="board-list widget ng-cloak">
 			<div class="board list-item ng-cloak" ng-repeat="board in boards" ng-class="{'is-active': isActiveBoard($index)}" ng-click="setActiveBoard($index)">
 				<div class="horizontal-controls">
-					<a class="btn" ng-href="/view#{{board.slug}}" title="View board"><i class="icon-link"></i></a>
+					<a class="btn" href="/view.html#{{board.slug}}" title="View board" target="_blank"><i class="icon-link"></i></a>
 				</div>
 				<div class="info">{{board.name}}</div>
 			</div>
@@ -33,7 +33,7 @@
   		<div class="board-details widget" ng-hide="openEditBoardForm">
   			<div class="horizontal-controls full-row">
   				<span class="duration btn inert" title="Duration"><i class="icon-clock"></i> <span>{{activeBoard.duration || '-'}}</span></span>
-  				<span class="url btn inert"><i class="icon-link"></i> <span>/view#{{activeBoard.slug}}</span></span>
+  				<span class="url btn inert"><i class="icon-link"></i> <span>/view.html#{{activeBoard.slug}}</span></span>
   			</div>
   			<div class="info">
   				{{activeBoard.desc}}
