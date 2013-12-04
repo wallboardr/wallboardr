@@ -642,13 +642,6 @@ form:after {
   line-height: 0;
   height: 0;
 }
-form button.success {
-  float: left;
-  width: 50%;
-}
-form button.cancel {
-  width: 50%;
-}
 h2.title {
   background-color: #232323;
   color: #fcfcfc;
@@ -903,10 +896,10 @@ form .plugin-form-area button.cancel {
 form .plugin-form-area button.success {
   float: none;
 }
-form .plugin-form-area .buttons {
+.buttons {
   text-align: right;
 }
-form .plugin-form-area .buttons button {
+.buttons button {
   width: auto;
 }
 .controls {

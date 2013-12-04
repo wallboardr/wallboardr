@@ -7,7 +7,7 @@ define([], function () {
   };
   var humanType = function () {
     var map = {
-        'local': 'Message',
+        'message': 'Message',
         'html': 'Fetch HTML',
         'teamcity': 'TeamCity'
     };

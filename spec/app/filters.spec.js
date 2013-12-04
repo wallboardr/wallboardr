@@ -13,7 +13,7 @@ describe('nl2br', function () {
 describe('humanType', function () {
   var humanType = filters.humanType();
   it('maps known types to human readable versions', function () {
-    expect(humanType('local')).toBe('Message');
+    expect(humanType('message')).toBe('Message');
     expect(humanType('html')).toBe('Fetch HTML');
     expect(humanType('teamcity')).toBe('TeamCity');
   });

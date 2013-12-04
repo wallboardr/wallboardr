@@ -46,8 +46,10 @@
   				<input type="text" ng-model="activeBoardEdit.slug" placeholder="Url slug" required><br>
   				<textarea rows="4" ng-model="activeBoardEdit.desc" placeholder="Description"></textarea><br>
   				<input type="number" ng-model="activeBoardEdit.duration" placeholder="Default duration" min="0">
-  				<button ng-click="updateActiveBoard(editBoard)" class="success">Save</button>
-  				<button ng-click="cancelEditBoard()" class="cancel">Cancel</button>
+          <div class="buttons">
+    				<button ng-click="updateActiveBoard(editBoard)" class="success">Save</button>
+    				<button ng-click="cancelEditBoard()" class="cancel">Cancel</button>
+          </div>
   			</form>
   		</div>
     </div>
@@ -114,7 +116,14 @@
 			</div>
 		</div>
 		<div class="popup-modal edit-screen widget" ng-show="openEditScreenForm">
-			<form novalidate name="editScreenForm">
+      <div class="core-info" ng-hide="activeScreenEditUrl">
+        <div class="info"><p>Unknown screen type. Please wait for a plugin!</p>
+          <div class="buttons">
+            <button ng-click="cancelEditScreen()" class="cancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+			<form novalidate name="editScreenForm" ng-show="activeScreenEditUrl">
         <div class="core-info">
   				<input type="text" ng-model="activeScreenEdit.name" placeholder="Name" required><br>
   				<input type="number" ng-model="activeScreenEdit.duration" placeholder="Screen duration" min="0">
