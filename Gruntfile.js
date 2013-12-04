@@ -48,20 +48,20 @@ module.exports = function(grunt) {
           dumpLineNumbers: 'mediaquery'
         },
         files: {
-          '<%= cssFile %>': 'less/core.less',
-          '<%= boardCssFile %>': 'less/board.less'
+          '<%= adminCssFile %>': 'less/app.less',
+          '<%= displayCssFile %>': 'less/display.less'
         }
       },
       clean: {
         files: {
-          '<%= boardCssFile %>': 'less/board.less',
-          '<%= cssFile %>': 'less/core.less'
+          '<%= adminCssFile %>': 'less/app.less',
+          '<%= displayCssFile %>': 'less/display.less'
         }
       }
     },
     watch: {
       less: {
-        files: ['less/*.less'],
+        files: ['less/**/*.less'],
         tasks: 'less:dev'
       },
       js: {
@@ -87,8 +87,8 @@ module.exports = function(grunt) {
         }
       }
     },
-    cssFile: 'public/assets/css/core.css',
-    boardCssFile: 'public/assets/css/board.css',
+    adminCssFile: 'public/assets/css/app.css',
+    displayCssFile: 'public/assets/css/display.css',
     boardJsFile: 'public/assets/js/boards.js',
     boardJsSrc: ['public/assets/lib/boards/jquery.js', 'public/assets/lib/boards/bigtext.js', 'public/assets/js/boards/base.js']
   });
