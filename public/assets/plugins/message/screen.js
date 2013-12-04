@@ -32,8 +32,8 @@ define(['require', './parsers', './admin', 'lib/bigtext'], function (require) {
             viewData;
         return {
           getViewData: function () {
-            var lines = parsers.parse(self.data.message);
-            viewData = {lines: lines, title: lines.title ? self.data.name : ''};
+            var lines = parsers.parse(self.props.data.message);
+            viewData = {lines: lines, title: lines.title ? self.props.name : ''};
             return viewData;
           },
           preShow: function () {
