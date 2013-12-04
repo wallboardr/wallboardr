@@ -877,7 +877,7 @@ nav .submenu.wide {
 .create-board form {
   padding: 1em;
 }
-.create-screen-area {
+.popup-modal {
   position: fixed;
   top: 10%;
   left: 50%;
@@ -886,7 +886,7 @@ nav .submenu.wide {
   z-index: 1200;
   border: 5px solid #fcfcfc;
 }
-.create-screen-area .widget {
+.popup-modal .widget {
   margin-bottom: 0;
 }
 form .core-info {

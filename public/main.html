@@ -66,7 +66,7 @@
     </div>
 
     <!-- NEW SCREEN WIZARD -->
-    <div class="create-screen-area" ng-show="openNewScreenForm" ng-controller="CreateScreenController">
+    <div class="create-screen-area popup-modal" ng-show="openNewScreenForm" ng-controller="CreateScreenController">
       <h2 class="title">{{newScreen.title}}</h2>
   		<div class="create-screen widget">
   			<div class="choices" ng-hide="newScreen.type">
@@ -113,17 +113,19 @@
 				{{activeScreen.selector}}
 			</div>
 		</div>
-		<div class="edit-screen widget" ng-show="openEditScreenForm">
-			<form novalidate name="editLocalScreen">
-				<input type="text" ng-model="activeScreenEdit.name" placeholder="Name" required><br>
-				<textarea rows="3" placeholder="Enter some text..." ng-model="activeScreenEdit.message" required></textarea><br>
-				<input type="number" ng-model="activeScreenEdit.duration" placeholder="Screen duration" min="0">
-        <div class="form-container">
+		<div class="popup-modal edit-screen widget" ng-show="openEditScreenForm">
+			<form novalidate name="editScreenForm">
+        <div class="core-info">
+  				<input type="text" ng-model="activeScreenEdit.name" placeholder="Name" required><br>
+  				<input type="number" ng-model="activeScreenEdit.duration" placeholder="Screen duration" min="0">
+          <div class="form-container">
             <input id="editScreenShareable" type="checkbox" ng-model="activeScreenEdit.shareable" class="css-checkbox">
             <label for="editScreenShareable" class="css-label">Share this screen</label>
           </div>
-				<button ng-click="updateActiveScreen(editLocalScreen)" class="success">Save</button>
-				<button ng-click="cancelEditScreen()" class="cancel">Cancel</button>
+        </div>
+        <div class="plugin-form-area">
+          <div class="editScreenInclude" ng-include="activeScreenEditUrl"></div>
+        </div>
 			</form>
 		</div>
 	</div>

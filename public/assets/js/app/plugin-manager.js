@@ -6,6 +6,7 @@ define([
 
   var plugins = Array.prototype.slice.call(arguments);
   var pluginlist = [];
+  pluginlist.map = {};
 
   var pluginManager = function (app) {
     var pIndex = 0;
@@ -18,6 +19,7 @@ define([
           app.controller(plugins[pIndex].config.controller, plugins[pIndex]);
         }
         pluginlist.push(plugins[pIndex].config);
+        pluginlist.map[plugins[pIndex].config.name] = plugins[pIndex].config;
       }
     }
   };

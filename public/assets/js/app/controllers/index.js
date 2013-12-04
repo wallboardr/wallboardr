@@ -73,9 +73,14 @@ define(['angular', 'app/util'], function (angular, util) {
     $scope.$on('screen:new:open', showOverlay);
     $scope.$on('screen:new:close', hideOverlay);
 
+    $scope.$on('screen:edit:opened', showOverlay);
+    $scope.$on('screen:edit:closed', hideOverlay);
+
     $scope.startEditingScreen = function () {
+      var plugin = $scope.plugins.map[$scope.activeScreen.type];
       $scope.activeScreenEdit = angular.copy($scope.activeScreen);
       util.sanitize($scope.activeScreenEdit);
+      $scope.activeScreenEditUrl = 'assets/plugins/' + plugin.name + '/' + (plugin.editTemplate || 'edit.html');
       $scope.openEditScreenForm = true;
       $scope.$root.$broadcast('screen:edit:opened');
     };
@@ -83,6 +88,7 @@ define(['angular', 'app/util'], function (angular, util) {
     $scope.cancelEditScreen = function () {
       $scope.activeScreenEdit = {};
       $scope.openEditScreenForm = false;
+      $scope.$root.$broadcast('screen:edit:closed');
     };
 
     var revertBoard = function (err, backup) {
@@ -127,6 +133,7 @@ define(['angular', 'app/util'], function (angular, util) {
           revertScreen(err, backup);
         });
         $scope.openEditScreenForm = false;
+        $scope.$root.$broadcast('screen:edit:closed');
       }
     };
 

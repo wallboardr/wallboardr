@@ -1,6 +1,6 @@
 define([
   'screen/screen',
-  'screen/local'
+  'plugin/message/screen'
 ], function () {
   'use strict';
   var screenPlugins = Array.prototype.slice.call(arguments),
