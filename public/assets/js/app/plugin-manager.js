@@ -1,5 +1,6 @@
 define([
   'plugin/message/admin',
+  'plugin/octopus/admin',
   'plugin/teamcity/admin'
 ], function () {
   'use strict';

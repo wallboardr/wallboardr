@@ -67,21 +67,13 @@
 			"required": false,
 			"order": 7
 		},
-		"message": {
-			"type": "string",
-			"typeLabel": "string",
-			"id": "message",
-			"name": "message",
-			"required": false,
-			"order": 8
-		},
 		"name": {
 			"type": "string",
 			"typeLabel": "string",
 			"id": "name",
 			"name": "name",
 			"required": false,
-			"order": 9
+			"order": 8
 		},
 		"shareable": {
 			"type": "boolean",
@@ -89,7 +81,7 @@
 			"id": "shareable",
 			"name": "shareable",
 			"required": false,
-			"order": 10
+			"order": 9
 		},
 		"sortkey": {
 			"type": "object",
@@ -97,7 +89,7 @@
 			"id": "sortkey",
 			"name": "sortkey",
 			"required": false,
-			"order": 11
+			"order": 10
 		},
 		"board": {
 			"type": "array",
@@ -105,7 +97,7 @@
 			"id": "board",
 			"name": "board",
 			"required": false,
-			"order": 12
+			"order": 11
 		},
 		"disabled": {
 			"name": "disabled",
@@ -113,6 +105,14 @@
 			"typeLabel": "boolean",
 			"required": false,
 			"id": "disabled",
+			"order": 12
+		},
+		"data": {
+			"name": "data",
+			"type": "object",
+			"typeLabel": "object",
+			"required": false,
+			"id": "data",
 			"order": 13
 		}
 	},
