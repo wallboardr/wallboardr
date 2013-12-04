@@ -26,6 +26,8 @@ define(['angular', 'app/util'], function (angular, util) {
         $scope.cancelEditScreen();
         $scope.activeScreenId = $scope.screens[index].id;
         $scope.activeScreenIndex = index;
+        // Make sure there is a data property
+        $scope.screens[index].data = $scope.screens[index].data || {};
         $scope.$root.$broadcast('screen:selected', $scope.screens[index]);
       }
     };

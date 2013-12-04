@@ -109,10 +109,10 @@
     </div>
 		<h2 class="title" ng-show="activeScreen">{{activeScreen.name}}</h2>
 		<div class="screen-details widget" ng-show="activeScreen">
-			<div class="info" ng-bind-html-unsafe="activeScreen.message | nl2br" ng-show="activeScreen.message"></div>
-			<div class="info" ng-show="activeScreen.url">
-				{{activeScreen.url}}<br>
-				{{activeScreen.selector}}
+			<div class="info" ng-bind-html-unsafe="activeScreen.data.message | nl2br" ng-show="activeScreen.data.message"></div>
+			<div class="info" ng-show="activeScreen.data.url">
+				{{activeScreen.data.url}}<br>
+				{{activeScreen.data.selector}}
 			</div>
 		</div>
 		<div class="popup-modal edit-screen widget" ng-show="openEditScreenForm">

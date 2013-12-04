@@ -35,7 +35,7 @@ define(['jquery', 'screen/common'], function ($, common) {
       };
 
   var Screen = function (data, boardProps, $container, plugin) {
-    this.data = data;
+    this.props = data;
     this.duration = data.duration || boardProps.duration;
     this.$container = $container;
     this.plugin = plugify(plugin, this);
