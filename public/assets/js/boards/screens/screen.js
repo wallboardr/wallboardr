@@ -45,6 +45,33 @@ define(['jquery', 'screen/common'], function ($, common) {
           });
         }
         return $.when(true);
+      },
+      setTextSize = function () {
+        var $elem = this.$screen,
+            $container = this.$container,
+            maxWidth = $container.width(),
+            maxHeight = $container.height(),
+            isTooBig = function ($el) {
+              return $el.width() > maxWidth || $el.height() > maxHeight;
+            },
+            currentSize = 50,
+            delta = 10,
+            rollback = true;
+
+        $elem.css({'font-size': currentSize + 'px'});
+        if (isTooBig($elem)) {
+          delta = -delta;
+          rollback = false;
+        }
+
+        do {
+          currentSize += delta;
+          $elem.css({'font-size': currentSize + 'px'});
+        } while ((rollback !== isTooBig($elem)) && currentSize > 0 && currentSize < 300);
+        if (rollback || currentSize === 0) {
+          currentSize -= delta;
+          $elem.css({'font-size': currentSize + 'px'});
+        }
       };
 
   var Screen = function (data, boardProps, $container, plugin) {
@@ -62,6 +89,8 @@ define(['jquery', 'screen/common'], function ($, common) {
       .then(function () { transition(self); })
       .then(function () { return common.delay(self.duration); });
   };
+
+  Screen.prototype.maximizeTextSize = setTextSize;
 
   return function (data, boardProps, $container, plugin) {
     return new Screen(data, boardProps, $container, plugin);
