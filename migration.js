@@ -5,3 +5,5 @@ db.screens.update({type:'local'},{$set:{type:'message'}},{multi:true});
 db.users.find().forEach(function(doc){db.users.remove(doc);});
 db.screens.find({type:'message'}).forEach(function(doc){db.screens.update({_id:doc._id},{$set:{data:{message:doc.message}}})});
 db.screens.find().forEach(function(doc){db.screens.update({_id:doc._id},{$unset:{message:''}})});
+db.users.dropIndex('name_1');
+db.users.dropIndex('slug_1');

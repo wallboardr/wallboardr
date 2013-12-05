@@ -22,8 +22,12 @@ define([], function () {
       }
     };
 
+    var badLogin = function () {
+      $scope.login.serverError = true;
+    };
+
     $scope.findAll = function () {
-      var url = '/users?{"$sort":{"name":1}}';
+      var url = '/users?{"$sort":{"username":1}}';
       $http.get(url).success(function (data) {
         $scope.users = data;
       });
@@ -44,7 +48,7 @@ define([], function () {
       $scope.login.serverError = false;
       $scope.login.clientError = false;
       if (form.$valid) {
-        auth.login($scope.loginUser).then(goodLogin);
+        auth.login($scope.loginUser).then(goodLogin, badLogin);
       } else {
         $scope.login.clientError = true;
       }
