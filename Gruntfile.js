@@ -40,7 +40,8 @@ module.exports = function(grunt) {
         },
         ignores: ['<%= boardJsFile %>', 'migration.js']
       },
-      files: ['*.js', 'public/assets/js/**/*.js']
+      product: ['*.js', 'public/assets/js/**/*.js'],
+      plugins: ['public/assets/plugins/**/*.js']
     },
     less: {
       dev: {
@@ -75,8 +76,8 @@ module.exports = function(grunt) {
         tasks: 'less:dev'
       },
       js: {
-        files: ['<%= jshint.files %>'],
-        tasks: ['jshint']
+        files: ['<%= jshint.product.files %>'],
+        tasks: ['jshint:product']
       }
     },
     nodemon: {
@@ -111,7 +112,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-text-replace');
 
-  grunt.registerTask('default', ['jshint', 'less:dev', 'concat']);
+  grunt.registerTask('default', ['jshint', 'less:dev']);
   grunt.registerTask('work', ['concurrent:target']);
   grunt.registerTask('prep', ['less:clean', 'jshint', 'replace']);
 
