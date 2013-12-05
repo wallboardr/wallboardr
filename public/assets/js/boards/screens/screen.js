@@ -32,6 +32,19 @@ define(['jquery', 'screen/common'], function ($, common) {
             };
         safeInvoke.config = fn.config;
         return safeInvoke;
+      },
+      loadTemplate = function () {
+        var templateName = this.plugin.config.templateName || this.plugin.config.name;
+        if (!common.templates[templateName]) {
+          return common.fetchTemplate(this.plugin.config.name).then(function (data) {
+            if (data) {
+              common.templates.addTemplate(templateName, data);
+              return true;
+            }
+            return false;
+          });
+        }
+        return $.when(true);
       };
 
   var Screen = function (data, boardProps, $container, plugin) {
@@ -44,8 +57,10 @@ define(['jquery', 'screen/common'], function ($, common) {
   };
 
   Screen.prototype.play = function () {
-    transition(this);
-    return common.delay(this.duration);
+    var self = this;
+    return loadTemplate.call(self)
+      .then(function () { transition(self); })
+      .then(function () { return common.delay(self.duration); });
   };
 
   return function (data, boardProps, $container, plugin) {
