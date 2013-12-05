@@ -239,7 +239,7 @@
       </div></h2>
       <div class="user-list widget" ng-hide="userFormOpen">
         <div class="list-item user" ng-repeat="user in users">
-          <div class="info">{{user.name}}</div>
+          <div class="info">{{user.username}}</div>
         </div>
       </div>
       <div class="new-user widget" ng-show="userFormOpen">
@@ -247,8 +247,10 @@
           <input type="text" ng-model="createUser.username" placeholder="Name" required><br>
           <input type="email" ng-model="createUser.email" placeholder="Email">
           <input type="password" ng-model="createUser.password" placeholder="Password">
-          <button ng-click="saveUser(userForm)" class="success">Save</button>
-          <button ng-click="closeUserForm()" class="cancel">Cancel</button>
+          <div class="buttons">
+            <button ng-click="saveUser(userForm)" class="success">Save</button>
+            <button ng-click="closeUserForm()" class="cancel">Cancel</button>
+          </div>
         </form>
       </div>
     </div>
