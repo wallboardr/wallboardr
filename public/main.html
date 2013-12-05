@@ -19,8 +19,10 @@
 				<input type="text" ng-model="newBoard.slug" placeholder="Url slug" required><br>
 				<textarea rows="4" ng-model="newBoard.desc" placeholder="Description"></textarea><br>
 				<input type="number" ng-model="newBoard.duration" placeholder="Default duration" min="0">
-				<button ng-click="addBoard(newBoard)" class="success">Add</button>
-				<button ng-click="cancelAddBoard()" class="cancel">Cancel</button>
+        <div class="buttons">
+          <button ng-click="addBoard(newBoard)" class="success">Add</button>
+          <button ng-click="cancelAddBoard()" class="cancel">Cancel</button>
+        </div>
 			</form>
 		</div>
 	</div>
