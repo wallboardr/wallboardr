@@ -5,16 +5,13 @@ define([], function () {
       return input && input.replace(/\n/g, '<br>');
     };
   };
-  var humanType = function () {
-    var map = {
-        'message': 'Message',
-        'html': 'Fetch HTML',
-        'teamcity': 'TeamCity'
-    };
+  var humanType = function ($rootScope) {
     return function (input) {
-        return map[input] || 'Unknown';
+        var plugin = $rootScope.plugins.map[input];
+        return plugin ? (plugin.humanName || plugin.name) : (input || 'Unknown');
     };
   };
+  humanType.$inject = ['$rootScope'];
   return {
     nl2br: nl2br,
     humanType: humanType
