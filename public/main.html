@@ -101,21 +101,18 @@
 	</div>
 
   <!-- RIGHT COLUMN -->
-	<div class="screen-editor vertical-tools" ng-show="activeScreen &amp;&amp; user.loggedIn">
+  <div class="screen-editor vertical-tools" ng-show="activeScreen &amp;&amp; user.loggedIn">
     <div class="controls">
       <button ng-click="startEditingScreen()" title="Edit screen"><i class="icon-pencil"></i></button><br>
       <button ng-click="toggleVisibleScreen()" title="Toggle screen visibility"><i ng-class="{'icon-eye': !activeScreen.disabled, 'icon-eye-blocked': activeScreen.disabled}"></i></button><br>
       <button ng-click="unlinkScreen()" title="Unlink screen from current board" ng-show="isMultiLinkedScreen()"><i class="icon-unlink"></i></button>
     </div>
-		<h2 class="title" ng-show="activeScreen">{{activeScreen.name}}</h2>
-		<div class="screen-details widget" ng-show="activeScreen">
-			<div class="info" ng-bind-html-unsafe="activeScreen.data.message | nl2br" ng-show="activeScreen.data.message"></div>
-			<div class="info" ng-show="activeScreen.data.url">
-				{{activeScreen.data.url}}<br>
-				{{activeScreen.data.selector}}
-			</div>
-		</div>
-		<div class="popup-modal edit-screen widget" ng-show="openEditScreenForm">
+    <h2 class="title">{{activeScreen.name}}</h2>
+    <div class="screen-details widget">
+      <div class="info" ng-hide="activeScreenDisplayUrl">Unknown screen type. Please wait for a plugin!</div>
+      <div class="info screen-display" ng-show="activeScreenDisplayUrl" ng-include="activeScreenDisplayUrl"></div>
+    </div>
+    <div class="popup-modal edit-screen widget" ng-show="openEditScreenForm">
       <div class="core-info" ng-hide="activeScreenEditUrl">
         <div class="info"><p>Unknown screen type. Please wait for a plugin!</p>
           <div class="buttons">
@@ -123,10 +120,10 @@
           </div>
         </div>
       </div>
-			<form novalidate name="editScreenForm" ng-show="activeScreenEditUrl">
+      <form novalidate name="editScreenForm" ng-show="activeScreenEditUrl">
         <div class="core-info">
-  				<input type="text" ng-model="activeScreenEdit.name" placeholder="Name" required><br>
-  				<input type="number" ng-model="activeScreenEdit.duration" placeholder="Screen duration" min="0">
+          <input type="text" ng-model="activeScreenEdit.name" placeholder="Name" required><br>
+          <input type="number" ng-model="activeScreenEdit.duration" placeholder="Screen duration" min="0">
           <div class="form-container">
             <input id="editScreenShareable" type="checkbox" ng-model="activeScreenEdit.shareable" class="css-checkbox">
             <label for="editScreenShareable" class="css-label">Share this screen</label>
@@ -135,9 +132,9 @@
         <div class="plugin-form-area">
           <div class="editScreenInclude" ng-include="activeScreenEditUrl"></div>
         </div>
-			</form>
-		</div>
-	</div>
+      </form>
+    </div>
+  </div>
 
   <!-- INSTRUCTIONS / FLOATING COLUMN -->
 	<div class="instructions">
