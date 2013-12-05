@@ -11,17 +11,28 @@ describe('nl2br', function () {
 });
 
 describe('humanType', function () {
-  var humanType = filters.humanType();
-  it('maps known types to human readable versions', function () {
-    expect(humanType('message')).toBe('Message');
-    expect(humanType('html')).toBe('Fetch HTML');
-    expect(humanType('teamcity')).toBe('TeamCity');
+  var rootScope = {
+    plugins: {
+      map: {
+        message: {humanName: 'Human Name', name: 'name'},
+        teamcity: {name: 'tcname'}
+      }
+    }
+  };
+  var humanType = filters.humanType(rootScope);
+  it('maps plugin types to human readable versions if available', function () {
+    expect(humanType('message')).toBe('Human Name');
   });
-  it('maps everything else to "Unknown"', function () {
+  it('maps plugin types to basic names if not human names', function () {
+    expect(humanType('teamcity')).toBe('tcname');
+  });
+  it('passes falsy plugins through as "Unknown"', function () {
     expect(humanType('')).toBe('Unknown');
-    expect(humanType('09gjqaojg')).toBe('Unknown');
-    expect(humanType(1234)).toBe('Unknown');
-    expect(humanType({'x': 1})).toBe('Unknown');
-    expect(humanType([''])).toBe('Unknown');
+    expect(humanType(false)).toBe('Unknown');
+    expect(humanType()).toBe('Unknown');
+  });
+  it('passes unknown plugins through as is', function () {
+    expect(humanType('09gjqaojg')).toBe('09gjqaojg');
+    expect(humanType(1234)).toBe(1234);
   });
 });
