@@ -3,8 +3,7 @@ define(['jquery', 'screen/common'], function ($, common) {
 
   var initialize = function (scr) {
         var templateName = scr.plugin.config.templateName || scr.plugin.config.name,
-            viewPromise = scr.plugin('getViewData'),
-            screenPromise, $scr;
+            viewPromise = scr.plugin('getViewData');
         if (viewPromise !== undefined) {
           return viewPromise.then(function (viewData) {
             scr.$screen = common.templates[templateName](viewData);
@@ -53,7 +52,7 @@ define(['jquery', 'screen/common'], function ($, common) {
             if (data) {
               common.templates.addTemplate(templateName, data);
             } else {
-              common.templates.addTemplate(templateName, '<div class="no-template">No template available for this screen plugin: ' + templateName + '</div>')
+              common.templates.addTemplate(templateName, '<div class="no-template">No template available for this screen plugin: ' + templateName + '</div>');
             }
             return self;
           });
