@@ -2,31 +2,6 @@ define(['require', './parsers', './admin', 'lib/bigtext'], function (require) {
   'use strict';
   var parsers = require('./parsers'),
       plugin = require('./admin'),
-      setTextSize = function ($elem, $container) {
-        var maxWidth = $container.width(),
-            maxHeight = $container.height(),
-            isTooBig = function ($el) {
-              return $el.width() > maxWidth || $el.height() > maxHeight;
-            },
-            currentSize = 50,
-            delta = 10,
-            rollback = true;
-
-        $elem.css({'font-size': currentSize + 'px'});
-        if (isTooBig($elem)) {
-          delta = -delta;
-          rollback = false;
-        }
-
-        do {
-          currentSize += delta;
-          $elem.css({'font-size': currentSize + 'px'});
-        } while ((rollback !== isTooBig($elem)) && currentSize > 0 && currentSize < 300);
-        if (rollback || currentSize === 0) {
-          currentSize -= delta;
-          $elem.css({'font-size': currentSize + 'px'});
-        }
-      },
       localScreen = function () {
         var self = this,
             viewData;
@@ -40,7 +15,7 @@ define(['require', './parsers', './admin', 'lib/bigtext'], function (require) {
             if (viewData.lines.bigtext) {
               self.$screen.bigtext();
             } else {
-              setTextSize(self.$screen, self.$container);
+              self.maximizeTextSize();
             }
           }
         };
