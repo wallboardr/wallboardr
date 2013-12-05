@@ -62,6 +62,12 @@ define(['angular', 'app/util'], function (angular, util) {
     // ------ Handle screen related stuff ------------------------------------
 
     $scope.$on('screen:selected', function (e, scr) {
+      var plugin = $scope.plugins.map[scr.type];
+      if (plugin) {
+        $scope.activeScreenDisplayUrl = 'assets/plugins/' + plugin.name + '/' + (plugin.displayTemplate || 'display.html');
+      } else {
+        $scope.activeScreenDisplayUrl = false;
+      }
       $scope.activeScreen = scr;
     });
 
