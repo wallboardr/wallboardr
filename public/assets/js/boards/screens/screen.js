@@ -2,15 +2,20 @@ define(['jquery', 'screen/common'], function ($, common) {
   'use strict';
 
   var initialize = function (scr) {
-        var viewData = scr.plugin('getViewData'),
-            templateName = scr.plugin.config.templateName || scr.plugin.config.name,
-            $scr = common.templates[templateName](viewData);
+        var templateName = scr.plugin.config.templateName || scr.plugin.config.name,
+            viewPromise = scr.plugin('getViewData'),
+            screenPromise, $scr;
+        if (viewPromise !== undefined) {
+          return viewPromise.then(function (viewData) {
+            scr.$screen = common.templates[templateName](viewData);
+            return scr;
+          });
+        }
 
-        return $scr;
+        scr.$screen = common.templates[templateName]({});
+        return $.when(scr);
       },
       transition = function (scr) {
-        scr.$screen = scr.$screen || initialize(scr);
-
         scr.$container.animate({opacity: 0}, function () {
           scr.$container.html(scr.$screen);
           scr.plugin('preShow');
@@ -21,12 +26,19 @@ define(['jquery', 'screen/common'], function ($, common) {
           scr.plugin('postShow');
           scr.firstRender = false;
         });
+        return scr.duration;
+      },
+      loadScreen = function (scr) {
+        if (scr.$screen) {
+          return transition(scr);
+        }
+        return initialize(scr).then(transition);
       },
       plugify = function (fn, context) {
         var plugin = $.proxy(fn, context)($),
             safeInvoke = function (fnName) {
               if (typeof plugin[fnName] === 'function') {
-                return plugin[fnName]();
+                return $.when(plugin[fnName]());
               }
               return undefined;
             };
@@ -34,17 +46,19 @@ define(['jquery', 'screen/common'], function ($, common) {
         return safeInvoke;
       },
       loadTemplate = function () {
-        var templateName = this.plugin.config.templateName || this.plugin.config.name;
+        var self = this,
+            templateName = this.plugin.config.templateName || this.plugin.config.name;
         if (!common.templates[templateName]) {
           return common.fetchTemplate(this.plugin.config.name).then(function (data) {
             if (data) {
               common.templates.addTemplate(templateName, data);
-              return true;
+            } else {
+              common.templates.addTemplate(templateName, '<div class="no-template">No template available for this screen plugin: ' + templateName + '</div>')
             }
-            return false;
+            return self;
           });
         }
-        return $.when(true);
+        return $.when(self);
       },
       setTextSize = function () {
         var $elem = this.$screen,
@@ -84,10 +98,7 @@ define(['jquery', 'screen/common'], function ($, common) {
   };
 
   Screen.prototype.play = function () {
-    var self = this;
-    return loadTemplate.call(self)
-      .then(function () { transition(self); })
-      .then(function () { return common.delay(self.duration); });
+    return loadTemplate.call(this).then(loadScreen).then(common.delay);
   };
 
   Screen.prototype.maximizeTextSize = setTextSize;

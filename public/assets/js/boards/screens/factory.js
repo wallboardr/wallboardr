@@ -1,6 +1,7 @@
 define([
   'screen/screen',
-  'plugin/message/screen'
+  'plugin/message/screen',
+  'plugin/octopus/screen'
 ], function () {
   'use strict';
   var screenPlugins = Array.prototype.slice.call(arguments),
