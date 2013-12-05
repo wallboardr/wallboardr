@@ -1,10 +1,13 @@
 define(['jquery'], function ($) {
   'use strict';
-  var proxyPrefix = '/json/',
+  var proxyPrefix = '/proxy/',
       getUrl = function (opts) {
         var url = opts.url;
         if (opts.proxy) {
-          url = proxyPrefix + encodeURIComponent(url);
+          if (url.substr(0, 7) === 'http://') {
+            url = url.substr(7);
+          }
+          url = proxyPrefix + url;
         }
         return url;
       };
