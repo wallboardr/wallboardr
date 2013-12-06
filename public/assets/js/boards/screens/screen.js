@@ -1,9 +1,18 @@
 define(['jquery', 'screen/common'], function ($, common) {
   'use strict';
 
-  var initialize = function (scr) {
+  var clearMe = function (scr) {
+        scr.$screen = null;
+      },
+      initialize = function (scr) {
         var templateName = scr.plugin.config.templateName || scr.plugin.config.name,
+            pollInterval = scr.plugin.config.pollInterval || 0,
             viewPromise = scr.plugin('getViewData');
+
+        if (pollInterval > 0) {
+          common.delay(pollInterval, scr).then(clearMe);
+        }
+
         if (viewPromise !== undefined) {
           return viewPromise.then(function (viewData) {
             scr.$screen = common.templates[templateName](viewData);
