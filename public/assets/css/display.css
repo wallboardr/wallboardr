@@ -426,6 +426,7 @@ body,
 .screen > div ol {
   display: table;
   margin: 0 auto;
+  padding-left: 0.7em;
 }
 .screen > div ul li,
 .screen > div ol li {
