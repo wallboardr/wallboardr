@@ -587,6 +587,7 @@ form {
 form input,
 form textarea {
   box-sizing: border-box;
+  -moz-box-sizing: border-box;
   width: 100%;
   border: 0;
   padding: 0.75em;
@@ -712,7 +713,6 @@ nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  height: 5em;
   text-align: right;
   border-right: 1px solid #373737;
   *zoom: 1;
@@ -735,7 +735,6 @@ nav ul:after {
 }
 nav li {
   display: inline-block;
-  height: 100%;
   float: right;
   position: relative;
 }
@@ -758,7 +757,23 @@ nav .submenu {
   color: #fcfcfc;
   width: 100%;
   border-right: 0;
-  height: 3em;
+  *zoom: 1;
+}
+nav .submenu:before,
+nav .submenu:after {
+  content: "";
+  display: table;
+}
+nav .submenu:after {
+  clear: both;
+}
+nav .submenu:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
 }
 nav .submenu li {
   width: 100%;
