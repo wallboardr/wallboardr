@@ -3,12 +3,16 @@ define(['jquery', 'screen/common'], function ($, common) {
 
   var clearMe = function (scr) {
         scr.$screen = null;
+        if (scr.solo) {
+          initialize(scr).then(transition);
+        }
       },
-      initialize = function (scr) {
+      initialize = function initialize(scr) {
         var templateName = scr.plugin.config.templateName || scr.plugin.config.name,
             pollInterval = scr.plugin.config.pollInterval || 0,
             viewPromise = scr.plugin('getViewData');
 
+        scr.firstRender = true;
         if (pollInterval > 0) {
           common.delay(pollInterval, scr).then(clearMe);
         }
@@ -80,7 +84,7 @@ define(['jquery', 'screen/common'], function ($, common) {
             delta = 10,
             rollback = true;
 
-        $elem.css({'font-size': currentSize + 'px'});
+        $elem.css({'font-size': currentSize + 'px', 'float': 'left'});
         if (isTooBig($elem)) {
           delta = -delta;
           rollback = false;
@@ -94,6 +98,7 @@ define(['jquery', 'screen/common'], function ($, common) {
           currentSize -= delta;
           $elem.css({'font-size': currentSize + 'px'});
         }
+        $elem.css({'float': 'none'});
       };
 
   var Screen = function (data, boardProps, $container, plugin) {
@@ -103,10 +108,15 @@ define(['jquery', 'screen/common'], function ($, common) {
     this.plugin = plugify(plugin, this);
     this.firstRender = true;
     this.$screen = null;
+    this.solo = false;
   };
 
   Screen.prototype.play = function () {
     return loadTemplate.call(this).then(loadScreen).then(common.delay);
+  };
+
+  Screen.prototype.youAreOnYourOwn = function () {
+    this.solo = true;
   };
 
   Screen.prototype.maximizeTextSize = setTextSize;

@@ -12,9 +12,6 @@ define(['jquery', 'boards/delay', 'screen/factory'], function ($, delay, factory
         },
         incrementScreen = function () {
           var self = this;
-          if (self.screens === 1) {
-
-          }
           self.currentIndex += 1;
           if (self.screens.length <= self.currentIndex) {
             self.currentIndex = 0;
@@ -25,6 +22,9 @@ define(['jquery', 'boards/delay', 'screen/factory'], function ($, delay, factory
               current = self.screens[self.currentIndex],
               increment = $.proxy(incrementScreen, self);
 
+          if (self.screens.length === 1) {
+            current.youAreOnYourOwn();
+          }
           current.play().then(increment).then(function () {
             if (self.screens.length > 1) {
               playScreen.apply(self);
