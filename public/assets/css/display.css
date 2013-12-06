@@ -381,6 +381,145 @@ body:after {
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'wallboardr-font';
+  src: url('../fonts/wallboardr-font.eot');
+  src: url('../fonts/wallboardr-font.eot?#iefix') format('embedded-opentype'), url('../fonts/wallboardr-font.woff') format('woff'), url('../fonts/wallboardr-font.ttf') format('truetype'), url('../fonts/wallboardr-font.svg#wallboardr-font') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+  font-family: 'wallboardr-font';
+  content: attr(data-icon);
+  speak: none;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"] {
+*/
+.icon-pencil,
+.icon-user,
+.icon-pictures,
+.icon-disk,
+.icon-screen,
+.icon-clock,
+.icon-cloud-upload,
+.icon-menu,
+.icon-star,
+.icon-cog,
+.icon-users,
+.icon-stats,
+.icon-eye,
+.icon-eye-blocked,
+.icon-key,
+.icon-lock,
+.icon-reload,
+.icon-remove,
+.icon-ok,
+.icon-link,
+.icon-plus,
+.icon-arrow-up,
+.icon-arrow-down,
+.icon-share,
+.icon-unlink {
+  font-family: 'wallboardr-font';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+}
+.icon-pencil:before {
+  content: "\e000";
+}
+.icon-user:before {
+  content: "\e001";
+}
+.icon-pictures:before {
+  content: "\e003";
+}
+.icon-disk:before {
+  content: "\e004";
+}
+.icon-screen:before {
+  content: "\e005";
+}
+.icon-clock:before {
+  content: "\e002";
+}
+.icon-cloud-upload:before {
+  content: "\e006";
+}
+.icon-menu:before {
+  content: "\e007";
+}
+.icon-star:before {
+  content: "\e008";
+}
+.icon-cog:before {
+  content: "\e009";
+}
+.icon-users:before {
+  content: "\e00a";
+}
+.icon-stats:before {
+  content: "\e00b";
+}
+.icon-eye:before {
+  content: "\e00c";
+}
+.icon-eye-blocked:before {
+  content: "\e00d";
+}
+.icon-key:before {
+  content: "\e00e";
+}
+.icon-lock:before {
+  content: "\e00f";
+}
+.icon-reload:before {
+  content: "\e010";
+}
+.icon-remove:before {
+  content: "\f00d";
+  position: relative;
+  top: -1px;
+  font-size: 14px;
+}
+.icon-ok:before {
+  content: "\f00c";
+  font-size: 14px;
+}
+.icon-link:before {
+  content: "\e011";
+}
+.icon-plus:before {
+  content: "\e012";
+}
+.icon-arrow-up:before {
+  content: "\e013";
+}
+.icon-arrow-down:before {
+  content: "\e014";
+}
+.icon-share:before {
+  content: "\e015";
+}
+.icon-unlink:before {
+  content: "\f127";
+  font-size: 14px;
+}
 html {
   background-color: #232323;
   color: #fcfcfc;
@@ -468,4 +607,34 @@ body,
 }
 .teamcity-screen li.failure {
   background-color: #e14339;
+}
+.notification {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 160px;
+  height: 160px;
+  top: 50%;
+  left: 50%;
+  margin-left: -80px;
+  margin-top: -80px;
+  background-color: rgba(35, 35, 35, 0.5);
+  -moz-border-radius: 24px;
+  -webkit-border-radius: 24px;
+  -ms-border-radius: 24px;
+  -o-border-radius: 24px;
+  border-radius: 24px;
+}
+.notification .icon-reload {
+  font-size: 128px;
+  position: absolute;
+  color: #40ed5a;
+  text-shadow: #40ed5a 0 0 16px;
+  width: 128px;
+  height: 128px;
+  top: 50%;
+  left: 50%;
+  margin-left: -64px;
+  margin-top: -64px;
 }

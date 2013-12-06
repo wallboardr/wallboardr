@@ -2,17 +2,29 @@ define(['jquery',
         'lib/icanhaz',
         'screen/player',
         'primus',
+        'boards/delay',
         'lib/bigtext'
         ],
-function ($, ich, player, Primus) {
+function ($, ich, player, Primus, delay) {
     'use strict';
 
     var $screen = $('.screen'),
+        $notification = $('.notification'),
         dataUrl,
         notifyUrl,
         defaultDuration,
         screenPlayer,
         primus,
+        hideNotification = function () {
+          $notification.fadeOut(400);
+        },
+        showNotification = function () {
+          $notification.fadeIn(400);
+          delay(1.5).then(hideNotification);
+        },
+        refreshPage = function () {
+          window.location.reload(true);
+        },
         updateData = function () {
           $.ajax(dataUrl).done(function (data) {
               if (data.length) {
@@ -43,8 +55,20 @@ function ($, ich, player, Primus) {
             });
             primus = new Primus(notifyUrl);
             primus.on('data', function (data) {
-              if (data && data.type && data.type === 'HUP') {
-                updateData();
+              if (data && data.type) {
+                switch (data.type) {
+                  case 'HUP':
+                    updateData();
+                    showNotification();
+                    break;
+                  case 'UPGRADE':
+                    refreshPage();
+                    break;
+                  default:
+                    if (window.console) {
+                      window.console.log('Unknown signal: ' + data.type);
+                    }
+                }
               }
             });
         };

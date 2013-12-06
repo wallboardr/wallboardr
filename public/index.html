@@ -19,6 +19,7 @@
 					<li><a href="#" class="admin-nav" ng-click="toggleAdminMenu()" title="Admin menu"><i class="icon-cog"></i></a>
             <ul class="submenu wide" ng-show="showAdminMenu">
               <li><a href="#" ng-click="showUserMgmt()">Manage Users</a></li>
+              <li><a href="#" ng-click="notifyUpgrade()">Upgrade All Boards</a></li>
             </ul>
 					</li>
 				</ul>
@@ -26,7 +27,7 @@
 		</header>
 		<!-- views go in here -->
 		<div ng-view class="container"></div>
-    <div class="version">v0.4.10</div>
+    <div class="version">v0.4.11</div>
     <div class="overlay"></div>
 		<script data-main="/assets/js/main.js" src="/assets/lib/require.js"></script>
   </body>
