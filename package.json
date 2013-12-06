@@ -1,6 +1,6 @@
 {
   "name": "wallboardr",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "Create dynamic wallboards for your projects/organizations.",
   "main": "index.js",
   "scripts": {
