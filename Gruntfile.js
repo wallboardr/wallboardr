@@ -50,13 +50,17 @@ module.exports = function(grunt) {
         },
         files: {
           '<%= adminCssFile %>': 'less/app.less',
-          '<%= displayCssFile %>': 'less/display.less'
+          '<%= displayCssFile %>': 'less/display.less',
+          '<%= adminPluginCssFile %>': 'less/app-plugins.less',
+          '<%= displayPluginCssFile %>': 'less/display-plugins.less'
         }
       },
       clean: {
         files: {
           '<%= adminCssFile %>': 'less/app.less',
-          '<%= displayCssFile %>': 'less/display.less'
+          '<%= displayCssFile %>': 'less/display.less',
+          '<%= adminPluginCssFile %>': 'less/app-plugins.less',
+          '<%= displayPluginCssFile %>': 'less/display-plugins.less'
         }
       }
     },
@@ -72,7 +76,7 @@ module.exports = function(grunt) {
     },
     watch: {
       less: {
-        files: ['less/**/*.less'],
+        files: ['less/**/*.less', 'public/assets/plugins/**/*.less'],
         tasks: 'less:dev'
       },
       js: {
@@ -100,6 +104,8 @@ module.exports = function(grunt) {
     },
     adminCssFile: 'public/assets/css/app.css',
     displayCssFile: 'public/assets/css/display.css',
+    adminPluginCssFile: 'public/assets/css/app-plugins.css',
+    displayPluginCssFile: 'public/assets/css/display-plugins.css',
     boardJsFile: 'public/assets/js/boards.js',
     boardJsSrc: ['public/assets/lib/boards/jquery.js', 'public/assets/lib/boards/bigtext.js', 'public/assets/js/boards/base.js']
   });

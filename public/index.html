@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Wallboardr</title>
-		<link rel="stylesheet" href="/assets/css/app.css" type="text/css">
-		<link rel="shortcut icon" href="/favicon.ico">
-	</head>
-	<body ng-controller="WallboardrController" class="" ng-class="{'anonymous': !$root.user.loggedIn, 'logged-in': $root.user.loggedIn, 'is-editor': $root.user.isEditor}">
+  <head>
+    <title>Wallboardr</title>
+    <link rel="stylesheet" href="/assets/css/app.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/app-plugins.css" type="text/css">
+    <link rel="shortcut icon" href="/favicon.ico">
+  </head>
+  <body ng-controller="WallboardrController" class="" ng-class="{'anonymous': !$root.user.loggedIn, 'logged-in': $root.user.loggedIn, 'is-editor': $root.user.isEditor}">
 		<header role="banner">
 			<h1>Wallboardr. <i class="icon-screen"></i></h1>
 			<nav class="ng-cloak" ng-show="$root.user.loggedIn">
@@ -28,5 +29,5 @@
     <div class="version">v0.4.8</div>
     <div class="overlay"></div>
 		<script data-main="/assets/js/main.js" src="/assets/lib/require.js"></script>
-	</body>
+  </body>
 </html>
