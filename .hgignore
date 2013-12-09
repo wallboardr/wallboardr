@@ -14,3 +14,4 @@ public/assets/plugins
 config.json
 development.json
 production.json
+mongod
