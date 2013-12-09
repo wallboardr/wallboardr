@@ -24,6 +24,11 @@ define([], function () {
       $scope.showAdminMenu = false;
     };
 
+    $scope.notifyRefresh = function () {
+      primus.write({updated: 'all'});
+      $scope.showAdminMenu = false;
+    };
+
     $scope.notifyUpgrade = function () {
       primus.write({upgrade: true});
       $scope.showAdminMenu = false;
