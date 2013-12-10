@@ -1,6 +1,6 @@
 {
   "name": "wallboardr",
-  "version": "0.4.12",
+  "version": "0.4.13",
   "description": "Create dynamic wallboards for your projects/organizations.",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,9 @@
     "primus": "~1.1.2",
     "deployd": "~0.6.10",
     "dpd-event": "~0.0.2",
-    "dpd-proxy": "~0.1.4"
+    "dpd-proxy": "~0.1.4",
+    "less": "~1.4.1",
+    "mustache": "~0.8.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

@@ -10,8 +10,10 @@ data
 
 public/assets/plugins
 *-plugins.css
+*-plugins.less
 
 config.json
+plugins.json
 development.json
 production.json
 mongod
