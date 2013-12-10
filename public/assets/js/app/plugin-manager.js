@@ -1,12 +1,8 @@
 define([
-  'plugin/message/admin',
-  'plugin/octopus/admin',
-  'plugin/twitter/admin',
-  'plugin/teamcity/admin'
-], function () {
+  'plugin/plugin-list-admin',
+], function (plugins) {
   'use strict';
 
-  var plugins = Array.prototype.slice.call(arguments);
   var pluginlist = [];
   pluginlist.map = {};
 

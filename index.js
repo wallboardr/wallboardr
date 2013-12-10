@@ -3,7 +3,11 @@
 console.log('Welcome to Wallboardr');
 var deployd = require('deployd');
 var notifier = require('./lib/notify');
+var pluginLoader = require('./lib/plugins');
 process.chdir(__dirname);
+
+var pluginsFile = process.argv[3] || './plugins.json';
+pluginLoader.load(require('path').join(__dirname, pluginsFile));
 
 var configFile = process.argv[2] || './config.json';
 console.log('Reading config file: ' + configFile);

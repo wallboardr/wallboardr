@@ -1,13 +1,9 @@
 define([
-  'screen/screen',
-  'plugin/message/screen',
-  'plugin/octopus/screen',
-  'plugin/twitter/screen'
-], function () {
+  'plugin/plugin-list-screen',
+  'screen/screen'
+], function (screenPlugins, createScreen) {
   'use strict';
-  var screenPlugins = Array.prototype.slice.call(arguments),
-      createScreen = screenPlugins.shift(),
-      screenTypes = (function () {
+  var screenTypes = (function () {
         var plg = 0, types = {};
         for (; plg < screenPlugins.length; plg += 1) {
           if (screenPlugins[plg] && screenPlugins[plg].config.name) {

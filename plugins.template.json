@@ -1,0 +1,6 @@
+{
+  "runLess": true,
+  "loadPlugins": [
+    "message"
+  ]
+}
