@@ -5,6 +5,7 @@
         paths: {
             'lib'        : '../lib/boards',
             'jquery'     : '../lib/boards/jquery',
+            'spin'       : '../lib/spin.min',
             'screen'     : '../js/boards/screens',
             'primus'     : '../../primus/primus',
             'plugin'     : '../plugins'
