@@ -1,4 +1,4 @@
-define(['jquery', 'screen/common'], function ($, common) {
+define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
   'use strict';
 
   var clearMe = function (scr) {
@@ -29,6 +29,7 @@ define(['jquery', 'screen/common'], function ($, common) {
       },
       transition = function (scr) {
         scr.$container.animate({opacity: 0}, function () {
+          scr.$container.spin(false);
           scr.$container.html(scr.$screen);
           scr.plugin('preShow');
           if (scr.plugin.config.centered && scr.firstRender) {
