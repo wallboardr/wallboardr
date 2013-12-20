@@ -71,7 +71,7 @@ define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
         }
         return $.when(self);
       },
-      setTextSize = function () {
+      setTextSize = function (startSize, increment) {
         var $elem = this.$screen,
             $container = this.$container,
             maxWidth = $container.width(),
@@ -79,8 +79,8 @@ define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
             isTooBig = function ($el) {
               return $el.width() > maxWidth || $el.height() > maxHeight;
             },
-            currentSize = 50,
-            delta = 10,
+            currentSize = startSize || 50,
+            delta = increment || 10,
             rollback = true;
 
         $elem.css({'font-size': currentSize + 'px', 'float': 'left'});
@@ -98,6 +98,7 @@ define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
           $elem.css({'font-size': currentSize + 'px'});
         }
         $elem.css({'float': 'none'});
+        return currentSize;
       };
 
   var Screen = function (data, boardProps, $container, plugin) {
