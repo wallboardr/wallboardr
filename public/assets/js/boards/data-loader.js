@@ -14,7 +14,10 @@ define(['jquery'], function ($) {
 
   return function (opts) {
     return $.ajax(getUrl(opts), {
-      dataType: 'json'
+      dataType: 'json',
+      headers: {
+        'Accept': 'application/json'
+      }
     }).then(function (data) {
       if (opts.filter && typeof opts.filter === 'function') {
         data = opts.filter.call(null, data);

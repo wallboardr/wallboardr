@@ -575,43 +575,6 @@ body,
 .screen > div ol li {
   text-align: left;
 }
-.teamcity-screen {
-  height: 100%;
-}
-.teamcity-screen .tc-project {
-  height: 100%;
-}
-.teamcity-screen .tc-project.success {
-  background-color: #346444;
-}
-.teamcity-screen .tc-project.failure {
-  background-color: #B1524C;
-}
-.teamcity-screen h2 {
-  margin-top: 0;
-  padding-top: 2em;
-}
-.teamcity-screen ul {
-  list-style: none;
-  display: table;
-  width: 100%;
-  height: 100px;
-  padding: 0;
-  margin: 0;
-}
-.teamcity-screen li {
-  display: table-cell;
-  border-left: 1px solid #fff;
-}
-.teamcity-screen li:first-child {
-  border-left: 0;
-}
-.teamcity-screen li.success {
-  background-color: #1d7f59;
-}
-.teamcity-screen li.failure {
-  background-color: #e14339;
-}
 .notification {
   display: none;
   position: absolute;

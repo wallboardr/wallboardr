@@ -14,10 +14,11 @@ define([], function () {
       loaderFactory = function ($http) {
         return function (opts) {
           return $http.get(getUrl(opts)).then(function (data) {
+            var payload = data.data;
             if (opts.filter && typeof opts.filter === 'function') {
-              data = opts.filter.call(null, data);
+              payload = opts.filter.call(null, payload);
             }
-            return data;
+            return payload;
           });
         };
       };

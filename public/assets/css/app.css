@@ -894,6 +894,11 @@ nav .submenu.wide {
 .popup-modal .widget {
   margin-bottom: 0;
 }
+.popup-modal .form-panel .choices {
+  max-height: 25em;
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
 form .core-info {
   float: left;
   width: 30%;
