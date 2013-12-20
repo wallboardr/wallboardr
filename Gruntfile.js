@@ -69,7 +69,7 @@ module.exports = function(grunt) {
         src: ['public/index.html'],
         dest: 'public/index.html',             // destination directory or file
         replacements: [{
-          from: /v\d+\.\d+\.\d+/,                   // string replacement
+          from: /v\d+\.\d+\.\d+(-[a-z0-9]+)?/,                   // string replacement
           to: 'v<%= pkg.version %>'
         }]
       }
@@ -80,8 +80,8 @@ module.exports = function(grunt) {
         tasks: 'less:dev'
       },
       js: {
-        files: ['<%= jshint.product.files %>'],
-        tasks: ['jshint:product']
+        files: ['*.js', 'public/assets/js/**/*.js'],
+        tasks: 'jshint:product'
       }
     },
     nodemon: {
