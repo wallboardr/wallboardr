@@ -17,6 +17,13 @@ define(['require', './parsers', './admin', 'lib/bigtext'], function (require) {
             } else {
               self.maximizeTextSize();
             }
+          },
+          shouldBeShown: function () {
+            var daters = self.props.data,
+                now = (new Date()).getTime();
+
+            return ((!daters.startTime || daters.startTime <= now)
+                && (!daters.endTime || daters.endTime >= now));
           }
         };
       };

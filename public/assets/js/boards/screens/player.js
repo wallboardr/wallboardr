@@ -7,26 +7,33 @@ define(['jquery', 'boards/delay', 'screen/factory', 'lib/jquery.spin'], function
         this.screens = $.map(screens, this.screenFactory);
         this.$container = $screen;
         this.currentIndex = 0;
+        this.lastShown = null;
       },
       initialize = function (screens, defaultDuration, $screen) {
         return new Player(screens, defaultDuration, $screen);
       },
-      incrementScreen = function () {
+      incrementScreen = function (shown) {
         var self = this;
         self.currentIndex += 1;
         if (self.screens.length <= self.currentIndex) {
           self.currentIndex = 0;
         }
+        return shown;
       },
       playScreen = function () {
         var self = this,
             current = self.screens[self.currentIndex],
+            thisIndex = self.currentIndex,
             increment = $.proxy(incrementScreen, self);
 
         if (self.screens.length === 1) {
           current.youAreOnYourOwn();
         }
-        current.play().then(increment).then(function () {
+        current.youAreOnYourOwn(self.lastShown === thisIndex);
+        current.play().then(increment).then(function (shown) {
+          if (shown !== false) {
+            self.lastShown = thisIndex;
+          }
           if (self.screens.length > 1) {
             playScreen.apply(self);
           }
