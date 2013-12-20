@@ -17,15 +17,10 @@ define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
           common.delay(pollInterval, scr).then(clearMe);
         }
 
-        if (viewPromise !== undefined) {
-          return viewPromise.then(function (viewData) {
-            scr.$screen = common.templates[templateName](viewData);
-            return scr;
-          });
-        }
-
-        scr.$screen = common.templates[templateName]({});
-        return $.when(scr);
+        return viewPromise.then(function (viewData) {
+          scr.$screen = common.templates[templateName](viewData || {});
+          return scr;
+        });
       },
       transition = function (scr) {
         scr.$container.animate({opacity: 0}, function () {
@@ -43,6 +38,9 @@ define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
       },
       loadScreen = function (scr) {
         if (scr.$screen) {
+          if (scr.solo && !scr.firstRender) {
+            return scr.duration;
+          }
           return transition(scr);
         }
         return initialize(scr).then(transition);
@@ -53,7 +51,7 @@ define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
               if (typeof plugin[fnName] === 'function') {
                 return $.when(plugin[fnName]());
               }
-              return undefined;
+              return $.when(null);
             };
         safeInvoke.config = fn.config;
         return safeInvoke;
@@ -113,11 +111,17 @@ define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
   };
 
   Screen.prototype.play = function () {
-    return loadTemplate.call(this).then(loadScreen).then(common.delay);
+    var self = this;
+    return this.plugin('shouldBeShown').then(function (sbs) {
+      if (sbs !== false) {
+        return loadTemplate.call(self).then(loadScreen).then(common.delay);
+      }
+      return false;
+    });
   };
 
-  Screen.prototype.youAreOnYourOwn = function () {
-    this.solo = true;
+  Screen.prototype.youAreOnYourOwn = function (neg) {
+    this.solo = (neg !== false);
   };
 
   Screen.prototype.maximizeTextSize = setTextSize;
