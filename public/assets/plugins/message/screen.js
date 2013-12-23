@@ -22,8 +22,8 @@ define(['require', './parsers', './admin', 'lib/bigtext'], function (require) {
             var daters = self.props.data,
                 now = (new Date()).getTime();
 
-            return ((!daters.startTime || daters.startTime <= now)
-                && (!daters.endTime || daters.endTime >= now));
+            return ((!daters.startTime || daters.startTime <= now) &&
+                (!daters.endTime || daters.endTime >= now));
           }
         };
       };

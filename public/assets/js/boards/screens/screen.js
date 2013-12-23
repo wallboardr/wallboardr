@@ -7,10 +7,25 @@ define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
           initialize(scr).then(transition);
         }
       },
-      initialize = function initialize(scr) {
+      backOff = function (scr) {
+        scr.vderror = true;
+        scr.vdwait += 1;
+        if (window.console) {
+          window.console.log('Waiting for ' + scr.vdwait + ' minutes to try again');
+        }
+        common.delay(scr.vdwait * 60, scr).then(function (s) {
+          s.vderror = false;
+        });
+      },
+      initialize = function (scr) {
         var templateName = scr.plugin.config.templateName || scr.plugin.config.name,
             pollInterval = scr.plugin.config.pollInterval || 0,
-            viewPromise = scr.plugin('getViewData');
+            viewPromise;
+
+        if (scr.vderror) {
+          return $.when(scr);
+        }
+        viewPromise = scr.plugin('getViewData');
 
         scr.firstRender = true;
         if (pollInterval > 0) {
@@ -19,10 +34,21 @@ define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
 
         return viewPromise.then(function (viewData) {
           scr.$screen = common.templates[templateName](viewData || {});
+          scr.vderror = false;
+          scr.vdwait = 0;
           return scr;
+        }, function (err) {
+          if (window.console) {
+            window.console.warn('Error fetching view data', err);
+          }
+          backOff(scr);
+          return $.when(scr);
         });
       },
       transition = function (scr) {
+        if (scr.vderror) {
+          return 0;
+        }
         scr.$container.animate({opacity: 0}, function () {
           scr.$container.spin(false);
           scr.$container.html(scr.$screen);
@@ -109,6 +135,7 @@ define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
     this.firstRender = true;
     this.$screen = null;
     this.solo = false;
+    this.vdwait = 0;
   };
 
   Screen.prototype.play = function () {
