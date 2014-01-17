@@ -241,6 +241,11 @@ button.full, .btn.full {
 		cursor: pointer;
 	}
 
+  .logged-in &.forbidden:hover {
+    background-color: transparent;
+    cursor: default;
+  }
+
   .cancel {
     background-color: @color-alert;
     color: @color-base-page;

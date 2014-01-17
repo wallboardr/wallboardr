@@ -16,6 +16,14 @@
 			"required": false,
 			"id": "role",
 			"order": 1
+		},
+		"managedBoards": {
+			"name": "managedBoards",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "managedBoards",
+			"order": 2
 		}
 	}
 }
