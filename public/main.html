@@ -145,8 +145,14 @@
       <p>
         This is a system to help you manage wallboards, typically used within an organization or team to radiate information. The system supports multiple wallboards, which are listed on the left. Click on the link icon for each board to view it.
       </p>
+      <p>
+        For more information visit <a href="https://wallboardr.io" target="_blank">https://wallboardr.io</a>
+      </p>
+      <p>
+        This wallboard installation has the following screen types available:
+      </p>
       <ul>
-        <li>Only supports a single screen type at the moment: local message. More to come.</li>
+        <li ng-repeat="plug in plugins">{{plug.humanName}}</li>
       </ul>
     </div>
     <div class="intro" ng-hide="activeBoard || !user.loggedIn">
