@@ -1106,6 +1106,9 @@ button.full,
   background-color: #3d3d3d;
   cursor: pointer;
 }
+.logged-in .list-item.forbidden {
+  color: #bcbcbc;
+}
 .logged-in .list-item.forbidden:hover {
   background-color: transparent;
   cursor: default;

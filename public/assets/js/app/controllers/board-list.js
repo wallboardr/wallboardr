@@ -17,7 +17,7 @@ define(['angular', 'app/util'], function (angular, util) {
       if (!$scope.boards || !$scope.boards[index]) {
         throw new Error('index - such a board does not exist');
       }
-      if ($scope.user.loggedIn && ($scope.activeBoardId == null || $scope.activeBoardId !== $scope.boards[index].id)) {
+      if ($scope.userCanManageBoard(index) && ($scope.activeBoardId == null || $scope.activeBoardId !== $scope.boards[index].id)) {
         $scope.activeBoardId = $scope.boards[index].id;
         $scope.$root.$broadcast('board:selected', $scope.boards[index]);
       }
@@ -37,12 +37,33 @@ define(['angular', 'app/util'], function (angular, util) {
       }
     };
 
+    $scope.boardState = function (index) {
+      var classes = [];
+      if ($scope.isActiveBoard(index)) {
+        classes.push('is-active');
+      }
+      if (!$scope.userCanManageBoard(index)) {
+        classes.push('forbidden');
+      } else {
+        if ($scope.user.isEditor) {
+          classes.push('highlight');
+        }
+      }
+      return classes;
+    };
+
+    $scope.userCanManageBoard = function (index) {
+      return $scope.boards[index] && $scope.user.loggedIn &&
+        ($scope.user.isAdmin ||
+          ($scope.user.isEditor && $scope.user.managedBoards.contains($scope.boards[index].id)));
+    };
+
     $scope.isActiveBoard = function (index) {
       return $scope.activeBoardId && $scope.boards[index] && $scope.activeBoardId === $scope.boards[index].id;
     };
 
     $scope.canAddBoard = function () {
-      return $scope.$root.user.isAdmin;
+      return $scope.user.isAdmin;
     };
 
     $scope.cancelAddBoard = function () {

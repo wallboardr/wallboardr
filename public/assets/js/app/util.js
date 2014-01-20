@@ -25,6 +25,19 @@ define(['angular'], function (angular) {
         return (angular.isArray(scr.board) && scr.board.length > 1);
       };
 
+  Array.prototype.contains = function (search) {
+    if (this === undefined || this === null) {
+      throw new TypeError('"this" has nop value');
+    }
+    var length = this.length, index;
+    for (index = 0; index < length; index += 1) {
+      if (this[index] === search) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   return {
     cleanForm:   cleanForm,
     sanitize:    sanitize,

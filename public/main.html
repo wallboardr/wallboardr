@@ -3,7 +3,7 @@
 	<div class="board-mgmt" ng-controller="BoardListController">
 		<h2 class="title">Available wallboards <div class="controls" ng-show="canAddBoard()"><button ng-click="openNewBoardForm=true" title="Add new board"><i class="icon-plus"></i></button></div></h2>
 		<div class="board-list widget ng-cloak">
-			<div class="board list-item ng-cloak" ng-repeat="board in boards" ng-class="{'is-active': isActiveBoard($index)}" ng-click="setActiveBoard($index)">
+			<div class="board list-item ng-cloak" ng-repeat="board in boards" ng-class="boardState($index)" ng-click="setActiveBoard($index)">
 				<div class="horizontal-controls">
 					<a class="btn" href="/view.html#{{board.slug}}" title="View board" target="_blank"><i class="icon-link"></i></a>
 				</div>
@@ -31,7 +31,7 @@
 	<div class="screen-mgmt" ng-show="activeBoard &amp;&amp; user.loggedIn">
 
     <div><!-- FUTURE BoardController -->
-  		<h2 class="title">{{activeBoard.name}} <div class="controls"><button ng-click="startEditingBoard()" title="Edit board"><i class="icon-pencil"></i></button></div></h2>
+  		<h2 class="title">{{activeBoard.name}} <div class="controls" ng-show="canEditBoard()"><button ng-click="startEditingBoard()" title="Edit board"><i class="icon-pencil"></i></button></div></h2>
   		<div class="board-details widget" ng-hide="openEditBoardForm">
   			<div class="horizontal-controls full-row">
   				<span class="duration btn inert" title="Duration"><i class="icon-clock"></i> <span>{{activeBoard.duration || '-'}}</span></span>
@@ -57,7 +57,7 @@
     </div>
 
     <div ng-controller="ScreenListController">
-  		<h2 class="title">Screens for {{activeBoard.name}} <div class="controls"><button ng-click="addNewScreen()" title="Add new screen"><i class="icon-plus"></i></button></div></h2>
+  		<h2 class="title">Screens for {{activeBoard.name}} <div class="controls" ng-show="canAddScreen()"><button ng-click="addNewScreen()" title="Add new screen"><i class="icon-plus"></i></button></div></h2>
   		<div class="screen-list widget" ng-show="screens.length">
   			<div class="screen list-item ng-cloak" ng-repeat="screen in screens" ng-class="screenStateClass(screen)" ng-click="setActiveScreen($index)">
   				<span class="horizontal-controls">
@@ -104,7 +104,7 @@
 
   <!-- RIGHT COLUMN -->
   <div class="screen-editor vertical-tools" ng-show="activeScreen &amp;&amp; user.loggedIn">
-    <div class="controls">
+    <div class="controls" ng-show="canEditScreen()">
       <button ng-click="startEditingScreen()" title="Edit screen"><i class="icon-pencil"></i></button><br>
       <button ng-click="toggleVisibleScreen()" title="Toggle screen visibility"><i ng-class="{'icon-eye': !activeScreen.disabled, 'icon-eye-blocked': activeScreen.disabled}"></i></button><br>
       <button ng-click="unlinkScreen()" title="Unlink screen from current board" ng-show="isMultiLinkedScreen()"><i class="icon-unlink"></i></button>
@@ -215,10 +215,10 @@
     <div class="intro" ng-show="activeBoard &amp;&amp; activeScreen &amp;&amp; !newScreen.type &amp;&amp; !openEditScreenForm">
       <h2>Editing a screen</h2>
       <p>
-        Once you've clicked on a screen, you'll be able to see its details above. At this point, you can click on the pencil (<i class="icon-pencil"></i>) to edit the properties of the screen, it will open a form above with the usual Save and Cancel buttons.
+        Once you've clicked on a screen, you'll be able to see its details above. If you have permission, you can click on the pencil (<i class="icon-pencil"></i>) to edit the properties of the screen. It will open a form in a dialog window with the usual Save and Cancel buttons. The edit form should be similar to the adding form for this particular screen type.
       </p>
       <p>
-        You can also click on the eye icon (<i class="icon-eye"></i>) to disable the screen. If a screen is disabled, it will appear slightly greyed and italicized in the list of screens, and the eye icon will change to (<i class="icon-eye-blocked"></i>)
+        You can also click on the eye icon (<i class="icon-eye"></i>) to disable the screen. If a screen is disabled, it will appear slightly greyed and italicized in the list of screens, and the eye icon will change to (<i class="icon-eye-blocked"></i>). A disabled screen is <strong>not</strong> shown in the list of screens for a particular board.
       </p>
     </div>
   </div>

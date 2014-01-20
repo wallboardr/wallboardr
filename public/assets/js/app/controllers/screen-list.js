@@ -99,6 +99,10 @@ define(['angular', 'app/util'], function (angular, util) {
       saveScreenOrder(screenIndex + 1);
     };
 
+    $scope.canAddScreen = function () {
+      return $scope.user.isAdmin;
+    };
+
     $scope.addNewScreen = function () {
       $scope.$root.$broadcast('screen:new:open');
     };

@@ -241,6 +241,10 @@ button.full, .btn.full {
 		cursor: pointer;
 	}
 
+  .logged-in &.forbidden {
+    color: darken(@color-base-page, 25%);
+  }
+
   .logged-in &.forbidden:hover {
     background-color: transparent;
     cursor: default;

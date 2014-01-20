@@ -35,6 +35,10 @@ define(['angular', 'app/util'], function (angular, util) {
       primus.write({updated: boardId});
     };
 
+    $scope.canEditBoard = function () {
+      return $scope.user.isAdmin;
+    };
+
     $scope.startEditingBoard = function () {
       $scope.activeBoardEdit = angular.copy($scope.activeBoard);
       util.sanitize($scope.activeBoardEdit);
@@ -81,6 +85,12 @@ define(['angular', 'app/util'], function (angular, util) {
 
     $scope.$on('screen:edit:opened', showOverlay);
     $scope.$on('screen:edit:closed', hideOverlay);
+
+    $scope.canEditScreen = function () {
+      return $scope.user.isAdmin ||
+        ($scope.user.isEditor && $scope.activeScreen &&
+          !$scope.activeScreen.shareable && $scope.activeScreen.board.length === 1);
+    };
 
     $scope.startEditingScreen = function () {
       var plugin = $scope.plugins.map[$scope.activeScreen.type];
