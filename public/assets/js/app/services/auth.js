@@ -8,6 +8,7 @@ define([], function () {
             loggedIn: !!basic.role,
             isAdmin: basic.role === 'admin',
             isEditor: basic.role === 'editor',
+            managedBoards: basic.managedBoards || []
           };
       return enhanced;
     };

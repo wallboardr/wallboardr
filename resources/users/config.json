@@ -19,8 +19,8 @@
 		},
 		"managedBoards": {
 			"name": "managedBoards",
-			"type": "string",
-			"typeLabel": "string",
+			"type": "array",
+			"typeLabel": "array",
 			"required": false,
 			"id": "managedBoards",
 			"order": 2
