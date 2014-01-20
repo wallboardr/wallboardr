@@ -3,6 +3,7 @@ define([], function () {
   var usersController = function ($scope, $http, auth) {
     $scope.loginUser = {};
     $scope.createUser = {};
+    $scope.changePwd = {};
     $scope.users = [];
 
     var goodRegister = function (user) {
@@ -65,8 +66,44 @@ define([], function () {
       }
     };
 
+    $scope.changePwdState = function () {
+      var classes = [];
+      if ($scope.changePwd.attempted) {
+        classes.push('attempt');
+      }
+      return classes;
+    };
+
+    $scope.pwdState = function () {
+      var classes = [];
+      if ($scope.changePwd.password === $scope.changePwd.repasswd) {
+        classes.push('match');
+      } else {
+        classes.push('nomatch');
+      }
+      return classes;
+    };
+
+    $scope.savePassword = function () {
+      if ($scope.changePwd.password === $scope.changePwd.repasswd) {
+        auth.changePassword($scope.user.id, $scope.changePwd.password).then(function () {
+          $scope.closeChangePwd();
+        });
+      } else {
+        $scope.changePwd.attempted = true;
+      }
+    };
+
     $scope.closeUserForm = function () {
       $scope.userFormOpen = false;
+    };
+
+    $scope.closeChangePwd = function () {
+      $scope.changePwd = {};
+      $scope.changePasswordOpen = false;
+      $scope.userMgmtVisible = false;
+      $scope.changePwdForm.$setPristine();
+      $scope.$root.$broadcast('user:management:hide');
     };
 
     $scope.closeMgmt = function () {
@@ -77,6 +114,11 @@ define([], function () {
     $scope.$on('user:management:show', function () {
       $scope.findAll();
       $scope.userMgmtVisible = true;
+    });
+
+    $scope.$on('user:changepassword:show', function () {
+      $scope.userMgmtVisible = true;
+      $scope.changePasswordOpen = true;
     });
   };
 

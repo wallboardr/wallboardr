@@ -3,7 +3,7 @@ define([], function () {
   var plugin = {};
   plugin.config = {
     name: 'message',
-    humanName: 'Local message',
+    humanName: 'Text message',
     templateName: 'localMessage',
     centered: true
   };

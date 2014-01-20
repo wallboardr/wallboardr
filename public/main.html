@@ -155,8 +155,8 @@
         <li ng-repeat="plug in plugins">{{plug.humanName}}</li>
       </ul>
     </div>
-    <div class="intro" ng-hide="activeBoard || !user.loggedIn">
-      <h2>Welcome {{user.name}}</h2>
+    <div class="intro" ng-hide="activeBoard || !user.loggedIn || user.isEditor">
+      <h2>Welcome {{user.name | titleCase}}</h2>
       <p>
         We hope you enjoy maintaining your wallboards. On your left is the wallboard list, you can create as many wallboards as you like, and each is available at a different URL, which you can get to via the link icon with each board.
       </p>
@@ -164,19 +164,31 @@
         Each wallboard can contain many different screens, which will show up in this space once you select a board on the left. You can add, edit and arrange your screens which will appear on your wallboard.
       </p>
     </div>
+    <div class="intro" ng-hide="activeBoard || !user.loggedIn || user.isAdmin">
+      <h2>Welcome {{user.name | titleCase}}</h2>
+      <p>
+        We hope you enjoy maintaining your wallboards. On your left is the wallboard list, boards you are allowed to edit have white text. You can click on the board to see its screens.
+      </p>
+      <p>
+        Each wallboard can contain many different screens, which will show up in this space once you select a board on the left. You will be able to edit any non-shared screens and arrange the order in which they will appear on your wallboard.
+      </p>
+    </div>
     <div class="intro" ng-show="activeBoard &amp;&amp; !activeScreen &amp;&amp; !newScreen.type">
       <h2>Working with screens</h2>
       <p>
         You can now see more information on your board, and manage its screens in the middle.
       </p>
-      <p>
-        If you click the pencil icon (<i class="icon-pencil"></i>) at the top of the board, you can edit the properties of your board. The save and cancel buttons can be used to commit your changes or cancel them. There is also a large orange button which says "Refresh Open Boards", which can be used to update any browsers currently viewing that board once you've made changes to its screens.
+      <p ng-hide="user.isEditor">
+        If you click the pencil icon (<i class="icon-pencil"></i>) at the top of the board, you can edit the properties of your board. The save and cancel buttons can be used to commit your changes or cancel them.
       </p>
       <p>
-        Screens are listed below the board info. You can add new screens using the plus button (<i class="icon-plus"></i>). It will open a form below the screens list. Screens can be shared between boards, any screen which is currently marked as shareable will have a green share icon (<i class="icon-share"></i>) before its name in the list. If a screen is no longer shareable, but is shared between boards, it will have a while share icon.
+        There is a large orange button which says "Refresh Open Boards", which can be used to update any browsers currently viewing that board once you've made changes to its screens.
       </p>
       <p>
-        You can change the order of the boards by clicking on the blue up (<i class="icon-arrow-up"></i>) and down (<i class="icon-arrow-down"></i>) arrows next to the screen name. If you have created some screens, you can edit them by clicking on them in the list.
+        Screens are listed below the board info. <span ng-hide="user.isEditor">You can add new screens using the plus button (<i class="icon-plus"></i>). It will open a dialog allowing you to choose the type of the new screen.</span> Screens can be shared between boards, any screen which is currently marked as shareable will have a green share icon (<i class="icon-share"></i>) before its name in the list. If a screen is no longer shareable, but is still shared between boards, it will have a white share icon.
+      </p>
+      <p>
+        You can change the order of the boards by clicking on the blue up (<i class="icon-arrow-up"></i>) and down (<i class="icon-arrow-down"></i>) arrows next to the screen name. If you have created some screens, you can view/edit them by clicking on them in the list.
       </p>
     </div>
     <div class="intro" ng-show="activeBoard &amp;&amp; newScreen.type=='local'">
@@ -206,18 +218,6 @@
         If there are no shareable screens available which aren't already part of the current board, this option won't show up.
       </p>
     </div>
-    <div class="intro" ng-show="activeBoard &amp;&amp; newScreen.type=='html'">
-      <h2>Adding an HTML screen</h2>
-      <p>
-        HTML screens are not fully implemented from a display perspective. They are intended to be used to grab snippets of HTML from other sites/servers to display on the wallboard. However determining how best to display that information is the challenge. Best to avoid for now.
-      </p>
-    </div>
-    <div class="intro" ng-show="activeBoard &amp;&amp; newScreen.type=='teamcity'">
-      <h2>Adding a TeamCity screen</h2>
-      <p>
-        TeamCity screens are not fully implemented yet, it would be best to avoid them for now. Eventually they will allow you to choose a set of teamcity configurations to monitor for pass/fail status.
-      </p>
-    </div>
     <div class="intro" ng-show="activeBoard &amp;&amp; activeScreen &amp;&amp; !newScreen.type &amp;&amp; !openEditScreenForm">
       <h2>Editing a screen</h2>
       <p>
@@ -241,9 +241,9 @@
     </div>
     <div class="user-mgmt slide-top" ng-class="{loaded: userMgmtVisible}">
       <h2 class="title">Users
-        <div class="controls"><button ng-click="openUserForm({})"><i class="icon-plus"></i></button><button ng-click="closeMgmt()"><i class="icon-remove"></i></button>
+        <div class="controls" ng-hide="changePasswordOpen"><button ng-click="openUserForm({})"><i class="icon-plus"></i></button><button ng-click="closeMgmt()"><i class="icon-remove"></i></button>
       </div></h2>
-      <div class="user-list widget" ng-hide="userFormOpen">
+      <div class="user-list widget" ng-hide="userFormOpen || changePasswordOpen">
         <div class="list-item user" ng-repeat="user in users">
           <div class="info">{{user.username}}</div>
         </div>
@@ -256,6 +256,16 @@
           <div class="buttons">
             <button ng-click="saveUser(userForm)" class="success">Save</button>
             <button ng-click="closeUserForm()" class="cancel">Cancel</button>
+          </div>
+        </form>
+      </div>
+      <div class="change-password widget" ng-show="changePasswordOpen" ng-class="changePwdState()">
+        <form novalidate name="changePwdForm">
+          <input type="password" ng-model="changePwd.password" placeholder="New Password" ng-class="pwdState()" required>
+          <input type="password" ng-model="changePwd.repasswd" placeholder="Retype Password" ng-class="pwdState()" required>
+          <div class="buttons">
+            <button ng-click="savePassword(changePwdForm)" class="success">Change</button>
+            <button ng-click="closeChangePwd()" class="cancel">Cancel</button>
           </div>
         </form>
       </div>

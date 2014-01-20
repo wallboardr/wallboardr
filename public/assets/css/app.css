@@ -788,6 +788,7 @@ nav .submenu a {
 }
 nav .submenu.wide {
   width: 200px;
+  right: 0;
 }
 .slide-top {
   position: fixed;
@@ -803,6 +804,10 @@ nav .submenu.wide {
 .slide-top.loaded {
   height: 316px;
   transition: 0.5s;
+}
+.change-password input.ng-dirty.ng-invalid,
+.change-password.attempt .nomatch {
+  background-color: #f5c1be;
 }
 .container {
   padding: 0 2em;

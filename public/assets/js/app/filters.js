@@ -11,9 +11,17 @@ define([], function () {
         return plugin ? (plugin.humanName || plugin.name) : (input || 'Unknown');
     };
   };
+  var titleCase = function () {
+    return function (input) {
+      return input && input.replace(/\b\w*/g, function (txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      });
+    };
+  };
   humanType.$inject = ['$rootScope'];
   return {
     nl2br: nl2br,
-    humanType: humanType
+    humanType: humanType,
+    titleCase: titleCase
   };
 });
