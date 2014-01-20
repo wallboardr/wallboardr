@@ -9,6 +9,11 @@ define([], function () {
       });
     };
 
+    $scope.changePassword = function () {
+      $scope.$broadcast('user:changepassword:show');
+      $scope.showUserMenu = false;
+    };
+
     $scope.toggleUserMenu = function () {
       $scope.showAdminMenu = false;
       $scope.showUserMenu = !$scope.showUserMenu;

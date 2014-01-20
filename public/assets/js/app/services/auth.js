@@ -3,13 +3,14 @@ define([], function () {
   var authFactory = function ($rootScope, $http) {
     var transformUser = function (basic) {
       var enhanced = {
-            name: basic.username,
-            email: basic.email,
-            loggedIn: !!basic.role,
-            isAdmin: basic.role === 'admin',
-            isEditor: basic.role === 'editor',
-            managedBoards: basic.managedBoards || []
-          };
+        id: basic.id,
+        name: basic.username,
+        email: basic.email,
+        loggedIn: !!basic.role,
+        isAdmin: basic.role === 'admin',
+        isEditor: basic.role === 'editor',
+        managedBoards: basic.managedBoards || []
+      };
       return enhanced;
     };
 
@@ -40,8 +41,15 @@ define([], function () {
           self.resetUser();
         });
       },
+      changePassword: function (userId, pwd) {
+        return $http.post('/users/' + userId, {password: pwd});
+      },
       registerAdmin: function (fields) {
         fields.role = 'admin';
+        return $http.post('/users', fields);
+      },
+      registerEditor: function (fields) {
+        fields.role = 'editor';
         return $http.post('/users', fields);
       },
       setUser: function (user) {

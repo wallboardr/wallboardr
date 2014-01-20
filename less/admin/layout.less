@@ -94,6 +94,7 @@ nav {
 
     &.wide {
       width: 200px;
+      right: 0;
     }
 	}
 }
@@ -113,6 +114,11 @@ nav {
 .slide-top.loaded {
   height: 316px;
   transition: 0.5s;
+}
+
+.change-password input.ng-dirty.ng-invalid,
+.change-password.attempt .nomatch {
+  background-color: lighten(@color-alert, 30%);
 }
 
 .container {

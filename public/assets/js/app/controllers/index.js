@@ -20,7 +20,9 @@ define(['angular', 'app/util'], function (angular, util) {
     });
 
     $scope.$on('user:management:show', showOverlay);
+    $scope.$on('user:changepassword:show', showOverlay);
     $scope.$on('user:management:hide', hideOverlay);
+    $scope.$on('user:changepassword:hide', hideOverlay);
 
     // ------ Handle board related stuff ------------------------------------
 

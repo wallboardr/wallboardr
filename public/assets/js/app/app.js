@@ -7,7 +7,8 @@ define(
         'service/auth',
         'service/data-loader',
         'service/primus',
-        'app/plugin-manager'
+        'app/plugin-manager',
+        'angular-route'
     ],
     function (angular, ctrlLoader, routes, filters, auth, loader, primus, plugins) {
     'use strict';
@@ -28,11 +29,12 @@ define(
         bootstrap: function () {
             var app;
             log('Tower, this is Ghost Rider requesting a flyby.');
-            app = angular.module(appName, []);
+            app = angular.module(appName, ['ngRoute']);
             app.provider('primus', primus);
             app.config(routes);
             app.filter('nl2br', filters.nl2br);
             app.filter('humanType', filters.humanType);
+            app.filter('titleCase', filters.titleCase);
             app.factory('auth', auth);
             app.factory('dataLoader', loader);
             ctrlLoader(app);
