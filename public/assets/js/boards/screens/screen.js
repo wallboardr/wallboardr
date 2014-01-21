@@ -29,7 +29,7 @@ define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
 
         scr.firstRender = true;
         if (pollInterval > 0) {
-          common.delay(pollInterval, scr).then(clearMe);
+          common.delayWith(pollInterval, scr, 80).then(clearMe);
         }
 
         return viewPromise.then(function (viewData) {

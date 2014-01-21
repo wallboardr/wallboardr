@@ -1,22 +1,32 @@
 define(['jquery'], function ($) {
   'use strict';
 
-  var delay = function (time, arg, ff) {
+  var randomId = function (length, prefix) {
+    var buffer = '';
+    length = length || 8;
+    while (length) {
+      buffer += Math.floor(Math.random()*36).toString(36);
+      length -= 1;
+    }
+    return (prefix || '') + buffer;
+  },
+  delay = function (time, arg, ff) {
     var defer = $.Deferred(),
         timer,
+        eventName = 'keydown.delay' + randomId(8),
         logger = function (ev) {
           if (ff.call(this, ev)) {
             clearTimeout(timer);
-            $(document).off('keydown.delay');
+            $(document).off(eventName);
             defer.resolve(arg);
           }
         };
     timer = setTimeout(function () {
-      $(document).off('keydown.delay');
+      $(document).off(eventName);
       defer.resolve(arg);
     }, time);
     if (ff) {
-      $(document).on('keydown.delay', logger);
+      $(document).on(eventName, logger);
     }
     return defer.promise();
   },
@@ -30,9 +40,18 @@ define(['jquery'], function ($) {
       }
       return false;
     });
+  },
+  delayWithChar = function (secs, arg, key) {
+    return delay(secs * 1000, arg, function (ev) {
+      if (ev.which === key) {
+        return true;
+      }
+      return false;
+    });
   };
   return {
     inSeconds: delaySeconds,
-    shortCircuit: delayWithFastforward
+    shortCircuitForward: delayWithFastforward,
+    shortCircuitWith: delayWithChar
   };
 });
