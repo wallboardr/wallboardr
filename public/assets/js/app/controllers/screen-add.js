@@ -22,6 +22,7 @@ define(['angular', 'app/util'], function (angular, util) {
     $scope.cancelAddScreen = function () {
       $scope.openNewScreenForm = false;
       resetNewScreen();
+      util.cleanForm($scope.newScreenForm);
       $scope.$root.$broadcast('screen:new:close');
     };
 
@@ -53,6 +54,19 @@ define(['angular', 'app/util'], function (angular, util) {
           $scope.cancelAddScreen();
         });
       }
+    };
+
+    $scope.previewNewScreen = function (screen) {
+      var newScreen;
+      if ($scope.activeBoard) {
+        newScreen = angular.copy(screen);
+        newScreen.type = $scope.newScreen.type;
+        newScreen.data = newScreen.data || {};
+        delete newScreen['shareable'];
+        delete newScreen['duration'];
+        return angular.toJson(newScreen);
+      }
+      return '';
     };
 
     $scope.$on('user:logout', function () {

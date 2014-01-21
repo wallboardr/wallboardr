@@ -18,11 +18,16 @@ define(['angular', 'app/util'], function (angular, util) {
       });
     };
 
-    $scope.setActiveScreen = function (index) {
+    $scope.setActiveScreen = function (index, ev) {
+      var win;
       if (!$scope.screens || !$scope.screens[index]) {
         throw new Error('index - such a screen does not exist');
       }
-      if ($scope.activeScreenId == null || $scope.activeScreenId !== $scope.screens[index].id) {
+      if (ev && ev.ctrlKey) {
+        // Open new window.
+        win = window.open('/view.html#SCR-' + $scope.screens[index].id, '_blank');
+        win.focus();
+      } else if ($scope.activeScreenId == null || $scope.activeScreenId !== $scope.screens[index].id) {
         $scope.cancelEditScreen();
         $scope.activeScreenId = $scope.screens[index].id;
         $scope.activeScreenIndex = index;

@@ -5,7 +5,7 @@ define([], function () {
       listLine = /^\s*(\*|#)\s+(.+)$/,
       whitespace = /^\s*$/,
       needsFullParsing = function (input) {
-        return input.indexOf('|') >= 0 || input.indexOf('*') >= 0 || input.indexOf('#') >= 0;
+        return input && (input.indexOf('|') >= 0 || input.indexOf('*') >= 0 || input.indexOf('#') >= 0);
       },
       basicParse = function (input) {
         // Good ole' insert <br> tags
@@ -99,6 +99,9 @@ define([], function () {
   return {
     parse: function (input) {
       var ret = [];
+      if (!input) {
+        return [' '];
+      }
       if (needsFullParsing(input)) {
         ret.push(fullParse(input));
         ret.title = true;

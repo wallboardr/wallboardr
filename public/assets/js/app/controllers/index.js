@@ -160,6 +160,22 @@ define(['angular', 'app/util'], function (angular, util) {
       }
     };
 
+    $scope.previewEditScreen = function () {
+      var newScreen;
+      if ($scope.activeScreenEdit) {
+        newScreen = angular.copy($scope.activeScreenEdit);
+        newScreen.data = newScreen.data || {};
+        delete newScreen['shareable'];
+        delete newScreen['duration'];
+        delete newScreen['disabled'];
+        delete newScreen['sortkey'];
+        delete newScreen['board'];
+        delete newScreen['id'];
+        return angular.toJson(newScreen);
+      }
+      return '';
+    };
+
   };
   indexController.$inject = ['$scope', '$http', 'primus'];
 
