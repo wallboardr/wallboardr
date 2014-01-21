@@ -1,11 +1,10 @@
 define(['jquery',
-        'lib/icanhaz',
+        'screen/common',
         'screen/player',
         'primus',
-        'boards/delay',
         'lib/bigtext'
         ],
-function ($, ich, player, Primus, delay) {
+function ($, common, player, Primus) {
     'use strict';
 
     var $screen = $('.screen'),
@@ -20,7 +19,7 @@ function ($, ich, player, Primus, delay) {
         },
         showNotification = function () {
           $notification.fadeIn(400);
-          delay(1.5).then(hideNotification);
+          common.delay(1.5).then(hideNotification);
         },
         refreshPage = function () {
           window.location.reload(true);
@@ -70,7 +69,7 @@ function ($, ich, player, Primus, delay) {
           }
         },
         initData = function () {
-            ich.grabTemplates();
+            common.templates.grabTemplates();
             $.ajax(dataUrl).done(handleScreens).fail(function () {
               $screen.spin(false);
               $('.welcome').html(function (i, old) {

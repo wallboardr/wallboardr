@@ -1,4 +1,4 @@
-define(['jquery', 'boards/delay', 'screen/factory', 'lib/jquery.spin'], function ($, delay, factory) {
+define(['jquery', 'screen/factory', 'lib/jquery.spin'], function ($, factory) {
   'use strict';
 
   var Player = function (screens, defaultDuration, $screen) {
