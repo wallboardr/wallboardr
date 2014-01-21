@@ -15,7 +15,7 @@ define(['lib/icanhaz', 'boards/delay', 'jquery'], function (ich, delay, $) {
       };
   return {
     templates: ich,
-    delay: delay,
+    delay: delay.shortCircuit,
     center: centerMessage,
     fetchTemplate: fetchTemplate
   };
