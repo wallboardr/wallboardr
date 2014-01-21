@@ -14,7 +14,7 @@ define([
       }()),
       factory = function (boardProps, $container) {
         return function (screen) {
-          return !screen.disabled && screenTypes[screen.type] ?
+          return screenTypes[screen.type] ?
                     createScreen(screen, boardProps, $container, screenTypes[screen.type])
                     : undefined;
         };

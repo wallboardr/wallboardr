@@ -1,1 +1,1 @@
-<div ng-bind-html-unsafe="activeScreen.data.message | nl2br"></div>
+<div ng-repeat="line in activeScreen.data.message.split('\n')">{{line}}</div>

@@ -59,7 +59,7 @@
     <div ng-controller="ScreenListController">
   		<h2 class="title">Screens for {{activeBoard.name}} <div class="controls" ng-show="canAddScreen()"><button ng-click="addNewScreen()" title="Add new screen"><i class="icon-plus"></i></button></div></h2>
   		<div class="screen-list widget" ng-show="screens.length">
-  			<div class="screen list-item ng-cloak" ng-repeat="screen in screens" ng-class="screenStateClass(screen)" ng-click="setActiveScreen($index)">
+  			<div class="screen list-item ng-cloak" ng-repeat="screen in screens" ng-class="screenStateClass(screen)" ng-click="setActiveScreen($index, $event)">
   				<span class="horizontal-controls">
   					<span class="btn rocker" ng-class="{topmost: $first}"><span class="up icon-arrow-up" title="Move screen up" ng-click="moveUp($index);$event.stopPropagation();"></span><span class="down icon-arrow-down" ng-hide="$last" title="Move screen down" ng-click="moveDown($index);$event.stopPropagation();"></span></span>
   					<span class="duration btn inert"><i class="icon-clock"></i> <span>{{screen.duration || activeBoard.duration || 30}}</span></span>
@@ -92,6 +92,7 @@
                 <input id="newScreenShareable" type="checkbox" ng-model="newScreenForm.shareable" class="css-checkbox">
                 <label for="newScreenShareable" class="css-label">Share this screen</label>
               </div>
+              <a target="_blank" ng-href="/view.html#PRE-{{previewNewScreen(newScreenForm)}}">Preview</a>
             </div>
             <div class="plugin-form-area">
               <div class="newScreenInclude" ng-include="newScreen.addUrl"></div>
@@ -130,6 +131,7 @@
             <input id="editScreenShareable" type="checkbox" ng-model="activeScreenEdit.shareable" class="css-checkbox">
             <label for="editScreenShareable" class="css-label">Share this screen</label>
           </div>
+          <a target="_blank" ng-href="/view.html#PRE-{{previewEditScreen()}}">Preview</a>
         </div>
         <div class="plugin-form-area">
           <div class="editScreenInclude" ng-include="activeScreenEditUrl"></div>

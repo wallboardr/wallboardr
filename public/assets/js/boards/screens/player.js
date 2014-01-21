@@ -42,10 +42,13 @@ define(['jquery', 'boards/delay', 'screen/factory', 'lib/jquery.spin'], function
 
   Player.prototype.start = function () {
     var self = this;
-    self.$container.spin('board');
     if (this.screens.length) {
-
       playScreen.apply(self);
+    } else {
+      self.$container.spin(false);
+      $('.welcome').html(function (i, old) {
+        return old + '<br><br>No screens to show...';
+      });
     }
   };
 
