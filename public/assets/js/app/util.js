@@ -23,24 +23,24 @@ define(['angular'], function (angular) {
       },
       multiLinked = function (scr) {
         return (angular.isArray(scr.board) && scr.board.length > 1);
+      },
+      inArray = function (arr, search) {
+        if (arr === undefined || arr === null) {
+          throw new TypeError('"arr" has nop value');
+        }
+        var length = arr.length, index;
+        for (index = 0; index < length; index += 1) {
+          if (arr[index] === search) {
+            return true;
+          }
+        }
+        return false;
       };
-
-  Array.prototype.contains = function (search) {
-    if (this === undefined || this === null) {
-      throw new TypeError('"this" has nop value');
-    }
-    var length = this.length, index;
-    for (index = 0; index < length; index += 1) {
-      if (this[index] === search) {
-        return true;
-      }
-    }
-    return false;
-  };
 
   return {
     cleanForm:   cleanForm,
     sanitize:    sanitize,
-    multiLinked: multiLinked
+    multiLinked: multiLinked,
+    inArray:     inArray
   };
 });
