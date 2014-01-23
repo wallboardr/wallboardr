@@ -55,7 +55,7 @@ define(['angular', 'app/util'], function (angular, util) {
     $scope.userCanManageBoard = function (index) {
       return $scope.boards[index] && $scope.user.loggedIn &&
         ($scope.user.isAdmin ||
-          ($scope.user.isEditor && $scope.user.managedBoards.contains($scope.boards[index].id)));
+          ($scope.user.isEditor && util.inArray($scope.user.managedBoards.contains, $scope.boards[index].id)));
     };
 
     $scope.isActiveBoard = function (index) {
