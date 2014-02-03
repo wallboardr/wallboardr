@@ -1,1 +1,1 @@
-<div ng-repeat="line in activeScreen.data.message.split('\n')">{{line}}</div>
+<div ng-repeat="line in activeScreen.data.message.split('\n') track by $index">{{line || '&nbsp;'}}</div>
