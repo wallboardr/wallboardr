@@ -21,7 +21,7 @@ define(
             }
         },
         init = function (auth, pluginMgr) {
-            auth.whoAmI();
+            auth.loadUser();
             pluginMgr.register();
         };
     init.$inject = ['auth', 'pluginMgr'];
