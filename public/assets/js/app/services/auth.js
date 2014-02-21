@@ -15,8 +15,9 @@ define([], function () {
     };
 
     return {
-      whoAmI: function () {
+      loadUser: function () {
         if (!$rootScope.user || !$rootScope.user.name) {
+          $rootScope.user = {};
           $http.get('/users/me').then(function (res) {
             $rootScope.user = transformUser((res && res.data) || {});
           });
@@ -29,7 +30,7 @@ define([], function () {
         }
         return $http.post('/users/login', username).then(function (res) {
           if (res && res.data) {
-            self.whoAmI();
+            self.loadUser();
             return true;
           }
           return false;
@@ -57,7 +58,7 @@ define([], function () {
         return $rootScope.user;
       },
       user: function () {
-        this.whoAmI();
+        this.loadUser();
         return $rootScope.user;
       },
       resetUser: function () {
