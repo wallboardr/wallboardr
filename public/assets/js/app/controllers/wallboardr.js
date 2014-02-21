@@ -1,7 +1,7 @@
 define([], function () {
   'use strict';
 
-  var wallboardrController = function ($scope, auth, primus) {
+  var wallboardrController = function ($scope, auth, notifier) {
     $scope.showUserMenu = false;
     $scope.signOut = function () {
       auth.logout().then(function () {
@@ -30,16 +30,16 @@ define([], function () {
     };
 
     $scope.notifyRefresh = function () {
-      primus.write({updated: 'all'});
+      notifier.refreshAll();
       $scope.showAdminMenu = false;
     };
 
     $scope.notifyUpgrade = function () {
-      primus.write({upgrade: true});
+      notifier.upgradeAll();
       $scope.showAdminMenu = false;
     };
   };
-  wallboardrController.$inject = ['$scope', 'auth', 'primus'];
+  wallboardrController.$inject = ['$scope', 'auth', 'notifier'];
   wallboardrController.ctrlName = 'WallboardrController';
 
   return wallboardrController;
