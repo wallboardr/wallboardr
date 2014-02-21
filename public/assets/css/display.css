@@ -585,3 +585,32 @@ body,
   margin-left: -64px;
   margin-top: -64px;
 }
+.disconnected {
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 60px;
+  height: 60px;
+  background-color: rgba(35, 35, 35, 0.5);
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  border-radius: 30px;
+}
+.disconnected .icon-unlink {
+  font-size: 36px;
+  position: absolute;
+  color: #e14339;
+  text-shadow: #e14339 0 0 10px;
+  width: 36px;
+  height: 36px;
+  top: 50%;
+  left: 50%;
+  margin-left: -18px;
+  margin-top: -18px;
+}
+.disconnected .icon-unlink:before {
+  font-size: 36px;
+}
