@@ -1,9 +1,9 @@
 define([], function () {
   'use strict';
-  var notifierFactory = function ($http, primus) {
+  var notifierFactory = function ($http) {
         return {
           refreshBoard: function (boardId) {
-            primus.write({updated: boardId});
+            $http.post('/notify/' + boardId);
           },
           refreshAll: function () {
             $http.post('/notify/HUP');
@@ -13,6 +13,6 @@ define([], function () {
           }
         };
       };
-  notifierFactory.$inject = ['$http', 'primus'];
+  notifierFactory.$inject = ['$http'];
   return notifierFactory;
 });
