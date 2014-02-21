@@ -6,12 +6,11 @@ define(
         'app/filters',
         'service/auth',
         'service/data-loader',
-        'service/primus',
         'service/notifier',
         'app/plugin-manager',
         'angular-route'
     ],
-    function (angular, ctrlLoader, routes, filters, auth, loader, primus, notifier, plugins) {
+    function (angular, ctrlLoader, routes, filters, auth, loader, notifier, plugins) {
     'use strict';
 
     var appName = 'wallboardr',
@@ -31,7 +30,6 @@ define(
             var app;
             log('Tower, this is Ghost Rider requesting a flyby.');
             app = angular.module(appName, ['ngRoute']);
-            app.provider('primus', primus);
             app.config(routes);
             app.filter('nl2br', filters.nl2br);
             app.filter('humanType', filters.humanType);

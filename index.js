@@ -19,12 +19,14 @@ var server = deployd(config);
 
 notifier.listen(server);
 
-server.on('request', function (req, res) {
+server.on('request', function (req) {
   var command;
   if (req.url.indexOf('/notify/') === 0 && req.method.toUpperCase() === 'POST') {
     command = req.url.substr(8);
     if (command === 'HUP' || command === 'UPGRADE') {
       notifier.notifyBoards(command);
+    } else {
+      notifier.notifyBoard(command);
     }
   }
 });
