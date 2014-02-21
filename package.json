@@ -1,6 +1,6 @@
 {
   "name": "wallboardr",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Create dynamic wallboards for your projects/organizations.",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
   "author": "Colin Bate <colin@colinbate.com>",
   "license": "MIT",
   "dependencies": {
-    "primus": "~1.1.2",
+    "primus": "~1.5.2",
     "deployd": "~0.6.10",
     "dpd-event": "~0.0.2",
     "dpd-proxy": "~0.1.4",

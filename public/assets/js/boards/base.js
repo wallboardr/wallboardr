@@ -9,6 +9,7 @@ function ($, common, player, Primus) {
 
     var $screen = $('.screen'),
         $notification = $('.notification'),
+        $disconnected = $('.disconnected'),
         dataUrl,
         notifyUrl,
         defaultDuration = 30,
@@ -20,6 +21,12 @@ function ($, common, player, Primus) {
         showNotification = function () {
           $notification.fadeIn(400);
           common.delay(1.5).then(hideNotification);
+        },
+        hideDisconnected = function () {
+          $disconnected.fadeOut(400);
+        },
+        showDisconnected = function () {
+          $disconnected.fadeIn(400);
         },
         refreshPage = function () {
           window.location.reload(true);
@@ -96,6 +103,12 @@ function ($, common, player, Primus) {
                     }
                 }
               }
+            });
+            primus.on('close', function () {
+              showDisconnected();
+            });
+            primus.on('open', function () {
+              hideDisconnected();
             });
         };
 

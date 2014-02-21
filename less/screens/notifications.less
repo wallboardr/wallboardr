@@ -15,3 +15,25 @@
     .center-me(128px, 128px);
   }
 }
+
+.disconnected {
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 60px;
+  height: 60px;
+  background-color: fade(@color-content-dark, 50%);
+  .rounded-corners(30px);
+
+  .icon-unlink {
+    &:before {
+      font-size: 36px;
+    }
+    font-size: 36px;
+    position: absolute;
+    color: @color-alert;
+    text-shadow: @color-alert 0 0 10px;
+    .center-me(36px, 36px);
+  }
+}
