@@ -7,10 +7,11 @@ define(
         'service/auth',
         'service/data-loader',
         'service/primus',
+        'service/notifier',
         'app/plugin-manager',
         'angular-route'
     ],
-    function (angular, ctrlLoader, routes, filters, auth, loader, primus, plugins) {
+    function (angular, ctrlLoader, routes, filters, auth, loader, primus, notifier, plugins) {
     'use strict';
 
     var appName = 'wallboardr',
@@ -37,6 +38,7 @@ define(
             app.filter('titleCase', filters.titleCase);
             app.factory('auth', auth);
             app.factory('dataLoader', loader);
+            app.factory('notifier', notifier);
             ctrlLoader(app);
             plugins(app);
             app.factory('pluginMgr', plugins.service);

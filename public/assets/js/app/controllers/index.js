@@ -1,6 +1,6 @@
 define(['angular', 'app/util'], function (angular, util) {
   'use strict';
-  var indexController = function ($scope, $http, primus) {
+  var indexController = function ($scope, $http, notifier) {
 
     var showOverlay = function () {
           angular.element(document.body).addClass('occlude');
@@ -34,7 +34,7 @@ define(['angular', 'app/util'], function (angular, util) {
 
     $scope.notifyBoardChange = function () {
       var boardId = $scope.activeBoard.id;
-      primus.write({updated: boardId});
+      notifier.refreshBoard(boardId);
     };
 
     $scope.canEditBoard = function () {
@@ -177,7 +177,7 @@ define(['angular', 'app/util'], function (angular, util) {
     };
 
   };
-  indexController.$inject = ['$scope', '$http', 'primus'];
+  indexController.$inject = ['$scope', '$http', 'notifier'];
 
   return indexController;
 });
