@@ -14,7 +14,7 @@ define(['jquery'], function ($) {
 
   return function (opts) {
     return $.ajax(getUrl(opts), {
-      dataType: 'json',
+      dataType: opts.dataType || 'json',
       headers: {
         'Accept': 'application/json'
       }
