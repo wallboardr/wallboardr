@@ -109,6 +109,10 @@ define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
             delta = increment || 10,
             rollback = true;
 
+        if (!$elem) {
+          return null;
+        }
+
         $elem.css({'font-size': currentSize + 'px', 'float': 'left'});
         if (isTooBig($elem)) {
           delta = -delta;
