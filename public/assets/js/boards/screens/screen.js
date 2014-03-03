@@ -131,7 +131,7 @@ define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
         return currentSize;
       };
 
-  var Screen = function (data, boardProps, $container, plugin) {
+  var Screen = function (data, boardProps, $container, plugin, globalConfig) {
     this.props = data;
     this.duration = data.duration || boardProps.duration;
     this.$container = $container;
@@ -140,6 +140,7 @@ define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
     this.$screen = null;
     this.solo = false;
     this.vdwait = 0;
+    this.globalConfig = globalConfig;
   };
 
   Screen.prototype.play = function () {
@@ -158,7 +159,7 @@ define(['jquery', 'screen/common', 'lib/jquery.spin'], function ($, common) {
 
   Screen.prototype.maximizeTextSize = setTextSize;
 
-  return function (data, boardProps, $container, plugin) {
-    return new Screen(data, boardProps, $container, plugin);
+  return function (data, boardProps, $container, plugin, globalConfig) {
+    return new Screen(data, boardProps, $container, plugin, globalConfig);
   };
 });

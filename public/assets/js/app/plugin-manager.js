@@ -1,9 +1,10 @@
 define([
   'plugin/plugin-list-admin',
-], function (plugins) {
+], function (pluginsObj) {
   'use strict';
 
-  var pluginlist = [];
+  var pluginlist = [],
+      plugins = pluginsObj.list;
   pluginlist.map = {};
 
   var pluginManager = function (app) {
