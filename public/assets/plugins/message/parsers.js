@@ -11,9 +11,9 @@ define([], function () {
         // Good ole' insert <br> tags
         return input.replace(/\n/g, '<br>\n');
       },
-      openTable = function (arr) {
+      openTable = function (arr, result) {
         arr.push('<table><tbody>');
-        return true;
+        return result.parts.length;
       },
       closeTable = function (arr) {
         arr.push('</tbody></table>');
@@ -34,12 +34,19 @@ define([], function () {
       trim = function (str) {
         return str.replace(/(^\s+)|(\s+$)/g, '');
       },
-      addRow = function (arr, a, b) {
-        arr.push('<tr><td>' + trim(a) + '</td><td>' + trim(b) + '</td></tr>');
+      addRow = function (arr, cols) {
+        var row = '<tr>', ii;
+        for (ii = 0; ii < cols.length; ii += 1) {
+          row += '<td>' + trim(cols[ii]) + '</td>';
+        }
+        row += '</tr>';
+        arr.push(row);
       },
       matchSpecial = function (line) {
         var result = tableRow.exec(line);
         if (result) {
+          result = {};
+          result.parts = line.split('|');
           result.isTable = true;
         } else {
           result = listLine.exec(line);
@@ -51,7 +58,7 @@ define([], function () {
       },
       openSpecial = function (arr, result, status) {
         if (result.isTable && !status.inTable) {
-          status.inTable = openTable(arr);
+          status.inTable = openTable(arr, result);
         } else if (result.isList && !status.inList) {
           status.inList = openList(arr, result);
         }
@@ -63,9 +70,19 @@ define([], function () {
           status.inList = closeList(arr, status);
         }
       },
-      addSpecial = function (arr, result) {
+      addSpecial = function (arr, result, status) {
+        var ii;
         if (result.isTable) {
-          return addRow(arr, result[1], result[2]);
+          // Truncate if too long, pad if too short
+          if (result.parts.length > status.inTable) {
+            result.parts.splice(status.inTable, result.parts.length - status.inTable);
+          } else if (result.parts.length < status.inTable) {
+            ii = result.parts.length;
+            for (; ii < status.inTable; ii += 1) {
+              result.parts.push('');
+            }
+          }
+          return addRow(arr, result.parts);
         } else if (result.isList) {
           return addListItem(arr, result[2]);
         }
@@ -80,10 +97,10 @@ define([], function () {
 
         for (; lindex < lines.length; lindex += 1) {
           line = lines[lindex];
-          lineResult = matchSpecial(line);
+          lineResult = matchSpecial(line, status);
           if (lineResult) {
             openSpecial(output, lineResult, status);
-            addSpecial(output, lineResult);
+            addSpecial(output, lineResult, status);
           } else if (whitespace.test(line)) {
             closeSpecial(output, status);
             output.push('<br><br>');
