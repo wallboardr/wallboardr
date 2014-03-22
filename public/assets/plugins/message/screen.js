@@ -1,7 +1,8 @@
-define(['require', './parsers', './admin', 'lib/bigtext'], function (require) {
+define(['require', './schedule', './parsers', './admin', 'lib/bigtext'], function (require) {
   'use strict';
   var parsers = require('./parsers'),
       plugin = require('./admin'),
+      scheduler = require('./schedule'),
       localScreen = function () {
         var self = this,
             viewData;
@@ -22,8 +23,7 @@ define(['require', './parsers', './admin', 'lib/bigtext'], function (require) {
             var daters = self.props.data,
                 now = (new Date()).getTime();
 
-            return ((!daters.startTime || daters.startTime <= now) &&
-                (!daters.endTime || daters.endTime >= now));
+            return scheduler.isActive(daters, now);
           }
         };
       };
