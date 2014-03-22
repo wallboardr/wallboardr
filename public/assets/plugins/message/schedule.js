@@ -24,4 +24,30 @@ define([], function () {
      Month := 1..12
      DateTime := JS timestamp
   */
+  var weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      last = 'Last day of',
+      isInRange = function (schedule, now) {
+        return ((!schedule.start || schedule.start <= now) &&
+                (!schedule.end || schedule.end >= now));
+      },
+      isValid = function (schedule) {
+        return (typeof schedule.recurType === 'undefined') ||
+          (schedule.recurType === 'none' &&
+            (typeof schedule.start !== 'undefined' || typeof schedule.end !== 'undefined')) ||
+          (schedule.recurType !== 'none' && schedule.recurrences && schedule.recurrences.length)
+      },
+      isActive = function (schedule, now) {
+        if (!isValid(schedule)) {
+          throw 'Invalid schedule';
+        }
+        return isInRange(schedule, now);
+      },
+      humanize = function (schedule) {
+        
+      };
+  return {
+    isActive: isActive,
+    humanize: humanize
+  };
 });
