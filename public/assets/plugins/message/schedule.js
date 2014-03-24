@@ -37,7 +37,7 @@ define([], function () {
         return str;
       },
       humanTime = function (time) {
-        return pad(time[0]) + ':' + pad(time[1]) + ':' + pad(time[2]);
+        return pad(time[0]) + ':' + pad(time[1]) + (time[2] === 0 ? '' : ':' + pad(time[2]));
       },
       dateToTime = function (date) {
         var jsdate = new Date(date);
@@ -106,25 +106,32 @@ define([], function () {
       },
       humanizer = {
         none: function (schedule) {
-          return 'Shown between ' + schedule.start + ' and ' + schedule.end;
+          var str = 'Shown';
+          if (schedule.start) {
+            str += ' starting from ' + schedule.start;
+          }
+          if (schedule.end) {
+            str += ' ending ' + schedule.end;
+          }
+          return str;
         },
         daily: function (schedule) {
           var first = schedule.recurrences[0];
-          return humanizer.none(schedule) + ', ' + humanDay(first.startTime, first.endTime, 'daily');
+          return humanizer.none(schedule) + ' ' + humanDay(first.startTime, first.endTime, 'day');
         },
         weekly: function (schedule) {
           var first = schedule.recurrences[0];
-          return humanizer.none(schedule) + ', ' + humanDay(first.startTime, first.endTime, weekdays[first.day-1]);
+          return humanizer.none(schedule) + ' ' + humanDay(first.startTime, first.endTime, weekdays[first.day-1]);
         },
         //monthly: function () {},
         //yearly: function () {}
       },
       humanize = function (schedule) {
         if (!isScheduled(schedule)) {
-          return true;
+          return '';
         }
         if (!isValid(schedule)) {
-          throw 'Invalid schedule';
+          return 'Invalid schedule';
         }
         return humanizer[schedule.recurType].call(null, schedule);
       };

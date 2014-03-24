@@ -1,8 +1,8 @@
-define(['require', './schedule', './parsers', './admin', 'lib/bigtext'], function (require) {
+define(['require', './parsers', './admin', 'lib/bigtext'], function (require) {
   'use strict';
   var parsers = require('./parsers'),
       plugin = require('./admin'),
-      scheduler = require('./schedule'),
+      scheduler = plugin.config.scheduler,
       localScreen = function () {
         var self = this,
             viewData;
