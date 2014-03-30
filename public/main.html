@@ -88,10 +88,7 @@
             <div class="core-info">
               <input type="text" ng-model="newScreenForm.name" placeholder="Name" required><br>
               <input type="number" ng-model="newScreenForm.duration" placeholder="Screen duration" min="0"><br>
-              <div class="form-container">
-                <input id="newScreenShareable" type="checkbox" ng-model="newScreenForm.shareable" class="css-checkbox">
-                <label for="newScreenShareable" class="css-label">Share this screen</label>
-              </div>
+              <cb-checkbox box-id="newScreenShareable" value="newScreenForm.shareable">Share this screen</cb-checkbox>
               <a target="_blank" ng-href="/view.html#PRE-{{previewNewScreen(newScreenForm)}}">Preview</a>
             </div>
             <div class="plugin-form-area">
@@ -127,10 +124,7 @@
         <div class="core-info">
           <input type="text" ng-model="activeScreenEdit.name" placeholder="Name" required><br>
           <input type="number" ng-model="activeScreenEdit.duration" placeholder="Screen duration" min="0">
-          <div class="form-container">
-            <input id="editScreenShareable" type="checkbox" ng-model="activeScreenEdit.shareable" class="css-checkbox">
-            <label for="editScreenShareable" class="css-label">Share this screen</label>
-          </div>
+          <cb-checkbox box-id="editScreenShareable" value="activeScreenEdit.shareable">Share this screen</cb-checkbox>
           <a target="_blank" ng-href="/view.html#PRE-{{previewEditScreen()}}">Preview</a>
         </div>
         <div class="plugin-form-area">

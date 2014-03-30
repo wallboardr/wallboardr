@@ -7,10 +7,11 @@ define(
         'service/auth',
         'service/data-loader',
         'service/notifier',
+        'directives/index',
         'app/plugin-manager',
         'angular-route'
     ],
-    function (angular, ctrlLoader, routes, filters, auth, loader, notifier, plugins) {
+    function (angular, ctrlLoader, routes, filters, auth, loader, notifier, directiveLoader, plugins) {
     'use strict';
 
     var appName = 'wallboardr',
@@ -38,6 +39,7 @@ define(
             app.factory('dataLoader', loader);
             app.factory('notifier', notifier);
             ctrlLoader(app);
+            directiveLoader(app);
             plugins(app);
             app.factory('pluginMgr', plugins.service);
             app.run(init);
