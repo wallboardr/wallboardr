@@ -6,6 +6,7 @@
             'lib'             : '../lib',
             'controller'      : 'app/controllers',
             'service'         : 'app/services',
+            'directives'      : 'app/directives',
             'angular'         : '../lib/angular.min',
             'angular-route'   : '../lib/angular-route.min',
             'primus'          : '../../primus/primus',
