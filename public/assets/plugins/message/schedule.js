@@ -1,7 +1,7 @@
-define([], function () {
+define(['lib/datetime-arrays'], function (dta) {
   'use strict';
   /* Scheduling logic */
-  
+
   /* Example schedule:
      var s = {
        recurType: 'none | daily | weekly | monthly | yearly',
@@ -24,39 +24,25 @@ define([], function () {
      Month := 1..12
      DateTime := JS timestamp
   */
-  var weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  var weekdays = ['day', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
       //months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       //last = 'Last day of',
-      pad = function (value, padder, digits) {
-        var str = value + '';
-        padder = padder || '0';
-        digits = digits || 2;
-        while (digits > str.length) {
-          str = padder + str;
-        }
-        return str;
-      },
-      humanTime = function (time) {
-        return pad(time[0]) + ':' + pad(time[1]) + (time[2] === 0 ? '' : ':' + pad(time[2]));
-      },
-      dateToTime = function (date) {
-        var jsdate = new Date(date);
-        return [jsdate.getHours(), jsdate.getMinutes(), jsdate.getSeconds()];
-      },
-      compareTime = function (a, b) {
-        return (a[0]-b[0]) * 3600 + (a[1]-b[1]) * 60 + (a[2]-b[2]);
-      },
       handlers = {
-        none: function () { return true; },
         daily: function (recurrence, now) {
-          var nowTime = dateToTime(now);
-          return ((!recurrence.startTime || compareTime(recurrence.startTime, nowTime) <= 0) &&
-                (!recurrence.endTime || compareTime(recurrence.endTime, nowTime) >= 0));
+          var nowTime = dta.time.fromDate(now),
+              dayOk = recurrence.day === 0 || now.getDay() === (recurrence.day - 1);
+          return dayOk && ((!recurrence.startTime || dta.time.compare(recurrence.startTime, nowTime) <= 0) &&
+                (!recurrence.endTime || dta.time.compare(recurrence.endTime, nowTime) >= 0));
         },
-        weekly: function (recurrence, now) {
-          var nowDate = new Date(now);
-          return nowDate.getDay() === (recurrence.day - 1) && handlers.daily(recurrence, now);
-        },
+        route: function (recurrence, now) {
+          if (!recurrence) {
+            return true;
+          }
+          if (!recurrence.type || recurrence.type === 'daily' || recurrence.type === 'weekly') {
+            return handers.daily(recurrence, now);
+          }
+          return false;
+        }
         //monthly: function () {},
         //yearly: function () {}
       },
@@ -80,17 +66,15 @@ define([], function () {
           return true;
         }
         return anyTrue(schedule.recurrences, function (recurrence) {
-          return handlers[schedule.recurType].call(null, recurrence, now);
+          return handlers.route.call(null, recurrence, now);
         });
       },
       isScheduled = function (schedule) {
-        var t = schedule.recurType;
-        return t && typeof handlers[t] === 'function';
+        return schedule && ((schedule.recurrences && schedule.recurrences.length)
+           || schedule.start || schedule.end);
       },
       isValid = function (schedule) {
-        return (schedule.recurType === 'none' &&
-            (typeof schedule.start !== 'undefined' || typeof schedule.end !== 'undefined')) ||
-          (schedule.recurType !== 'none' && schedule.recurrences && schedule.recurrences.length);
+        return true;
       },
       isActive = function (schedule, now) {
         if (!isScheduled(schedule)) {
@@ -102,41 +86,51 @@ define([], function () {
         return isInRange(schedule, now) && recurrenceMet(schedule, now);
       },
       humanDay = function (start, end, day) {
-        return 'every ' + day + ' between ' + humanTime(start) + ' and ' + humanTime(end);
+        return ' every ' + day + ' between ' + dta.time.toString(start) + ' and ' + dta.time.toString(end);
       },
       humanizer = {
-        none: function (schedule) {
-          var str = 'Shown';
-          if (schedule.start) {
-            str += ' starting from ' + schedule.start;
+        daily: function (recurrence) {
+          return humanDay(recurrence.startTime, recurrence.endTime, weekdays[recurrence.day]);
+        },
+        recurrence: function (recurrence) {
+          if (!recurrence) {
+            return '';
           }
-          if (schedule.end) {
-            str += ' ending ' + schedule.end;
+          if (!recurrence.type || recurrence.type === 'daily' || recurrence.type === 'weekly') {
+            return humanizer.daily(recurrence);
           }
-          return str;
-        },
-        daily: function (schedule) {
-          var first = schedule.recurrences[0];
-          return humanizer.none(schedule) + ' ' + humanDay(first.startTime, first.endTime, 'day');
-        },
-        weekly: function (schedule) {
-          var first = schedule.recurrences[0];
-          return humanizer.none(schedule) + ' ' + humanDay(first.startTime, first.endTime, weekdays[first.day-1]);
-        },
+          return '';
+        }
         //monthly: function () {},
         //yearly: function () {}
       },
       humanize = function (schedule) {
+        var str = 'Shown', ii;
         if (!isScheduled(schedule)) {
           return '';
         }
         if (!isValid(schedule)) {
           return 'Invalid schedule';
         }
-        return humanizer[schedule.recurType].call(null, schedule);
+        if (schedule.start) {
+          str += ' starting from ' + schedule.start;
+        }
+        if (schedule.end) {
+          str += ' ending ' + schedule.end;
+        }
+        if (schedule.recurrences && schedule.recurrences.length) {
+          for (ii = 0; ii < schedule.recurrences.length; ii += 1) {
+            str += humanizer.recurrence(schedule.recurrences[ii]);
+            if (ii < schedule.recurrences.length - 1) {
+              str += ' and';
+            }
+          }
+        }
+        return str;
       };
   return {
     isActive: isActive,
-    humanize: humanize
+    humanize: humanize,
+    isScheduled: isScheduled
   };
 });

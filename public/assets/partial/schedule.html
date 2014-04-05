@@ -1,0 +1,17 @@
+<div class="wb-schedule-container" ng-class="{edit: editing}">
+  <span class="current">{{scheduler.humanize(schedule) || 'Not scheduled.'}}</span>
+  <div class="btn start-edit" ng-click="editSchedule()">Edit schedule</div>
+  <div class="editor">
+    <div class="validity">
+      From <input type="text" size="10" ng-model="schedule.start" wb-optional-date="now">
+      until <input type="text" size="10" ng-model="schedule.end" wb-optional-date="forever">
+    </div>
+    <div class="recurrence ng-cloak" ng-repeat="recurrence in schedule.recurrences">
+      <select ng-model="recurrence.day" ng-options="o.type as o.show for o in rTypes"></select> from
+      <input type="time" size="5" ng-model="recurrence.startTime" wb-time>
+      until
+      <input type="time" size="5" ng-model="recurrence.endTime" wb-time>
+    </div>
+    <div class="btn" ng-click="addNewRecurrence()">Add recurrence</div>
+  </div>
+</div>

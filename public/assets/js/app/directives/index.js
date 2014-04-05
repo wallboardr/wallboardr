@@ -1,5 +1,8 @@
 define([
-    'directives/checkbox-directive'
+    'directives/checkbox-directive',
+    'directives/schedule-directive',
+    'directives/optional-date-directive',
+    'directives/time-directive'
   ],
   function () {
   'use strict';

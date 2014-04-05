@@ -4,3 +4,22 @@
   padding: 0.25em;
   border: 1px solid @color-base-page;
 }
+
+.wb-schedule-container {
+  margin-bottom: 0.5em;
+  
+  &.edit {
+    .current, .start-edit {
+      display: none;
+    }
+    .editor {
+      display: block;
+    }
+  }
+  .editor {
+    display: none;
+  }
+  input, select {
+    width: auto;
+  }
+}

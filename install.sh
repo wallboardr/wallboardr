@@ -9,3 +9,4 @@ hg clone https://bitbucket.org/colinbate/wallboardr-octopusdeploy ./public/asset
 touch node_modules/grunt-concurrent/index.js
 touch node_modules/grunt-nodemon/index.js
 touch node_modules/grunt-contrib-jshint/index.js
+touch node_modules/grunt-contrib-less/index.js
