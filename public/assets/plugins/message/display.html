@@ -1,2 +1,2 @@
-<div ng-class="{'screen-message-recur': activeScreen.data.recurType}">{{plugins.map['message'].scheduler.humanize(activeScreen.data)}}</div>
+<div ng-class="{'screen-message-recur': plugins.map['message'].scheduler.isScheduled(activeScreen.data)}">{{plugins.map['message'].scheduler.humanize(activeScreen.data)}}</div>
 <div ng-repeat="line in activeScreen.data.message.split('\n') track by $index">{{line || '&nbsp;'}}</div>

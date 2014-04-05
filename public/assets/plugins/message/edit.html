@@ -1,5 +1,6 @@
 <div class="form-panel">
   <textarea placeholder="Enter some text..." rows="4" ng-model="activeScreenEdit.data.message" required></textarea>
+  <div wb-schedule="activeScreenEdit.data" wb-scheduler="plugins.map['message'].scheduler"></div>
   <div class="buttons">
     <button ng-click="updateActiveScreen(editScreenForm)" class="success">Save</button>
     <button ng-click="cancelEditScreen()" class="cancel">Cancel</button>

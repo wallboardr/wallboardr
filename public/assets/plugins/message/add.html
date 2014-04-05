@@ -1,5 +1,6 @@
 <div class="form-panel">
   <textarea placeholder="Enter some text..." rows="4" ng-model="newScreenForm.data.message" required></textarea>
+  <div wb-schedule="newScreenForm.data" wb-scheduler="plugins.map['message'].scheduler"></div>
   <div class="buttons">
     <button ng-click="addScreen(newScreenForm)" class="success">Add</button>
     <button ng-click="cancelAddScreen()" class="cancel">Cancel</button>

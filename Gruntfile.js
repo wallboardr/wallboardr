@@ -46,7 +46,7 @@ module.exports = function(grunt) {
     less: {
       dev: {
         options: {
-          dumpLineNumbers: 'mediaquery'
+          sourceMap: true,
         },
         files: {
           '<%= adminCssFile %>': 'less/app.less',
