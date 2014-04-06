@@ -10,6 +10,9 @@ define([], function () {
       },
       templateUrl: 'assets/partial/schedule.html',
       link: function (scope) {
+        var closeWindow = function () {
+          scope.editing = false;
+        };
         scope.schedule = scope.schedule || {};
         scope.rTypes = [
           {type: 0, show: 'Daily'},
@@ -23,6 +26,7 @@ define([], function () {
         ];
         scope.editSchedule = function () {
           scope.editing = true;
+          scope.schedule = scope.schedule || {};
         };
         scope.addNewRecurrence = function () {
           if (!scope.schedule.recurrences) {
@@ -30,6 +34,8 @@ define([], function () {
           }
           scope.schedule.recurrences.push({day: 0, startTime: [8,30,0], endTime: [16,30,0]});
         };
+        scope.$on('screen:new:close', closeWindow);
+        scope.$on('screen:edit:closed', closeWindow);
       }
     };
   };

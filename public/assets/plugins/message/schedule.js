@@ -4,12 +4,9 @@ define(['lib/datetime-arrays'], function (dta) {
 
   /* Example schedule:
      var s = {
-       recurType: 'none | daily | weekly | monthly | yearly',
        recurrences: [
-         { startTime: Time, endTime: Time }, // daily
-         { day: Weekday, startTime: Time, endTime: Time }, // weekly
-         { day: DayOfMonth, startTime: Time, endTime: Time }, // monthly
-         { month: Month, day: DayOfMonth, startTime: Time, endTime: Time }, // yearly
+         { day: Weekday, startTime: Time, endTime: Time }, // daily / weekly
+         { month: Month, day: DayOfMonth, startTime: Time, endTime: Time }, // monthly / yearly
        ],
        start: DateTime,
        end: DateTime
@@ -18,10 +15,12 @@ define(['lib/datetime-arrays'], function (dta) {
      Hour := 0..23
      Min := 0..59
      Second := 0..59
-     Weekday := 1..7
+     Daily := 0
+     Weekday := Daily | 1..7
      Week := 1..4 | -1..-4
      DayOfMonth := 1..31 | -1 | 'Week/Weekday'
-     Month := 1..12
+     AnyMonth := 0
+     Month := AnyMonth | 1..12
      DateTime := JS timestamp
   */
   var weekdays = ['day', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -30,7 +29,8 @@ define(['lib/datetime-arrays'], function (dta) {
       handlers = {
         daily: function (recurrence, now) {
           var nowTime = dta.time.fromDate(now),
-              dayOk = recurrence.day === 0 || now.getDay() === (recurrence.day - 1);
+              nowDate = new Date(now),
+              dayOk = recurrence.day === 0 || nowDate.getDay() === (recurrence.day - 1);
           return dayOk && ((!recurrence.startTime || dta.time.compare(recurrence.startTime, nowTime) <= 0) &&
                 (!recurrence.endTime || dta.time.compare(recurrence.endTime, nowTime) >= 0));
         },
@@ -39,7 +39,7 @@ define(['lib/datetime-arrays'], function (dta) {
             return true;
           }
           if (!recurrence.type || recurrence.type === 'daily' || recurrence.type === 'weekly') {
-            return handers.daily(recurrence, now);
+            return handlers.daily(recurrence, now);
           }
           return false;
         }
@@ -70,10 +70,10 @@ define(['lib/datetime-arrays'], function (dta) {
         });
       },
       isScheduled = function (schedule) {
-        return schedule && ((schedule.recurrences && schedule.recurrences.length)
-           || schedule.start || schedule.end);
+        return schedule && ((schedule.recurrences && schedule.recurrences.length) ||
+           schedule.start || schedule.end);
       },
-      isValid = function (schedule) {
+      isValid = function () {
         return true;
       },
       isActive = function (schedule, now) {
@@ -87,6 +87,11 @@ define(['lib/datetime-arrays'], function (dta) {
       },
       humanDay = function (start, end, day) {
         return ' every ' + day + ' between ' + dta.time.toString(start) + ' and ' + dta.time.toString(end);
+      },
+      prettyDate = function (date) {
+        var day = dta.dateArray.toString(dta.dateArray.fromDate(date)),
+            time = dta.time.toString(dta.time.fromDate(date));
+        return day + (time === '00:00' ? '' : ' ' + time);
       },
       humanizer = {
         daily: function (recurrence) {
@@ -113,10 +118,10 @@ define(['lib/datetime-arrays'], function (dta) {
           return 'Invalid schedule';
         }
         if (schedule.start) {
-          str += ' starting from ' + schedule.start;
+          str += ' starting from ' + prettyDate(schedule.start);
         }
         if (schedule.end) {
-          str += ' ending ' + schedule.end;
+          str += ' ending ' + prettyDate(schedule.end);
         }
         if (schedule.recurrences && schedule.recurrences.length) {
           for (ii = 0; ii < schedule.recurrences.length; ii += 1) {
