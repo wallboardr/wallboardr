@@ -1,6 +1,8 @@
 <div class="wb-schedule-container" ng-class="{edit: editing}">
-  <span class="current">{{scheduler.humanize(schedule) || 'Not scheduled.'}}</span>
-  <div class="btn start-edit" ng-click="editSchedule()">Edit schedule</div>
+  <div class="current" ng-click="editSchedule()">
+    {{scheduler.humanize(schedule) || 'Not scheduled.'}}
+    <span class="edit-icon"><i class="icon-pencil"></i></span>
+  </div>
   <div class="editor">
     <div class="validity">
       From <input type="text" size="10" ng-model="schedule.start" wb-optional-date="now">

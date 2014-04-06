@@ -7,7 +7,30 @@
 
 .wb-schedule-container {
   margin-bottom: 0.5em;
-  
+  .ng-dirty.ng-invalid {
+    background-color: lighten(@color-alert, 20%);
+  }
+
+  .current {
+    position: relative;
+    padding: 0.5em;
+    border: 1px solid @color-base-page;
+    .edit-icon {
+      display: none;
+      position: absolute;
+      bottom: 1px;
+      right: 4px;
+      z-index: 2;
+    }
+    &:hover {
+      background-color: @color-main-1;
+      cursor: pointer;
+      .edit-icon {
+        display: block;
+      }
+    }
+  }
+
   &.edit {
     .current, .start-edit {
       display: none;

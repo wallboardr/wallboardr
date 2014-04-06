@@ -6,7 +6,7 @@ define(['angular'], function (angular) {
         var key;
         for (key in form) {
           if (hop.call(form, key) && key[0] !== '$') {
-            form[key] = '';
+            form[key] = undefined;
           }
         }
       },

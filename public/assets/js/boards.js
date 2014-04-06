@@ -4,6 +4,7 @@
     require.config({
         paths: {
             'lib'        : '../lib/boards',
+            'lib/datetime-arrays' : '../lib/datetime-arrays',
             'jquery'     : '../lib/boards/jquery',
             'spin'       : '../lib/spin.min',
             'screen'     : '../js/boards/screens',
