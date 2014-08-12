@@ -24,13 +24,13 @@ describe('The auth service', function () {
     };
   });
 
-  describe('whoAmI', function () {
+  describe('loadUser', function () {
 
     it('calls the correct deployd URL', function () {
       spyOn(http, 'get').andCallThrough();
       service = authFactory(rootScope, http);
 
-      service.whoAmI();
+      service.loadUser();
 
       expect(http.get).toHaveBeenCalledWith('/users/me');
     });
@@ -39,7 +39,7 @@ describe('The auth service', function () {
       getPayload = {};
       service = authFactory(rootScope, http);
 
-      service.whoAmI();
+      service.loadUser();
 
       expect(rootScope.user).toBeDefined();
       expect(rootScope.user.loggedIn).toBe(false);
@@ -51,7 +51,7 @@ describe('The auth service', function () {
       getPayload = {data:{username:'Colin', role:'admin'}};
       service = authFactory(rootScope, http);
 
-      service.whoAmI();
+      service.loadUser();
 
       expect(rootScope.user).toBeDefined();
       expect(rootScope.user.loggedIn).toBeFalsy();
@@ -62,7 +62,7 @@ describe('The auth service', function () {
       getPayload = {data:{username:'noah', role:'admin'}};
       service = authFactory(rootScope, http);
 
-      service.whoAmI();
+      service.loadUser();
 
       expect(rootScope.user).toBeDefined();
       expect(rootScope.user.loggedIn).toBe(true);
@@ -90,11 +90,11 @@ describe('The auth service', function () {
     it('sets up the cookie user and returns it', function () {
       rootScope.user = { name: 'Noah Bate' };
       service = authFactory(rootScope, http);
-      spyOn(service, 'whoAmI');
+      spyOn(service, 'loadUser');
 
       var result = service.user();
 
-      expect(service.whoAmI).toHaveBeenCalled();
+      expect(service.loadUser).toHaveBeenCalled();
       expect(result).toBeDefined();
       expect(result.name).toBe('Noah Bate');
     });
