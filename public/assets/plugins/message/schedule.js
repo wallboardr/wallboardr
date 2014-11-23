@@ -70,11 +70,12 @@ define(['lib/datetime-arrays'], function (dta) {
         });
       },
       isScheduled = function (schedule) {
-        return schedule && ((schedule.recurrences && schedule.recurrences.length) ||
-           schedule.start || schedule.end);
+        return !!(schedule && ((schedule.recurrences && schedule.recurrences.length) ||
+           schedule.start || schedule.end));
       },
-      isValid = function () {
-        return true;
+      isValid = function (schedule) {
+        var validRange = !(schedule.start && schedule.end && schedule.start > schedule.end);
+        return validRange;
       },
       isActive = function (schedule, now) {
         if (!isScheduled(schedule)) {
