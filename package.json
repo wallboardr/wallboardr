@@ -22,8 +22,8 @@
     "primus": "~1.5.2",
     "deployd": "~0.6.10",
     "dpd-event": "~0.0.2",
-    "dpd-proxy": "~0.1.4",
-    "less": "~1.4.1",
+    "dpd-proxy": "~0.1.6",
+    "less": "~1.7.5",
     "mustache": "~0.8.0"
   },
   "devDependencies": {
@@ -32,7 +32,7 @@
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-watch": "~0.4.4",
     "grunt-contrib-requirejs": "~0.4.1",
-    "grunt-nodemon": "0.0.8",
+    "grunt-nodemon": "~0.3.0",
     "grunt-concurrent": "~0.3.0",
     "readdirp": "~0.3.1",
     "grunt-text-replace": "~0.3.9",
